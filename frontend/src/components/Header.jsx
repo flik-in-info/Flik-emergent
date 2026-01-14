@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
-import { navItems } from '../data/mock';
+import { navItems, images } from '../data/mock';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,11 +26,12 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <span className="text-white font-bold text-xl">F</span>
-            </div>
-            <span className="text-white font-semibold text-xl tracking-tight">Flik</span>
+          <a href="/" className="flex items-center group">
+            <img 
+              src={images.logo} 
+              alt="Flik" 
+              className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+            />
           </a>
 
           {/* Desktop Navigation */}
