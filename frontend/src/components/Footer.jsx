@@ -9,11 +9,12 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">F</span>
-              </div>
-              <span className="text-white font-semibold text-xl tracking-tight">Flik</span>
+            <a href="/" className="flex items-center mb-6">
+              <img 
+                src={images.logo} 
+                alt="Flik" 
+                className="h-10 w-auto"
+              />
             </a>
             <p className="text-gray-500 leading-relaxed max-w-sm">
               {footerData.tagline}
