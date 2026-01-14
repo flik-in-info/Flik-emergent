@@ -1,5 +1,5 @@
 import React from 'react';
-import { footerData } from '../data/mock';
+import { footerData, images } from '../data/mock';
 
 const Footer = () => {
   return (
