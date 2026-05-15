@@ -5,8 +5,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -65,6 +65,49 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+
+# ---------- Leads (Demo Request) ----------
+class Lead(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: EmailStr
+    company: Optional[str] = None
+    project: Optional[str] = None
+    message: Optional[str] = None
+    source: str = "closing_cta"
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class LeadCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    email: EmailStr
+    company: Optional[str] = Field(default=None, max_length=200)
+    project: Optional[str] = Field(default=None, max_length=200)
+    message: Optional[str] = Field(default=None, max_length=2000)
+    source: Optional[str] = Field(default="closing_cta", max_length=80)
+
+
+@api_router.post("/leads", response_model=Lead, status_code=201)
+async def create_lead(payload: LeadCreate):
+    lead = Lead(**payload.model_dump(exclude_none=True))
+    doc = lead.model_dump()
+    doc["created_at"] = doc["created_at"].isoformat()
+    await db.leads.insert_one(doc)
+    logger.info("New lead captured: %s <%s>", lead.name, lead.email)
+    return lead
+
+
+@api_router.get("/leads", response_model=List[Lead])
+async def list_leads(limit: int = 200):
+    docs = await db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
+    for d in docs:
+        if isinstance(d.get("created_at"), str):
+            d["created_at"] = datetime.fromisoformat(d["created_at"])
+    return docs
+
 
 # Include the router in the main app
 app.include_router(api_router)

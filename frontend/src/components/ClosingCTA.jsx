@@ -2,10 +2,12 @@ import React from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Phone, Shield, Server, Globe } from 'lucide-react';
 import { closingSection, images } from '../data/mock';
+import { useDemoDialog } from '../context/DemoDialogContext';
 
 const trustIcons = [Shield, Server, Server, Globe];
 
 const ClosingCTA = () => {
+  const { open: openDemoDialog } = useDemoDialog();
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
       {/* Background Image */}
@@ -36,15 +38,19 @@ const ClosingCTA = () => {
         {/* CTAs */}
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           <Button
+            data-testid="closing-primary-cta"
             size="lg"
+            onClick={() => openDemoDialog('closing_cta')}
             className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-10 py-6 text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 group"
           >
             {closingSection.primaryCta}
             <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
           <Button
+            data-testid="closing-secondary-cta"
             size="lg"
             variant="outline"
+            onClick={() => openDemoDialog('closing_sales')}
             className="border-white/20 text-white hover:bg-white/10 font-medium px-10 py-6 text-base transition-all duration-300 group"
           >
             <Phone className="mr-2 w-5 h-5" />

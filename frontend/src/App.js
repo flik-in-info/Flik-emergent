@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "./components/ui/sonner";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import PlatformSection from "./components/PlatformSection";
@@ -12,6 +13,7 @@ import MetricsSection from "./components/MetricsSection";
 import DifferenceSection from "./components/DifferenceSection";
 import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
+import { DemoDialogProvider } from "./context/DemoDialogContext";
 
 const LandingPage = () => {
   return (
@@ -37,9 +39,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-        </Routes>
+        <DemoDialogProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+          </Routes>
+          <Toaster theme="dark" position="bottom-right" richColors closeButton />
+        </DemoDialogProvider>
       </BrowserRouter>
     </div>
   );

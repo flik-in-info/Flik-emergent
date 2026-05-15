@@ -2,8 +2,10 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Play, ArrowRight, Radio } from 'lucide-react';
 import { heroData, images } from '../data/mock';
+import { useDemoDialog } from '../context/DemoDialogContext';
 
 const HeroSection = () => {
+  const { open: openDemoDialog } = useDemoDialog();
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -37,15 +39,19 @@ const HeroSection = () => {
           {/* CTAs */}
           <div className="flex flex-wrap gap-4">
             <Button
+              data-testid="hero-primary-cta"
               size="lg"
+              onClick={() => openDemoDialog('hero')}
               className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 group"
             >
               {heroData.primaryCta}
               <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
             <Button
+              data-testid="hero-secondary-cta"
               size="lg"
               variant="outline"
+              onClick={() => openDemoDialog('hero_demo')}
               className="border-white/20 text-white hover:bg-white/10 font-medium px-8 py-6 text-base transition-all duration-300 group"
             >
               <Play className="mr-2 w-5 h-5 fill-current" />

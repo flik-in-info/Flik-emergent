@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
 import { navItems, images } from '../data/mock';
+import { useDemoDialog } from '../context/DemoDialogContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { open: openDemoDialog } = useDemoDialog();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +52,11 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button className="bg-white text-gray-900 hover:bg-gray-100 font-medium px-6 transition-all duration-300 hover:shadow-lg hover:shadow-white/10">
+            <Button
+              data-testid="header-request-demo"
+              onClick={() => openDemoDialog('header')}
+              className="bg-white text-gray-900 hover:bg-gray-100 font-medium px-6 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
+            >
               Request Demo
             </Button>
           </div>
@@ -82,7 +88,14 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <Button className="bg-white text-gray-900 hover:bg-gray-100 font-medium mt-4">
+          <Button
+            data-testid="mobile-request-demo"
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              openDemoDialog('header_mobile');
+            }}
+            className="bg-white text-gray-900 hover:bg-gray-100 font-medium mt-4"
+          >
             Request Demo
           </Button>
         </nav>
