@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import LeadFormDialog from '../components/LeadFormDialog';
 
 const DemoDialogContext = createContext({ open: () => {} });
@@ -10,10 +10,12 @@ export const DemoDialogProvider = ({ children }) => {
   const open = useCallback((src = 'closing_cta') => {
     setSource(src);
     setIsOpen(true);
-  }, [setIsOpen, setSource]);
+  }, []);
+
+  const value = useMemo(() => ({ open }), [open]);
 
   return (
-    <DemoDialogContext.Provider value={{ open }}>
+    <DemoDialogContext.Provider value={value}>
       {children}
       <LeadFormDialog open={isOpen} onOpenChange={setIsOpen} source={source} />
     </DemoDialogContext.Provider>
