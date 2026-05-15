@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Compass, Boxes } from 'lucide-react';
+import { Maximize2, Compass, Boxes, Loader2 } from 'lucide-react';
 import ExperienceModal from './ExperienceModal';
 
 const EXPERIENCES = [
@@ -8,8 +8,7 @@ const EXPERIENCES = [
     title: 'Virtual Walkthrough',
     subtitle: 'AI Guided Panoramic Tour',
     description:
-      'Step inside a fully rendered space. AI guides you through each room, lighting condition and viewpoint—no plug-ins, no downloads.',
-    cta: 'Launch walkthrough',
+      'Step inside a fully rendered space. AI guides you through each room, lighting condition and viewpoint — no plug-ins, no downloads.',
     icon: Compass,
     src: 'https://www.coohom.com/pub/tool/panorama/aiwalking?obsPlanId=3FO3GVEJE5YC&locale=en_US&utm_source=smart720_share&utm_medium=linkcopy&utm_content=3FO3GVEJE5YC',
   },
@@ -19,49 +18,68 @@ const EXPERIENCES = [
     subtitle: 'Interactive 3D Model',
     description:
       'Rotate, orbit and dissect the architecture in true 3D. Toggle floors, isolate units, and inspect the build module by module.',
-    cta: 'Open 3D model',
     icon: Boxes,
     src: 'https://www.coohom.com/pub/modelo/viewer/preview/3FO3GVEJE5YC',
   },
 ];
 
-const ExperienceCard = ({ experience, onOpen }) => {
+const ExperienceCard = ({ experience, onFullscreen }) => {
   const Icon = experience.icon;
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <button
-      type="button"
+    <div
       data-testid={`experience-card-${experience.id}`}
-      onClick={() => onOpen(experience)}
-      className="group relative text-left rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 hover:border-emerald-500/40 transition-all duration-500 p-8 lg:p-10 hover:bg-white/[0.04]"
+      className="group relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 hover:border-emerald-500/40 transition-all duration-500 flex flex-col"
     >
-      {/* Hover glow */}
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-      <div className="relative">
-        <div className="flex items-start justify-between mb-8">
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center transition-all duration-500 group-hover:bg-emerald-500/20 group-hover:scale-110">
-            <Icon className="w-6 h-6 text-emerald-400" />
+      {/* Live iframe area */}
+      <div className="relative aspect-[16/10] bg-black overflow-hidden">
+        {!loaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0b] z-0">
+            <div className="flex flex-col items-center gap-3 text-gray-400">
+              <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
+              <span className="text-xs uppercase tracking-widest">Loading experience…</span>
+            </div>
           </div>
-          <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10">
-            <ArrowUpRight className="w-4 h-4 text-white transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </div>
-        </div>
+        )}
+        <iframe
+          data-testid={`experience-iframe-${experience.id}`}
+          src={experience.src}
+          title={experience.title}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          className="absolute inset-0 w-full h-full border-0 z-[1]"
+          allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope; magnetometer; camera; microphone"
+          allowFullScreen
+        />
 
-        <p className="text-emerald-400 text-xs font-medium uppercase tracking-widest mb-3">
-          {experience.subtitle}
-        </p>
-        <h3 className="text-2xl lg:text-3xl font-light text-white mb-4">
-          {experience.title}
-        </h3>
-        <p className="text-gray-400 leading-relaxed mb-8 max-w-md">
-          {experience.description}
-        </p>
-
-        <span className="inline-flex items-center text-sm font-medium text-white border-b border-emerald-500/40 pb-1 transition-all duration-300 group-hover:border-emerald-400 group-hover:text-emerald-300">
-          {experience.cta}
-        </span>
+        {/* Fullscreen button */}
+        <button
+          type="button"
+          data-testid={`experience-fullscreen-${experience.id}`}
+          onClick={() => onFullscreen(experience)}
+          className="absolute top-3 right-3 z-10 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-black/70 hover:bg-emerald-500/90 backdrop-blur-md border border-white/10 hover:border-emerald-400 text-white text-xs font-medium transition-all duration-300"
+          aria-label={`Open ${experience.title} fullscreen`}
+        >
+          <Maximize2 className="w-3.5 h-3.5" />
+          <span>Fullscreen</span>
+        </button>
       </div>
-    </button>
+
+      {/* Caption */}
+      <div className="p-6 lg:p-8">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center transition-all duration-500 group-hover:bg-emerald-500/20">
+            <Icon className="w-4 h-4 text-emerald-400" />
+          </div>
+          <p className="text-emerald-400 text-xs font-medium uppercase tracking-widest">
+            {experience.subtitle}
+          </p>
+        </div>
+        <h3 className="text-2xl font-light text-white mb-3">{experience.title}</h3>
+        <p className="text-gray-400 text-sm leading-relaxed">{experience.description}</p>
+      </div>
+    </div>
   );
 };
 
@@ -81,12 +99,12 @@ const ExperienceSection = () => {
           <span className="block">Explore it on your terms.</span>
         </h2>
         <p className="text-lg text-gray-400 leading-relaxed mb-16 max-w-3xl">
-          Two real, working experiences powered by Flik Explore. No installs, no waiting—launch a guided panoramic tour or pivot into a full 3D model with a single click.
+          Two real, working experiences powered by Flik Explore — running live below. Tap fullscreen to launch the immersive view.
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
           {EXPERIENCES.map((exp) => (
-            <ExperienceCard key={exp.id} experience={exp} onOpen={setActive} />
+            <ExperienceCard key={exp.id} experience={exp} onFullscreen={setActive} />
           ))}
         </div>
       </div>

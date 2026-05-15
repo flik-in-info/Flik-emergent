@@ -230,9 +230,9 @@ export const footerData = {
 
 export const images = {
   hero: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/x2v0cq1i_Generate_a_photo_4k_202601081339.jpeg",
-  environment: "https://customer-assets.emergentagent.com/job_14e408c1-3c7e-48f7-a8ad-989309c5d4e5/artifacts/i1eytrg1_IMG_0735.jpeg",
-  devices: "https://customer-assets.emergentagent.com/job_14e408c1-3c7e-48f7-a8ad-989309c5d4e5/artifacts/rnef1oul_IMG_0749.jpeg",
-  intelligence: "https://customer-assets.emergentagent.com/job_14e408c1-3c7e-48f7-a8ad-989309c5d4e5/artifacts/po1ohp53_IMG_0751.jpeg",
+  environment: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/oxgdjfg9_Ultrarealistic_product_feature_2k_2026011515.jpeg",
+  devices: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/c3tyk0z9_Ultrarealistic_visualization_of_2k_202601191.jpeg",
+  intelligence: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/czx4ykai_Google_earth_studiostyle_2k_202601191025.jpeg",
   showroom: "https://customer-assets.emergentagent.com/job_14e408c1-3c7e-48f7-a8ad-989309c5d4e5/artifacts/qmndvwhi_IMG_0752.jpeg",
   logo: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/c72tdypv_flik999.png"
 };
