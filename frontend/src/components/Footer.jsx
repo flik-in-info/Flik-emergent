@@ -1,5 +1,29 @@
 import React from 'react';
-import { footerData, images } from '../data/mock';
+import { Linkedin, Instagram } from 'lucide-react';
+import { footerData, contactData, images } from '../data/mock';
+
+const SOCIAL_LINKS = [
+  { id: 'linkedin', label: 'LinkedIn', href: contactData.socials.linkedin, icon: Linkedin },
+  { id: 'instagram', label: 'Instagram', href: contactData.socials.instagram, icon: Instagram },
+];
+
+const SocialIcons = () => (
+  <div className="flex items-center gap-3 mt-8" data-testid="footer-socials">
+    {SOCIAL_LINKS.map(({ id, label, href, icon: Icon }) => (
+      <a
+        key={id}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-testid={`footer-social-${id}`}
+        aria-label={label}
+        className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all duration-300"
+      >
+        <Icon className="w-4 h-4" />
+      </a>
+    ))}
+  </div>
+);
 
 const FooterLinkColumn = ({ title, links }) => (
   <>
@@ -25,6 +49,26 @@ const FooterBrand = () => (
       <img src={images.logo} alt="Flik" className="h-10 w-auto" />
     </a>
     <p className="text-gray-500 leading-relaxed max-w-sm">{footerData.tagline}</p>
+
+    <div className="mt-8 space-y-2 text-sm">
+      <a
+        href={`mailto:${contactData.email}`}
+        data-testid="footer-email"
+        className="block text-gray-400 hover:text-white transition-colors duration-300"
+      >
+        {contactData.email}
+      </a>
+      <a
+        href={`tel:+${contactData.phoneRaw}`}
+        data-testid="footer-phone"
+        className="block text-gray-400 hover:text-white transition-colors duration-300"
+      >
+        {contactData.phone}
+      </a>
+    </div>
+
+    <SocialIcons />
+
     <p className="text-gray-600 text-sm mt-8">{footerData.copyright}</p>
   </div>
 );

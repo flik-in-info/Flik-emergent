@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Send, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
+import { contactData } from '../data/mock';
 import ContactIntro from './contact/ContactIntro';
 import ContactFormFields from './contact/ContactFormFields';
 import ContactSuccess from './contact/ContactSuccess';
 
-const CONTACT_EMAIL = 'Contact@flik.in';
+const CONTACT_EMAIL = contactData.email;
 
 const INTEREST_OPTIONS = [
   'Virtual Walkthrough',

@@ -196,6 +196,17 @@ export const closingSection = {
   ]
 };
 
+export const contactData = {
+  email: "Contact@flik.in",
+  phone: "+91 96861 11327",
+  phoneRaw: "919686111327", // for tel: and wa.me links (no plus, no spaces)
+  whatsappMessage: "Hi Flik team, I'd like to know more about Flik Explore.",
+  socials: {
+    linkedin: "https://www.linkedin.com/company/flink.in/",
+    instagram: "https://www.instagram.com/_flik.in_"
+  }
+};
+
 export const footerData = {
   tagline: "Real-time architecture intelligence for the world's leading developers.",
   copyright: "© 2026 Flik. All rights reserved.",
