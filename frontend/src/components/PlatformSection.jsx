@@ -17,8 +17,8 @@ const PlatformSection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-8">
-          {platformSection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {platformSection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -35,7 +35,7 @@ const PlatformSection = () => {
             const Icon = icons[index];
             return (
               <div
-                key={index}
+                key={feature.title}
                 className="group p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/30 transition-all duration-500 hover:bg-white/[0.04]"
               >
                 <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-emerald-500/20 group-hover:scale-110">

@@ -24,8 +24,8 @@ const HeroSection = () => {
         <div className="max-w-3xl">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-8">
-            {heroData.headline.map((line, index) => (
-              <span key={index} className="block">
+            {heroData.headline.map((line) => (
+              <span key={line} className="block">
                 {line}
               </span>
             ))}

@@ -17,8 +17,8 @@ const VisualizationSection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-8">
-          {visualizationSection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {visualizationSection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -35,7 +35,7 @@ const VisualizationSection = () => {
             const Icon = icons[index];
             return (
               <div
-                key={index}
+                key={feature.title}
                 className="group relative p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/30 transition-all duration-500"
               >
                 <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-5 transition-all duration-500 group-hover:bg-emerald-500/20">

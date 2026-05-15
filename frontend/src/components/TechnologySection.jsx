@@ -25,8 +25,8 @@ const TechnologySection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-8">
-          {technologySection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {technologySection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -43,7 +43,7 @@ const TechnologySection = () => {
             const Icon = icons[index];
             return (
               <div
-                key={index}
+                key={capability.title}
                 className="group relative p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/30 transition-all duration-500 overflow-hidden"
               >
                 {/* Hover Glow Effect */}
@@ -96,8 +96,8 @@ const TechnologySection = () => {
             
             {/* Connection Lines */}
             <div className="hidden md:flex justify-between items-center mt-4 px-16">
-              {[1, 2, 3].map((_, i) => (
-                <div key={i} className="flex-1 h-px bg-gradient-to-r from-white/10 via-emerald-500/30 to-white/10" />
+              {['l1', 'l2', 'l3'].map((id) => (
+                <div key={id} className="flex-1 h-px bg-gradient-to-r from-white/10 via-emerald-500/30 to-white/10" />
               ))}
             </div>
           </div>

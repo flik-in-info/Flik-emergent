@@ -39,11 +39,11 @@ class StatusCheckCreate(BaseModel):
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
-async def root():
+async def root() -> dict[str, str]:
     return {"message": "Hello World"}
 
 @api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
+async def create_status_check(input: StatusCheckCreate) -> StatusCheck:
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
     
@@ -55,7 +55,7 @@ async def create_status_check(input: StatusCheckCreate):
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
+async def get_status_checks() -> List[StatusCheck]:
     # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
     
@@ -91,7 +91,7 @@ class LeadCreate(BaseModel):
 
 
 @api_router.post("/leads", response_model=Lead, status_code=201)
-async def create_lead(payload: LeadCreate):
+async def create_lead(payload: LeadCreate) -> Lead:
     lead = Lead(**payload.model_dump(exclude_none=True))
     doc = lead.model_dump()
     doc["created_at"] = doc["created_at"].isoformat()
@@ -101,7 +101,7 @@ async def create_lead(payload: LeadCreate):
 
 
 @api_router.get("/leads", response_model=List[Lead])
-async def list_leads(limit: int = 200):
+async def list_leads(limit: int = 200) -> List[Lead]:
     docs = await db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(limit)
     for d in docs:
         if isinstance(d.get("created_at"), str):

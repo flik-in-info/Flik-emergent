@@ -17,8 +17,8 @@ const TeamsSection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-16">
-          {teamsSection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {teamsSection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -30,7 +30,7 @@ const TeamsSection = () => {
             const Icon = icons[index];
             return (
               <div
-                key={index}
+                key={team.title}
                 className="group relative rounded-2xl overflow-hidden"
               >
                 {/* Card Background */}

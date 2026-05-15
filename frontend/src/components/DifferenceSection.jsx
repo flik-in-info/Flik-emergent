@@ -15,8 +15,8 @@ const DifferenceSection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-8">
-          {differenceSection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {differenceSection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -42,7 +42,7 @@ const DifferenceSection = () => {
           {/* Rows */}
           {differenceSection.comparison.map((row, index) => (
             <div
-              key={index}
+              key={row.flik}
               className={`grid grid-cols-2 ${
                 index !== differenceSection.comparison.length - 1 ? 'border-b border-white/5' : ''
               }`}

@@ -19,8 +19,8 @@ const MetricsSection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-20 text-center">
-          {metricsSection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {metricsSection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -28,9 +28,9 @@ const MetricsSection = () => {
 
         {/* Metrics Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {metricsSection.metrics.map((metric, index) => (
+          {metricsSection.metrics.map((metric) => (
             <div
-              key={index}
+              key={metric.label}
               className="group relative p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/30 transition-all duration-500 text-center"
             >
               {/* Value */}

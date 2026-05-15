@@ -10,7 +10,7 @@ export const DemoDialogProvider = ({ children }) => {
   const open = useCallback((src = 'closing_cta') => {
     setSource(src);
     setIsOpen(true);
-  }, []);
+  }, [setIsOpen, setSource]);
 
   return (
     <DemoDialogContext.Provider value={{ open }}>

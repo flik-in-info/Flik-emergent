@@ -1,5 +1,9 @@
 // Flik Explore Landing Page Data
 
+// Numeric constants for the hero "live inventory" widget
+const HERO_LIVE_UNITS = 847;
+const HERO_LIVE_TOWERS = 12;
+
 export const heroData = {
   headline: [
     "Real-time architecture.",
@@ -11,8 +15,8 @@ export const heroData = {
   secondaryCta: "Watch Live Demo",
   floatingStats: {
     label: "Live inventory",
-    units: 847,
-    towers: 12,
+    units: HERO_LIVE_UNITS,
+    towers: HERO_LIVE_TOWERS,
     sync: "Real-time sync"
   }
 };

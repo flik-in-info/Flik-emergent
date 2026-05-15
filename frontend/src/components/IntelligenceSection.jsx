@@ -18,8 +18,8 @@ const IntelligenceSection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-8">
-          {intelligenceSection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {intelligenceSection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -37,7 +37,7 @@ const IntelligenceSection = () => {
             {intelligenceSection.leftFeatures.map((feature, index) => {
               const Icon = leftIcons[index];
               return (
-                <div key={index} className="group flex gap-5">
+                <div key={feature.title} className="group flex gap-5">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center transition-all duration-500 group-hover:bg-emerald-500/20 group-hover:scale-110">
                     <Icon className="w-6 h-6 text-emerald-400" />
                   </div>
@@ -55,7 +55,7 @@ const IntelligenceSection = () => {
             {intelligenceSection.rightFeatures.map((feature, index) => {
               const Icon = rightIcons[index];
               return (
-                <div key={index} className="group flex gap-5">
+                <div key={feature.title} className="group flex gap-5">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center transition-all duration-500 group-hover:bg-emerald-500/20 group-hover:scale-110">
                     <Icon className="w-6 h-6 text-emerald-400" />
                   </div>

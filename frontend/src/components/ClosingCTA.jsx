@@ -23,8 +23,8 @@ const ClosingCTA = () => {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-white leading-tight mb-8">
-          {closingSection.headline.map((line, index) => (
-            <span key={index} className="block">
+          {closingSection.headline.map((line) => (
+            <span key={line} className="block">
               {line}
             </span>
           ))}
@@ -63,7 +63,7 @@ const ClosingCTA = () => {
           {closingSection.trustIndicators.map((indicator, index) => {
             const Icon = trustIcons[index];
             return (
-              <div key={index} className="flex items-center gap-2 text-gray-500">
+              <div key={indicator} className="flex items-center gap-2 text-gray-500">
                 <Icon className="w-4 h-4 text-emerald-500" />
                 <span className="text-sm">{indicator}</span>
               </div>
