@@ -6,11 +6,13 @@ import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import PlatformSection from "./components/PlatformSection";
 import VisualizationSection from "./components/VisualizationSection";
+import ExperienceSection from "./components/ExperienceSection";
 import IntelligenceSection from "./components/IntelligenceSection";
 import TechnologySection from "./components/TechnologySection";
 import TeamsSection from "./components/TeamsSection";
 import MetricsSection from "./components/MetricsSection";
 import DifferenceSection from "./components/DifferenceSection";
+import ContactSection from "./components/ContactSection";
 import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
@@ -23,11 +25,13 @@ const LandingPage = () => {
         <HeroSection />
         <PlatformSection />
         <VisualizationSection />
+        <ExperienceSection />
         <IntelligenceSection />
         <TechnologySection />
         <TeamsSection />
         <MetricsSection />
         <DifferenceSection />
+        <ContactSection />
         <ClosingCTA />
       </main>
       <Footer />

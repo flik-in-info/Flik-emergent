@@ -9,7 +9,7 @@ const trustIcons = [Shield, Server, Server, Globe];
 const ClosingCTA = () => {
   const { open: openDemoDialog } = useDemoDialog();
   return (
-    <section id="contact" className="relative py-32 overflow-hidden">
+    <section id="get-started" className="relative py-32 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img

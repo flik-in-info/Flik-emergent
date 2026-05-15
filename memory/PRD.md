@@ -35,6 +35,27 @@ Build a premium landing page for **Flik Explore**, a real-time architecture visu
   - `<Toaster theme="dark" />` mounted at app root
 - Verified end-to-end via screenshot tool: dialog opens → submit → success state → MongoDB persists with correct `source`
 
+### 2026-05-15 — Experience Sections & Contact Form (this session)
+- **Experience section** (`ExperienceSection.jsx`) — two clickable cards:
+  - **Virtual Walkthrough** → AI Guided Panoramic Tour (Coohom panorama URL)
+  - **Modular Explorer** → Interactive 3D Model (Coohom modelo URL)
+  - Cards open `ExperienceModal.jsx` — fullscreen iframe overlay
+  - Closes via ✕ button, Escape key, or clicking outside (Radix Dialog defaults)
+  - Iframe `src` swaps to `about:blank` on close to release stream
+- **Contact section** (`ContactSection.jsx`) — full enquiry form:
+  - Fields: Full Name (required), Phone, Email (required), Interest (select), Message
+  - Submit composes a pre-filled `mailto:Contact@flik.in` with subject/body and triggers user's email client
+  - Success state shown after submit with "Send another enquiry" reset
+- Nav updated: `Capabilities` → `Experience`; `Contact` now anchors to the new contact section; ClosingCTA's anchor renamed to `#get-started`
+- Verified end-to-end: both modals open/close cleanly, contact form generates correct mailto URL, success/reset flow works
+
+### 2026-05-15 — Code Quality Pass (this session)
+- Replaced all `key={index}` with stable content-based keys (title/label/line) across all section components
+- Extracted magic numbers `847` / `12` → `HERO_LIVE_UNITS` / `HERO_LIVE_TOWERS`
+- Added Python return-type hints to all FastAPI routes
+- Split oversized components: `LeadFormDialog` (187 → 86 lines via `lead-form/LeadFormField`, `LeadFormBody`, `LeadFormSuccess`), `Footer` (104 → 60 lines via `FooterLinkColumn`)
+- Added missing `useCallback` deps in `DemoDialogContext`
+
 ## Architecture
 ```
 /app

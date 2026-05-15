@@ -23,7 +23,7 @@ export const heroData = {
 
 export const navItems = [
   { label: "Platform", href: "#platform" },
-  { label: "Capabilities", href: "#capabilities" },
+  { label: "Experience", href: "#experience" },
   { label: "Intelligence", href: "#intelligence" },
   { label: "Technology", href: "#technology" },
   { label: "Contact", href: "#contact" }
