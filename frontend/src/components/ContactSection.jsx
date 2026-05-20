@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, ArrowRight } from 'lucide-react';
+import axios from 'axios';
+import { Send, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { contactData } from '../data/mock';
 import ContactIntro from './contact/ContactIntro';
@@ -7,6 +8,8 @@ import ContactFormFields from './contact/ContactFormFields';
 import ContactSuccess from './contact/ContactSuccess';
 
 const CONTACT_EMAIL = contactData.email;
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_KEY = process.env.REACT_APP_WEB3FORMS_KEY;
 
 const INTEREST_OPTIONS = [
   'Virtual Walkthrough',
@@ -22,27 +25,28 @@ const initialState = {
   email: '',
   interest: '',
   message: '',
+  botcheck: '', // Web3Forms honeypot — must stay empty
 };
 
-const buildMailto = (form) => {
-  const subject = `Flik Explore Enquiry — ${form.interest || 'General'}`;
-  const lines = [
-    `Name: ${form.fullName}`,
-    `Email: ${form.email}`,
-    `Phone: ${form.phone}`,
-    `Interest: ${form.interest || '—'}`,
-    '',
-    'Message:',
-    form.message || '—',
-  ];
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-    subject
-  )}&body=${encodeURIComponent(lines.join('\n'))}`;
-};
+const buildPayload = (form) => ({
+  access_key: WEB3FORMS_KEY,
+  subject: `New Flik Explore enquiry — ${form.fullName || 'Website'}`,
+  from_name: 'Flik Explore Website',
+  replyto: form.email,
+  // Fields delivered in the email body
+  'Full Name': form.fullName,
+  Phone: form.phone || '—',
+  Email: form.email,
+  Interest: form.interest || '—',
+  Message: form.message || '—',
+  // Honeypot (must be empty for legitimate users)
+  botcheck: form.botcheck,
+});
 
 const ContactSection = () => {
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   const update = (field) => (e) => {
@@ -53,14 +57,33 @@ const ContactSection = () => {
   const onInterestChange = (value) =>
     setForm((f) => ({ ...f, interest: value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.fullName.trim() || !form.email.trim()) {
       setError('Please share your name and email so we can reach back.');
       return;
     }
-    window.location.href = buildMailto(form);
-    setSubmitted(true);
+    setSubmitting(true);
+    setError('');
+    try {
+      const { data } = await axios.post(WEB3FORMS_ENDPOINT, buildPayload(form), {
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      });
+      if (data?.success) {
+        setSubmitted(true);
+      } else {
+        setError(data?.message || 'We couldn\'t send your message. Please try again or email us directly.');
+      }
+    } catch (err) {
+      const detail = err?.response?.data?.message || err?.message;
+      setError(
+        detail
+          ? `We couldn't send your message: ${detail}`
+          : 'We couldn\'t send your message. Please try again or email us directly.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const reset = () => {
@@ -87,6 +110,18 @@ const ContactSection = () => {
                   interestOptions={INTEREST_OPTIONS}
                 />
 
+                {/* Web3Forms honeypot — hidden from real users */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  value={form.botcheck}
+                  onChange={update('botcheck')}
+                  className="hidden"
+                  aria-hidden="true"
+                />
+
                 {error && (
                   <p data-testid="contact-error" className="text-red-400 text-sm">
                     {error}
@@ -95,17 +130,27 @@ const ContactSection = () => {
 
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                   <p className="text-xs text-gray-500 max-w-xs">
-                    Submitting opens your email client with the message addressed to{' '}
-                    <span className="text-gray-400">{CONTACT_EMAIL}</span>.
+                    Your message is delivered straight to{' '}
+                    <span className="text-gray-400">{CONTACT_EMAIL}</span>. We reply within one business day.
                   </p>
                   <Button
                     type="submit"
                     data-testid="contact-submit"
-                    className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 group"
+                    disabled={submitting}
+                    className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 group disabled:opacity-70 disabled:hover:bg-emerald-500"
                   >
-                    <Send className="mr-2 w-4 h-4" />
-                    Send enquiry
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    {submitting ? (
+                      <>
+                        <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 w-4 h-4" />
+                        Send enquiry
+                        <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </>
+                    )}
                   </Button>
                 </div>
               </form>
