@@ -5,7 +5,8 @@ import { Dialog, DialogContent } from './ui/dialog';
 import LeadFormBody from './lead-form/LeadFormBody';
 import LeadFormSuccess from './lead-form/LeadFormSuccess';
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_KEY = process.env.REACT_APP_WEB3FORMS_KEY;
 
 const initialState = {
   name: '',
@@ -13,12 +14,28 @@ const initialState = {
   company: '',
   project: '',
   message: '',
+  botcheck: '', // Web3Forms honeypot — must stay empty
 };
 
+const buildPayload = (form, source) => ({
+  access_key: WEB3FORMS_KEY,
+  subject: `New Flik demo request — ${form.name || 'Website'}`,
+  from_name: 'Flik Explore Website',
+  replyto: form.email,
+  Source: source,
+  Name: form.name,
+  Email: form.email,
+  Company: form.company || '—',
+  Project: form.project || '—',
+  'What they want to see': form.message || '—',
+  botcheck: form.botcheck,
+});
+
 const extractErrorMessage = (err) => {
-  const detail = err?.response?.data?.detail;
-  if (Array.isArray(detail)) return detail[0]?.msg;
-  return detail || 'Something went wrong. Please try again.';
+  const apiMsg = err?.response?.data?.message;
+  if (apiMsg) return apiMsg;
+  if (err?.message) return err.message;
+  return 'Something went wrong. Please try again.';
 };
 
 const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
@@ -53,9 +70,17 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
       }
       setSubmitting(true);
       try {
-        await axios.post(`${API}/leads`, { ...form, source });
-        setSubmitted(true);
-        toast.success('Request received. Our team will reach out shortly.');
+        const { data } = await axios.post(
+          WEB3FORMS_ENDPOINT,
+          buildPayload(form, source),
+          { headers: { 'Content-Type': 'application/json', Accept: 'application/json' } }
+        );
+        if (data?.success) {
+          setSubmitted(true);
+          toast.success('Demo request sent. Our team will reach out shortly.');
+        } else {
+          toast.error(data?.message || 'We couldn\'t send your request. Please try again.');
+        }
       } catch (err) {
         toast.error(extractErrorMessage(err));
       } finally {
