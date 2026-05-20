@@ -10,7 +10,7 @@ const EXPERIENCES = [
     description:
       'Step inside a fully rendered space. AI guides you through each room, lighting condition and viewpoint — no plug-ins, no downloads.',
     icon: Compass,
-    src: 'https://www.coohom.com/pub/tool/panorama/aiwalking?obsPlanId=3FO3GVEJE5YC&locale=en_US&utm_source=smart720_share&utm_medium=linkcopy&utm_content=3FO3GVEJE5YC',
+    src: process.env.REACT_APP_VIRTUAL_WALKTHROUGH_URL,
   },
   {
     id: 'modular-explorer',
@@ -19,7 +19,7 @@ const EXPERIENCES = [
     description:
       'Rotate, orbit and dissect the architecture in true 3D. Toggle floors, isolate units, and inspect the build module by module.',
     icon: Boxes,
-    src: 'https://www.coohom.com/pub/modelo/viewer/preview/3FO3GVEJE5YC',
+    src: process.env.REACT_APP_MODULAR_EXPLORER_URL,
   },
 ];
 
