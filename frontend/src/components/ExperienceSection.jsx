@@ -33,7 +33,7 @@ const ExperienceCard = ({ experience, onFullscreen }) => {
       className="group relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/5 hover:border-emerald-500/40 transition-all duration-500 flex flex-col"
     >
       {/* Live iframe area */}
-      <div className="relative aspect-[16/10] bg-black overflow-hidden">
+      <div className="relative aspect-[16/10] bg-black overflow-hidden" data-cursor="hover" data-cursor-label="Drag to explore">
         {!loaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0b] z-0">
             <div className="flex flex-col items-center gap-3 text-gray-400">
@@ -57,6 +57,7 @@ const ExperienceCard = ({ experience, onFullscreen }) => {
         <button
           type="button"
           data-testid={`experience-fullscreen-${experience.id}`}
+          data-cursor-label="Fullscreen"
           onClick={() => onFullscreen(experience)}
           className="absolute top-3 right-3 z-10 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-black/70 hover:bg-emerald-500/90 backdrop-blur-md border border-white/10 hover:border-emerald-400 text-white text-xs font-medium transition-all duration-300"
           aria-label={`Open ${experience.title} fullscreen`}

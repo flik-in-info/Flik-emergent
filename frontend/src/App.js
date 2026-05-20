@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
+import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import PlatformSection from "./components/PlatformSection";
@@ -42,6 +43,7 @@ const LandingPage = () => {
 function App() {
   return (
     <div className="App">
+      <CustomCursor />
       <BrowserRouter>
         <DemoDialogProvider>
           <Routes>
