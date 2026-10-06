@@ -16,7 +16,7 @@ const ROISimulatorSection = () => {
   const presaleVelocityGain = Math.round(unitCount * 0.28); // Estimated accelerated bookings
 
   return (
-    <section id="roi-calculator" className="relative py-32 bg-[#08080a] overflow-hidden border-t border-white/[0.06]">
+    <section id="economics" className="relative py-32 bg-[#08080a] overflow-hidden border-t border-white/[0.06]">
       {/* Background Subtle Blueprint Grid and Ambient Mesh Glow */}
       <div className="absolute inset-0 bg-arch-grid opacity-25 pointer-events-none" />
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[170px] pointer-events-none" />
@@ -102,7 +102,7 @@ const ROISimulatorSection = () => {
             </div>
 
             <div className="pt-6 border-t border-white/5 text-xs text-gray-400 leading-relaxed font-light">
-              <span className="text-emerald-400 font-medium">Flagship Benchmark:</span> Ajmera Cityscapes, Mumbai verified 100% digital sample flat replacement with remote NRI sales closing capabilities.
+              <span className="text-emerald-400 font-medium">Developer Benchmark:</span> Tier-1 residential developers across Mumbai & Bengaluru verify 100% physical sample flat replacement with remote NRI sales closing capabilities.
             </div>
           </div>
 

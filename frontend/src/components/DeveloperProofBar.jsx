@@ -5,10 +5,10 @@ import { useDemoDialog } from '../context/DemoDialogContext';
 const PROOF_POINTS = [
   {
     icon: Building2,
-    badge: 'Flagship Deployment',
-    title: 'Ajmera Cityscapes',
-    subtitle: 'Premium residential, Mumbai',
-    highlight: 'Active 3D Twin',
+    badge: 'Enterprise Deployments',
+    title: 'Tier-1 Towers',
+    subtitle: 'High-rise residential, Mumbai & Bengaluru',
+    highlight: 'Active 3D Twins',
   },
   {
     icon: Zap,
@@ -21,7 +21,7 @@ const PROOF_POINTS = [
     icon: ShieldCheck,
     badge: 'Sales Acceleration',
     title: '2–4 Weeks',
-    subtitle: 'Turnaround from 2D/BIM drawings',
+    subtitle: 'Turnaround from 2D CAD/BIM drawings',
     highlight: 'Pre-Sales Ready',
   },
   {
@@ -37,7 +37,7 @@ const DeveloperProofBar = () => {
   const { open: openDemoDialog } = useDemoDialog();
 
   return (
-    <section className="relative py-12 bg-[#09090b] border-y border-white/[0.06] overflow-hidden">
+    <section className="relative py-12 bg-[#08080a] border-y border-white/[0.06] overflow-hidden">
       {/* Background Subtle Ambient Glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-32 bg-emerald-500/5 rounded-full blur-[90px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-32 bg-emerald-500/5 rounded-full blur-[90px] pointer-events-none" />
@@ -56,10 +56,10 @@ const DeveloperProofBar = () => {
           </div>
 
           <button
-            onClick={() => openDemoDialog('proof_bar_ajmera')}
+            onClick={() => openDemoDialog('proof_bar_enterprise')}
             className="group inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors duration-200"
           >
-            <span>Explore the Ajmera Cityscapes case study</span>
+            <span>Request an Enterprise Spatial Blueprint</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>
         </div>

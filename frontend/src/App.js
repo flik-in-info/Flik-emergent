@@ -8,7 +8,7 @@ import HeroSection from "./components/HeroSection";
 import DeveloperProofBar from "./components/DeveloperProofBar";
 import Live3DConsole from "./components/Live3DConsole";
 import ROISimulatorSection from "./components/ROISimulatorSection";
-import FlagshipShowcase from "./components/FlagshipShowcase";
+import SpatialCapabilitiesShowcase from "./components/SpatialCapabilitiesShowcase";
 import TechnologyBento from "./components/TechnologyBento";
 import FAQSection from "./components/FAQSection";
 import ContactSection from "./components/ContactSection";
@@ -29,7 +29,7 @@ const ScrollToTop = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#070709] min-h-screen relative text-white selection:bg-emerald-500 selection:text-black">
+    <div className="bg-[#050507] min-h-screen relative text-white selection:bg-emerald-500 selection:text-black">
       <ElevationHUD3D />
       <Header />
       <main>
@@ -37,7 +37,7 @@ const LandingPage = () => {
         <DeveloperProofBar />
         <Live3DConsole />
         <ROISimulatorSection />
-        <FlagshipShowcase />
+        <SpatialCapabilitiesShowcase />
         <TechnologyBento />
         <FAQSection />
         <ContactSection />

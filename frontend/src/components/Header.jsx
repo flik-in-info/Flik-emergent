@@ -40,10 +40,10 @@ const Header = () => {
               />
             </Link>
 
-            {/* Desktop Flagship Live Pill */}
+            {/* Desktop Engine Live Pill */}
             <div className="hidden xl:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>AJMERA CITYSCAPES · MUMBAI LIVE</span>
+              <span>SPATIAL DIGITAL TWIN ENGINE · LIVE</span>
             </div>
           </div>
 

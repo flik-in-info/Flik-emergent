@@ -7,34 +7,34 @@ import { useDemoDialog } from '../context/DemoDialogContext';
 const SPATIAL_HOTSPOTS = [
   {
     id: 'balcony',
-    title: 'Balcony Sightline · 34th Floor',
-    subtitle: 'Drone-verified panoramic ocean & skyline view',
+    title: 'Sky Penthouse Balcony · 42nd Floor',
+    subtitle: 'Drone-verified panoramic ocean & skyline sightline with real-time solar elevation',
     image: images.environment,
-    elevation: '+118m MSL',
+    elevation: '+142m MSL',
     sun: '06:15 PM Sunset Amber',
   },
   {
     id: 'living',
     title: 'Double-Height Living Gallery',
-    subtitle: 'Italian statuario marble & bespoke architectural lighting',
+    subtitle: 'Italian statuario marble, acoustic wood slat walls, & architectural cove illumination',
     image: images.hero,
     elevation: '+4m MSL',
     sun: '12:30 PM Solar White',
   },
   {
     id: 'aerial',
-    title: 'Tower Masterplan Aerial',
-    subtitle: 'Full architectural massing and podium arrival experience',
+    title: 'Tower Superstructure Aerial',
+    subtitle: 'Full architectural massing, structural podium, and arrival porte-cochère',
     image: images.devices,
     elevation: '+240m Drone',
     sun: '09:00 AM Morning Light',
   },
   {
     id: 'experience-center',
-    title: 'Digital Sales Gallery',
-    subtitle: 'Ajmera Cityscapes 4K interactive video wall deployment',
+    title: 'Flagship Sales Gallery Display',
+    subtitle: 'Ultra-HD interactive multi-touch video wall deployment for developer sales suites',
     image: images.showroom,
-    elevation: 'Sales Pavilion',
+    elevation: 'Executive Suite',
     sun: 'Ambient LED Cove',
   },
 ];
@@ -49,7 +49,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#070709] pt-28 pb-12">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#050507] pt-28 pb-12">
       
       {/* 3D Holographic CAD Floor Grid Background */}
       <div className="hologram-floor-3d z-0" />
@@ -67,9 +67,9 @@ const HeroSection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="text-emerald-400 font-semibold tracking-wider">LIVE FLAGSHIP</span>
+            <span className="text-emerald-400 font-semibold tracking-wider">ENTERPRISE PLATFORM</span>
             <span className="text-gray-500">|</span>
-            <span className="text-gray-300">Ajmera Cityscapes, Mumbai · 3D Digital Twin</span>
+            <span className="text-gray-300">Ultra-Realistic 3D Digital Twins for Luxury Real Estate</span>
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-gray-400">
@@ -81,14 +81,14 @@ const HeroSection = () => {
         {/* Main Editorial Headline */}
         <div className="max-w-4xl mb-8">
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-white leading-[1.05] tracking-tight mb-6">
-            <span className="block font-extralight text-gray-400">The sample flat is dead.</span>
+            <span className="block font-extralight text-gray-400">Architecture before the concrete.</span>
             <span className="block font-medium text-gradient-emerald">
               Sell what doesn&apos;t exist yet in 3D.
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-300 font-light leading-relaxed max-w-2xl mb-8">
-            Flik Explorer replaces ₹3 Crore physical sample flats with photorealistic, interactive 3D digital twins. Walk every floor, inspect balcony sightlines, and close NRI buyers remotely—weeks before physical construction finishes.
+            Flik Explorer replaces ₹3 to ₹5 Crore physical sample flats with photorealistic, interactive 3D digital twins. Walk every floor, inspect balcony sightlines, and close NRI buyers remotely—weeks before physical construction finishes.
           </p>
 
           {/* Action CTAs */}
@@ -104,7 +104,7 @@ const HeroSection = () => {
 
             <Button
               variant="outline"
-              onClick={() => scrollToSection('roi-calculator')}
+              onClick={() => scrollToSection('economics')}
               className="border-white/20 bg-white/[0.03] backdrop-blur-xl text-white hover:bg-white/10 font-medium px-8 py-6 text-base rounded-2xl transition-all duration-300"
             >
               Calculate Developer ROI

@@ -23,8 +23,8 @@ export const heroData = {
 
 export const navItems = [
   { label: "3D Twin", href: "/#experience" },
-  { label: "Developer ROI", href: "/#roi-calculator" },
-  { label: "Ajmera Case Study", href: "/#flagship-case-study" },
+  { label: "Capital Economics", href: "/#economics" },
+  { label: "Capabilities", href: "/#capabilities" },
   { label: "Technology", href: "/#technology" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" }
@@ -213,19 +213,19 @@ export const footerData = {
   copyright: "© 2026 Flik. All rights reserved.",
   platform: [
     { label: "Live 3D Console", href: "/#experience" },
-    { label: "Developer ROI Calculator", href: "/#roi-calculator" },
-    { label: "Ajmera Case Study", href: "/#flagship-case-study" },
+    { label: "Capital Economics", href: "/#economics" },
+    { label: "Spatial Capabilities", href: "/#capabilities" },
     { label: "UE5 System Architecture", href: "/#technology" },
-    { label: "FAQ", href: "/#faq" }
+    { label: "Enterprise FAQ", href: "/#faq" }
   ],
   company: [
-    { label: "Ajmera Cityscapes Deployment", href: "/#flagship-case-study" },
-    { label: "Sales & Partnerships", href: "/#contact" },
-    { label: "Contact Us", href: "/#contact" }
+    { label: "About Flik Explorer", href: "/#experience" },
+    { label: "Developer Partnerships", href: "/#contact" },
+    { label: "Sales & Inquiries", href: "/#contact" }
   ],
   resources: [
     { label: "Frequently Asked Questions", href: "/#faq" },
-    { label: "Request Live Demo", href: "/#contact" }
+    { label: "Request Executive Walkthrough", href: "/#contact" }
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },

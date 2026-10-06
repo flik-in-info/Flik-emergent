@@ -4,8 +4,8 @@ import { Layers, ArrowUp, Compass } from 'lucide-react';
 const FLOORS = [
   { id: 'hero', level: 'L01', name: 'Spatial Viewport', alt: '+4m' },
   { id: 'experience', level: 'L24', name: 'Live 3D Digital Twin', alt: '+92m' },
-  { id: 'roi-calculator', level: 'L38', name: 'Developer Capital ROI', alt: '+146m' },
-  { id: 'flagship-case-study', level: 'L52', name: 'Ajmera Mumbai Case Study', alt: '+198m' },
+  { id: 'economics', level: 'L38', name: 'Developer Capital ROI', alt: '+146m' },
+  { id: 'capabilities', level: 'L52', name: 'Spatial Master Suite', alt: '+198m' },
   { id: 'technology', level: 'L64', name: 'UE5.4 Cloud Core', alt: '+244m' },
   { id: 'faq', level: 'L70', name: 'Enterprise FAQ', alt: '+268m' },
   { id: 'contact', level: 'L72', name: 'Executive Sales Suite', alt: '+278m' },
