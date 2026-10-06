@@ -73,7 +73,9 @@ const IntelligenceSection = () => {
         <div className="relative rounded-2xl overflow-hidden">
           <img
             src={images.intelligence}
-            alt="Sales Intelligence Dashboard"
+            alt="Flik Explorer Real Estate Sales Intelligence & Buyer Analytics Dashboard"
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />

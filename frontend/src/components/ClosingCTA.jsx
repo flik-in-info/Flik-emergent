@@ -14,7 +14,9 @@ const ClosingCTA = () => {
       <div className="absolute inset-0">
         <img
           src={images.showroom}
-          alt="Flik Experience"
+          alt="Flik Explorer Interactive Real Estate Experience Center and Real-Time 3D Digital Twin"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/90 to-[#0a0a0b]/80" />

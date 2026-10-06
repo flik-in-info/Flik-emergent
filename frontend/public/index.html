@@ -2,89 +2,170 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="theme-color" content="#0a0a0b" />
-        <meta name="description" content="Replace your sample flat with an immersive photorealistic 3D visualization experience. Built for premium residential developers in India." />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-        <!-- Favicon -->
+        <!-- Primary Meta Tags -->
+        <title>Flik Explorer | 3D Property Visualization & Sales Platform India</title>
+        <meta name="title" content="Flik Explorer | 3D Property Visualization & Sales Platform India" />
+        <meta name="description" content="Flik Explorer replaces physical sample flats with photorealistic, real-time 3D property visualization. Built for premium residential developers, sales teams, and NRI buyers in India." />
+        <meta name="keywords" content="3D property visualization, real estate sales platform, sample flat replacement, Unreal Engine 5 real estate, Indian proptech, under construction property sales, NRI real estate India, interactive floor plan 3D, luxury residential visualization, Mumbai real estate technology, Ajmera Cityscapes" />
+        <meta name="author" content="Flik Explorer" />
+
+        <!-- Performance Preconnect & DNS-Prefetch -->
+        <link rel="preconnect" href="https://customer-assets.emergentagent.com" crossorigin />
+        <link rel="dns-prefetch" href="https://customer-assets.emergentagent.com" />
+        <link rel="preconnect" href="https://api.web3forms.com" crossorigin />
+        <link rel="dns-prefetch" href="https://api.web3forms.com" />
+
+        <!-- Favicons & Mobile Touch Icons -->
         <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="64x64" href="%PUBLIC_URL%/favicon-64x64.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/favicon-192x192.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-        <!-- Canonical & Open Graph -->
+        <!-- Canonical URL -->
         <link rel="canonical" href="https://www.flik.in" />
+
+        <!-- Open Graph / Facebook / WhatsApp -->
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Flik Explorer" />
-        <meta property="og:title" content="Flik Explorer — 3D Property Visualization for Real Estate Developers India" />
+        <meta property="og:url" content="https://www.flik.in" />
+        <meta property="og:title" content="Flik Explorer | 3D Property Visualization & Sales Platform India" />
         <meta property="og:description" content="Replace your sample flat with an immersive photorealistic 3D visualization experience. Built for premium residential developers in India." />
         <meta property="og:image" content="https://www.flik.in/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Flik Explorer — Real-time architecture intelligence" />
-        <meta property="og:url" content="https://www.flik.in" />
+        <meta property="og:image:alt" content="Flik Explorer — Real-time architecture intelligence and sample flat replacement" />
         <meta property="og:locale" content="en_IN" />
 
-        <!-- Twitter -->
+        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Flik Explorer — 3D Property Visualization for Real Estate Developers India" />
+        <meta name="twitter:url" content="https://www.flik.in" />
+        <meta name="twitter:title" content="Flik Explorer | 3D Property Visualization & Sales Platform India" />
         <meta name="twitter:description" content="Replace your sample flat with an immersive photorealistic 3D visualization experience. Built for premium residential developers in India." />
         <meta name="twitter:image" content="https://www.flik.in/og-image.png" />
 
-        <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-        -->
-        <!--
-        Notice the use of %PUBLIC_URL% in the tags above.
-        It will be replaced with the URL of the `public` folder during the build.
-        Only files inside the `public` folder can be referenced from the HTML.
-
-        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-        work correctly both with client-side routing and a non-root public URL.
-        Learn how to configure a non-root public URL by running `npm run build`.
-        -->
-        <title>Flik Explorer</title>
-        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
-        <!--
-        These two scripts have been added for the Visual Edits, please do not edit or remove them
-        -->
-        <script>
-            // Only load visual edit scripts when inside an iframe
-            if (window.self !== window.top) {
-                // Load debug monitor script
-                var debugMonitorScript = document.createElement('script');
-                debugMonitorScript.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
-                document.head.appendChild(debugMonitorScript);
-
-                // Configure Tailwind
-                window.tailwind = window.tailwind || {};
-                tailwind.config = {
-                    corePlugins: { preflight: false },
-                };
-
-                // Load Tailwind CDN
-                var tailwindScript = document.createElement('script');
-                tailwindScript.src = 'https://cdn.tailwindcss.com';
-                document.head.appendChild(tailwindScript);
+        <!-- Structured Data (JSON-LD) for Google Rich Snippets & AI Search -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://www.flik.in/#organization",
+              "name": "Flik Explorer",
+              "alternateName": "Flik",
+              "url": "https://www.flik.in",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/c72tdypv_flik999.png",
+                "caption": "Flik Explorer Logo"
+              },
+              "description": "B2B PropTech platform replacing physical sample flats with photorealistic, real-time 3D property visualization for Indian residential developers.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Mumbai",
+                "addressRegion": "Maharashtra",
+                "addressCountry": "IN"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-96861-11327",
+                "contactType": "sales",
+                "email": "Contact@flik.in",
+                "areaServed": ["IN", "AE", "US", "GB", "SG"],
+                "availableLanguage": ["English", "Hindi"]
+              },
+              "sameAs": [
+                "https://www.linkedin.com/company/flink.in/",
+                "https://www.instagram.com/_flik.in_"
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://www.flik.in/#website",
+              "url": "https://www.flik.in",
+              "name": "Flik Explorer",
+              "publisher": {
+                "@id": "https://www.flik.in/#organization"
+              },
+              "description": "Real-time 3D architectural visualization platform for premium residential real estate in India."
+            },
+            {
+              "@type": "SoftwareApplication",
+              "@id": "https://www.flik.in/#software",
+              "name": "Flik Explorer Platform",
+              "applicationCategory": "RealEstateApplication",
+              "operatingSystem": "All (Web Browser, iOS, Android, macOS, Windows)",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "INR",
+                "description": "B2B Custom Enterprise Deployment for Real Estate Developers"
+              },
+              "description": "Interactive real-time 3D property visualization platform powered by Unreal Engine 5 that replaces sample flats and static brochures."
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://www.flik.in/#faq",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "How does Flik Explorer replace physical sample flats?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Physical sample flats cost ₹2-5 crore and 3-6 months to build, yet only showcase a single ground-level layout. Flik Explorer provides an interactive 3D digital platform where buyers can walk through every floor, inspect every unit configuration, view exact balcony sightlines, test real-time daylight conditions, and select finishes—at a fraction of the cost."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can NRI buyers view properties in 3D without downloading any app?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Flik Explorer runs via ultra-low-latency cloud streaming on any standard web browser across smartphones, tablets, laptops, and touch displays. Overseas buyers in Dubai, London, New York, or Singapore can explore under-construction properties remotely with zero lag."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What technology powers Flik Explorer's photorealism?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Flik Explorer is engineered on Unreal Engine 5 with real-time Lumen global illumination and Nanite virtualized geometry. Every ray of light, material texture, and shadow is rendered live in real time rather than using pre-baked 360-degree flat panoramas."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How long does it take to deploy Flik Explorer for a new project?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Standard deployment takes between 2 to 4 weeks from receiving 2D architectural CAD/BIM drawings, structural plans, and interior finishes schedules—months before physical construction reaches podium level."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does Flik integrate with real estate sales CRMs?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Flik integrates with leading real estate CRMs including Salesforce, LeadSquared, Sell.Do, and Farvision to synchronize live inventory availability, unit bookings, and buyer engagement telemetry directly into your pipeline."
+                  }
+                }
+              ]
             }
+          ]
+        }
         </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-                <script>
+        <!-- Analytics (Non-blocking) -->
+        <script>
             !(function (t, e) {
                 var o, n, p, r;
                 e.__SV ||
@@ -117,7 +198,7 @@
                             (r =
                                 t.getElementsByTagName(
                                     "script",
-                                )[0]).parentNode.insertBefore(p, r);
+                                    )[0]).parentNode.insertBefore(p, r);
                         var u = e;
                         for (
                             void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
@@ -148,7 +229,7 @@
             })(document, window.posthog || []);
             posthog.init("phc_xAvL2Iq4tFmANRE7kzbKwaSqp1HJjN7x48s3vr0CMjs", {
                 api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well,
+                person_profiles: "identified_only",
                 session_recording: {
                     recordCrossOriginIframes: true,
                 },

@@ -59,7 +59,13 @@ const FooterLinkColumn = ({ title, links }) => (
 const FooterBrand = () => (
   <div className="lg:col-span-2">
     <Link to="/" className="flex items-center mb-6">
-      <img src={images.logo} alt="Flik" className="h-10 w-auto" />
+      <img 
+        src={images.logo} 
+        alt="Flik Explorer - Real-Time 3D Digital Twin Platform" 
+        loading="lazy"
+        decoding="async"
+        className="h-10 w-auto" 
+      />
     </Link>
     <p className="text-gray-500 leading-relaxed max-w-sm">{footerData.tagline}</p>
 

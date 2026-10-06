@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+# Robots.txt for Flik Explorer (https://www.flik.in)
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Host
+Host: https://www.flik.in
+
+# Sitemaps
+Sitemap: https://www.flik.in/sitemap.xml

@@ -52,7 +52,9 @@ const VisualizationSection = () => {
         <div className="relative rounded-2xl overflow-hidden">
           <img
             src={images.environment}
-            alt="Lighting transition visualization"
+            alt="Flik Explorer Photorealistic Architectural Lighting and Real-Time Environment Simulation"
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0e] via-transparent to-transparent" />

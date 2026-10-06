@@ -56,7 +56,9 @@ const TeamsSection = () => {
         <div className="mt-20 relative rounded-2xl overflow-hidden">
           <img
             src={images.showroom}
-            alt="Flik Experience Center"
+            alt="Flik Experience Center & Digital Sales Gallery Deployment for Indian Developers"
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />

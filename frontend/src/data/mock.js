@@ -26,6 +26,7 @@ export const navItems = [
   { label: "Experience", href: "/#experience" },
   { label: "Intelligence", href: "/#intelligence" },
   { label: "Technology", href: "/#technology" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" }
 ];
 
@@ -233,8 +234,8 @@ export const footerData = {
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" }
+    { label: "Terms of Service", href: "/terms-of-service" },
+    { label: "Cookie Policy", href: "/privacy-policy#cookies-telemetry" }
   ],
   bottomBar: "Enterprise-grade real-time visualization and sales intelligence · Powered by Unreal Engine 5"
 };

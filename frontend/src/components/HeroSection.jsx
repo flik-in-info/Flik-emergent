@@ -12,7 +12,10 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={images.hero}
-          alt="Architectural Visualization"
+          alt="Flik Explorer — Real-Time 3D Architectural Visualization & Sample Flat Replacement"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b] via-[#0a0a0b]/90 to-[#0a0a0b]/60" />

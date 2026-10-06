@@ -52,7 +52,9 @@ const PlatformSection = () => {
         <div className="relative rounded-2xl overflow-hidden">
           <img
             src={images.devices}
-            alt="Interior walkthrough with UI overlays"
+            alt="Flik Explorer Multi-Device Architectural Visualization on Mobile, Tablet and Desktop"
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />

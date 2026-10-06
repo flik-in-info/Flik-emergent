@@ -17,6 +17,8 @@ import ContactSection from "./components/ContactSection";
 import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsOfService from "./components/TermsOfService";
+import FAQSection from "./components/FAQSection";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 
 const ScrollToTop = () => {
@@ -41,6 +43,7 @@ const LandingPage = () => {
         <TeamsSection />
         <MetricsSection />
         <DifferenceSection />
+        <FAQSection />
         <ContactSection />
         <ClosingCTA />
       </main>
@@ -60,6 +63,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <Toaster theme="dark" position="bottom-right" richColors closeButton />
