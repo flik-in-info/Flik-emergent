@@ -35,6 +35,7 @@ const CustomCursor = () => {
 
     const onOver = (e) => {
       const target = e.target;
+      if (!target || typeof target.closest !== 'function') return;
       const interactive = target.closest('button, a, [role="button"], input, textarea');
       const threeD = target.closest('[data-cursor-label], iframe');
 

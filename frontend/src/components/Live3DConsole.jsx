@@ -10,7 +10,7 @@ const EXPERIENCES = [
     type: '360° Interior Panorama',
     tag: 'AI Guided Spatial Tour',
     description: 'Walk through every room, inspect luxury marble and wooden finishes, and experience real-time sun angles from east to west.',
-    src: process.env.REACT_APP_VIRTUAL_WALKTHROUGH_URL,
+    src: process.env.REACT_APP_VIRTUAL_WALKTHROUGH_URL || 'https://www.coohom.com/pub/tool/panorama/aiwalking?obsPlanId=3FO3GVEJE5YC&locale=en_US&utm_source=smart720_share&utm_medium=linkcopy&utm_content=3FO3GVEJE5YC',
     icon: Compass,
   },
   {
@@ -19,7 +19,7 @@ const EXPERIENCES = [
     type: '3D Orbit & Unit Isolate',
     tag: 'Interactive Structural Model',
     description: 'Rotate, orbit, and dissect the building architecture in 3D. Toggle floor plates, inspect specific 2BHK/3BHK units, and examine superstructure columns.',
-    src: process.env.REACT_APP_MODULAR_EXPLORER_URL,
+    src: process.env.REACT_APP_MODULAR_EXPLORER_URL || 'https://www.coohom.com/pub/modelo/viewer/preview/3FO3GVEJE5YC',
     icon: Boxes,
   },
 ];
