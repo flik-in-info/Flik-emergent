@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Maximize2, Compass, Boxes, Loader2, Sparkles, Sun, Moon, Sunrise, Sunset, Eye, Layers, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Button } from './ui/button';
 import { useDemoDialog } from '../context/DemoDialogContext';
 import ExperienceModal from './ExperienceModal';
 
