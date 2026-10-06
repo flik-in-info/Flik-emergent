@@ -71,7 +71,7 @@ const DeveloperProofBar = () => {
             return (
               <div
                 key={item.title}
-                className="group relative p-5 rounded-xl bg-white/[0.015] hover:bg-white/[0.04] border border-white/[0.05] hover:border-emerald-500/30 transition-all duration-300"
+                className="group relative p-5 rounded-xl bg-white/[0.015] hover:bg-white/[0.04] border border-white/[0.05] hover:border-emerald-500/30 transition-all duration-300 card-3d-tilt"
               >
                 {/* Top Corner Crosshair CAD marker */}
                 <div className="absolute top-2 right-2 text-[10px] font-mono text-gray-700 group-hover:text-emerald-500/50 transition-colors">

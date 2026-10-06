@@ -39,7 +39,7 @@ const TechnologySection = () => {
             return (
               <div
                 key={capability.title}
-                className="group relative p-7 rounded-2xl bg-white/[0.015] hover:bg-white/[0.04] border border-white/[0.06] hover:border-emerald-500/35 transition-all duration-400 flex flex-col justify-between"
+                className="group relative p-7 rounded-2xl bg-white/[0.015] hover:bg-white/[0.04] border border-white/[0.06] hover:border-emerald-500/35 transition-all duration-400 flex flex-col justify-between card-3d-tilt"
               >
                 {/* CAD crosshair */}
                 <div className="absolute top-3 right-3 text-[10px] font-mono text-gray-700 group-hover:text-emerald-500/60 transition-colors">

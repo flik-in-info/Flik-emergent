@@ -39,7 +39,7 @@ const PlatformSection = () => {
             return (
               <div
                 key={feature.title}
-                className="group relative p-8 rounded-2xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/[0.07] hover:border-emerald-500/35 transition-all duration-400 flex flex-col justify-between"
+                className="group relative p-8 rounded-2xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/[0.07] hover:border-emerald-500/35 transition-all duration-400 flex flex-col justify-between card-3d-tilt"
               >
                 {/* Top Corner CAD crosshair */}
                 <div className="absolute top-3 right-3 text-[11px] font-mono text-gray-700 group-hover:text-emerald-500/60 transition-colors">
@@ -74,7 +74,7 @@ const PlatformSection = () => {
         </div>
 
         {/* Devices Showcase with High-Tech HUD Framing */}
-        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0d0d10] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0d0d10] shadow-[0_20px_50px_rgba(0,0,0,0.8)] card-3d-tilt">
           
           {/* Top Bar on Image */}
           <div className="px-6 py-3.5 bg-white/[0.02] border-b border-white/10 flex items-center justify-between text-xs font-mono">

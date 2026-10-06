@@ -20,6 +20,7 @@ import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import FAQSection from "./components/FAQSection";
+import ElevationHUD3D from "./components/ElevationHUD3D";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 
 const ScrollToTop = () => {
@@ -32,7 +33,8 @@ const ScrollToTop = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#0a0a0b] min-h-screen">
+    <div className="bg-[#0a0a0b] min-h-screen relative">
+      <ElevationHUD3D />
       <Header />
       <main>
         <HeroSection />

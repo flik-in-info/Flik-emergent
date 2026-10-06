@@ -34,7 +34,7 @@ const ExperienceCard = ({ experience, onFullscreen }) => {
   return (
     <div
       data-testid={`experience-card-${experience.id}`}
-      className="group relative rounded-2xl overflow-hidden bg-[#0d0d10] border border-white/10 hover:border-emerald-500/40 transition-all duration-500 flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+      className="group relative rounded-2xl overflow-hidden bg-[#0d0d10] border border-white/10 hover:border-emerald-500/40 transition-all duration-500 flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.8)] card-3d-tilt"
     >
       {/* Top HUD Bar */}
       <div className="px-5 py-3 bg-white/[0.02] border-b border-white/10 flex items-center justify-between text-xs font-mono">

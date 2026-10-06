@@ -94,7 +94,7 @@ const DifferenceSection = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           
           {/* Left Card: Traditional Sample Flat (The Obsolete Model) */}
-          <div className="relative p-8 rounded-2xl bg-white/[0.01] border border-red-500/20 backdrop-blur-xl">
+          <div className="relative p-8 rounded-2xl bg-white/[0.01] border border-red-500/20 backdrop-blur-xl card-3d-tilt">
             {/* Header Badge */}
             <div className="flex items-center justify-between gap-4 pb-6 border-b border-white/5 mb-6">
               <div>
@@ -129,7 +129,7 @@ const DifferenceSection = () => {
           </div>
 
           {/* Right Card: Flik Explorer (The Modern Standard) */}
-          <div className="relative p-8 rounded-2xl bg-emerald-950/[0.06] border border-emerald-500/40 backdrop-blur-xl shadow-[0_0_50px_rgba(34,229,90,0.12)]">
+          <div className="relative p-8 rounded-2xl bg-emerald-950/[0.06] border border-emerald-500/40 backdrop-blur-xl shadow-[0_0_50px_rgba(34,229,90,0.12)] card-3d-tilt">
             {/* Glowing Accent Crosshairs */}
             <div className="absolute top-3 right-3 text-xs font-mono text-emerald-500/60">+</div>
 

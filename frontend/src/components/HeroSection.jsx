@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Play, ArrowRight, Radio, Sparkles, Compass, ShieldCheck, Zap } from 'lucide-react';
 import { heroData, images } from '../data/mock';
@@ -6,41 +6,72 @@ import { useDemoDialog } from '../context/DemoDialogContext';
 
 const HeroSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // 3D Spatial camera calculations
+  const heroDepthTransform = `translate3d(0, ${scrollY * 0.35}px, ${-scrollY * 0.25}px) scale(${1 + scrollY * 0.00035}) rotateX(${Math.min(scrollY * 0.012, 6)}deg)`;
+  const contentParallax = `translate3d(0, ${-scrollY * 0.12}px, 0)`;
 
   return (
-    <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-[#09090b]">
-      {/* Background Image with Cinematic Gradient & Mesh Overlays */}
-      <div className="absolute inset-0">
+    <section className="relative min-h-[96vh] flex items-center overflow-hidden bg-[#09090b] perspective-1200">
+      
+      {/* 3D Holographic CAD Blueprint Floor Grid */}
+      <div className="hologram-floor-3d z-0" />
+
+      {/* 3D Dynamic Receding Background Camera */}
+      <div
+        className="absolute inset-0 preserve-3d will-change-transform"
+        style={{ transform: heroDepthTransform }}
+      >
         <img
           src={images.hero}
           alt="Flik Explorer — Real-Time 3D Architectural Visualization & Sample Flat Replacement"
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          className="w-full h-full object-cover scale-105 transition-transform duration-1000 ease-out"
+          className="w-full h-full object-cover scale-105 transition-transform duration-700 ease-out"
         />
         {/* Multilayered Architectural Dark Gradients */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/90 to-[#09090b]/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-[#09090b]/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-[#09090b]/70" />
         
         {/* Subtle Ambient Mesh Orbs */}
-        <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
-        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
+        <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none animate-pulse-slow" />
+        <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[170px] pointer-events-none" />
       </div>
 
-      {/* CAD Watermark Coordinates (Pinterest / Architectural Blueprint style) */}
-      <div className="absolute top-28 right-8 lg:right-16 z-10 hidden sm:flex flex-col items-end text-[11px] font-mono text-gray-500/80 pointer-events-none select-none">
+      {/* CAD Watermark Coordinates (Blueprint HUD style) */}
+      <div className="absolute top-28 right-8 lg:right-16 z-20 hidden sm:flex flex-col items-end text-[11px] font-mono text-gray-500/80 pointer-events-none select-none">
         <span className="tracking-widest">SYS // UNREAL ENGINE 5.4.4</span>
-        <span className="text-emerald-500/70 tracking-wider">LAT: 18°58&apos;N · LON: 72°49&apos;E [MUMBAI]</span>
+        <span className="text-emerald-500/80 tracking-wider">LAT: 18°58&apos;N · LON: 72°49&apos;E [MUMBAI]</span>
         <span className="text-gray-600">NANITE · LUMEN · REALTIME GI</span>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-24 w-full">
+      {/* Main Content with Parallax Lift */}
+      <div
+        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-24 w-full will-change-transform"
+        style={{ transform: contentParallax }}
+      >
         <div className="max-w-3xl">
           
           {/* Flagship Authority Badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-xl border border-emerald-500/30 text-xs font-medium text-gray-300 mb-8 shadow-[0_0_25px_rgba(34,229,90,0.12)]">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/70 backdrop-blur-xl border border-emerald-500/30 text-xs font-medium text-gray-300 mb-8 shadow-[0_0_25px_rgba(34,229,90,0.12)]">
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -109,9 +140,9 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Floating Glassmorphic Telemetry HUD Card */}
-      <div className="absolute bottom-8 right-6 lg:bottom-14 lg:right-14 z-20 hidden md:block">
-        <div className="luxury-glass rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/15 max-w-sm">
+      {/* Floating 3D Telemetry HUD Card with Tilt */}
+      <div className="absolute bottom-8 right-6 lg:bottom-14 lg:right-28 z-20 hidden md:block animate-float-3d">
+        <div className="luxury-glass card-3d-tilt rounded-2xl p-5 shadow-[0_25px_60px_rgba(0,0,0,0.8)] border border-white/15 max-w-sm">
           {/* HUD Header */}
           <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-white/10 text-xs font-mono">
             <div className="flex items-center gap-2">
@@ -149,7 +180,7 @@ const HeroSection = () => {
 
       {/* Scroll Down Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2 pointer-events-none">
-        <span className="text-gray-500 text-[10px] uppercase font-mono tracking-[0.25em]">Scroll to Explore</span>
+        <span className="text-gray-500 text-[10px] uppercase font-mono tracking-[0.25em]">Scroll to Ascend</span>
         <div className="w-px h-10 bg-gradient-to-b from-emerald-500/60 to-transparent" />
       </div>
     </section>
