@@ -60,8 +60,12 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="relative py-28 bg-[#0a0a0b] border-t border-white/5">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+    <section id="faq" className="relative py-32 bg-[#09090b] border-t border-white/5 overflow-hidden">
+      {/* Background Grid & Ambient Glow */}
+      <div className="absolute inset-0 bg-arch-grid opacity-20 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="relative max-w-5xl mx-auto px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
