@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import ElevationHUD3D from "./components/ElevationHUD3D";
+import Spatial3DEcosystem from "./components/Spatial3DEcosystem";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 
 const ScrollToTop = () => {
@@ -36,6 +37,7 @@ const LandingPage = () => {
         <HeroSection />
         <DeveloperProofBar />
         <Live3DConsole />
+        <Spatial3DEcosystem />
         <ROISimulatorSection />
         <SpatialCapabilitiesShowcase />
         <TechnologyBento />

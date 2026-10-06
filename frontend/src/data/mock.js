@@ -23,8 +23,8 @@ export const heroData = {
 
 export const navItems = [
   { label: "3D Twin", href: "/#experience" },
+  { label: "50 3D Elements", href: "/#capabilities" },
   { label: "Capital Economics", href: "/#economics" },
-  { label: "Capabilities", href: "/#capabilities" },
   { label: "Technology", href: "/#technology" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" }

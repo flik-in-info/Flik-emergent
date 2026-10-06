@@ -27,7 +27,7 @@ const ROISimulatorSection = () => {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>INTERACTIVE DEVELOPER CAPITAL CALCULATOR</span>
+            <span>ELEMENT #25 & #38 · 3D CAPITAL PRISM & ROI DIAL</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-6">

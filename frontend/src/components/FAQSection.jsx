@@ -71,7 +71,7 @@ const FAQSection = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium uppercase tracking-wider mb-4">
             <HelpCircle className="w-3.5 h-3.5" />
-            Frequently Asked Questions
+            ELEMENT #48 · 3D PERSPECTIVE FOLD ACCORDION ARCHITECTURE
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight mb-4">
             Everything you need to know about <span className="text-emerald-400 font-normal">Flik Explorer</span>
