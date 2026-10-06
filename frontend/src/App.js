@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
@@ -16,7 +16,16 @@ import DifferenceSection from "./components/DifferenceSection";
 import ContactSection from "./components/ContactSection";
 import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const LandingPage = () => {
   return (
@@ -46,8 +55,12 @@ function App() {
       <CustomCursor />
       <BrowserRouter>
         <DemoDialogProvider>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <Toaster theme="dark" position="bottom-right" richColors closeButton />
         </DemoDialogProvider>

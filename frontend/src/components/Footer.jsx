@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Instagram } from 'lucide-react';
 import { footerData, contactData, images } from '../data/mock';
 
@@ -29,25 +30,37 @@ const FooterLinkColumn = ({ title, links }) => (
   <>
     <h4 className="text-white font-medium mb-6">{title}</h4>
     <ul className="space-y-3">
-      {links.map((link) => (
-        <li key={link.label}>
-          <a
-            href={link.href}
-            className="text-gray-500 hover:text-white transition-colors duration-300 text-sm"
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
+      {links.map((link) => {
+        const isInternal = link.href.startsWith('/');
+        return (
+          <li key={link.label}>
+            {isInternal ? (
+              <Link
+                to={link.href}
+                className="text-gray-500 hover:text-white transition-colors duration-300 text-sm"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                href={link.href}
+                className="text-gray-500 hover:text-white transition-colors duration-300 text-sm"
+              >
+                {link.label}
+              </a>
+            )}
+          </li>
+        );
+      })}
     </ul>
   </>
 );
 
 const FooterBrand = () => (
   <div className="lg:col-span-2">
-    <a href="/" className="flex items-center mb-6">
+    <Link to="/" className="flex items-center mb-6">
       <img src={images.logo} alt="Flik" className="h-10 w-auto" />
-    </a>
+    </Link>
     <p className="text-gray-500 leading-relaxed max-w-sm">{footerData.tagline}</p>
 
     <div className="mt-8 space-y-2 text-sm">

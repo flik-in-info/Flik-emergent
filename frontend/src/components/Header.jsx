@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
 import { navItems, images } from '../data/mock';
@@ -28,13 +29,13 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center group">
+          <Link to="/" className="flex items-center group">
             <img 
               src={images.logo} 
               alt="Flik" 
               className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">

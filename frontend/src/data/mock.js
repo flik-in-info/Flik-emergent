@@ -22,11 +22,11 @@ export const heroData = {
 };
 
 export const navItems = [
-  { label: "Platform", href: "#platform" },
-  { label: "Experience", href: "#experience" },
-  { label: "Intelligence", href: "#intelligence" },
-  { label: "Technology", href: "#technology" },
-  { label: "Contact", href: "#contact" }
+  { label: "Platform", href: "/#platform" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Intelligence", href: "/#intelligence" },
+  { label: "Technology", href: "/#technology" },
+  { label: "Contact", href: "/#contact" }
 ];
 
 export const platformSection = {
@@ -232,7 +232,7 @@ export const footerData = {
     { label: "System Status", href: "#" }
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "#" },
     { label: "Cookie Policy", href: "#" }
   ],
