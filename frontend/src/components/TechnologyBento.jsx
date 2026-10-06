@@ -152,6 +152,10 @@ const TechnologyBento = () => {
                 Live Inventory & CRM Synchronization
               </h3>
 
+              <div className="rounded-xl overflow-hidden aspect-[21/9] mb-4 border border-white/10 opacity-85 group-hover:opacity-100 transition-opacity bg-black">
+                <img src="/assets/flik-dashboard-ui.png" alt="CRM and Stacking Grid" className="w-full h-full object-cover object-top" />
+              </div>
+
               <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed mb-6">
                 Direct integration with Salesforce, LeadSquared, Sell.Do, and Farvision. Live inventory blocking, reserved unit status, and automated lead capture synchronize across sales centers and digital microsites in real time.
               </p>

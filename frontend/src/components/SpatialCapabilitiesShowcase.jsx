@@ -124,7 +124,7 @@ const SpatialCapabilitiesShowcase = () => {
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] bg-black group">
               <img
-                src="/assets/panorama-studio.png"
+                src="/assets/flik-experience-center.png"
                 alt="Flik Explorer Interactive Real Estate Experience Center and Real-Time 3D Digital Twin"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

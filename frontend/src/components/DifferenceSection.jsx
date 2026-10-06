@@ -101,24 +101,29 @@ const DifferenceSection = () => {
             className="p-8 border-red-500/25 bg-red-950/[0.04]"
           >
             {/* Header Badge */}
-            <div className="flex items-center justify-between gap-4 pb-6 border-b border-white/5 mb-6">
+            <div className="flex items-center justify-between gap-4 pb-4 border-b border-white/5 mb-4">
               <div>
                 <span className="text-[11px] font-mono uppercase tracking-widest text-red-400/80">
                   OBSOLETE METHOD
                 </span>
-                <h3 className="text-2xl font-light text-white mt-1">Physical Sample Flat</h3>
+                <h3 className="text-xl sm:text-2xl font-light text-white mt-1">Physical Sample Flat</h3>
               </div>
               <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-300 text-xs font-mono border border-red-500/20">
                 ₹2–5 Cr Sunk Cost
               </span>
             </div>
 
+            {/* Campaign Visual */}
+            <div className="rounded-xl overflow-hidden mb-6 aspect-[16/9] border border-red-500/20 bg-black">
+              <img src="/assets/imagination-tax.png" alt="2D Blueprint vs Reality" className="w-full h-full object-cover opacity-90" />
+            </div>
+
             {/* List */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {TRADITIONAL_POINTS.map((item) => (
-                <div key={item.title} className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <X className="w-3.5 h-3.5 text-red-400" />
+                <div key={item.title} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <X className="w-3 h-3 text-red-400" />
                   </div>
                   <div>
                     <div className="text-sm font-medium text-white/90">
@@ -136,26 +141,31 @@ const DifferenceSection = () => {
           {/* Right Card: Flik Explorer (The Modern Standard) */}
           <Uiverse3DCard
             spotlightColor="rgba(34, 229, 90, 0.22)"
-            className="p-8 border-emerald-500/40 bg-emerald-950/[0.08] shadow-[0_0_50px_rgba(34,229,90,0.12)]"
+            className="p-6 sm:p-8 border-emerald-500/40 bg-emerald-950/[0.08] shadow-[0_0_50px_rgba(34,229,90,0.12)]"
           >
             {/* Glowing Accent Crosshairs */}
             <div className="absolute top-3 right-3 text-xs font-mono text-emerald-500/60">+</div>
 
             {/* Header Badge */}
-            <div className="flex items-center justify-between gap-4 pb-6 border-b border-white/10 mb-6">
+            <div className="flex items-center justify-between gap-4 pb-4 border-b border-white/10 mb-4">
               <div>
                 <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-400">
                   THE NEW BENCHMARK
                 </span>
-                <h3 className="text-2xl font-medium text-white mt-1">Flik Explorer Platform</h3>
+                <h3 className="text-xl sm:text-2xl font-medium text-white mt-1">Flik Explorer Platform</h3>
               </div>
               <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-mono border border-emerald-500/30">
                 90% Cost Cut
               </span>
             </div>
 
+            {/* Campaign Visual */}
+            <div className="rounded-xl overflow-hidden mb-6 aspect-[16/9] border border-emerald-500/30 bg-black">
+              <img src="/assets/sample-flat-trap.png" alt="Holographic 3D Digital Twin Platform" className="w-full h-full object-cover" />
+            </div>
+
             {/* List */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {FLIK_POINTS.map((item) => (
                 <div key={item.title} className="flex items-start gap-4">
                   <div className="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
