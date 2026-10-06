@@ -1,47 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from './ui/button';
-import { Play, ArrowRight, Radio, Sparkles, Compass, ShieldCheck, Zap, Eye, Sunrise, Sun, Sunset, Maximize2, MapPin } from 'lucide-react';
+import { ArrowRight, Compass, ShieldCheck, Zap, Sparkles, Play, Maximize2 } from 'lucide-react';
 import { images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
 
-const SPATIAL_HOTSPOTS = [
-  {
-    id: 'balcony',
-    title: 'Sky Penthouse Balcony · 42nd Floor',
-    subtitle: 'Drone-verified panoramic ocean & skyline sightline with real-time solar elevation',
-    image: images.environment,
-    elevation: '+142m MSL',
-    sun: '06:15 PM Sunset Amber',
-  },
-  {
-    id: 'living',
-    title: 'Double-Height Living Gallery',
-    subtitle: 'Italian statuario marble, acoustic wood slat walls, & architectural cove illumination',
-    image: images.hero,
-    elevation: '+4m MSL',
-    sun: '12:30 PM Solar White',
-  },
-  {
-    id: 'aerial',
-    title: 'Tower Superstructure Aerial',
-    subtitle: 'Full architectural massing, structural podium, and arrival porte-cochère',
-    image: images.devices,
-    elevation: '+240m Drone',
-    sun: '09:00 AM Morning Light',
-  },
-  {
-    id: 'experience-center',
-    title: 'Flagship Sales Gallery Display',
-    subtitle: 'Ultra-HD interactive multi-touch video wall deployment for developer sales suites',
-    image: images.showroom,
-    elevation: 'Executive Suite',
-    sun: 'Ambient LED Cove',
-  },
-];
-
 const HeroSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
-  const [activeHotspot, setActiveHotspot] = useState(SPATIAL_HOTSPOTS[0]);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -49,7 +13,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#050507] pt-28 pb-12">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#050507] pt-28 pb-16">
       
       {/* 3D Holographic CAD Floor Grid Background */}
       <div className="hologram-floor-3d z-0" />
@@ -67,9 +31,9 @@ const HeroSection = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="text-emerald-400 font-semibold tracking-wider">ENTERPRISE PLATFORM</span>
+            <span className="text-emerald-400 font-semibold tracking-wider">ENTERPRISE SPATIAL PLATFORM</span>
             <span className="text-gray-500">|</span>
-            <span className="text-gray-300">Ultra-Realistic 3D Digital Twins for Luxury Real Estate</span>
+            <span className="text-gray-300">Photorealistic 3D Digital Twins for Real Estate</span>
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-gray-400">
@@ -79,7 +43,7 @@ const HeroSection = () => {
         </div>
 
         {/* Main Editorial Headline */}
-        <div className="max-w-4xl mb-8">
+        <div className="max-w-4xl mb-10">
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-white leading-[1.05] tracking-tight mb-6">
             <span className="block font-extralight text-gray-400">Architecture before the concrete.</span>
             <span className="block font-medium text-gradient-emerald">
@@ -88,7 +52,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-300 font-light leading-relaxed max-w-2xl mb-8">
-            Flik Explorer replaces ₹3 to ₹5 Crore physical sample flats with photorealistic, interactive 3D digital twins. Walk every floor, inspect balcony sightlines, and close NRI buyers remotely—weeks before physical construction finishes.
+            Flik Explorer replaces ₹2 to ₹5 Crore physical sample flats with photorealistic, interactive 3D digital twins. Walk every floor, inspect balcony sightlines, and close NRI buyers remotely—weeks before physical construction finishes.
           </p>
 
           {/* Action CTAs */}
@@ -107,89 +71,79 @@ const HeroSection = () => {
               onClick={() => scrollToSection('economics')}
               className="border-white/20 bg-white/[0.03] backdrop-blur-xl text-white hover:bg-white/10 font-medium px-8 py-6 text-base rounded-2xl transition-all duration-300"
             >
-              Calculate Developer ROI
+              Calculate Developer Savings
             </Button>
           </div>
         </div>
 
-        {/* The Spatial Viewport Cockpit Stage */}
-        <div className="mt-8 rounded-3xl overflow-hidden border border-white/15 bg-[#0b0b0e] shadow-[0_30px_90px_rgba(0,0,0,0.9)] relative card-3d-tilt">
+        {/* The Cinema-Grade Spatial Showcase Frame */}
+        <div className="rounded-3xl overflow-hidden border border-white/15 bg-[#0a0a0d] shadow-[0_30px_90px_rgba(0,0,0,0.9)] relative card-3d-tilt group">
           
-          {/* Top Stage Bar */}
-          <div className="px-6 py-4 bg-white/[0.02] border-b border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+          {/* Top Cinema Bar */}
+          <div className="px-6 py-3.5 bg-white/[0.02] border-b border-white/10 flex items-center justify-between text-xs font-mono">
             <div className="flex items-center gap-2 text-emerald-400">
-              <Eye className="w-4 h-4" />
-              <span className="uppercase tracking-wider">INTERACTIVE SPATIAL VIEWPORT · SELECT CAMERA ANGLE</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="tracking-wider">PHOTOREALISTIC SPATIAL TWIN · 4K UHD INTERACTIVE PREVIEW</span>
             </div>
-
-            {/* Hotspot Switchers */}
-            <div className="flex items-center gap-1.5 overflow-x-auto py-1">
-              {SPATIAL_HOTSPOTS.map((h) => {
-                const isActive = activeHotspot.id === h.id;
-                return (
-                  <button
-                    key={h.id}
-                    onClick={() => setActiveHotspot(h)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 whitespace-nowrap ${
-                      isActive
-                        ? 'bg-emerald-500 text-black font-semibold shadow-md'
-                        : 'text-gray-400 hover:text-white bg-white/[0.03] border border-white/5'
-                    }`}
-                  >
-                    {h.title.split('·')[0]}
-                  </button>
-                );
-              })}
+            <div className="hidden sm:flex items-center gap-2 text-gray-400">
+              <span>LUMEN GLOBAL ILLUMINATION · NANITE GEOMETRY</span>
             </div>
           </div>
 
-          {/* Viewport Canvas */}
+          {/* Viewport Canvas with Pure High-Res Interior Visual */}
           <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden bg-black select-none">
             <img
-              src={activeHotspot.image}
-              alt={activeHotspot.title}
-              className="w-full h-full object-cover transition-all duration-700 ease-out scale-105"
+              src={images.hero}
+              alt="Flik Explorer Photorealistic 3D Digital Twin Luxury Interior"
+              className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-transparent pointer-events-none" />
+            
+            {/* Subtle Gradient Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-black/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" />
 
-            {/* Top-Right Telemetry Overlay */}
-            <div className="absolute top-6 right-6 luxury-glass rounded-2xl p-4 text-xs font-mono text-gray-300 border border-white/15 max-w-xs hidden sm:block pointer-events-none">
-              <div className="text-emerald-400 text-[10px] uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                <span>ACTIVE PERSPECTIVE</span>
-              </div>
-              <div className="space-y-1.5 text-[11px] text-gray-300">
-                <div className="flex justify-between">
-                  <span className="text-gray-400">CAMERA:</span>
-                  <span className="font-medium text-white">{activeHotspot.title}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">ALTITUDE:</span>
-                  <span className="font-medium text-emerald-300">{activeHotspot.elevation}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">LIGHTING:</span>
-                  <span className="font-medium text-white">{activeHotspot.sun}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom-Left Description & Direct 3D Trigger */}
-            <div className="absolute bottom-6 left-6 luxury-glass rounded-2xl p-5 border border-white/15 max-w-md">
-              <div className="text-xs font-mono text-emerald-400 uppercase tracking-wider mb-1">
-                {activeHotspot.title}
-              </div>
-              <p className="text-xs text-gray-300 leading-relaxed font-light mb-3">
-                {activeHotspot.subtitle}
-              </p>
+            {/* Central Interactive Launch Trigger */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <button
+                type="button"
                 onClick={() => scrollToSection('experience')}
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-300 hover:text-white transition-colors"
+                className="pointer-events-auto group/btn flex items-center gap-3 px-6 py-4 rounded-2xl bg-black/70 hover:bg-black/90 backdrop-blur-2xl border border-emerald-500/50 hover:border-emerald-400 text-white shadow-[0_0_40px_rgba(34,229,90,0.25)] hover:shadow-[0_0_60px_rgba(34,229,90,0.45)] transition-all duration-300 transform hover:scale-105"
               >
-                <span>Launch Full 360° Walkthrough</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-black shadow-lg">
+                  <Play className="w-5 h-5 fill-black ml-0.5" />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs font-mono uppercase tracking-widest text-emerald-400">
+                    Interactive Walkthrough
+                  </div>
+                  <div className="text-sm font-medium text-white flex items-center gap-1.5">
+                    <span>Enter Live 3D Digital Twin</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                  </div>
+                </div>
               </button>
             </div>
+
+            {/* Bottom-Left Perspective Tag */}
+            <div className="absolute bottom-6 left-6 p-4 rounded-xl luxury-glass border border-white/15 max-w-sm hidden sm:block pointer-events-none">
+              <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+                Luxury Living Gallery · 42nd Floor
+              </div>
+              <p className="text-xs text-gray-300 font-light leading-relaxed">
+                Italian statuario marble, acoustic wood slat walls, & dynamic daylight simulated from 06:00 AM to 06:30 PM.
+              </p>
+            </div>
+
+            {/* Bottom-Right Stream Telemetry */}
+            <div className="absolute bottom-6 right-6 p-4 rounded-xl luxury-glass border border-white/15 hidden md:block pointer-events-none text-right">
+              <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+                Zero App Downloads
+              </div>
+              <div className="text-xs text-gray-300 font-light font-mono">
+                Runs on Safari, Chrome, iOS & Android
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -213,7 +167,7 @@ const HeroSection = () => {
           </div>
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>₹2-5 Cr Sunk Cost Saved</span>
+            <span>₹2–5 Cr Sunk Cost Saved</span>
           </div>
         </div>
       </div>
