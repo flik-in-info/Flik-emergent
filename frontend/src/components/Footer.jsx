@@ -93,11 +93,8 @@ const FooterBrand = () => (
 );
 
 const Footer = () => (
-  <footer className="relative bg-[#070708] border-t border-white/5 overflow-hidden">
-    {/* Subtle Architectural Grid */}
-    <div className="absolute inset-0 bg-arch-grid opacity-15 pointer-events-none" />
-
-    <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16">
+  <footer className="bg-[#070708] border-t border-white/5">
+    <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
       <div className="grid lg:grid-cols-5 gap-12 lg:gap-8">
         <FooterBrand />
         <div>
@@ -110,15 +107,14 @@ const Footer = () => (
           <div className="mb-8">
             <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
           </div>
-          <FooterLinkColumn title="Legal & Compliance" links={footerData.legal} />
+          <FooterLinkColumn title="Legal" links={footerData.legal} />
         </div>
       </div>
     </div>
 
-    <div className="border-t border-white/5 relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-500">
-        <p>{footerData.bottomBar}</p>
-        <p className="text-emerald-500/80">LAT: 18°58&apos;N · LON: 72°49&apos;E [MUMBAI]</p>
+    <div className="border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+        <p className="text-gray-600 text-sm text-center">{footerData.bottomBar}</p>
       </div>
     </div>
   </footer>

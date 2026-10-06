@@ -22,9 +22,9 @@ export const heroData = {
 };
 
 export const navItems = [
-  { label: "3D Twin", href: "/#experience" },
-  { label: "Capabilities", href: "/#capabilities" },
-  { label: "Capital Economics", href: "/#economics" },
+  { label: "Platform", href: "/#platform" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Intelligence", href: "/#intelligence" },
   { label: "Technology", href: "/#technology" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" }
@@ -212,20 +212,25 @@ export const footerData = {
   tagline: "Real-time architecture intelligence for the world's leading developers.",
   copyright: "© 2026 Flik. All rights reserved.",
   platform: [
-    { label: "Live 3D Console", href: "/#experience" },
-    { label: "Capital Economics", href: "/#economics" },
-    { label: "Spatial Capabilities", href: "/#capabilities" },
-    { label: "UE5 System Architecture", href: "/#technology" },
-    { label: "Enterprise FAQ", href: "/#faq" }
+    { label: "Capabilities", href: "#" },
+    { label: "Technology", href: "#" },
+    { label: "Integrations", href: "#" },
+    { label: "Security", href: "#" },
+    { label: "Pricing", href: "#" }
   ],
   company: [
-    { label: "About Flik Explorer", href: "/#experience" },
-    { label: "Developer Partnerships", href: "/#contact" },
-    { label: "Sales & Inquiries", href: "/#contact" }
+    { label: "About", href: "#" },
+    { label: "Careers", href: "#" },
+    { label: "Press", href: "#" },
+    { label: "Partners", href: "#" },
+    { label: "Contact", href: "#" }
   ],
   resources: [
-    { label: "Frequently Asked Questions", href: "/#faq" },
-    { label: "Request Executive Walkthrough", href: "/#contact" }
+    { label: "Documentation", href: "#" },
+    { label: "API Reference", href: "#" },
+    { label: "Case Studies", href: "#" },
+    { label: "Support", href: "#" },
+    { label: "System Status", href: "#" }
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },
@@ -236,12 +241,10 @@ export const footerData = {
 };
 
 export const images = {
-  hero: "/assets/nri-penthouse.jpg",
-  panorama: "/assets/panorama-studio.png",
-  obsidian: "/assets/obsidian-platform.png",
-  nri: "/assets/nri-penthouse.jpg",
-  devices: "/assets/panorama-studio.png",
-  intelligence: "/assets/obsidian-platform.png",
-  showroom: "/assets/nri-penthouse.jpg",
+  hero: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/x2v0cq1i_Generate_a_photo_4k_202601081339.jpeg",
+  environment: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/oxgdjfg9_Ultrarealistic_product_feature_2k_2026011515.jpeg",
+  devices: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/c3tyk0z9_Ultrarealistic_visualization_of_2k_202601191.jpeg",
+  intelligence: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/czx4ykai_Google_earth_studiostyle_2k_202601191025.jpeg",
+  showroom: "https://customer-assets.emergentagent.com/job_14e408c1-3c7e-48f7-a8ad-989309c5d4e5/artifacts/qmndvwhi_IMG_0752.jpeg",
   logo: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/c72tdypv_flik999.png"
 };

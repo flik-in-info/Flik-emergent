@@ -5,18 +5,20 @@ import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import DeveloperProofBar from "./components/DeveloperProofBar";
-import Live3DConsole from "./components/Live3DConsole";
-import ROISimulatorSection from "./components/ROISimulatorSection";
-import SpatialCapabilitiesShowcase from "./components/SpatialCapabilitiesShowcase";
-import TechnologyBento from "./components/TechnologyBento";
-import FAQSection from "./components/FAQSection";
+import PlatformSection from "./components/PlatformSection";
+import VisualizationSection from "./components/VisualizationSection";
+import ExperienceSection from "./components/ExperienceSection";
+import IntelligenceSection from "./components/IntelligenceSection";
+import TechnologySection from "./components/TechnologySection";
+import TeamsSection from "./components/TeamsSection";
+import MetricsSection from "./components/MetricsSection";
+import DifferenceSection from "./components/DifferenceSection";
 import ContactSection from "./components/ContactSection";
 import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
-import DifferenceSection from "./components/DifferenceSection";
+import FAQSection from "./components/FAQSection";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 
 const ScrollToTop = () => {
@@ -29,16 +31,18 @@ const ScrollToTop = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#050507] min-h-screen relative text-white selection:bg-emerald-500 selection:text-black">
+    <div className="bg-[#0a0a0b] min-h-screen">
       <Header />
       <main>
         <HeroSection />
-        <DeveloperProofBar />
-        <Live3DConsole />
+        <PlatformSection />
+        <VisualizationSection />
+        <ExperienceSection />
+        <IntelligenceSection />
+        <TechnologySection />
+        <TeamsSection />
+        <MetricsSection />
         <DifferenceSection />
-        <ROISimulatorSection />
-        <SpatialCapabilitiesShowcase />
-        <TechnologyBento />
         <FAQSection />
         <ContactSection />
         <ClosingCTA />

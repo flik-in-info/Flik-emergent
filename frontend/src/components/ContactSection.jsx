@@ -93,21 +93,12 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-32 bg-[#09090b] overflow-hidden">
-      {/* Background Architectural Grid and Ambient Mesh Glow */}
-      <div className="absolute inset-0 bg-arch-grid opacity-20 pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
-
-      <div className="relative max-w-5xl mx-auto px-6 lg:px-8">
+    <section id="contact" className="relative py-32 bg-[#0a0a0b]">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <ContactIntro email={CONTACT_EMAIL} />
 
-          <div className="relative lg:col-span-3 rounded-2xl bg-white/[0.015] border border-white/10 p-8 lg:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-            {/* Top Corner CAD marker */}
-            <div className="absolute top-3 right-3 text-[10px] font-mono text-gray-700">
-              +
-            </div>
-
+          <div className="lg:col-span-3 rounded-2xl bg-white/[0.02] border border-white/5 p-8 lg:p-10">
             {submitted ? (
               <ContactSuccess email={CONTACT_EMAIL} onReset={reset} />
             ) : (
@@ -132,31 +123,31 @@ const ContactSection = () => {
                 />
 
                 {error && (
-                  <p data-testid="contact-error" className="text-red-400 text-sm font-mono">
+                  <p data-testid="contact-error" className="text-red-400 text-sm">
                     {error}
                   </p>
                 )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/5">
-                  <p className="text-xs text-gray-400 max-w-xs font-light">
-                    Direct dispatch to{' '}
-                    <span className="text-emerald-400 font-mono">{CONTACT_EMAIL}</span>. Non-disclosure protected.
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                  <p className="text-xs text-gray-500 max-w-xs">
+                    Your message is delivered straight to{' '}
+                    <span className="text-gray-400">{CONTACT_EMAIL}</span>. We reply within one business day.
                   </p>
                   <Button
                     type="submit"
                     data-testid="contact-submit"
                     disabled={submitting}
-                    className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-6 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(34,229,90,0.25)] hover:shadow-[0_0_40px_rgba(34,229,90,0.45)] group disabled:opacity-70 disabled:hover:bg-emerald-500"
+                    className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 group disabled:opacity-70 disabled:hover:bg-emerald-500"
                   >
                     {submitting ? (
                       <>
                         <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-                        Transmitting…
+                        Sending…
                       </>
                     ) : (
                       <>
                         <Send className="mr-2 w-4 h-4" />
-                        Send Proposal Request
+                        Send enquiry
                         <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                       </>
                     )}

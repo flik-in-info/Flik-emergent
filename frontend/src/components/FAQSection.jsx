@@ -3,7 +3,6 @@ import { ChevronDown, HelpCircle, MessageSquare, ArrowRight } from 'lucide-react
 import { Button } from './ui/button';
 import { contactData } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
-import { UiverseButton, UiverseBadge } from './uiverse/UiverseComponents';
 
 const FAQ_ITEMS = [
   {
@@ -61,20 +60,15 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="relative py-32 bg-[#09090b] border-t border-white/5 overflow-hidden">
-      {/* Background Grid & Ambient Glow */}
-      <div className="absolute inset-0 bg-arch-grid opacity-20 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
-
-      <div className="relative max-w-5xl mx-auto px-6 lg:px-8">
+    <section id="faq" className="relative py-28 bg-[#0a0a0b] border-t border-white/5">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <UiverseBadge
-            highlight="ENTERPRISE FAQ"
-            text="Real Estate Developer Inquiries & Technical Specifications"
-            className="mb-4"
-          />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium uppercase tracking-wider mb-4">
+            <HelpCircle className="w-3.5 h-3.5" />
+            Frequently Asked Questions
+          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight mb-4">
             Everything you need to know about <span className="text-emerald-400 font-normal">Flik Explorer</span>
           </h2>
@@ -151,14 +145,13 @@ const FAQSection = () => {
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <UiverseButton
-              variant="primary"
-              size="sm"
+            <Button
               onClick={() => openDemoDialog('faq_cta')}
-              icon={ArrowRight}
+              className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-2.5 text-xs transition-all duration-300 shadow-md shadow-emerald-500/20"
             >
               Request Live Demo
-            </UiverseButton>
+              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+            </Button>
             <a
               href={`https://wa.me/${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`}
               target="_blank"
