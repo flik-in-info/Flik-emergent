@@ -22,9 +22,9 @@ export const heroData = {
 };
 
 export const navItems = [
-  { label: "Platform", href: "/#platform" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Intelligence", href: "/#intelligence" },
+  { label: "3D Twin", href: "/#experience" },
+  { label: "Developer ROI", href: "/#roi-calculator" },
+  { label: "Ajmera Case Study", href: "/#flagship-case-study" },
   { label: "Technology", href: "/#technology" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" }
@@ -212,25 +212,20 @@ export const footerData = {
   tagline: "Real-time architecture intelligence for the world's leading developers.",
   copyright: "© 2026 Flik. All rights reserved.",
   platform: [
-    { label: "Capabilities", href: "#" },
-    { label: "Technology", href: "#" },
-    { label: "Integrations", href: "#" },
-    { label: "Security", href: "#" },
-    { label: "Pricing", href: "#" }
+    { label: "Live 3D Console", href: "/#experience" },
+    { label: "Developer ROI Calculator", href: "/#roi-calculator" },
+    { label: "Ajmera Case Study", href: "/#flagship-case-study" },
+    { label: "UE5 System Architecture", href: "/#technology" },
+    { label: "FAQ", href: "/#faq" }
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
-    { label: "Partners", href: "#" },
-    { label: "Contact", href: "#" }
+    { label: "Ajmera Cityscapes Deployment", href: "/#flagship-case-study" },
+    { label: "Sales & Partnerships", href: "/#contact" },
+    { label: "Contact Us", href: "/#contact" }
   ],
   resources: [
-    { label: "Documentation", href: "#" },
-    { label: "API Reference", href: "#" },
-    { label: "Case Studies", href: "#" },
-    { label: "Support", href: "#" },
-    { label: "System Status", href: "#" }
+    { label: "Frequently Asked Questions", href: "/#faq" },
+    { label: "Request Live Demo", href: "/#contact" }
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },

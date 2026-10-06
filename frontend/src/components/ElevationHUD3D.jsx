@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Layers, ArrowUp, Compass } from 'lucide-react';
 
 const FLOORS = [
-  { id: 'hero', level: 'L01', name: 'Grand Lobby', alt: '+4m' },
-  { id: 'proof', level: 'L08', name: 'Ajmera Flagship', alt: '+28m' },
-  { id: 'platform', level: 'L18', name: 'BIM Operating Sys', alt: '+64m' },
-  { id: 'capabilities', level: 'L28', name: 'Lumen Solar Studio', alt: '+102m' },
-  { id: 'experience', level: 'L36', name: 'Live 3D Digital Twin', alt: '+138m' },
-  { id: 'intelligence', level: 'L48', name: 'AI Spatial Telemetry', alt: '+184m' },
-  { id: 'technology', level: 'L58', name: 'Unreal Engine Core', alt: '+220m' },
-  { id: 'difference', level: 'L68', name: 'Sample Flat ROI', alt: '+256m' },
-  { id: 'faq', level: 'L72', name: 'Sky Lounge & FAQ', alt: '+278m' },
+  { id: 'hero', level: 'L01', name: 'Spatial Viewport', alt: '+4m' },
+  { id: 'experience', level: 'L24', name: 'Live 3D Digital Twin', alt: '+92m' },
+  { id: 'roi-calculator', level: 'L38', name: 'Developer Capital ROI', alt: '+146m' },
+  { id: 'flagship-case-study', level: 'L52', name: 'Ajmera Mumbai Case Study', alt: '+198m' },
+  { id: 'technology', level: 'L64', name: 'UE5.4 Cloud Core', alt: '+244m' },
+  { id: 'faq', level: 'L70', name: 'Enterprise FAQ', alt: '+268m' },
+  { id: 'contact', level: 'L72', name: 'Executive Sales Suite', alt: '+278m' },
 ];
 
 const ElevationHUD3D = () => {

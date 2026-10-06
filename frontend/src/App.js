@@ -6,20 +6,16 @@ import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import DeveloperProofBar from "./components/DeveloperProofBar";
-import PlatformSection from "./components/PlatformSection";
-import VisualizationSection from "./components/VisualizationSection";
-import ExperienceSection from "./components/ExperienceSection";
-import IntelligenceSection from "./components/IntelligenceSection";
-import TechnologySection from "./components/TechnologySection";
-import TeamsSection from "./components/TeamsSection";
-import MetricsSection from "./components/MetricsSection";
-import DifferenceSection from "./components/DifferenceSection";
+import Live3DConsole from "./components/Live3DConsole";
+import ROISimulatorSection from "./components/ROISimulatorSection";
+import FlagshipShowcase from "./components/FlagshipShowcase";
+import TechnologyBento from "./components/TechnologyBento";
+import FAQSection from "./components/FAQSection";
 import ContactSection from "./components/ContactSection";
 import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
-import FAQSection from "./components/FAQSection";
 import ElevationHUD3D from "./components/ElevationHUD3D";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 
@@ -33,20 +29,16 @@ const ScrollToTop = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#0a0a0b] min-h-screen relative">
+    <div className="bg-[#070709] min-h-screen relative text-white selection:bg-emerald-500 selection:text-black">
       <ElevationHUD3D />
       <Header />
       <main>
         <HeroSection />
         <DeveloperProofBar />
-        <PlatformSection />
-        <VisualizationSection />
-        <ExperienceSection />
-        <IntelligenceSection />
-        <TechnologySection />
-        <TeamsSection />
-        <MetricsSection />
-        <DifferenceSection />
+        <Live3DConsole />
+        <ROISimulatorSection />
+        <FlagshipShowcase />
+        <TechnologyBento />
         <FAQSection />
         <ContactSection />
         <ClosingCTA />
