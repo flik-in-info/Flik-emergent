@@ -3,6 +3,7 @@ import { Check, X, ShieldAlert, Sparkles, ArrowRight, IndianRupee, Clock, Eye, G
 import { differenceSection } from '../data/mock';
 import { Button } from './ui/button';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { UiverseButton, Uiverse3DCard, UiverseBadge } from './uiverse/UiverseComponents';
 
 const TRADITIONAL_POINTS = [
   {
@@ -64,7 +65,7 @@ const DifferenceSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
 
   return (
-    <section className="relative py-32 bg-[#09090b] overflow-hidden">
+    <section id="economics" className="relative py-32 bg-[#09090b] overflow-hidden border-t border-white/[0.06]">
       {/* Background Architectural Grid and Ambient Glows */}
       <div className="absolute inset-0 bg-arch-grid opacity-25 pointer-events-none" />
       <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
@@ -73,10 +74,11 @@ const DifferenceSection = () => {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>COMMERCIAL ROI & DEVELOPER ECONOMICS</span>
-          </div>
+          <UiverseBadge
+            highlight="COMMERCIAL ROI"
+            text="Developer Economics & Sunk Capital Recovery"
+            className="mb-4"
+          />
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-6">
             <span className="block font-extralight text-gray-300">The sample flat is dead.</span>
@@ -94,7 +96,10 @@ const DifferenceSection = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           
           {/* Left Card: Traditional Sample Flat (The Obsolete Model) */}
-          <div className="relative p-8 rounded-2xl bg-white/[0.01] border border-red-500/20 backdrop-blur-xl card-3d-tilt">
+          <Uiverse3DCard
+            spotlightColor="rgba(239, 68, 68, 0.12)"
+            className="p-8 border-red-500/25 bg-red-950/[0.04]"
+          >
             {/* Header Badge */}
             <div className="flex items-center justify-between gap-4 pb-6 border-b border-white/5 mb-6">
               <div>
@@ -126,10 +131,13 @@ const DifferenceSection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Uiverse3DCard>
 
           {/* Right Card: Flik Explorer (The Modern Standard) */}
-          <div className="relative p-8 rounded-2xl bg-emerald-950/[0.06] border border-emerald-500/40 backdrop-blur-xl shadow-[0_0_50px_rgba(34,229,90,0.12)] card-3d-tilt">
+          <Uiverse3DCard
+            spotlightColor="rgba(34, 229, 90, 0.22)"
+            className="p-8 border-emerald-500/40 bg-emerald-950/[0.08] shadow-[0_0_50px_rgba(34,229,90,0.12)]"
+          >
             {/* Glowing Accent Crosshairs */}
             <div className="absolute top-3 right-3 text-xs font-mono text-emerald-500/60">+</div>
 
@@ -164,12 +172,12 @@ const DifferenceSection = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Uiverse3DCard>
 
         </div>
 
         {/* Bottom Developer ROI Callout Banner */}
-        <div className="p-8 rounded-2xl bg-gradient-to-r from-emerald-500/[0.08] via-white/[0.02] to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="p-8 rounded-3xl bg-gradient-to-r from-emerald-500/[0.08] via-white/[0.02] to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-1 max-w-2xl">
             <div className="text-xs font-mono text-emerald-400 uppercase tracking-wider">
               ENTERPRISE BUSINESS OUTCOME
@@ -177,18 +185,19 @@ const DifferenceSection = () => {
             <h4 className="text-lg sm:text-xl font-medium text-white">
               Save up to ₹2.5+ Crore in sunk construction costs on your next project.
             </h4>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-400 font-light">
               Provide buyers and NRI investors with a photorealistic, floor-accurate walkthrough from day one.
             </p>
           </div>
 
-          <Button
+          <UiverseButton
+            variant="primary"
+            size="md"
             onClick={() => openDemoDialog('difference_roi')}
-            className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 text-xs transition-all duration-300 shadow-[0_0_20px_rgba(34,229,90,0.25)] shrink-0"
+            icon={ArrowRight}
           >
             Calculate Project ROI
-            <ArrowRight className="w-3.5 h-3.5 ml-2" />
-          </Button>
+          </UiverseButton>
         </div>
 
       </div>

@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 import { navItems, images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { UiverseButton } from './uiverse/UiverseComponents';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -63,14 +64,14 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button
-              data-testid="header-request-demo"
+            <UiverseButton
+              variant="primary"
+              size="sm"
               onClick={() => openDemoDialog('header')}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-5 py-2 text-xs transition-all duration-300 shadow-[0_0_20px_rgba(34,229,90,0.25)] hover:shadow-[0_0_30px_rgba(34,229,90,0.45)] rounded-lg group"
+              icon={ArrowRight}
             >
               Request Live Demo
-              <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </Button>
+            </UiverseButton>
           </div>
 
           {/* Mobile Menu Button */}

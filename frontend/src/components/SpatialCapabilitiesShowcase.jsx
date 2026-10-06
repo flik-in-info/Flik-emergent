@@ -3,6 +3,7 @@ import { Building2, Sparkles, ArrowRight, ShieldCheck, Check, Globe2, Compass, L
 import { images } from '../data/mock';
 import { Button } from './ui/button';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { UiverseButton, Uiverse3DCard, UiverseBadge } from './uiverse/UiverseComponents';
 
 const CAPABILITY_PILLARS = [
   {
@@ -40,10 +41,11 @@ const SpatialCapabilitiesShowcase = () => {
         
         {/* Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>ENTERPRISE CAPABILITIES · THE SPATIAL SUITE</span>
-          </div>
+          <UiverseBadge
+            highlight="ENTERPRISE SUITE"
+            text="Interactive Architectural Spatial Technology"
+            className="mb-4"
+          />
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-6">
             <span className="block font-extralight text-gray-300">Beyond static renderings.</span>
@@ -107,23 +109,24 @@ const SpatialCapabilitiesShowcase = () => {
             </div>
 
             <div className="pt-2">
-              <Button
+              <UiverseButton
+                variant="primary"
+                size="md"
                 onClick={() => openDemoDialog('capabilities_suite')}
-                className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-6 py-2.5 rounded-xl shadow-[0_0_20px_rgba(34,229,90,0.25)] group"
+                icon={ArrowRight}
               >
                 Request Enterprise Specification
-                <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </Button>
+              </UiverseButton>
             </div>
           </div>
 
           {/* Right Visual Column (6 cols) */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] bg-black">
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] bg-black group">
               <img
-                src={images.showroom}
+                src="/assets/panorama-studio.png"
                 alt="Flik Explorer Interactive Real Estate Experience Center and Real-Time 3D Digital Twin"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               
@@ -145,23 +148,23 @@ const SpatialCapabilitiesShowcase = () => {
 
         </div>
 
-        {/* 4 Pillars Grid */}
+        {/* 4 Pillars Grid with Uiverse 3D Spotlight Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {CAPABILITY_PILLARS.map((pillar) => {
             const Icon = pillar.icon;
             return (
-              <div
+              <Uiverse3DCard
                 key={pillar.title}
-                className="p-6 rounded-2xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/10 hover:border-emerald-500/30 transition-all duration-300 flex flex-col justify-between"
+                className="p-6 flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h4 className="text-base font-medium text-white mb-2">{pillar.title}</h4>
                   <p className="text-xs text-gray-400 font-light leading-relaxed">{pillar.desc}</p>
                 </div>
-              </div>
+              </Uiverse3DCard>
             );
           })}
         </div>

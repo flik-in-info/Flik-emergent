@@ -3,6 +3,7 @@ import { Cpu, Cloud, Activity, Sparkles, Shield, Laptop, Smartphone, Tablet, Lay
 import { images } from '../data/mock';
 import { Button } from './ui/button';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { UiverseButton, Uiverse3DCard, UiverseBadge } from './uiverse/UiverseComponents';
 
 const TechnologyBento = () => {
   const { open: openDemoDialog } = useDemoDialog();
@@ -17,10 +18,11 @@ const TechnologyBento = () => {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>ELEMENT #45 & #46 · 3D NANITE GEOMETRY & SPATIAL CLUSTER</span>
-          </div>
+          <UiverseBadge
+            highlight="SYSTEM ARCHITECTURE"
+            text="Unreal Engine 5.4 Lumen & Distributed Edge Streaming"
+            className="mb-4"
+          />
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-6">
             <span className="block font-extralight text-gray-300">Engineered for luxury real estate.</span>
@@ -34,17 +36,20 @@ const TechnologyBento = () => {
           </p>
         </div>
 
-        {/* Spatial Bento Grid */}
+        {/* Spatial Bento Grid with Uiverse 3D Spotlight Cards */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-16">
           
           {/* Card 1: Unreal Engine 5.4 Nanite & Lumen (8 cols) */}
-          <div className="md:col-span-8 p-8 sm:p-10 rounded-3xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/10 hover:border-emerald-500/40 transition-all duration-400 card-3d-tilt relative overflow-hidden flex flex-col justify-between">
+          <Uiverse3DCard
+            spotlightColor="rgba(34, 229, 90, 0.16)"
+            className="md:col-span-8 p-8 sm:p-10 flex flex-col justify-between"
+          >
             <div className="absolute top-4 right-4 text-xs font-mono text-emerald-400/80">
               SYS // CORE RENDERING
             </div>
 
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
                 <Cpu className="w-6 h-6" />
               </div>
 
@@ -69,16 +74,19 @@ const TechnologyBento = () => {
               <span>Lumen Dynamic Global Illumination</span>
               <span className="text-emerald-400">60 FPS Interactive</span>
             </div>
-          </div>
+          </Uiverse3DCard>
 
           {/* Card 2: Zero App Downloads (4 cols) */}
-          <div className="md:col-span-4 p-8 rounded-3xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/10 hover:border-emerald-500/40 transition-all duration-400 card-3d-tilt flex flex-col justify-between">
+          <Uiverse3DCard
+            spotlightColor="rgba(56, 189, 248, 0.16)"
+            className="md:col-span-4 p-8 flex flex-col justify-between"
+          >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-6 group-hover:scale-110 transition-transform">
                 <Cloud className="w-6 h-6" />
               </div>
 
-              <div className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-2">
+              <div className="text-[10px] font-mono text-sky-400 uppercase tracking-widest mb-2">
                 GLOBAL CLOUD STREAMING
               </div>
 
@@ -92,19 +100,22 @@ const TechnologyBento = () => {
             </div>
 
             <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-500">
-              <span className="text-emerald-300">1-CLICK WHATSAPP SHARE</span>
+              <span className="text-sky-300">1-CLICK WHATSAPP SHARE</span>
               <span>LOW-LATENCY EDGE</span>
             </div>
-          </div>
+          </Uiverse3DCard>
 
           {/* Card 3: Buyer Behavioral Telemetry (5 cols) */}
-          <div className="md:col-span-5 p-8 rounded-3xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/10 hover:border-emerald-500/40 transition-all duration-400 card-3d-tilt flex flex-col justify-between">
+          <Uiverse3DCard
+            spotlightColor="rgba(168, 85, 247, 0.16)"
+            className="md:col-span-5 p-8 flex flex-col justify-between"
+          >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
                 <Activity className="w-6 h-6" />
               </div>
 
-              <div className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-2">
+              <div className="text-[10px] font-mono text-purple-400 uppercase tracking-widest mb-2">
                 SALES PIPELINE INTELLIGENCE
               </div>
 
@@ -119,14 +130,17 @@ const TechnologyBento = () => {
 
             <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-500">
               <span>HEATMAP ANALYTICS</span>
-              <span className="text-emerald-400">89% INTENT PREDICTION</span>
+              <span className="text-purple-400 font-mono">89% INTENT PREDICTION</span>
             </div>
-          </div>
+          </Uiverse3DCard>
 
           {/* Card 4: Enterprise CRM & Security (7 cols) */}
-          <div className="md:col-span-7 p-8 rounded-3xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/10 hover:border-emerald-500/40 transition-all duration-400 card-3d-tilt flex flex-col justify-between">
+          <Uiverse3DCard
+            spotlightColor="rgba(34, 229, 90, 0.16)"
+            className="md:col-span-7 p-8 flex flex-col justify-between"
+          >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
                 <Shield className="w-6 h-6" />
               </div>
 
@@ -147,12 +161,12 @@ const TechnologyBento = () => {
               <span>SALESFORCE · LEADSQUARED · SELL.DO</span>
               <span className="text-emerald-400 font-medium">99.9% UPTIME SLA</span>
             </div>
-          </div>
+          </Uiverse3DCard>
 
         </div>
 
         {/* Bottom CTA Banner */}
-        <div className="p-8 rounded-2xl bg-gradient-to-r from-emerald-500/[0.08] via-white/[0.02] to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-8 rounded-3xl bg-gradient-to-r from-emerald-500/[0.08] via-white/[0.02] to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h4 className="text-lg font-medium text-white mb-1">
               Have 2D CAD or BIM blueprints ready?
@@ -161,13 +175,14 @@ const TechnologyBento = () => {
               We deploy your project&apos;s interactive 3D digital twin in 2 to 4 weeks.
             </p>
           </div>
-          <Button
+          <UiverseButton
+            variant="primary"
+            size="md"
             onClick={() => openDemoDialog('tech_bento')}
-            className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-6 py-2.5 rounded-xl shadow-[0_0_20px_rgba(34,229,90,0.3)] shrink-0"
+            icon={ArrowRight}
           >
             Request Enterprise Blueprint
-            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-          </Button>
+          </UiverseButton>
         </div>
 
       </div>

@@ -16,8 +16,7 @@ import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
-import ElevationHUD3D from "./components/ElevationHUD3D";
-import Spatial3DEcosystem from "./components/Spatial3DEcosystem";
+import DifferenceSection from "./components/DifferenceSection";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 
 const ScrollToTop = () => {
@@ -31,13 +30,12 @@ const ScrollToTop = () => {
 const LandingPage = () => {
   return (
     <div className="bg-[#050507] min-h-screen relative text-white selection:bg-emerald-500 selection:text-black">
-      <ElevationHUD3D />
       <Header />
       <main>
         <HeroSection />
         <DeveloperProofBar />
         <Live3DConsole />
-        <Spatial3DEcosystem />
+        <DifferenceSection />
         <ROISimulatorSection />
         <SpatialCapabilitiesShowcase />
         <TechnologyBento />

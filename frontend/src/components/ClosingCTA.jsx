@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { ArrowRight, Phone, ShieldCheck, Server, Globe, Sparkles } from 'lucide-react';
 import { closingSection, images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { UiverseButton, UiverseBadge } from './uiverse/UiverseComponents';
 
 const TRUST_ICONS = [ShieldCheck, Server, Server, Globe];
 
@@ -14,7 +15,7 @@ const ClosingCTA = () => {
       {/* Background Image with Cinematic Gradients & Ambient Mesh Glows */}
       <div className="absolute inset-0">
         <img
-          src={images.showroom}
+          src="/assets/nri-penthouse.jpg"
           alt="Flik Explorer Interactive Real Estate Experience Center and Real-Time 3D Digital Twin"
           loading="lazy"
           decoding="async"
@@ -30,10 +31,11 @@ const ClosingCTA = () => {
       <div className="relative max-w-5xl mx-auto px-6 lg:px-8 text-center">
         
         {/* Top Tag */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-8">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>DEPLOYMENT & ENTERPRISE BLUEPRINTS</span>
-        </div>
+        <UiverseBadge
+          highlight="ENTERPRISE DEPLOYMENTS"
+          text="Custom Spatial Twins Built From CAD/BIM in 14 Days"
+          className="mb-8"
+        />
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-white leading-tight mb-6">
@@ -49,25 +51,23 @@ const ClosingCTA = () => {
 
         {/* CTAs */}
         <div className="flex flex-wrap justify-center gap-4 mb-16">
-          <Button
-            data-testid="closing-primary-cta"
+          <UiverseButton
+            variant="primary"
             size="lg"
             onClick={() => openDemoDialog('closing_cta')}
-            className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-10 py-6 text-base transition-all duration-300 shadow-[0_0_40px_rgba(34,229,90,0.35)] hover:shadow-[0_0_50px_rgba(34,229,90,0.55)] rounded-xl group"
+            icon={ArrowRight}
           >
             {closingSection.primaryCta}
-            <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </Button>
-          <Button
-            data-testid="closing-secondary-cta"
+          </UiverseButton>
+
+          <UiverseButton
+            variant="secondary"
             size="lg"
-            variant="outline"
             onClick={() => openDemoDialog('closing_sales')}
-            className="border-white/20 bg-white/[0.03] backdrop-blur-md text-white hover:bg-white/10 font-medium px-10 py-6 text-base transition-all duration-300 rounded-xl group"
+            icon={Phone}
           >
-            <Phone className="mr-2 w-4 h-4 text-emerald-400" />
             {closingSection.secondaryCta}
-          </Button>
+          </UiverseButton>
         </div>
 
         {/* Trust Indicators */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IndianRupee, Clock, CheckCircle2, XCircle, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Button } from './ui/button';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { UiverseButton, UiverseBadge } from './uiverse/UiverseComponents';
 
 const ROISimulatorSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
@@ -16,7 +17,7 @@ const ROISimulatorSection = () => {
   const presaleVelocityGain = Math.round(unitCount * 0.28); // Estimated accelerated bookings
 
   return (
-    <section id="economics" className="relative py-32 bg-[#08080a] overflow-hidden border-t border-white/[0.06]">
+    <section id="roi-calculator" className="relative py-32 bg-[#08080a] overflow-hidden border-t border-white/[0.06]">
       {/* Background Subtle Blueprint Grid and Ambient Mesh Glow */}
       <div className="absolute inset-0 bg-arch-grid opacity-25 pointer-events-none" />
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[170px] pointer-events-none" />
@@ -25,10 +26,11 @@ const ROISimulatorSection = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>ELEMENT #25 & #38 · 3D CAPITAL PRISM & ROI DIAL</span>
-          </div>
+          <UiverseBadge
+            highlight="FINANCIAL SIMULATOR"
+            text="Developer Sunk Capital & Velocity Calculator"
+            className="mb-4"
+          />
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-6">
             <span className="block font-extralight text-gray-300">Compare the Economics.</span>
@@ -177,13 +179,15 @@ const ROISimulatorSection = () => {
               </div>
 
               <div className="mt-8 pt-4 border-t border-emerald-500/30">
-                <Button
+                <UiverseButton
+                  variant="primary"
+                  size="md"
+                  className="w-full"
                   onClick={() => openDemoDialog('roi_calculator')}
-                  className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs py-2.5 rounded-xl shadow-[0_0_20px_rgba(34,229,90,0.3)]"
+                  icon={ArrowRight}
                 >
                   Lock In Developer ROI
-                  <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                </Button>
+                </UiverseButton>
               </div>
             </div>
 

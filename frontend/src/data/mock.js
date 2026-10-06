@@ -23,7 +23,7 @@ export const heroData = {
 
 export const navItems = [
   { label: "3D Twin", href: "/#experience" },
-  { label: "50 3D Elements", href: "/#capabilities" },
+  { label: "Capabilities", href: "/#capabilities" },
   { label: "Capital Economics", href: "/#economics" },
   { label: "Technology", href: "/#technology" },
   { label: "FAQ", href: "/#faq" },
@@ -236,10 +236,12 @@ export const footerData = {
 };
 
 export const images = {
-  hero: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/x2v0cq1i_Generate_a_photo_4k_202601081339.jpeg",
-  environment: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/oxgdjfg9_Ultrarealistic_product_feature_2k_2026011515.jpeg",
-  devices: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/c3tyk0z9_Ultrarealistic_visualization_of_2k_202601191.jpeg",
-  intelligence: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/czx4ykai_Google_earth_studiostyle_2k_202601191025.jpeg",
-  showroom: "https://customer-assets.emergentagent.com/job_14e408c1-3c7e-48f7-a8ad-989309c5d4e5/artifacts/qmndvwhi_IMG_0752.jpeg",
+  hero: "/assets/nri-penthouse.jpg",
+  panorama: "/assets/panorama-studio.png",
+  obsidian: "/assets/obsidian-platform.png",
+  nri: "/assets/nri-penthouse.jpg",
+  devices: "/assets/panorama-studio.png",
+  intelligence: "/assets/obsidian-platform.png",
+  showroom: "/assets/nri-penthouse.jpg",
   logo: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/c72tdypv_flik999.png"
 };

@@ -3,6 +3,7 @@ import { ChevronDown, HelpCircle, MessageSquare, ArrowRight } from 'lucide-react
 import { Button } from './ui/button';
 import { contactData } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { UiverseButton, UiverseBadge } from './uiverse/UiverseComponents';
 
 const FAQ_ITEMS = [
   {
@@ -69,10 +70,11 @@ const FAQSection = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium uppercase tracking-wider mb-4">
-            <HelpCircle className="w-3.5 h-3.5" />
-            ELEMENT #48 · 3D PERSPECTIVE FOLD ACCORDION ARCHITECTURE
-          </div>
+          <UiverseBadge
+            highlight="ENTERPRISE FAQ"
+            text="Real Estate Developer Inquiries & Technical Specifications"
+            className="mb-4"
+          />
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight mb-4">
             Everything you need to know about <span className="text-emerald-400 font-normal">Flik Explorer</span>
           </h2>
@@ -149,13 +151,14 @@ const FAQSection = () => {
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <Button
+            <UiverseButton
+              variant="primary"
+              size="sm"
               onClick={() => openDemoDialog('faq_cta')}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-2.5 text-xs transition-all duration-300 shadow-md shadow-emerald-500/20"
+              icon={ArrowRight}
             >
               Request Live Demo
-              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-            </Button>
+            </UiverseButton>
             <a
               href={`https://wa.me/${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`}
               target="_blank"

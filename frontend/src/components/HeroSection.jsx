@@ -1,15 +1,50 @@
 import React, { useState } from 'react';
-import { Button } from './ui/button';
-import { ArrowRight, Compass, ShieldCheck, Zap, Sparkles, Play, Box, Layers, Eye } from 'lucide-react';
-import { images } from '../data/mock';
+import { ArrowRight, Compass, ShieldCheck, Zap, Sparkles, Play, IndianRupee, Layers, Eye, Smartphone, CheckCircle2 } from 'lucide-react';
 import { useDemoDialog } from '../context/DemoDialogContext';
-import ThreeTowerCanvas from './ThreeTowerCanvas';
-import SpatialElementsModal from './SpatialElementsModal';
+import { UiverseButton, UiverseBadge, Uiverse3DCard } from './uiverse/UiverseComponents';
+
+const VIEWPORT_SLIDES = [
+  {
+    id: 'penthouse',
+    label: 'Sea-Facing Penthouse Twin',
+    tag: 'Mumbai Coastal Skyline · 42nd Floor',
+    image: '/assets/nri-penthouse.jpg',
+    desc: 'Floor-to-ceiling panoramic glass, Italian statuario marble, & real-time sunset lighting over the Arabian Sea.',
+    hotspots: [
+      { x: '18%', y: '45%', title: 'Panoramic Sea Vista', text: 'Simulated 180° sunset view from 42nd floor elevation.' },
+      { x: '58%', y: '78%', title: 'Live 3D Twin on iPad', text: 'Real-time spatial engine running on Safari without apps.' },
+      { x: '82%', y: '52%', title: 'Acoustic Wall Panels', text: 'Custom fluted timber finishes toggled by buyer choice.' },
+    ],
+  },
+  {
+    id: 'towers',
+    label: '3D High-Rise Tower Orbit',
+    tag: 'Towers A, B & C · Master Elevation',
+    image: '/assets/panorama-studio.png',
+    desc: 'Full 360° orbital view of the superstructure, floor-by-floor unit isolation, and live inventory sync.',
+    hotspots: [
+      { x: '78%', y: '25%', title: 'Unit A-2403 Selected', text: '3 BHK · 1,286 sq ft · ₹3.25 Cr · East Facing.' },
+      { x: '45%', y: '68%', title: 'Resort Swimming Pool', text: 'Ground amenities mapped to real sunlight hours.' },
+      { x: '62%', y: '72%', title: 'Clubhouse Pavilion', text: 'Interactive spatial walk into lifestyle amenities.' },
+    ],
+  },
+  {
+    id: 'platform',
+    label: 'Multi-Tower Project Explorer',
+    tag: 'Full Inventory & Vastu Compass',
+    image: '/assets/obsidian-platform.png',
+    desc: 'Live CRM unit inventory matrix, 3D extruded floor cutaways, and dynamic time-of-day slider.',
+    hotspots: [
+      { x: '88%', y: '28%', title: '3D Isometric Layout', text: 'Instant extruded floor plan linked to 3D walk.' },
+      { x: '65%', y: '88%', title: 'Sun Dial (16:30)', text: 'Slide from morning dawn to evening golden hour.' },
+    ],
+  },
+];
 
 const HeroSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
-  const [heroMode, setHeroMode] = useState('threejs'); // 'threejs' | 'cinema'
-  const [isInspectorOpen, setIsInspectorOpen] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(VIEWPORT_SLIDES[0]);
+  const [activeHotspot, setActiveHotspot] = useState(null);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
@@ -17,224 +52,228 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#050507] pt-28 pb-16">
+    <section id="hero" className="relative flex flex-col justify-start overflow-hidden bg-[#060608] pt-28 pb-16">
       
-      {/* 3D Holographic CAD Floor Grid Background (Element #43) */}
-      <div className="hologram-floor-3d z-0" />
+      {/* Ambient Architectural Lighting Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-[radial-gradient(ellipse_at_top,rgba(34,229,90,0.12),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/3 -left-40 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 -right-40 w-[600px] h-[600px] bg-teal-500/5 rounded-full blur-[180px] pointer-events-none" />
 
-      {/* Ambient Radial Glowing Orbs */}
-      <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[170px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-10 right-10 w-[550px] h-[550px] bg-emerald-500/5 rounded-full blur-[180px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex-1 flex flex-col justify-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col">
         
         {/* Top Authority Header Badge */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.03] backdrop-blur-2xl border border-emerald-500/30 text-xs font-mono text-gray-300 shadow-[0_0_30px_rgba(34,229,90,0.12)]">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-emerald-400 font-semibold tracking-wider">ENTERPRISE SPATIAL PLATFORM</span>
-            <span className="text-gray-500">|</span>
-            <span className="text-gray-300">Photorealistic 3D Digital Twins for Real Estate</span>
-          </div>
+          <UiverseBadge
+            highlight="ENTERPRISE PLATFORM"
+            text="Replacing Physical Sample Flats for Premier Indian Developers"
+          />
 
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setIsInspectorOpen(true)}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-mono transition-all"
-            >
-              <Box className="w-3.5 h-3.5" />
-              <span>50 3D ELEMENTS ACTIVE</span>
-            </button>
-            <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-gray-400 ml-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>60 FPS ULTRA-HD CLOUD STREAM</span>
-            </div>
+          <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-gray-400">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>UNREAL ENGINE 5.4 · 60 FPS BROWSER STREAMING</span>
           </div>
         </div>
 
-        {/* Main Editorial Headline */}
-        <div className="max-w-4xl mb-8">
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-white leading-[1.05] tracking-tight mb-6">
-            <span className="block font-extralight text-gray-400">Architecture before the concrete.</span>
-            <span className="block font-medium text-gradient-emerald">
+        {/* Main Grand Architectural Headline */}
+        <div className="max-w-4xl mb-10">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extralight text-white leading-[1.04] tracking-tight mb-6">
+            The sample flat is obsolete.<br />
+            <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-white">
               Sell what doesn&apos;t exist yet in 3D.
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-300 font-light leading-relaxed max-w-2xl mb-8">
-            Flik Explorer replaces ₹2 to ₹5 Crore physical sample flats with photorealistic, interactive 3D digital twins. Walk every floor, inspect balcony sightlines, and close NRI buyers remotely—weeks before physical construction finishes.
+          <p className="text-lg sm:text-xl text-gray-300 font-light leading-relaxed max-w-3xl mb-8">
+            Flik Explorer replaces ₹2 to ₹5 Crore physical sample flats with photorealistic, real-time 3D spatial twins. Walk every floor, inspect balcony sightlines, and close NRI buyers remotely—weeks before physical construction finishes.
           </p>
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-4">
-            <Button
+            <UiverseButton
+              variant="primary"
+              size="lg"
               onClick={() => scrollToSection('experience')}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-8 py-6 text-base rounded-2xl shadow-[0_0_35px_rgba(34,229,90,0.35)] hover:shadow-[0_0_45px_rgba(34,229,90,0.55)] transition-all duration-300 group"
+              icon={ArrowRight}
             >
-              <Compass className="mr-2 w-5 h-5 text-black" />
-              Explore Live 3D Twin
-              <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
+              Step Inside Live 3D Twin
+            </UiverseButton>
 
-            <Button
-              variant="outline"
+            <UiverseButton
+              variant="secondary"
+              size="lg"
               onClick={() => scrollToSection('economics')}
-              className="border-white/20 bg-white/[0.03] backdrop-blur-xl text-white hover:bg-white/10 font-medium px-8 py-6 text-base rounded-2xl transition-all duration-300"
+              icon={IndianRupee}
             >
-              Calculate Developer Savings
-            </Button>
+              Calculate Capital Saved
+            </UiverseButton>
 
+            <UiverseButton
+              variant="glass"
+              size="lg"
+              onClick={() => openDemoDialog('hero_executive')}
+              icon={Sparkles}
+            >
+              Request Private Walkthrough
+            </UiverseButton>
+          </div>
+        </div>
+
+        {/* Viewport View Switcher Tabs (Uiverse style) */}
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          {VIEWPORT_SLIDES.map((slide) => (
             <button
+              key={slide.id}
               type="button"
-              onClick={() => setIsInspectorOpen(true)}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl border border-white/15 bg-white/[0.02] hover:bg-white/10 text-gray-300 hover:text-white text-sm font-mono transition-all"
+              onClick={() => {
+                setActiveSlide(slide);
+                setActiveHotspot(null);
+              }}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-mono font-medium transition-all duration-300 ${
+                activeSlide.id === slide.id
+                  ? 'bg-emerald-500 text-black font-bold shadow-[0_0_25px_rgba(34,229,90,0.4)]'
+                  : 'bg-white/[0.03] hover:bg-white/[0.08] text-gray-400 hover:text-white border border-white/5'
+              }`}
             >
-              <Box className="w-4 h-4 text-emerald-400" />
-              <span>Inspect 50 3D Elements</span>
+              <Eye className="w-3.5 h-3.5" />
+              <span>{slide.label}</span>
             </button>
-          </div>
+          ))}
         </div>
 
-        {/* Viewport Mode Switcher Tabs */}
-        <div className="flex items-center gap-2 mb-3">
-          <button
-            type="button"
-            onClick={() => setHeroMode('threejs')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
-              heroMode === 'threejs'
-                ? 'bg-emerald-500 text-black font-bold shadow-[0_0_20px_rgba(34,197,94,0.4)]'
-                : 'bg-white/5 text-gray-400 hover:text-white border border-white/5'
-            }`}
-          >
-            <Box className="w-3.5 h-3.5" />
-            <span>Interactive 3D Digital Twin (Three.js WebGL)</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setHeroMode('cinema')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
-              heroMode === 'cinema'
-                ? 'bg-emerald-500 text-black font-bold shadow-[0_0_20px_rgba(34,197,94,0.4)]'
-                : 'bg-white/5 text-gray-400 hover:text-white border border-white/5'
-            }`}
-          >
-            <Eye className="w-3.5 h-3.5" />
-            <span>4K Cinema Penthouse (Unreal Engine 5)</span>
-          </button>
-        </div>
-
-        {/* The Cinema-Grade Spatial Showcase Frame */}
-        <div className="rounded-3xl overflow-hidden border border-white/15 bg-[#0a0a0d] shadow-[0_30px_90px_rgba(0,0,0,0.9)] relative card-3d-tilt group">
+        {/* The Master Cinema-Grade Architectural Viewport Frame */}
+        <div className="rounded-3xl overflow-hidden border border-white/15 bg-[#09090d] shadow-[0_30px_100px_rgba(0,0,0,0.95)] relative group">
           
-          {/* Top Cinema Bar */}
+          {/* Top Cinema Telemetry Bar */}
           <div className="px-6 py-3.5 bg-white/[0.02] border-b border-white/10 flex items-center justify-between text-xs font-mono">
-            <div className="flex items-center gap-2 text-emerald-400">
+            <div className="flex items-center gap-2.5 text-emerald-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="tracking-wider">
-                {heroMode === 'threejs'
-                  ? 'INTERACTIVE 3D ORBIT TOWER · DRAG TO ROTATE 360°'
-                  : 'PHOTOREALISTIC SPATIAL TWIN · 4K UHD INTERACTIVE PREVIEW'}
-              </span>
+              <span className="tracking-wider uppercase">{activeSlide.tag}</span>
             </div>
-            <div className="hidden sm:flex items-center gap-2 text-gray-400">
-              <span>LUMEN GLOBAL ILLUMINATION · NANITE GEOMETRY</span>
+            <div className="hidden sm:flex items-center gap-3 text-gray-400">
+              <span>LUMEN GLOBAL ILLUMINATION · 4K UHD</span>
+              <span className="text-white/20">|</span>
+              <span className="text-emerald-400 font-semibold">ZERO APP DOWNLOADS</span>
             </div>
           </div>
 
-          {/* Viewport Content */}
-          {heroMode === 'threejs' ? (
-            <div className="w-full h-[520px] sm:h-[600px] relative">
-              <ThreeTowerCanvas />
-            </div>
-          ) : (
-            <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden bg-black select-none">
-              <img
-                src={images.hero}
-                alt="Flik Explorer Photorealistic 3D Digital Twin Luxury Interior"
-                className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-              />
-              
-              {/* Subtle Gradient Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050507] via-black/20 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40 pointer-events-none" />
+          {/* Viewport Canvas with Ultra-Res Photographic Master Visual */}
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden bg-black select-none">
+            <img
+              src={activeSlide.image}
+              alt={activeSlide.label}
+              className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+            />
+            
+            {/* Ambient Dark Gradient Framing */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#060608] via-black/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50 pointer-events-none" />
 
-              {/* Central Interactive Launch Trigger */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            {/* Interactive 3D Hotspot Coordinate Pins */}
+            {activeSlide.hotspots.map((spot, i) => (
+              <div
+                key={i}
+                style={{ left: spot.x, top: spot.y }}
+                className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
+              >
                 <button
                   type="button"
-                  onClick={() => scrollToSection('experience')}
-                  className="pointer-events-auto group/btn flex items-center gap-3 px-6 py-4 rounded-2xl bg-black/70 hover:bg-black/90 backdrop-blur-2xl border border-emerald-500/50 hover:border-emerald-400 text-white shadow-[0_0_40px_rgba(34,229,90,0.25)] hover:shadow-[0_0_60px_rgba(34,229,90,0.45)] transition-all duration-300 transform hover:scale-105"
+                  onClick={() => setActiveHotspot(activeHotspot === i ? null : i)}
+                  className="relative flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/90 text-black shadow-[0_0_25px_rgba(34,229,90,0.7)] hover:scale-125 transition-transform"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-black shadow-lg">
-                    <Play className="w-5 h-5 fill-black ml-0.5" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-xs font-mono uppercase tracking-widest text-emerald-400">
-                      Interactive Walkthrough
-                    </div>
-                    <div className="text-sm font-medium text-white flex items-center gap-1.5">
-                      <span>Enter Live 3D Digital Twin</span>
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                    </div>
-                  </div>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-black" />
                 </button>
-              </div>
 
-              {/* Bottom-Left Perspective Tag */}
-              <div className="absolute bottom-6 left-6 p-4 rounded-xl luxury-glass border border-white/15 max-w-sm hidden sm:block pointer-events-none">
-                <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
-                  Luxury Living Gallery · 42nd Floor
-                </div>
-                <p className="text-xs text-gray-300 font-light leading-relaxed">
-                  Italian statuario marble, acoustic wood slat walls, & dynamic daylight simulated from 06:00 AM to 06:30 PM.
-                </p>
+                {/* Popover Hotspot Card */}
+                {activeHotspot === i && (
+                  <div className="absolute left-10 top-0 -translate-y-1/2 w-64 p-3.5 rounded-2xl bg-black/90 backdrop-blur-2xl border border-emerald-500/40 text-left shadow-2xl z-30 animate-in fade-in zoom-in-95">
+                    <div className="text-xs font-mono font-bold text-emerald-400 mb-1">{spot.title}</div>
+                    <p className="text-[11px] text-gray-300 font-light leading-relaxed">{spot.text}</p>
+                  </div>
+                )}
               </div>
+            ))}
 
-              {/* Bottom-Right Stream Telemetry */}
-              <div className="absolute bottom-6 right-6 p-4 rounded-xl luxury-glass border border-white/15 hidden md:block pointer-events-none text-right">
-                <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
-                  Zero App Downloads
+            {/* Central Primary Interactive Launch Trigger */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <button
+                type="button"
+                onClick={() => scrollToSection('experience')}
+                className="pointer-events-auto group/btn flex items-center gap-3.5 px-7 py-4.5 rounded-2xl bg-black/75 hover:bg-black/95 backdrop-blur-2xl border border-emerald-500/50 hover:border-emerald-400 text-white shadow-[0_0_40px_rgba(34,229,90,0.3)] hover:shadow-[0_0_70px_rgba(34,229,90,0.6)] transition-all duration-300 transform hover:scale-105"
+              >
+                <div className="w-11 h-11 rounded-xl bg-emerald-500 flex items-center justify-center text-black shadow-lg">
+                  <Play className="w-5 h-5 fill-black ml-0.5" />
                 </div>
-                <div className="text-xs text-gray-300 font-light font-mono">
-                  Runs on Safari, Chrome, iOS & Android
+                <div className="text-left">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400">
+                    Interactive Walkthrough
+                  </div>
+                  <div className="text-sm font-semibold text-white flex items-center gap-1.5">
+                    <span>Enter Live 3D Digital Twin</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                  </div>
                 </div>
+              </button>
+            </div>
+
+            {/* Bottom-Left Perspective Description Card */}
+            <div className="absolute bottom-6 left-6 p-4 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 max-w-sm hidden sm:block pointer-events-none">
+              <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+                {activeSlide.label}
+              </div>
+              <p className="text-xs text-gray-300 font-light leading-relaxed">
+                {activeSlide.desc}
+              </p>
+            </div>
+
+            {/* Bottom-Right Stream Telemetry Card */}
+            <div className="absolute bottom-6 right-6 p-4 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/10 hidden md:block pointer-events-none text-right">
+              <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+                Browser Native WebGPU
+              </div>
+              <div className="text-xs text-gray-300 font-light font-mono">
+                Runs on Safari, Chrome, iOS & Android
               </div>
             </div>
-          )}
+
+          </div>
 
         </div>
 
       </div>
 
-      {/* Feature Highlights Bar */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full mt-10">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-6 border-t border-white/10 text-xs font-mono text-gray-400">
-          <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Zero App Downloads</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Compass className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>100% Browser Streaming</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Lumen Dynamic Lighting</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>₹2–5 Cr Sunk Cost Saved</span>
-          </div>
+      {/* 4 Uiverse 3D Metric Highlights Bar */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full mt-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Uiverse3DCard className="p-5">
+            <div className="text-2xl sm:text-3xl font-light text-white font-mono mb-1 text-gradient-emerald">
+              ₹2–5 Crore
+            </div>
+            <div className="text-xs text-gray-300 font-light">Physical Sunk Cost Eliminated</div>
+          </Uiverse3DCard>
+
+          <Uiverse3DCard className="p-5">
+            <div className="text-2xl sm:text-3xl font-light text-white font-mono mb-1 text-gradient-emerald">
+              14 Days
+            </div>
+            <div className="text-xs text-gray-300 font-light">Turnaround to Live Launch</div>
+          </Uiverse3DCard>
+
+          <Uiverse3DCard className="p-5">
+            <div className="text-2xl sm:text-3xl font-light text-white font-mono mb-1 text-gradient-emerald">
+              100%
+            </div>
+            <div className="text-xs text-gray-300 font-light">Browser-Native (Zero Apps)</div>
+          </Uiverse3DCard>
+
+          <Uiverse3DCard className="p-5">
+            <div className="text-2xl sm:text-3xl font-light text-white font-mono mb-1 text-gradient-emerald">
+              1-Click
+            </div>
+            <div className="text-xs text-gray-300 font-light">WhatsApp Link for NRI Buyers</div>
+          </Uiverse3DCard>
         </div>
       </div>
-
-      {/* Modal Inspector for the 50 3D Elements */}
-      <SpatialElementsModal isOpen={isInspectorOpen} onClose={() => setIsInspectorOpen(false)} />
 
     </section>
   );

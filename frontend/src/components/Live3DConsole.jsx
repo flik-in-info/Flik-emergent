@@ -3,6 +3,7 @@ import { Maximize2, Compass, Boxes, Loader2, Sparkles, Sun, Moon, Sunrise, Sunse
 import { Button } from './ui/button';
 import { useDemoDialog } from '../context/DemoDialogContext';
 import ExperienceModal from './ExperienceModal';
+import { UiverseButton, UiverseBadge } from './uiverse/UiverseComponents';
 
 const EXPERIENCES = [
   {
@@ -55,10 +56,11 @@ const Live3DConsole = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>ELEMENT #36 & #17 · LIVE 3D TWIN CONSOLE & CLOUD VIEWPORT</span>
-          </div>
+          <UiverseBadge
+            highlight="INTERACTIVE CLOUD VIEWPORT"
+            text="Real-Time 3D Digital Twin"
+            className="mb-4"
+          />
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-6">
             <span className="block font-extralight text-gray-300">Step inside the architecture.</span>
@@ -193,13 +195,14 @@ const Live3DConsole = () => {
               </p>
             </div>
 
-            <Button
+            <UiverseButton
+              variant="primary"
+              size="md"
               onClick={() => openDemoDialog('3d_console')}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-6 py-2.5 rounded-xl shadow-[0_0_20px_rgba(34,229,90,0.3)] shrink-0"
+              icon={ArrowRight}
             >
               Deploy for Your Project
-              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-            </Button>
+            </UiverseButton>
           </div>
 
         </div>
