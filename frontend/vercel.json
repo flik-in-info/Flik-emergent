@@ -42,7 +42,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!static/|api/).*)",
+      "source": "/((?!static/|api/|ajmera|demo|twin).*)",
       "destination": "/index.html"
     }
   ]

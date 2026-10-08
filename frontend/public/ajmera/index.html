@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flik Heights × Flik — Experience Your Home Before It's Built</title>
+  <meta name="description" content="Walk through your future home at Flik Heights with Flik's immersive 3D experience. Explore every room, every finish, every view — before the building is ready.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="assets/LOGO.png" alt="Flik Logo" class="nav-logo-img">
+      </div>
+      <ul class="nav-links">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta" id="nav-cta-btn">Book a Walk-Through</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close">✕</button>
+    <ul>
+      <li><a href="#experience" class="mobile-link">Experience</a></li>
+      <li><a href="#features" class="mobile-link">Features</a></li>
+      <li><a href="#gallery" class="mobile-link">Gallery</a></li>
+      <li><a href="#amenities" class="mobile-link">Amenities</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+    <a href="#contact" class="mobile-cta mobile-link">Book a Walk-Through →</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="assets/hero.png" alt="Flik Heights Living Room" class="hero-bg-img" id="hero-bg-img">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge" id="hero-badge">
+        <span class="badge-dot"></span>
+        Live 3D Experience — Powered by Flik
+      </div>
+      <h1 class="hero-title" id="hero-title">
+        Walk Through Your<br>
+        <span class="hero-title-gold">Future Home</span><br>
+        Today.
+      </h1>
+      <p class="hero-sub" id="hero-sub">
+        Flik Heights, Thane — now available as a fully immersive 3D experience.<br>
+        Explore every unit, every finish, every view. Before the building is ready.
+      </p>
+      <div class="hero-actions" id="hero-actions">
+        <a href="#experience" class="btn-primary" id="hero-explore-btn">
+          <span>Explore the Experience</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn-ghost" id="hero-book-btn">Book a Private Walk-Through</a>
+      </div>
+      <div class="hero-stats" id="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-num">12+</span>
+          <span class="stat-label">Unit Configurations</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-num">360°</span>
+          <span class="stat-label">Immersive Walkthrough</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Finish Combinations</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll to Explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BAR ===== -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.8 5.5H18l-4.7 3.4 1.8 5.5L10 13l-5.1 3.4 1.8-5.5L2 7.5h6.2L10 2z" fill="#C9A84C"/></svg>
+        <span>Flik Realty — Anchor Partner</span>
+      </div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="#C9A84C" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>MahaRERA Registered</span>
+      </div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Delivered in 8 Weeks</span>
+      </div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M3 10c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7-7-3.1-7-7z" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 7v3l2 2" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Available 24/7 — No Site Visit Needed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PROBLEM → SOLUTION ===== -->
+  <section class="problem-section" id="experience">
+    <div class="container">
+      <div class="problem-grid">
+        <div class="problem-left reveal">
+          <div class="section-tag">The Old Way</div>
+          <h2 class="section-title">Buying a home you<br><span class="gold-text">can't yet see</span> is hard.</h2>
+          <p class="section-body">Brochures. Scale models. Sample flats you have to drive 40 minutes to visit — only to walk through one version of one unit, once. This is how most developers ask you to make one of the biggest decisions of your life.</p>
+          <div class="pain-points">
+            <div class="pain-point">
+              <div class="pain-x">✗</div>
+              <span>Sample flats show only one finish option</span>
+            </div>
+            <div class="pain-point">
+              <div class="pain-x">✗</div>
+              <span>Can't visualise different floor levels or views</span>
+            </div>
+            <div class="pain-point">
+              <div class="pain-x">✗</div>
+              <span>NRI and outstation buyers can't visit at all</span>
+            </div>
+            <div class="pain-point">
+              <div class="pain-x">✗</div>
+              <span>Multiple time-consuming site visits required</span>
+            </div>
+          </div>
+        </div>
+        <div class="problem-right reveal reveal-delay">
+          <div class="solution-card">
+            <div class="solution-tag">The Flik Way</div>
+            <h3 class="solution-heading">Experience it all.<br>From anywhere.</h3>
+            <p class="solution-body">Flik builds an immersive, interactive 3D environment for Flik Heights. You walk through every room, at every floor, with every finish option. From your living room, office, or anywhere in the world.</p>
+            <div class="solution-features">
+              <div class="sol-feat">
+                <div class="sol-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z" fill="#C9A84C"/><path d="M10 6v4l3 2" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <strong>Immersive 3D Walkthrough</strong>
+                  <p>Navigate every room like you're physically there</p>
+                </div>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="#C9A84C" stroke-width="1.5"/><path d="M7 8h6M7 12h4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <strong>Live Finish Selector</strong>
+                  <p>Switch materials, flooring, and colours in real-time</p>
+                </div>
+              </div>
+              <div class="sol-feat">
+                <div class="sol-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7-7-3.1-7-7z" stroke="#C9A84C" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <strong>Every Unit. Every Floor.</strong>
+                  <p>Not just one sample flat — the entire project</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES SHOWCASE ===== -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">What You Get</div>
+        <h2 class="section-title">A complete sales-grade<br><span class="gold-text">immersive experience</span></h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card feature-large reveal" id="feat-walkthrough">
+          <div class="feature-img-wrap">
+            <img src="assets/walkthrough_ui.png" alt="3D Walkthrough UI" class="feature-img">
+          </div>
+          <div class="feature-content">
+            <div class="feature-num">01</div>
+            <h3 class="feature-title">Interactive 3D Walkthrough</h3>
+            <p class="feature-desc">Move through every room of your chosen unit as if you're actually there. Real lighting. Real proportions. Real space feeling.</p>
+            <div class="feature-tags">
+              <span class="ftag">Floor Plan View</span>
+              <span class="ftag">3D Navigation</span>
+              <span class="ftag">Day/Night Mode</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card reveal reveal-delay" id="feat-material">
+          <div class="feature-img-wrap">
+            <img src="assets/material_selector.png" alt="Material Selector" class="feature-img">
+          </div>
+          <div class="feature-content">
+            <div class="feature-num">02</div>
+            <h3 class="feature-title">Finish & Material Selector</h3>
+            <p class="feature-desc">Choose your flooring, wall finish, kitchen countertop, and more — see the change instantly in the 3D environment.</p>
+            <div class="feature-tags">
+              <span class="ftag">Real-Time Preview</span>
+              <span class="ftag">Multiple Themes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2" id="feat-exp-center">
+          <div class="feature-img-wrap">
+            <img src="assets/experience_center.png" alt="Experience Centre" class="feature-img">
+          </div>
+          <div class="feature-content">
+            <div class="feature-num">03</div>
+            <h3 class="feature-title">Sales Office Experience Centre</h3>
+            <p class="feature-desc">Visit the Flik Heights sales office and experience this on a full-scale immersive display with guided support.</p>
+            <div class="feature-tags">
+              <span class="ftag">Touch Screen Kiosk</span>
+              <span class="ftag">Sales Team Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Visual Gallery</div>
+        <h2 class="section-title">See your home in<br><span class="gold-text">every light</span></h2>
+        <p class="section-body" style="max-width:520px;margin:0 auto;">Every render you see is a precision 3D model of your actual unit — not an artist's impression. What you see is what you get.</p>
+      </div>
+
+      <div class="gallery-tabs reveal">
+        <button class="gallery-tab active" data-tab="living" id="tab-living">Living Room</button>
+        <button class="gallery-tab" data-tab="bedroom" id="tab-bedroom">Master Bedroom</button>
+        <button class="gallery-tab" data-tab="exterior" id="tab-exterior">Exterior</button>
+        <button class="gallery-tab" data-tab="amenities" id="tab-amenities">Amenities</button>
+      </div>
+
+      <div class="gallery-panels">
+        <div class="gallery-panel active" id="panel-living">
+          <div class="gallery-main-img">
+            <img src="assets/living_room.png" alt="Flik Heights Living Room 3D Render" id="gallery-living-img">
+            <div class="gallery-img-tag">Living Room — 3BHK Premium</div>
+          </div>
+        </div>
+        <div class="gallery-panel" id="panel-bedroom">
+          <div class="gallery-main-img">
+            <img src="assets/bedroom.png" alt="Flik Heights Master Bedroom" id="gallery-bedroom-img">
+            <div class="gallery-img-tag">Master Bedroom — 3BHK Premium</div>
+          </div>
+        </div>
+        <div class="gallery-panel" id="panel-exterior">
+          <div class="gallery-main-img">
+            <img src="assets/exterior.png" alt="Flik Heights Building Exterior" id="gallery-exterior-img">
+            <div class="gallery-img-tag">Building Exterior — Flik Heights Tower</div>
+          </div>
+        </div>
+        <div class="gallery-panel" id="panel-amenities">
+          <div class="gallery-main-img">
+            <img src="assets/amenities.png" alt="Flik Heights Amenities" id="gallery-amenities-img">
+            <div class="gallery-img-tag">Rooftop Amenity Deck</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-note reveal">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 9v5M10 7v.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>All visuals are precision 3D renders of actual Flik Heights units. Actual product may vary slightly.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AMENITIES ===== -->
+  <section class="amenities-section" id="amenities">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Project Highlights</div>
+        <h2 class="section-title">Flik Heights —<br><span class="gold-text">beyond the apartment</span></h2>
+      </div>
+      <div class="amenities-grid reveal">
+        <div class="amenity-card" id="amenity-pool">
+          <div class="amenity-icon">🏊</div>
+          <h4>Infinity Pool</h4>
+          <p>Rooftop pool with panoramic city views</p>
+        </div>
+        <div class="amenity-card" id="amenity-gym">
+          <div class="amenity-icon">💪</div>
+          <h4>Equipped Gymnasium</h4>
+          <p>State-of-the-art fitness centre</p>
+        </div>
+        <div class="amenity-card" id="amenity-lobby">
+          <div class="amenity-icon">🏛️</div>
+          <h4>Grand Lobby</h4>
+          <p>Double-height entrance with concierge</p>
+        </div>
+        <div class="amenity-card" id="amenity-play">
+          <div class="amenity-icon">🌿</div>
+          <h4>Landscaped Gardens</h4>
+          <p>Curated green spaces for residents</p>
+        </div>
+        <div class="amenity-card" id="amenity-parking">
+          <div class="amenity-icon">🚗</div>
+          <h4>Covered Parking</h4>
+          <p>Dedicated stilt + podium parking</p>
+        </div>
+        <div class="amenity-card" id="amenity-clubhouse">
+          <div class="amenity-icon">🎭</div>
+          <h4>Clubhouse & Events</h4>
+          <p>Banquet, party lawn & multipurpose hall</p>
+        </div>
+        <div class="amenity-card" id="amenity-security">
+          <div class="amenity-icon">🔐</div>
+          <h4>24/7 Security</h4>
+          <p>CCTV, intercom & gated community</p>
+        </div>
+        <div class="amenity-card" id="amenity-kids">
+          <div class="amenity-icon">🎠</div>
+          <h4>Children's Zone</h4>
+          <p>Safe play area and activity zones</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS / PROOF ===== -->
+  <section class="proof-section">
+    <div class="proof-bg-pattern"></div>
+    <div class="container">
+      <div class="proof-inner reveal">
+        <div class="proof-text">
+          <div class="section-tag">Why Flik + Flik</div>
+          <h2 class="section-title" style="margin-bottom:20px;">The most confident<br><span class="gold-text">home buying</span> experience</h2>
+          <p class="section-body">Flik was built for premium developers who know that buyers need to feel their future home — not just imagine it. Flik Heights is the benchmark.</p>
+        </div>
+        <div class="proof-stats">
+          <div class="proof-stat" id="proof-stat-1">
+            <div class="proof-num" data-target="40">0</div>
+            <div class="proof-unit">%</div>
+            <div class="proof-label">Faster buyer decision</div>
+          </div>
+          <div class="proof-stat" id="proof-stat-2">
+            <div class="proof-num" data-target="100">0</div>
+            <div class="proof-unit">%</div>
+            <div class="proof-label">of unit types covered</div>
+          </div>
+          <div class="proof-stat" id="proof-stat-3">
+            <div class="proof-num" data-target="8">0</div>
+            <div class="proof-unit">wks</div>
+            <div class="proof-label">Delivery timeline</div>
+          </div>
+          <div class="proof-stat" id="proof-stat-4">
+            <div class="proof-num" data-target="24">0</div>
+            <div class="proof-unit">/7</div>
+            <div class="proof-label">Available, always</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">How It Works</div>
+        <h2 class="section-title">From curiosity to<br><span class="gold-text">confident decision</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal" id="step-1">
+          <div class="step-num">01</div>
+          <div class="step-icon">💻</div>
+          <h3 class="step-title">Explore Online</h3>
+          <p class="step-desc">Browse the immersive 3D experience from your phone, laptop, or tablet. No download, no installation.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card reveal reveal-delay" id="step-2">
+          <div class="step-num">02</div>
+          <div class="step-icon">🎨</div>
+          <h3 class="step-title">Customise Your Unit</h3>
+          <p class="step-desc">Select your preferred unit type, floor level, and finish theme. See the changes live in 3D.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card reveal reveal-delay-2" id="step-3">
+          <div class="step-num">03</div>
+          <div class="step-icon">📍</div>
+          <h3 class="step-title">Book a Private Walk-Through</h3>
+          <p class="step-desc">Visit the Flik Heights sales office for a guided, full-scale kiosk experience with expert support.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card reveal reveal-delay-3" id="step-4">
+          <div class="step-num">04</div>
+          <div class="step-icon">🏠</div>
+          <h3 class="step-title">Book With Confidence</h3>
+          <p class="step-desc">You've already seen every room, every finish, every view. Now booking is an easy, informed decision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA / CONTACT ===== -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-inner reveal">
+        <div class="contact-left">
+          <div class="section-tag">Get In Touch</div>
+          <h2 class="contact-title">Ready to experience<br><span class="gold-text">your future home?</span></h2>
+          <p class="contact-body">Book a private walk-through at the Flik Heights experience centre, or explore the full 3D environment online from the comfort of wherever you are.</p>
+          <div class="contact-details">
+            <div class="contact-detail" id="contact-phone">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4c0-.6.4-1 1-1h2.2c.5 0 .9.3 1 .8l.8 3.2c.1.4-.1.9-.5 1.1L7.2 8.8c1 2.1 2.8 3.9 5 5l.7-1.3c.2-.4.7-.6 1.1-.5l3.2.8c.5.1.8.5.8 1V16c0 .6-.4 1-1 1-7.2 0-13-5.8-13-13z" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>+91 96861 11327</span>
+            </div>
+            <div class="contact-detail" id="contact-email">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="#C9A84C" stroke-width="1.5"/><path d="M2 7l8 5 8-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>contact@flik.in</span>
+            </div>
+            <div class="contact-detail" id="contact-location">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C7.2 2 5 4.2 5 7c0 4.5 5 11 5 11s5-6.5 5-11c0-2.8-2.2-5-5-5zm0 6.5A1.5 1.5 0 1 1 10 5a1.5 1.5 0 0 1 0 3.5z" stroke="#C9A84C" stroke-width="1.4" fill="none"/></svg>
+              <span>Flik Heights, Thane, Maharashtra</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form class="contact-form" id="contact-form" onsubmit="handleFormSubmit(event)">
+            <h3 class="form-title">Book Your Walk-Through</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="Rahul" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Mehta" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="rahul@email.com">
+            </div>
+            <div class="form-group">
+              <label for="interest">I'm Interested In</label>
+              <select id="interest">
+                <option value="">Select unit type</option>
+                <option value="1bhk">1 BHK</option>
+                <option value="2bhk">2 BHK</option>
+                <option value="3bhk">3 BHK</option>
+                <option value="4bhk">4 BHK / Premium</option>
+                <option value="all">Just Exploring</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message (Optional)</label>
+              <textarea id="message" placeholder="Any specific requirements or questions..." rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn-primary form-submit" id="form-submit-btn">
+              <span>Request Walk-Through</span>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="form-success" id="form-success">
+              <span>✓</span> Thank you! Our team will reach out within 24 hours.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <img src="assets/LOGO.png" alt="Flik Logo" class="nav-logo-img">
+          <span class="logo-flik">FLIK HEIGHTS</span>
+        </div>
+        <p class="footer-tagline">Immersive Sales Infrastructure<br>for Premium Real Estate</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Experience</h5>
+          <a href="#experience">3D Walkthrough</a>
+          <a href="#features">Finish Selector</a>
+          <a href="#gallery">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h5>Project</h5>
+          <a href="#amenities">Amenities</a>
+          <a href="#contact">Contact Sales</a>
+          <a href="https://flik.in" target="_blank">Flik.in</a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p class="footer-rera">MahaRERA Registered Project</p>
+        <p class="footer-disclaimer">This experience is powered by Flik Explorer — India's leading immersive sales infrastructure for premium real estate.</p>
+        <p class="footer-copy">© 2026 Flik Explorer · heights.flik.in</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
