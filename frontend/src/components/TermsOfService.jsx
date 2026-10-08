@@ -132,7 +132,7 @@ const TermsOfService = () => {
                 <span className="text-emerald-400">1.</span> Acceptance of Terms & Eligibility
               </h2>
               <p>
-                By accessing, browsing, or utilizing <a href="https://flik.in" className="text-emerald-400 hover:underline">flik.in</a>, you enter into a legally binding agreement with Flik Explorer. If you are accepting these Terms on behalf of an enterprise entity (such as a real estate developer, marketing agency, or channel partner), you represent and warrant that you possess full legal authorization to bind that entity.
+                By accessing, browsing, or utilizing <a href="https://www.flik.in/" className="text-emerald-400 hover:underline">flik.in</a>, you enter into a legally binding agreement with Flik Explorer. If you are accepting these Terms on behalf of an enterprise entity (such as a real estate developer, marketing agency, or channel partner), you represent and warrant that you possess full legal authorization to bind that entity.
               </p>
               <p>
                 You must be at least eighteen (18) years of age and legally competent to enter into contracts under the Indian Contract Act, 1872.

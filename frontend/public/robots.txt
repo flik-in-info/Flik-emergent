@@ -6,7 +6,7 @@ Allow: /
 Disallow: /api/
 
 # Host
-Host: https://www.flik.in
+Host: https://www.flik.in/
 
 # Sitemaps
 Sitemap: https://www.flik.in/sitemap.xml
