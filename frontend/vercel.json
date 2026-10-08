@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/(.*).(png|jpg|jpeg|svg|webp|ico|woff|woff2)",
+      "source": "/(.*).(png|jpg|jpeg|svg|webp|ico|woff|woff2|pdf)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -42,7 +42,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!static/|api/|ajmera|demo|twin).*)",
+      "source": "/((?!static/|api/|ajmera|demo|twin|presentation|.*\\.pdf).*)",
       "destination": "/index.html"
     }
   ]
