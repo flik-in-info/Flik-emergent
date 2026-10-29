@@ -3,10 +3,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
-import ErrorBoundary from "./components/ErrorBoundary";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import TechStackPartners from "./components/TechStackPartners";
 import PlatformSection from "./components/PlatformSection";
 import VisualizationSection from "./components/VisualizationSection";
 import ExperienceSection from "./components/ExperienceSection";
@@ -34,53 +32,22 @@ const ScrollToTop = () => {
 const LandingPage = () => {
   return (
     <div className="bg-[#0a0a0b] min-h-screen">
-      <ErrorBoundary>
-        <Header />
-      </ErrorBoundary>
+      <Header />
       <main>
-        <ErrorBoundary>
-          <HeroSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <TechStackPartners />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <PlatformSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <VisualizationSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <ExperienceSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <IntelligenceSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <TechnologySection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <TeamsSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <MetricsSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <DifferenceSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <FAQSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <ContactSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <ClosingCTA />
-        </ErrorBoundary>
+        <HeroSection />
+        <PlatformSection />
+        <VisualizationSection />
+        <ExperienceSection />
+        <IntelligenceSection />
+        <TechnologySection />
+        <TeamsSection />
+        <MetricsSection />
+        <DifferenceSection />
+        <FAQSection />
+        <ContactSection />
+        <ClosingCTA />
       </main>
-      <ErrorBoundary>
-        <Footer />
-      </ErrorBoundary>
+      <Footer />
     </div>
   );
 };

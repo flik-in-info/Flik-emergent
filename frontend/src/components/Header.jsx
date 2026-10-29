@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
-import { Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { navItems, images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
-import { soundFX } from '../utils/soundEffects';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [soundOn, setSoundOn] = useState(false);
   const { open: openDemoDialog } = useDemoDialog();
 
   useEffect(() => {
@@ -19,11 +17,6 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleToggleSound = () => {
-    const next = soundFX.toggleSound();
-    setSoundOn(next);
-  };
 
   return (
     <header
@@ -51,8 +44,7 @@ const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => soundFX.playClick()}
-                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-300 relative group font-light"
+                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-300 relative group"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-4/5" />
@@ -60,54 +52,24 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Right Action Controls */}
-          <div className="hidden lg:flex items-center gap-3">
-            {/* 3D Audio FX Toggle */}
-            <button
-              type="button"
-              onClick={handleToggleSound}
-              title={soundOn ? '3D Audio FX: Enabled' : 'Enable 3D Audio FX'}
-              className={`p-2.5 rounded-full border transition-all duration-300 ${
-                soundOn
-                  ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40 shadow-sm shadow-emerald-500/20'
-                  : 'bg-black/40 text-gray-400 border-white/10 hover:text-white hover:border-white/20'
-              }`}
-            >
-              {soundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-            </button>
-
-            {/* CTA Button */}
+          {/* CTA Button */}
+          <div className="hidden lg:block">
             <Button
               data-testid="header-request-demo"
-              onClick={() => {
-                soundFX.playClick();
-                openDemoDialog('header');
-              }}
-              className="bg-white text-gray-900 hover:bg-gray-100 font-medium px-6 transition-all duration-300 hover:shadow-lg hover:shadow-white/10 rounded-xl"
+              onClick={() => openDemoDialog('header')}
+              className="bg-white text-gray-900 hover:bg-gray-100 font-medium px-6 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
             >
               Request Demo
             </Button>
           </div>
 
-          {/* Mobile Menu Button & Sound */}
-          <div className="lg:hidden flex items-center gap-2">
-            <button
-              type="button"
-              onClick={handleToggleSound}
-              className={`p-2 rounded-full border ${
-                soundOn ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' : 'text-gray-400 border-white/10'
-              }`}
-            >
-              {soundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-            </button>
-
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-white"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-white"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
@@ -123,10 +85,7 @@ const Header = () => {
               key={item.label}
               href={item.href}
               className="text-gray-400 hover:text-white transition-colors duration-300 py-2"
-              onClick={() => {
-                soundFX.playClick();
-                setIsMobileMenuOpen(false);
-              }}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.label}
             </a>
@@ -134,11 +93,10 @@ const Header = () => {
           <Button
             data-testid="mobile-request-demo"
             onClick={() => {
-              soundFX.playClick();
               setIsMobileMenuOpen(false);
               openDemoDialog('header_mobile');
             }}
-            className="bg-white text-gray-900 hover:bg-gray-100 font-medium mt-4 rounded-xl"
+            className="bg-white text-gray-900 hover:bg-gray-100 font-medium mt-4"
           >
             Request Demo
           </Button>

@@ -3,7 +3,7 @@ import { Mail, Phone, MessageCircle } from 'lucide-react';
 import { contactData } from '../../data/mock';
 
 const buildWhatsAppLink = () =>
-  `https://wa.me/${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`;
+  `https://wa.me/+${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`;
 
 const ContactChannel = ({ href, icon: Icon, label, sublabel, testId, target }) => (
   <a
