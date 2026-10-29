@@ -62,32 +62,33 @@ const Hero3DCanvas = ({ onOpenDemo }) => {
     const container = containerRef.current;
     if (!container) return;
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    try {
+      const width = container.clientWidth || window.innerWidth || 1200;
+      const height = container.clientHeight || window.innerHeight || 800;
 
-    // 1. Scene
-    const scene = new THREE.Scene();
-    sceneRef.current = scene;
-    scene.fog = new THREE.FogExp2(0x0a0a0b, 0.012);
+      // 1. Scene
+      const scene = new THREE.Scene();
+      sceneRef.current = scene;
+      scene.fog = new THREE.FogExp2(0x0a0a0b, 0.012);
 
-    // 2. Camera
-    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
-    camera.position.set(28, 22, 32);
-    camera.lookAt(0, 6, 0);
-    cameraRef.current = camera;
+      // 2. Camera
+      const camera = new THREE.PerspectiveCamera(42, Math.max(0.1, width / (height || 1)), 0.1, 1000);
+      camera.position.set(28, 22, 32);
+      camera.lookAt(0, 6, 0);
+      cameraRef.current = camera;
 
-    // 3. Renderer
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance',
-    });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
-    rendererRef.current = renderer;
-    container.appendChild(renderer.domElement);
+      // 3. Renderer
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.25;
+      rendererRef.current = renderer;
+      container.appendChild(renderer.domElement);
 
     // 4. Lights
     const ambientLight = new THREE.AmbientLight(0xffeedd, 0.9);
@@ -397,11 +398,17 @@ const Hero3DCanvas = ({ onOpenDemo }) => {
     return () => {
       window.removeEventListener('resize', handleResize);
       if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
-      if (rendererRef.current && rendererRef.current.domElement) {
-        container.removeChild(rendererRef.current.domElement);
+      if (rendererRef.current && rendererRef.current.domElement && container) {
+        try {
+          container.removeChild(rendererRef.current.domElement);
+        } catch {}
         rendererRef.current.dispose();
       }
     };
+    } catch (err) {
+      console.warn('Hero3DCanvas WebGL init error:', err);
+      setWebGLSupported(false);
+    }
   }, []);
 
   // Update lighting & materials on mode change

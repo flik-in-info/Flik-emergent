@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import TechStackPartners from "./components/TechStackPartners";
@@ -33,23 +34,53 @@ const ScrollToTop = () => {
 const LandingPage = () => {
   return (
     <div className="bg-[#0a0a0b] min-h-screen">
-      <Header />
+      <ErrorBoundary>
+        <Header />
+      </ErrorBoundary>
       <main>
-        <HeroSection />
-        <TechStackPartners />
-        <PlatformSection />
-        <VisualizationSection />
-        <ExperienceSection />
-        <IntelligenceSection />
-        <TechnologySection />
-        <TeamsSection />
-        <MetricsSection />
-        <DifferenceSection />
-        <FAQSection />
-        <ContactSection />
-        <ClosingCTA />
+        <ErrorBoundary>
+          <HeroSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <TechStackPartners />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <PlatformSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <VisualizationSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <ExperienceSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <IntelligenceSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <TechnologySection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <TeamsSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <MetricsSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <DifferenceSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <FAQSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <ContactSection />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <ClosingCTA />
+        </ErrorBoundary>
       </main>
-      <Footer />
+      <ErrorBoundary>
+        <Footer />
+      </ErrorBoundary>
     </div>
   );
 };

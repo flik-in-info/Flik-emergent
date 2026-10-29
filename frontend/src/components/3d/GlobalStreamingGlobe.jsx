@@ -55,21 +55,22 @@ const GlobalStreamingGlobe = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    try {
+      const width = container.clientWidth || 400;
+      const height = container.clientHeight || 350;
 
-    const scene = new THREE.Scene();
-    sceneRef.current = scene;
+      const scene = new THREE.Scene();
+      sceneRef.current = scene;
 
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 0, 16);
-    cameraRef.current = camera;
+      const camera = new THREE.PerspectiveCamera(45, width / (height || 1), 0.1, 100);
+      camera.position.set(0, 0, 16);
+      cameraRef.current = camera;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    rendererRef.current = renderer;
-    container.appendChild(renderer.domElement);
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      rendererRef.current = renderer;
+      container.appendChild(renderer.domElement);
 
     const globeGroup = new THREE.Group();
     scene.add(globeGroup);
@@ -186,11 +187,16 @@ const GlobalStreamingGlobe = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
-      if (rendererRef.current && rendererRef.current.domElement) {
-        container.removeChild(rendererRef.current.domElement);
+      if (rendererRef.current && rendererRef.current.domElement && container) {
+        try {
+          container.removeChild(rendererRef.current.domElement);
+        } catch {}
         rendererRef.current.dispose();
       }
     };
+    } catch (err) {
+      console.warn('GlobalStreamingGlobe WebGL init error:', err);
+    }
   }, []);
 
   const handleMouseDown = (e) => {

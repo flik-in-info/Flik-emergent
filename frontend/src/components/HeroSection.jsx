@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { Play, ArrowRight, Radio, Sparkles } from 'lucide-react';
-import { heroData } from '../data/mock';
+import { heroData, images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
 import Hero3DCanvas from './3d/Hero3DCanvas';
 import { soundFX } from '../utils/soundEffects';
@@ -11,8 +11,22 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0b]">
+      {/* Ambient Backdrop Depth Image */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <img
+          src={images.hero}
+          alt="Flik Explorer Real-Time 3D Digital Twin"
+          loading="eager"
+          fetchPriority="high"
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0b]/60" />
+      </div>
+
       {/* Real-time 3D Architectural WebGL Canvas */}
-      <Hero3DCanvas onOpenDemo={openDemoDialog} />
+      <div className="absolute inset-0 z-[1]">
+        <Hero3DCanvas onOpenDemo={openDemoDialog} />
+      </div>
 
       {/* Subtle left gradient overlay to guarantee text legibility over 3D canvas */}
       <div className="absolute inset-y-0 left-0 w-full lg:w-3/5 bg-gradient-to-r from-[#0a0a0b] via-[#0a0a0b]/85 to-transparent pointer-events-none z-[5]" />
@@ -29,7 +43,7 @@ const HeroSection = () => {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-8 drop-shadow-md">
-            {heroData.headline.map((line) => (
+            {(heroData.headline || []).map((line) => (
               <span key={line} className="block">
                 {line}
               </span>

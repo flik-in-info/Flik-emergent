@@ -82,32 +82,33 @@ const Floorplan3DViewer = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    try {
+      const width = container.clientWidth || 900;
+      const height = container.clientHeight || 550;
 
-    // 1. Scene
-    const scene = new THREE.Scene();
-    sceneRef.current = scene;
-    scene.fog = new THREE.FogExp2(0x0d0d0e, 0.015);
+      // 1. Scene
+      const scene = new THREE.Scene();
+      sceneRef.current = scene;
+      scene.fog = new THREE.FogExp2(0x0d0d0e, 0.015);
 
-    // 2. Camera
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 500);
-    camera.position.set(22, 24, 26);
-    camera.lookAt(0, 0, 0);
-    cameraRef.current = camera;
+      // 2. Camera
+      const camera = new THREE.PerspectiveCamera(40, width / (height || 1), 0.1, 500);
+      camera.position.set(22, 24, 26);
+      camera.lookAt(0, 0, 0);
+      cameraRef.current = camera;
 
-    // 3. Renderer
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance',
-    });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    rendererRef.current = renderer;
-    container.appendChild(renderer.domElement);
+      // 3. Renderer
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      rendererRef.current = renderer;
+      container.appendChild(renderer.domElement);
 
     // 4. Lighting
     const ambientLight = new THREE.AmbientLight(0xffeedd, 0.8);
@@ -285,11 +286,16 @@ const Floorplan3DViewer = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
-      if (rendererRef.current && rendererRef.current.domElement) {
-        container.removeChild(rendererRef.current.domElement);
+      if (rendererRef.current && rendererRef.current.domElement && container) {
+        try {
+          container.removeChild(rendererRef.current.domElement);
+        } catch {}
         rendererRef.current.dispose();
       }
     };
+    } catch (err) {
+      console.warn('Floorplan3DViewer WebGL init error:', err);
+    }
   }, []);
 
   // Update dynamic sunlight based on timeOfDay slider

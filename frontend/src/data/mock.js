@@ -83,8 +83,36 @@ export const experienceSection = {
 
 export const intelligenceSection = {
   label: "Sales Intelligence",
-  headline: ["Know what buyers want.", "Before they say a word."],
+  headline: ["Every click is insight.", "Every view is a signal."],
   body: "Every interaction inside Flik Explorer captures behavioral telemetry. Heatmaps reveal most-viewed floor plans, attention dwell time on master suites, and finish preferences—giving sales teams predictive closing insights.",
+  leftFeatures: [
+    {
+      title: "Live Inventory & Unit Locking",
+      description: "Real-time status of every unit. Available. Sold. Blocked. Reserved. Synced across all developer teams and touchpoints."
+    },
+    {
+      title: "Interactive Unit Selection",
+      description: "Click a tower. Select a floor. Explore a unit. Drill down from master plan to interior finishes in three taps."
+    },
+    {
+      title: "Spatial Heatmap Analytics",
+      description: "Visual overlays showing demand density, view popularity, exploration frequency, and buyer attention patterns."
+    }
+  ],
+  rightFeatures: [
+    {
+      title: "Client Telemetry Tracking",
+      description: "Monitor how long prospects spend in each space, which balconies they revisit, and where buyer conviction peaks."
+    },
+    {
+      title: "Engagement Intent Scoring",
+      description: "AI-powered scoring that ranks leads based on interaction depth, time spent, and unit exploration behavior."
+    },
+    {
+      title: "Enterprise CRM Integration",
+      description: "Automatic lead capture, activity logging, and seamless sync with Salesforce, LeadSquared, Sell.Do, and Farvision."
+    }
+  ],
   features: [
     {
       title: "Spatial Heatmap Analytics",
