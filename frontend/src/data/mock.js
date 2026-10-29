@@ -1,20 +1,21 @@
-// Flik Explore Landing Page Data
+// Flik Explorer Landing Page Data - Brand Foundation Aligned
 
 // Numeric constants for the hero "live inventory" widget
 const HERO_LIVE_UNITS = 847;
 const HERO_LIVE_TOWERS = 12;
 
 export const heroData = {
+  badge: "ENTERPRISE PROPTECH PLATFORM",
   headline: [
-    "Real-time architecture.",
-    "Real-time intelligence.",
-    "Real-time sales."
+    "Experience before you build.",
+    "Sell under-construction towers.",
+    "Before ground is broken."
   ],
-  subheadline: "Flik Explore transforms architectural visualization into a live sales ecosystem—powered by Unreal Engine 5, designed for real estate that moves at the speed of decision.",
-  primaryCta: "Explore the Platform",
-  secondaryCta: "Watch Live Demo",
+  subheadline: "Flik Explorer replaces ₹2 to ₹5 Crore physical sample flats with photorealistic, browser-native 3D digital twins. Walk every floor, inspect true-to-altitude balcony views, and close remote NRI buyers without site visits.",
+  primaryCta: "Step Inside Live 3D Twin",
+  secondaryCta: "Request Developer Walkthrough",
   floatingStats: {
-    label: "Live inventory",
+    label: "Live 3D Inventory",
     units: HERO_LIVE_UNITS,
     towers: HERO_LIVE_TOWERS,
     sync: "Real-time sync"
@@ -32,20 +33,20 @@ export const navItems = [
 
 export const platformSection = {
   label: "The Platform",
-  headline: ["Beyond visualization.", "A decision-making environment."],
-  body: "Flik Explore is not a rendering service. It is a real-time platform where architecture, sales intelligence, and immersive technology converge. Every view, every interaction, every unit selection happens live—updating inventory, tracking engagement, and empowering teams to close faster.",
+  headline: ["The sample flat is dead.", "A sales operating system."],
+  body: "Flik Explorer is not a 3D rendering agency. It is an ongoing sales operating system where photorealistic architecture, real-time inventory, and buyer engagement telemetry converge. Walk every floor, inspect balcony sightlines, test bespoke finishes, and empower sales teams to close remote NRI buyers directly from any browser.",
   features: [
     {
-      title: "Real-Time Exploration",
-      description: "Navigate photorealistic environments with zero lag. Sun paths. Weather. Seasons. Lighting that responds to time of day. Architecture that feels alive."
+      title: "Every Floor, Unit & View",
+      description: "Navigate photorealistic environments with zero lag. Walk 40th-floor penthouses, inspect actual sunrise horizons, and compare 2BHK and 3BHK layouts live."
     },
     {
-      title: "Sales Intelligence",
-      description: "See what buyers see. Track which units are explored, how long they stay, what features drive interest. Turn attention into data. Data into strategy."
+      title: "Live Finish Customizer",
+      description: "Toggle Italian marble, smoked oak, midnight quartz, and brushed metal in real time. Give buyers instant conviction on customization options."
     },
     {
-      title: "Global Access",
-      description: "One link. Any device. Mobile. Desktop. Large-format screens. VR headsets. Secure. Scalable. Always accessible."
+      title: "NRI-Ready WhatsApp Cloud Link",
+      description: "Zero plugins, zero app downloads. Stream high-fidelity 3D twins directly on iPhones, iPads, and Android devices over WhatsApp with overseas buyers in Dubai, London, and Singapore."
     }
   ]
 };
@@ -53,147 +54,139 @@ export const platformSection = {
 export const visualizationSection = {
   label: "Experience",
   headline: ["Photorealism that responds.", "Architecture that adapts."],
-  body: "Powered by Unreal Engine 5, every environment is rendered in real-time with cinematic fidelity. Adjust lighting. Change weather. Walk through lobbies. Stand on balconies. Rotate towers. Zoom into finishes. This is architecture as experience.",
+  body: "Powered by Unreal Engine 5, Cesium 3D geospatial data, and Google Maps Photorealistic 3D Tiles. Every environment is rendered in real time with cinematic fidelity. Adjust lighting, change weather, walk through lobbies, stand on balconies, and explore unbuilt architecture with lifelike accuracy.",
   features: [
     {
-      title: "Real-Time Rendering",
-      description: "Photorealistic quality without pre-baked frames. Every pixel generated live."
+      title: "Real-Time 3D Rendering",
+      description: "Photorealistic ray-traced lighting without pre-baked frames. Every single frame generated live at 60 FPS."
     },
     {
-      title: "Dynamic Lighting",
-      description: "Simulate sun paths, shadows, time of day, and seasonal variations in real-time."
+      title: "Dynamic Sun & Seasonal Daylight",
+      description: "Simulate sun paths, cast shadows, time of day, and seasonal daylight variations from any balcony in real time."
     },
     {
-      title: "Atmospheric Simulation",
-      description: "Rain. Fog. Sunset. Noon. Weather and ambiance that shifts on command."
+      title: "Geospatial 3D Surroundings",
+      description: "Cesium and Google Maps 3D Tiles integrate exact city skylines, sea views, road infrastructure, and topography."
     },
     {
-      title: "360° & VR Ready",
-      description: "Immersive panoramic views and full VR compatibility for next-level engagement."
+      title: "Atmospheric & Weather Controls",
+      description: "Golden hour sunset, crisp noon sunlight, twilight, or night sky. Ambiance shifts interactively on command."
     }
   ]
 };
 
+export const experienceSection = {
+  label: "Live Experiences",
+  headline: ["Step inside the architecture.", "Explore it on your terms."],
+  body: "Two real, working experiences powered by Flik Explorer — running live below. Tap fullscreen to launch the immersive view."
+};
+
 export const intelligenceSection = {
   label: "Sales Intelligence",
-  headline: ["Every click is insight.", "Every view is a signal."],
-  body: "Flik Explore doesn't just show units—it tracks them. Which floors attract the most attention. Which views drive engagement. Which layouts convert. Transform exploration into intelligence. Intelligence into revenue.",
-  leftFeatures: [
+  headline: ["Know what buyers want.", "Before they say a word."],
+  body: "Every interaction inside Flik Explorer captures behavioral telemetry. Heatmaps reveal most-viewed floor plans, attention dwell time on master suites, and finish preferences—giving sales teams predictive closing insights.",
+  features: [
     {
-      title: "Live Inventory Management",
-      description: "Real-time status of every unit. Available. Sold. Blocked. Reserved. Synced across all teams and touchpoints."
+      title: "Spatial Heatmap Analytics",
+      description: "Identify high-intent zones. Track which balconies, finishes, and unit orientations generate maximum buyer dwell time."
     },
     {
-      title: "Interactive Unit Selection",
-      description: "Click a tower. Select a floor. Explore a unit. Drill down from master plan to interior finishes in three taps."
+      title: "Engagement Intent Scoring",
+      description: "Algorithmic scoring ranks leads based on exploration depth, revisit frequency, and unit configuration changes."
     },
     {
-      title: "Heatmap Analytics",
-      description: "Visual overlays showing demand density, view popularity, exploration frequency, and user attention patterns."
-    }
-  ],
-  rightFeatures: [
-    {
-      title: "Client Interaction Tracking",
-      description: "Monitor how long prospects spend in each space, which features they revisit, and where interest peaks."
-    },
-    {
-      title: "Engagement Scoring",
-      description: "AI-powered scoring that ranks leads based on interaction depth, time spent, and unit exploration behavior."
-    },
-    {
-      title: "CRM Integration",
-      description: "Automatic lead capture, activity logging, and seamless sync with your existing sales infrastructure."
+      title: "Enterprise CRM Integration",
+      description: "Direct automated sync with Salesforce, LeadSquared, Sell.Do, and Farvision for frictionless sales operations."
     }
   ]
 };
 
 export const technologySection = {
-  label: "Technology",
-  headline: ["Enterprise-grade.", "Globally accessible.", "Infinitely scalable."],
-  body: "Built on Unreal Engine 5 and cloud infrastructure designed for performance at scale. Flik Explore delivers photorealistic experiences to thousands of concurrent users without compromise.",
+  label: "Enterprise Architecture",
+  headline: ["Built on serious spatial technology.", "Globally accessible.", "Zero app installs."],
+  body: "Powered by Unreal Engine 5, Cesium 3D Tiles geospatial infrastructure, Google Maps Platform Photorealistic 3D Tiles, and NVIDIA RTX low-latency cloud pixel streaming. Flik Explorer streams cinema-grade 3D digital twins to thousands of concurrent buyers across the globe without plugins or heavy downloads.",
   capabilities: [
     {
-      title: "Unreal Engine 5",
-      description: "Industry-leading real-time rendering. Nanite geometry. Lumen lighting. Cinematic quality at interactive speeds."
+      title: "Unreal Engine 5 Lumen & Nanite",
+      description: "Cinematic real-time global illumination and micro-polygon geometry. Dynamic sun paths let buyers observe seasonal daylight directly from their balcony."
     },
     {
-      title: "Cloud-Native Architecture",
-      description: "Global CDN delivery. Sub-second load times. Infinite scalability. Enterprise SLA guarantees."
+      title: "Cesium & Google Maps 3D Tiles",
+      description: "High-precision global 3D geospatial infrastructure. Recreates surrounding city horizons, landmarks, and true-to-altitude sightlines with geographic accuracy."
     },
     {
-      title: "Multi-Device Optimization",
-      description: "Adaptive streaming across mobile, tablet, desktop, large-format displays, and VR—without rebuilding."
+      title: "Cloud-Native WebRTC Streaming",
+      description: "Sub-second load times via global edge nodes. Ultra-low latency streaming ensures smooth 60 FPS interactive exploration on any device."
     },
     {
-      title: "AI Performance Layer",
-      description: "Intelligent asset streaming, predictive caching, and dynamic quality adjustment for flawless experiences."
+      title: "Zero App Downloads",
+      description: "Overseas NRI buyers in Dubai, London, or Singapore simply tap a link sent over WhatsApp. Instant 3D cloud streaming on iPhones, iPads, and Android devices."
     },
     {
-      title: "Security & Compliance",
-      description: "End-to-end encryption. SOC 2 Type II certified. Role-based access. Audit trails. GDPR compliant."
+      title: "Autodesk BIM & CAD Ingestion",
+      description: "Direct ingestion pipeline for Revit, IFC, Rhino, and 3ds Max files converted into photorealistic interactive digital twins within 14 days."
     },
     {
-      title: "API & Integration",
-      description: "RESTful APIs for CRM, ERP, marketing automation, and custom workflows. Webhook support. Real-time data sync."
+      title: "Enterprise Security & SLA",
+      description: "End-to-end encryption. SOC 2 Type II aligned data protection, 99.9% uptime SLA, and role-based inventory locking for developer teams."
     }
   ]
 };
 
 export const teamsSection = {
-  label: "Who It's For",
-  headline: ["One platform.", "Three transformations."],
+  label: "Commercial Impact",
+  headline: ["One platform.", "Three commercial transformations."],
   teams: [
     {
-      title: "Developers",
-      description: "Launch projects with confidence. Showcase architecture before construction begins. Update inventory in real-time. Reduce sales cycle friction. Accelerate presales."
+      title: "Real Estate Developers",
+      description: "Eliminate ₹2 to ₹5 Crore in sunk sample flat costs. Begin closing pre-sales months before physical construction reaches ground level. Accelerate cash collection."
     },
     {
-      title: "Sales Teams",
-      description: "Engage prospects anywhere. Track every interaction. Identify high-intent buyers. Personalize presentations. Close faster with data-backed confidence."
+      title: "Sales Teams & Brokers",
+      description: "Send overseas NRI buyers a 3D digital twin over WhatsApp. Walk prospects through penthouse views live on Zoom or Google Meet. Close faster with fewer site visits."
     },
     {
-      title: "Architects & Designers",
-      description: "Communicate vision with clarity. Walk clients through unbuilt spaces. Test design variations live. Collaborate globally. Reduce revision cycles."
+      title: "Architects & Development Heads",
+      description: "Transform 2D blueprints and BIM models into photorealistic spatial environments in 14 days. Validate finishes and exterior facades with stakeholder clarity."
     }
   ]
 };
 
 export const metricsSection = {
-  label: "Results",
-  headline: ["Measurable outcomes.", "Proven velocity."],
+  label: "Measurable ROI",
+  headline: ["Outcome-driven economics.", "Proven sales acceleration."],
   metrics: [
-    { value: "67%", label: "Faster", description: "Average reduction in sales cycle length from first tour to contract signing." },
-    { value: "3.2x", label: "Engagement", description: "Increase in prospect interaction time compared to traditional presentations." },
-    { value: "89%", label: "Accuracy", description: "Lead scoring precision in predicting high-intent buyers based on exploration behavior." },
-    { value: "Real-Time", label: "Sync", description: "Zero latency between inventory updates and buyer-facing availability across all channels." }
+    { value: "₹2–5 Cr", label: "Sunk Capex Saved", description: "Average capital preserved per project by replacing physical sample flat construction with Flik Explorer." },
+    { value: "14 Days", label: "Delivery Turnaround", description: "From 2D CAD/BIM blueprint handover to fully interactive 3D digital twin ready for sales deployment." },
+    { value: "3.2x", label: "Higher Engagement", description: "Dwell time increase compared to traditional static brochures and pre-rendered 360-degree photo tours." },
+    { value: "1-Click", label: "WhatsApp Access", description: "Zero app downloads required. Seamless WebRTC cloud streaming on iOS, Android, macOS, and Windows." }
   ]
 };
 
 export const differenceSection = {
-  label: "Why Flik",
-  headline: ["Not software.", "A sales operating system."],
-  body: "Flik Explore integrates visualization, intelligence, and operations into a single unified platform. It's not a tool your team uses occasionally—it's infrastructure they depend on daily.",
+  label: "Developer Economics",
+  headline: ["The sample flat is dead.", "A sales operating system."],
+  body: "Indian real estate developers spend ₹2 to ₹5 Crore constructing temporary physical sample flats that show only one fixed layout and get demolished once sold out. Flik Explorer replaces that with an ongoing, photorealistic 3D digital twin platform.",
   comparison: [
-    { traditional: "Pre-rendered videos", flik: "Real-time interaction" },
-    { traditional: "Static presentations", flik: "Dynamic exploration" },
-    { traditional: "No usage data", flik: "Full analytics layer" },
-    { traditional: "One-way communication", flik: "Two-way intelligence" },
-    { traditional: "Offline files", flik: "Cloud-native access" },
-    { traditional: "Device-specific exports", flik: "Universal compatibility" }
+    { traditional: "₹2–5 Cr Sunk Capex", flik: "Fraction of Physical Cost (90% Sunk Cost Cut)" },
+    { traditional: "3–6 Months Construction Delay", flik: "14–21 Days Turnaround from CAD/BIM" },
+    { traditional: "Single 1-Unit Layout Shown", flik: "Every Floor, Unit, View & Finish Configurable" },
+    { traditional: "Zero NRI / Remote Access", flik: "Instant 1-Click WhatsApp & Browser Cloud Link" },
+    { traditional: "₹0 Residual Value (Demolished)", flik: "Permanent Digital Twin for Pre-sales & Handover" },
+    { traditional: "Pre-rendered Static Renders", flik: "Real-time Unreal Engine 5 Interactive Walkthrough" }
   ]
 };
 
 export const closingSection = {
   headline: ["See architecture move.", "Watch intelligence flow.", "Feel the difference."],
-  subheadline: "Request a personalized demonstration of Flik Explore with your project data.",
+  subheadline: "Request a personalized demonstration of Flik Explorer with your project data.",
   primaryCta: "Request Demo",
   secondaryCta: "Contact Sales",
   trustIndicators: [
     "Enterprise Security",
-    "SOC 2 Certified",
+    "SOC 2 Aligned",
     "99.9% Uptime SLA",
-    "Global Infrastructure"
+    "Global Cloud Infrastructure"
   ]
 };
 
@@ -201,7 +194,7 @@ export const contactData = {
   email: "Contact@flik.in",
   phone: "+91 96861 11327",
   phoneRaw: "919686111327", // for tel: and wa.me links (no plus, no spaces)
-  whatsappMessage: "Hi Flik team, I'd like to know more about Flik Explore.",
+  whatsappMessage: "Hi Flik team, I'd like to know more about Flik Explorer.",
   socials: {
     linkedin: "https://www.linkedin.com/company/flink.in/",
     instagram: "https://www.instagram.com/_flik.in_"
@@ -210,34 +203,32 @@ export const contactData = {
 
 export const footerData = {
   tagline: "Real-time architecture intelligence for the world's leading developers.",
-  copyright: "© 2026 Flik. All rights reserved.",
+  copyright: "© 2026 Flik Explorer. All rights reserved.",
   platform: [
-    { label: "Capabilities", href: "#" },
-    { label: "Technology", href: "#" },
-    { label: "Integrations", href: "#" },
-    { label: "Security", href: "#" },
-    { label: "Pricing", href: "#" }
+    { label: "Capabilities", href: "/#capabilities" },
+    { label: "Technology", href: "/#technology" },
+    { label: "Live Experiences", href: "/#experience" },
+    { label: "ROI Simulator", href: "/#difference" },
+    { label: "FAQ", href: "/#faq" }
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
-    { label: "Partners", href: "#" },
-    { label: "Contact", href: "#" }
+    { label: "About", href: "/#platform" },
+    { label: "Ecosystem Partners", href: "/#technology" },
+    { label: "Careers", href: "mailto:Contact@flik.in" },
+    { label: "Contact Sales", href: "/#contact" }
   ],
   resources: [
-    { label: "Documentation", href: "#" },
-    { label: "API Reference", href: "#" },
-    { label: "Case Studies", href: "#" },
-    { label: "Support", href: "#" },
-    { label: "System Status", href: "#" }
+    { label: "Interactive 3D Cutaway", href: "/#capabilities" },
+    { label: "Global Streaming Map", href: "/#technology" },
+    { label: "Developer Economics", href: "/#difference" },
+    { label: "Official Presentation", href: "/presentation.pdf" }
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Cookie Policy", href: "/privacy-policy#cookies-telemetry" }
   ],
-  bottomBar: "Enterprise-grade real-time visualization and sales intelligence · Powered by Unreal Engine 5"
+  bottomBar: "Enterprise-grade real-time 3D spatial sales operating system · Powered by Unreal Engine 5, Cesium & Google Maps 3D Platform"
 };
 
 export const images = {
