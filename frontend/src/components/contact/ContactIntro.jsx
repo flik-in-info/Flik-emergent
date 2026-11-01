@@ -1,14 +1,17 @@
 import React from 'react';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
 import { contactData } from '../../data/mock';
+import { telemetry } from '../../utils/telemetry';
 
 const buildWhatsAppLink = () =>
-  `https://wa.me/+${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`;
+  `https://wa.me/${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`;
 
-const ContactChannel = ({ href, icon: Icon, label, sublabel, testId, target }) => (
+const ContactChannel = ({ href, icon: Icon, label, sublabel, testId, target, onClick, telemetryLoc }) => (
   <a
     href={href}
     data-testid={testId}
+    data-telemetry-loc={telemetryLoc}
+    onClick={onClick}
     {...(target ? { target, rel: 'noopener noreferrer' } : {})}
     className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-all duration-300 group"
   >
@@ -44,6 +47,7 @@ const ContactIntro = ({ email }) => (
         label="Email"
         sublabel={email}
         testId="contact-email-link"
+        onClick={() => telemetry.contactDirectClick('email', email)}
       />
       <ContactChannel
         href={`tel:+${contactData.phoneRaw}`}
@@ -51,6 +55,7 @@ const ContactIntro = ({ email }) => (
         label="Call"
         sublabel={contactData.phone}
         testId="contact-call-link"
+        onClick={() => telemetry.contactDirectClick('phone', contactData.phone)}
       />
       <ContactChannel
         href={buildWhatsAppLink()}
@@ -59,6 +64,8 @@ const ContactIntro = ({ email }) => (
         sublabel={`Chat with us · ${contactData.phone}`}
         testId="contact-whatsapp-link"
         target="_blank"
+        telemetryLoc="contact_intro"
+        onClick={() => telemetry.whatsAppClick('contact_intro')}
       />
     </div>
   </div>

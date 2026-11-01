@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
 import { Dialog, DialogContent } from './ui/dialog';
 import LeadFormBody from './lead-form/LeadFormBody';
 import LeadFormSuccess from './lead-form/LeadFormSuccess';
+import { telemetry, generateLeadSessionSummary } from '../utils/telemetry';
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const WEB3FORMS_KEY = process.env.REACT_APP_WEB3FORMS_KEY;
@@ -17,19 +18,34 @@ const initialState = {
   botcheck: '', // Web3Forms honeypot — must stay empty
 };
 
-const buildPayload = (form, source) => ({
-  access_key: WEB3FORMS_KEY,
-  subject: `New Flik demo request — ${form.name || 'Website'}`,
-  from_name: 'Flik Explore Website',
-  replyto: form.email,
-  Source: source,
-  Name: form.name,
-  Email: form.email,
-  Company: form.company || '—',
-  Project: form.project || '—',
-  'What they want to see': form.message || '—',
-  botcheck: form.botcheck,
-});
+const buildPayload = (form, source) => {
+  const sessionSummary = generateLeadSessionSummary();
+  return {
+    access_key: WEB3FORMS_KEY,
+    subject: `New Flik Explorer demo request — ${form.name || 'Website'} [${sessionSummary['Traffic Source']}]`,
+    from_name: 'Flik Explorer Platform',
+    replyto: form.email,
+    Source: source,
+    Name: form.name,
+    Email: form.email,
+    Company: form.company || '—',
+    Project: form.project || '—',
+    'What they want to see': form.message || '—',
+    // Telemetry and Attribution Context for Sales Team
+    '--- BUYER TELEMETRY ---': '----------------------------------',
+    'Traffic Source': sessionSummary['Traffic Source'],
+    'Campaign': sessionSummary['Campaign'],
+    'Active Dwell Time': sessionSummary['Active Dwell Time'],
+    'Max Scroll Depth': sessionSummary['Max Scroll Depth'],
+    'Sections Explored': sessionSummary['Sections Explored'],
+    '3D Tours Opened': sessionSummary['3D Tours Opened'],
+    'ROI Calculator Tested': sessionSummary['ROI Calculator Tested'],
+    'FAQs Inquired': sessionSummary['FAQs Inquired'],
+    'Referrer URL': sessionSummary['Referrer URL'],
+    'Visitor ID': sessionSummary['Visitor ID'],
+    botcheck: form.botcheck,
+  };
+};
 
 const extractErrorMessage = (err) => {
   const apiMsg = err?.response?.data?.message;
@@ -42,6 +58,12 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
   const [form, setForm] = useState(initialState);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      telemetry.leadFormStarted(source);
+    }
+  }, [open, source]);
 
   const onFieldChange = useCallback(
     (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value })),
@@ -70,13 +92,15 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
       }
       setSubmitting(true);
       try {
+        const payload = buildPayload(form, source);
         const { data } = await axios.post(
           WEB3FORMS_ENDPOINT,
-          buildPayload(form, source),
+          payload,
           { headers: { 'Content-Type': 'application/json', Accept: 'application/json' } }
         );
         if (data?.success) {
           setSubmitted(true);
+          telemetry.leadFormSubmitted(source, form);
           toast.success('Demo request sent. Our team will reach out shortly.');
         } else {
           toast.error(data?.message || 'We couldn\'t send your request. Please try again.');

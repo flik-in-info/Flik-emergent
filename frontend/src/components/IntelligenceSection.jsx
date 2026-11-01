@@ -18,7 +18,7 @@ const IntelligenceSection = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-8">
-          {intelligenceSection.headline.map((line) => (
+          {(intelligenceSection.headline || []).map((line) => (
             <span key={line} className="block">
               {line}
             </span>
@@ -34,10 +34,10 @@ const IntelligenceSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 mb-20">
           {/* Left Column */}
           <div className="space-y-8">
-            {intelligenceSection.leftFeatures.map((feature, index) => {
-              const Icon = leftIcons[index];
+            {(intelligenceSection.leftFeatures || []).map((feature, index) => {
+              const Icon = leftIcons[index] || leftIcons[0];
               return (
-                <div key={feature.title} className="group flex gap-5">
+                <div key={feature.title || index} className="group flex gap-5">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center transition-all duration-500 group-hover:bg-emerald-500/20 group-hover:scale-110">
                     <Icon className="w-6 h-6 text-emerald-400" />
                   </div>
@@ -52,10 +52,10 @@ const IntelligenceSection = () => {
 
           {/* Right Column */}
           <div className="space-y-8">
-            {intelligenceSection.rightFeatures.map((feature, index) => {
-              const Icon = rightIcons[index];
+            {(intelligenceSection.rightFeatures || []).map((feature, index) => {
+              const Icon = rightIcons[index] || rightIcons[0];
               return (
-                <div key={feature.title} className="group flex gap-5">
+                <div key={feature.title || index} className="group flex gap-5">
                   <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center transition-all duration-500 group-hover:bg-emerald-500/20 group-hover:scale-110">
                     <Icon className="w-6 h-6 text-emerald-400" />
                   </div>

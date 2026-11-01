@@ -19,13 +19,18 @@ import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import FAQSection from "./components/FAQSection";
+import PulseDashboard from "./components/telemetry/PulseDashboard";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
+import useTelemetryListeners from "./hooks/useTelemetryListeners";
 
-const ScrollToTop = () => {
+const ScrollToTopAndTelemetry = () => {
   const { pathname } = useLocation();
+  useTelemetryListeners();
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return null;
 };
 
@@ -58,9 +63,10 @@ function App() {
       <CustomCursor />
       <BrowserRouter>
         <DemoDialogProvider>
-          <ScrollToTop />
+          <ScrollToTopAndTelemetry />
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/pulse" element={<PulseDashboard />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

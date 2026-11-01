@@ -6,6 +6,7 @@ import { contactData } from '../data/mock';
 import ContactIntro from './contact/ContactIntro';
 import ContactFormFields from './contact/ContactFormFields';
 import ContactSuccess from './contact/ContactSuccess';
+import { telemetry, generateLeadSessionSummary } from '../utils/telemetry';
 
 const CONTACT_EMAIL = contactData.email;
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
@@ -28,20 +29,33 @@ const initialState = {
   botcheck: '', // Web3Forms honeypot — must stay empty
 };
 
-const buildPayload = (form) => ({
-  access_key: WEB3FORMS_KEY,
-  subject: `New Flik Explore enquiry — ${form.fullName || 'Website'}`,
-  from_name: 'Flik Explore Website',
-  replyto: form.email,
-  // Fields delivered in the email body
-  'Full Name': form.fullName,
-  Phone: form.phone || '—',
-  Email: form.email,
-  Interest: form.interest || '—',
-  Message: form.message || '—',
-  // Honeypot (must be empty for legitimate users)
-  botcheck: form.botcheck,
-});
+const buildPayload = (form) => {
+  const sessionSummary = generateLeadSessionSummary();
+  return {
+    access_key: WEB3FORMS_KEY,
+    subject: `New Flik Explorer enquiry — ${form.fullName || 'Website'} [${sessionSummary['Traffic Source']}]`,
+    from_name: 'Flik Explorer Platform',
+    replyto: form.email,
+    'Full Name': form.fullName,
+    Phone: form.phone || '—',
+    Email: form.email,
+    Interest: form.interest || '—',
+    Message: form.message || '—',
+    // Telemetry and Attribution Context for Sales Team
+    '--- BUYER TELEMETRY ---': '----------------------------------',
+    'Traffic Source': sessionSummary['Traffic Source'],
+    'Campaign': sessionSummary['Campaign'],
+    'Active Dwell Time': sessionSummary['Active Dwell Time'],
+    'Max Scroll Depth': sessionSummary['Max Scroll Depth'],
+    'Sections Explored': sessionSummary['Sections Explored'],
+    '3D Tours Opened': sessionSummary['3D Tours Opened'],
+    'ROI Calculator Tested': sessionSummary['ROI Calculator Tested'],
+    'FAQs Inquired': sessionSummary['FAQs Inquired'],
+    'Referrer URL': sessionSummary['Referrer URL'],
+    'Visitor ID': sessionSummary['Visitor ID'],
+    botcheck: form.botcheck,
+  };
+};
 
 const ContactSection = () => {
   const [form, setForm] = useState(initialState);
@@ -66,11 +80,13 @@ const ContactSection = () => {
     setSubmitting(true);
     setError('');
     try {
-      const { data } = await axios.post(WEB3FORMS_ENDPOINT, buildPayload(form), {
+      const payload = buildPayload(form);
+      const { data } = await axios.post(WEB3FORMS_ENDPOINT, payload, {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       });
       if (data?.success) {
         setSubmitted(true);
+        telemetry.leadFormSubmitted('contact_section', form);
       } else {
         setError(data?.message || 'We couldn\'t send your message. Please try again or email us directly.');
       }

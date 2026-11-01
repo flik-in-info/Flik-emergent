@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
 import { navItems, images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { telemetry } from '../utils/telemetry';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,7 +57,10 @@ const Header = () => {
           <div className="hidden lg:block">
             <Button
               data-testid="header-request-demo"
-              onClick={() => openDemoDialog('header')}
+              onClick={() => {
+                telemetry.ctaClick('Request Demo', 'header');
+                openDemoDialog('header');
+              }}
               className="bg-white text-gray-900 hover:bg-gray-100 font-medium px-6 transition-all duration-300 hover:shadow-lg hover:shadow-white/10"
             >
               Request Demo
@@ -93,6 +97,7 @@ const Header = () => {
           <Button
             data-testid="mobile-request-demo"
             onClick={() => {
+              telemetry.ctaClick('Request Demo', 'header_mobile');
               setIsMobileMenuOpen(false);
               openDemoDialog('header_mobile');
             }}

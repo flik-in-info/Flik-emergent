@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Maximize2, Compass, Boxes, Loader2 } from 'lucide-react';
 import ExperienceModal from './ExperienceModal';
+import { telemetry } from '../utils/telemetry';
 
 const EXPERIENCES = [
   {
@@ -10,7 +11,9 @@ const EXPERIENCES = [
     description:
       'Step inside a fully rendered space. AI guides you through each room, lighting condition and viewpoint — no plug-ins, no downloads.',
     icon: Compass,
-    src: process.env.REACT_APP_VIRTUAL_WALKTHROUGH_URL,
+    src:
+      process.env.REACT_APP_VIRTUAL_WALKTHROUGH_URL ||
+      'https://www.coohom.com/pub/tool/panorama/aiwalking?obsPlanId=3FO3GVEJE5YC&locale=en_US&utm_source=smart720_share&utm_medium=linkcopy&utm_content=3FO3GVEJE5YC',
   },
   {
     id: 'modular-explorer',
@@ -19,7 +22,9 @@ const EXPERIENCES = [
     description:
       'Rotate, orbit and dissect the architecture in true 3D. Toggle floors, isolate units, and inspect the build module by module.',
     icon: Boxes,
-    src: process.env.REACT_APP_MODULAR_EXPLORER_URL,
+    src:
+      process.env.REACT_APP_MODULAR_EXPLORER_URL ||
+      'https://www.coohom.com/pub/modelo/viewer/preview/3FO3GVEJE5YC',
   },
 ];
 
@@ -47,7 +52,10 @@ const ExperienceCard = ({ experience, onFullscreen }) => {
           src={experience.src}
           title={experience.title}
           loading="lazy"
-          onLoad={() => setLoaded(true)}
+          onLoad={() => {
+            setLoaded(true);
+            telemetry.experienceInteract(experience.id, 'loaded');
+          }}
           className="absolute inset-0 w-full h-full border-0 z-[1]"
           allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope; magnetometer; camera; microphone"
           allowFullScreen
@@ -58,7 +66,10 @@ const ExperienceCard = ({ experience, onFullscreen }) => {
           type="button"
           data-testid={`experience-fullscreen-${experience.id}`}
           data-cursor-label="Fullscreen"
-          onClick={() => onFullscreen(experience)}
+          onClick={() => {
+            telemetry.experienceInteract(experience.id, 'fullscreen');
+            onFullscreen(experience);
+          }}
           className="absolute top-3 right-3 z-10 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-black/70 hover:bg-emerald-500/90 backdrop-blur-md border border-white/10 hover:border-emerald-400 text-white text-xs font-medium transition-all duration-300"
           aria-label={`Open ${experience.title} fullscreen`}
         >
@@ -100,7 +111,7 @@ const ExperienceSection = () => {
           <span className="block">Explore it on your terms.</span>
         </h2>
         <p className="text-lg text-gray-400 leading-relaxed mb-16 max-w-3xl">
-          Two real, working experiences powered by Flik Explore — running live below. Tap fullscreen to launch the immersive view.
+          Two real, working experiences powered by Flik Explorer — running live below. Tap fullscreen to launch the immersive view.
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">

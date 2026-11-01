@@ -42,7 +42,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!static/|api/|ajmera|demo|twin|presentation|.*\\.pdf).*)",
+      "source": "/((?!static/|api/|demo|twin|presentation|.*\\.pdf).*)",
       "destination": "/index.html"
     }
   ]

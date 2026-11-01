@@ -3,11 +3,12 @@ import { Button } from './ui/button';
 import { Play, ArrowRight, Radio } from 'lucide-react';
 import { heroData, images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
+import { telemetry } from '../utils/telemetry';
 
 const HeroSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
@@ -25,6 +26,12 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
         <div className="max-w-3xl">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium tracking-wider mb-6">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>{heroData.badge || 'ENTERPRISE PROPTECH PLATFORM'}</span>
+          </div>
+
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-8">
             {heroData.headline.map((line) => (
@@ -44,7 +51,10 @@ const HeroSection = () => {
             <Button
               data-testid="hero-primary-cta"
               size="lg"
-              onClick={() => openDemoDialog('hero')}
+              onClick={() => {
+                telemetry.ctaClick(heroData.primaryCta, 'hero_primary');
+                openDemoDialog('hero');
+              }}
               className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 group"
             >
               {heroData.primaryCta}
@@ -54,7 +64,10 @@ const HeroSection = () => {
               data-testid="hero-secondary-cta"
               size="lg"
               variant="outline"
-              onClick={() => openDemoDialog('hero_demo')}
+              onClick={() => {
+                telemetry.ctaClick(heroData.secondaryCta, 'hero_secondary');
+                openDemoDialog('hero_demo');
+              }}
               className="border-white/20 text-white hover:bg-white/10 font-medium px-8 py-6 text-base transition-all duration-300 group"
             >
               <Play className="mr-2 w-5 h-5 fill-current" />
