@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Activity,
   ArrowLeft,
+  ArrowRight,
   ExternalLink,
   MessageSquare,
   Sparkles,
@@ -18,6 +19,10 @@ import {
   HelpCircle,
   Eye,
   RefreshCw,
+  Lock,
+  Unlock,
+  AlertCircle,
+  ShieldAlert
 } from 'lucide-react';
 import {
   getPulseEvents,
@@ -27,8 +32,18 @@ import {
   trackEvent,
   telemetry,
 } from '../../utils/telemetry';
+import {
+  isAdminAuthenticated,
+  setAdminAuthenticated,
+  ADMIN_PASSCODE,
+} from '../AdminAuthModal';
 
 export default function PulseDashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState(isAdminAuthenticated());
+  const [passcodeInput, setPasscodeInput] = useState('');
+  const [passcodeError, setPasscodeError] = useState(false);
+  const inputRef = useRef(null);
+
   const [events, setEvents] = useState([]);
   const [sessionLog, setSessionLog] = useState({});
   const [attribution, setAttribution] = useState({});
@@ -42,17 +57,114 @@ export default function PulseDashboard() {
   };
 
   useEffect(() => {
-    refreshData();
-    const interval = setInterval(refreshData, 2000);
+    if (isAuthenticated) {
+      refreshData();
+      const interval = setInterval(refreshData, 2000);
 
-    const handleTelemetryEvent = () => refreshData();
-    window.addEventListener('flik:telemetry', handleTelemetryEvent);
+      const handleTelemetryEvent = () => refreshData();
+      window.addEventListener('flik:telemetry', handleTelemetryEvent);
 
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('flik:telemetry', handleTelemetryEvent);
-    };
-  }, []);
+      return () => {
+        clearInterval(interval);
+        window.removeEventListener('flik:telemetry', handleTelemetryEvent);
+      };
+    } else {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [isAuthenticated]);
+
+  const handleUnlock = (e) => {
+    e?.preventDefault();
+    if (passcodeInput === ADMIN_PASSCODE) {
+      setAdminAuthenticated(true);
+      setIsAuthenticated(true);
+      setPasscodeError(false);
+    } else {
+      setPasscodeError(true);
+      setPasscodeInput('');
+      inputRef.current?.focus();
+    }
+  };
+
+  const handleLock = () => {
+    setAdminAuthenticated(false);
+    setIsAuthenticated(false);
+    setPasscodeInput('');
+  };
+
+  // If locked, render the Cyber-Security Gate
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#070708] flex items-center justify-center p-6 text-white font-sans relative overflow-hidden">
+        {/* Ambient Lights */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-64 h-64 bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#0d0d10] border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.85)] text-center relative z-10">
+          <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto mb-6 shadow-inner">
+            <Lock className="w-7 h-7" />
+          </div>
+
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono tracking-widest uppercase text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Restricted Admin Portal
+          </span>
+
+          <h2 className="text-2xl sm:text-3xl font-light text-white tracking-tight mt-5">
+            Flik Pulse Gateway
+          </h2>
+          <p className="text-xs text-gray-400 mt-2.5 max-w-xs mx-auto leading-relaxed">
+            Enter master administrator passcode to view real-time visitor activity, high-intent lead signals, and session footprints.
+          </p>
+
+          <form onSubmit={handleUnlock} className="mt-8 space-y-4">
+            <div>
+              <input
+                ref={inputRef}
+                type="password"
+                inputMode="numeric"
+                maxLength={8}
+                value={passcodeInput}
+                onChange={(e) => {
+                  setPasscodeInput(e.target.value);
+                  if (passcodeError) setPasscodeError(false);
+                }}
+                placeholder="Passcode"
+                className={`w-full px-4 py-3.5 text-center text-2xl tracking-[0.6em] font-mono rounded-xl bg-white/[0.04] border text-white placeholder:text-gray-600 focus:outline-none transition-all ${
+                  passcodeError
+                    ? 'border-rose-500/80 bg-rose-500/5 focus:border-rose-500'
+                    : 'border-white/10 focus:border-emerald-500/50 focus:bg-white/[0.06]'
+                }`}
+              />
+              {passcodeError && (
+                <div className="flex items-center justify-center gap-1.5 text-xs text-rose-400 font-mono mt-2.5">
+                  <AlertCircle className="w-3.5 h-3.5" />
+                  <span>Access Denied: Incorrect passcode</span>
+                </div>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-medium text-sm transition-all duration-200 shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]"
+            >
+              <span>Authenticate & Enter</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
+
+          <div className="mt-8 pt-5 border-t border-white/5 flex items-center justify-between text-xs text-gray-500">
+            <Link to="/" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <ArrowLeft className="w-3.5 h-3.5" /> Back to Website
+            </Link>
+            <span className="font-mono text-[10px] text-gray-600">Flik Protocol 2.4</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Compute Metrics from recorded events
   const totalEvents = events.length;
@@ -199,12 +311,22 @@ export default function PulseDashboard() {
               <span>PostHog Cloud</span>
               <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
             </a>
+
             <button
               onClick={refreshData}
               title="Refresh Telemetry"
               className="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white transition-colors"
             >
               <RefreshCw className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={handleLock}
+              title="Lock Dashboard & Sign Out"
+              className="px-3 py-2 rounded-xl bg-white/5 hover:bg-rose-500/10 border border-white/10 hover:border-rose-500/30 text-gray-400 hover:text-rose-400 text-xs font-mono transition-colors flex items-center gap-1.5"
+            >
+              <Lock className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Lock</span>
             </button>
           </div>
         </div>
@@ -231,7 +353,9 @@ export default function PulseDashboard() {
               <Boxes className="w-4 h-4 text-sky-400" />
             </div>
             <div className="text-3xl font-light text-white font-mono">{tourViews}</div>
-            <p className="text-xs text-gray-400 mt-2 font-mono">Walkthroughs & Fullscreen 3D</p>
+            <p className="text-xs text-sky-400 mt-2 font-mono">
+              Walkthroughs & Fullscreen 3D
+            </p>
           </div>
 
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
@@ -240,7 +364,9 @@ export default function PulseDashboard() {
               <TrendingUp className="w-4 h-4 text-amber-400" />
             </div>
             <div className="text-3xl font-light text-white font-mono">{roiCalculations}</div>
-            <p className="text-xs text-gray-400 mt-2 font-mono">Developer Sunk Cost Simulator</p>
+            <p className="text-xs text-amber-400 mt-2 font-mono">
+              Developer Sunk Cost Simulator
+            </p>
           </div>
 
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
@@ -249,134 +375,128 @@ export default function PulseDashboard() {
               <Activity className="w-4 h-4 text-purple-400" />
             </div>
             <div className="text-3xl font-light text-white font-mono">{totalEvents}</div>
-            <p className="text-xs text-gray-400 mt-2 font-mono">Buffered in live ring memory</p>
+            <p className="text-xs text-gray-400 mt-2 font-mono">
+              Buffered in live ring memory
+            </p>
           </div>
         </div>
 
-        {/* Current Active Session & Attribution Card */}
-        <div className="p-6 lg:p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/10">
-            <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
-              <div>
-                <h3 className="text-sm font-semibold text-white">Your Current Session Footprint</h3>
-                <p className="text-xs text-gray-400 font-mono">
-                  This is the exact enriched payload attached to incoming lead submissions.
-                </p>
-              </div>
+        {/* Current Active Session Footprint Card */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative overflow-hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <h3 className="text-base font-medium text-white flex items-center gap-2">
+                <span>Your Current Session Footprint</span>
+              </h3>
+              <p className="text-xs text-gray-400 mt-1">
+                This is the exact enriched payload attached to incoming lead submissions.
+              </p>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300">
-                Visitor: {sessionLog.visitorId || 'init'}
-              </span>
-            </div>
+            <span className="font-mono text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 self-start sm:self-center">
+              Visitor: {sessionLog.visitorId || 'v_unknown'}
+            </span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-xs font-mono">
             <div>
               <span className="text-gray-500 block mb-1">Traffic Source</span>
-              <span className="text-emerald-400 font-medium">{attribution.source || 'direct'}</span>
+              <span className="text-emerald-400 font-medium text-sm">
+                {attribution.utm_source || attribution.referrer || 'direct'}
+              </span>
             </div>
             <div>
               <span className="text-gray-500 block mb-1">Active Dwell Time</span>
-              <span className="text-white font-medium">
-                {Math.floor((sessionLog.activeSeconds || 0) / 60)}m {(sessionLog.activeSeconds || 0) % 60}s
+              <span className="text-white font-medium text-sm">
+                {Math.floor((sessionLog.activeDwellSeconds || 0) / 60)}m {(sessionLog.activeDwellSeconds || 0) % 60}s
               </span>
             </div>
             <div>
               <span className="text-gray-500 block mb-1">Max Scroll Depth</span>
-              <span className="text-white font-medium">{sessionLog.maxScrollPercent || 0}%</span>
+              <span className="text-white font-medium text-sm">
+                {sessionLog.maxScrollDepth || 0}%
+              </span>
             </div>
             <div>
               <span className="text-gray-500 block mb-1">Sections Explored</span>
-              <span className="text-white font-medium">
+              <span className="text-white font-medium text-sm">
                 {(sessionLog.sectionsViewed || []).length > 0
-                  ? sessionLog.sectionsViewed.join(', ')
-                  : 'Hero'}
+                  ? (sessionLog.sectionsViewed || []).join(', ')
+                  : 'none'}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Live Event Stream Table */}
-        <div className="rounded-3xl border border-white/10 bg-white/[0.02] overflow-hidden">
-          <div className="p-6 lg:p-8 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        {/* Live Action Stream Feed */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-white/[0.02] border border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              <h3 className="text-base font-semibold text-white flex items-center gap-2">
+              <h3 className="text-base font-medium text-white flex items-center gap-2">
                 <span>Real-Time Activity Stream</span>
-                <span className="text-xs font-mono text-gray-400">({events.length} events)</span>
+                <span className="text-xs font-mono text-gray-500">({events.length} events)</span>
               </h3>
-              <p className="text-xs text-gray-400 font-light mt-0.5">
+              <p className="text-xs text-gray-400 mt-1">
                 Every click, 3D tour launch, ROI calculation, and WhatsApp conversation trigger.
               </p>
             </div>
 
-            {/* Quick Test & Export Controls */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
               <button
                 onClick={handleSimulateWhatsAppClick}
-                className="text-xs font-mono px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-colors"
+                className="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-mono transition-colors"
               >
                 + Test WhatsApp Trigger
               </button>
               <button
                 onClick={handleSimulateRoiTest}
-                className="text-xs font-mono px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition-colors"
+                className="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-mono transition-colors"
               >
                 + Test ROI Trigger
               </button>
               <button
                 onClick={handleExportJSON}
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white transition-colors"
-                title="Export JSON Log"
+                title="Export Telemetry JSON"
+                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 transition-colors"
               >
-                <Download className="w-3.5 h-3.5" />
+                <Download className="w-4 h-4" />
               </button>
               <button
                 onClick={() => {
                   clearPulseEvents();
                   refreshData();
                 }}
-                className="p-2 rounded-lg bg-white/5 hover:bg-red-500/20 border border-white/10 text-gray-400 hover:text-red-400 transition-colors"
-                title="Clear Logs"
+                title="Clear Ring Buffer"
+                className="p-2 rounded-lg bg-white/5 hover:bg-rose-500/20 text-gray-300 hover:text-rose-400 border border-white/10 transition-colors"
               >
-                <Trash2 className="w-3.5 h-3.5" />
+                <Trash2 className="w-4 h-4" />
               </button>
             </div>
           </div>
 
           {events.length === 0 ? (
-            <div className="p-16 text-center text-gray-500 font-mono text-xs">
-              <Activity className="w-8 h-8 text-gray-600 mx-auto mb-3" />
-              <p>No activity logged yet in this browser.</p>
-              <p className="text-gray-600 mt-1">
-                Browse around <Link to="/" className="text-emerald-400 underline">flik.in</Link> or click a test button above.
-              </p>
+            <div className="py-16 text-center text-gray-500 font-mono text-xs border border-dashed border-white/10 rounded-2xl">
+              Waiting for live visitor events. Browse the site in another tab to see real-time updates.
             </div>
           ) : (
-            <div className="divide-y divide-white/5 max-h-[600px] overflow-y-auto">
+            <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
               {events.map((event) => (
                 <div
                   key={event.id}
-                  className="p-4 sm:px-8 hover:bg-white/[0.02] transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                  className="p-3.5 rounded-xl bg-white/[0.015] border border-white/5 hover:border-white/10 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-wrap">
                     {renderEventBadge(event)}
                     <span className="text-gray-300 font-mono">
-                      {event.properties?.button_label ||
-                        event.properties?.question ||
-                        event.properties?.location ||
-                        event.properties?.section_name ||
-                        '—'}
+                      {event.properties?.context || event.properties?.section_name || ''}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-4 text-gray-400 font-mono text-[11px] shrink-0">
+                  <div className="flex items-center gap-3 text-gray-500 text-[11px] font-mono shrink-0">
                     <span className="flex items-center gap-1">
                       {event.device === 'Mobile' ? (
-                        <Smartphone className="w-3 h-3 text-gray-500" />
+                        <Smartphone className="w-3 h-3 text-gray-400" />
                       ) : (
-                        <Monitor className="w-3 h-3 text-gray-500" />
+                        <Monitor className="w-3 h-3 text-gray-400" />
                       )}
                       <span>{event.device || 'Desktop'}</span>
                     </span>

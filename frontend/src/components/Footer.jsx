@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Linkedin, Instagram } from 'lucide-react';
 import { footerData, contactData, images } from '../data/mock';
+import AdminAuthModal, { isAdminAuthenticated } from './AdminAuthModal';
 
 const SOCIAL_LINKS = [
   { id: 'linkedin', label: 'LinkedIn', href: contactData.socials.linkedin, icon: Linkedin },
@@ -92,32 +93,57 @@ const FooterBrand = () => (
   </div>
 );
 
-const Footer = () => (
-  <footer className="bg-[#070708] border-t border-white/5">
-    <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-      <div className="grid lg:grid-cols-5 gap-12 lg:gap-8">
-        <FooterBrand />
-        <div>
-          <FooterLinkColumn title="Platform" links={footerData.platform} />
-        </div>
-        <div>
-          <FooterLinkColumn title="Company" links={footerData.company} />
-        </div>
-        <div>
-          <div className="mb-8">
-            <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
-          </div>
-          <FooterLinkColumn title="Legal" links={footerData.legal} />
-        </div>
-      </div>
-    </div>
+const Footer = () => {
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const navigate = useNavigate();
 
-    <div className="border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
-        <p className="text-gray-600 text-sm text-center">{footerData.bottomBar}</p>
+  const handleAdminClick = (e) => {
+    e.preventDefault();
+    if (isAdminAuthenticated()) {
+      navigate('/pulse');
+    } else {
+      setIsAdminOpen(true);
+    }
+  };
+
+  return (
+    <footer className="bg-[#070708] border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-8">
+          <FooterBrand />
+          <div>
+            <FooterLinkColumn title="Platform" links={footerData.platform} />
+          </div>
+          <div>
+            <FooterLinkColumn title="Company" links={footerData.company} />
+          </div>
+          <div>
+            <div className="mb-8">
+              <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
+            </div>
+            <FooterLinkColumn title="Legal" links={footerData.legal} />
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
-);
+
+      <div className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-gray-600 text-sm text-center sm:text-left">{footerData.bottomBar}</p>
+          <button
+            onClick={handleAdminClick}
+            data-testid="footer-admin-btn"
+            className="text-gray-600 hover:text-emerald-400 text-xs font-mono transition-colors tracking-widest lowercase hover:underline opacity-80 hover:opacity-100"
+            title="Flik Admin Access (Passcode: 2822)"
+          >
+            admin
+          </button>
+        </div>
+      </div>
+
+      {/* Admin Passcode Modal */}
+      <AdminAuthModal isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
+    </footer>
+  );
+};
 
 export default Footer;
