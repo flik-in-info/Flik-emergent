@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import LeadFormDialog from '../components/LeadFormDialog';
 
-const DemoDialogContext = createContext({ open: () => {} });
+const DemoDialogContext = createContext({ open: () => {}, isOpen: false });
 
 export const DemoDialogProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ export const DemoDialogProvider = ({ children }) => {
     setIsOpen(true);
   }, []);
 
-  const value = useMemo(() => ({ open }), [open]);
+  const value = useMemo(() => ({ open, isOpen }), [open, isOpen]);
 
   return (
     <DemoDialogContext.Provider value={value}>

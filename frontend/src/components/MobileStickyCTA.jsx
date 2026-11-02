@@ -1,12 +1,16 @@
 import React from 'react';
 import { Button } from './ui/button';
-import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
 import { useDemoDialog } from '../context/DemoDialogContext';
 import { telemetry } from '../utils/telemetry';
 import { contactData } from '../data/mock';
 
 const MobileStickyCTA = () => {
-  const { open: openDemoDialog } = useDemoDialog();
+  const { open: openDemoDialog, isOpen } = useDemoDialog();
+
+  if (isOpen) {
+    return null;
+  }
 
   const handleOpenDemo = () => {
     telemetry.ctaClick('Request Demo', 'mobile_sticky_dock');
