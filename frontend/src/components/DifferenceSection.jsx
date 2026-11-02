@@ -137,7 +137,7 @@ const DifferenceSection = () => {
         </div>
 
         {/* Interactive Developer Sunk Capital & Velocity Simulator */}
-        <div className="rounded-3xl p-8 lg:p-12 bg-white/[0.02] border border-white/10 backdrop-blur-xl mb-20 shadow-2xl">
+        <div className="rounded-3xl p-5 sm:p-8 lg:p-12 bg-white/[0.02] border border-white/10 backdrop-blur-xl mb-20 shadow-2xl">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10 pb-8 border-b border-white/10">
             <div>
               <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono font-medium uppercase tracking-widest mb-2">
@@ -178,7 +178,7 @@ const DifferenceSection = () => {
 
               <div>
                 <span className="block text-sm text-gray-400 mb-2 font-mono">Average Unit Ticket Size</span>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {TICKET_SIZES.map((tier, idx) => (
                     <button
                       key={tier.label}

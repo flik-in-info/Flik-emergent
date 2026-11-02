@@ -99,8 +99,8 @@ const ExperienceSection = () => {
   const [active, setActive] = useState(null);
 
   return (
-    <section id="experience" className="relative py-32 bg-[#0d0d0e]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="experience" className="relative py-20 sm:py-32 bg-[#0d0d0e]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6">
           <span className="text-emerald-400 text-sm font-medium uppercase tracking-widest">
             Live Experiences

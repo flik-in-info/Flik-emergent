@@ -845,7 +845,7 @@ const TechStackShowcase = () => {
               borderColor: `${activePartner.accent}40`,
               boxShadow: `0 10px 40px -10px ${activePartner.glow}`
             }}
-            className="mt-6 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0c0c10] via-[#0e0e14] to-[#0c0c10] border backdrop-blur-2xl relative transition-all duration-500 shadow-2xl"
+            className="mt-6 p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#0c0c10] via-[#0e0e14] to-[#0c0c10] border backdrop-blur-2xl relative transition-all duration-500 shadow-2xl"
           >
             {/* Top Accent Strip */}
             <div
@@ -861,7 +861,7 @@ const TechStackShowcase = () => {
                     borderColor: `${activePartner.accent}50`,
                     boxShadow: `0 0 30px ${activePartner.glow}`
                   }}
-                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/[0.05] border flex items-center justify-center flex-shrink-0 text-white transition-all duration-300"
+                  className="w-12 h-12 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-white/[0.05] border flex items-center justify-center flex-shrink-0 text-white transition-all duration-300"
                 >
                   {React.createElement(activePartner.Logo, { className: 'w-9 h-9 sm:w-11 sm:h-11' })}
                 </div>
@@ -893,7 +893,7 @@ const TechStackShowcase = () => {
               </div>
 
               {/* Live Architectural Benchmarks */}
-              <div className="grid grid-cols-2 lg:flex lg:flex-col gap-3 flex-shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-2.5 sm:gap-3 flex-shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/5">
                 <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2.5">
                   <Activity className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                   <div>

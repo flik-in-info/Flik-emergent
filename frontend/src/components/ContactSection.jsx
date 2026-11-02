@@ -110,11 +110,11 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="relative py-32 bg-[#0a0a0b]">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <ContactIntro email={CONTACT_EMAIL} />
 
-          <div className="lg:col-span-3 rounded-2xl bg-white/[0.02] border border-white/5 p-8 lg:p-10">
+          <div className="lg:col-span-3 rounded-2xl bg-white/[0.02] border border-white/5 p-5 sm:p-8 lg:p-10">
             {submitted ? (
               <ContactSuccess email={CONTACT_EMAIL} onReset={reset} />
             ) : (

@@ -20,6 +20,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import FAQSection from "./components/FAQSection";
 import PulseDashboard from "./components/telemetry/PulseDashboard";
+import MobileStickyCTA from "./components/MobileStickyCTA";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 import useTelemetryListeners from "./hooks/useTelemetryListeners";
 
@@ -36,7 +37,7 @@ const ScrollToTopAndTelemetry = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#0a0a0b] min-h-screen">
+    <div className="bg-[#0a0a0b] min-h-screen pb-20 lg:pb-0 relative">
       <Header />
       <main>
         <HeroSection />
@@ -53,6 +54,7 @@ const LandingPage = () => {
         <ClosingCTA />
       </main>
       <Footer />
+      <MobileStickyCTA />
     </div>
   );
 };

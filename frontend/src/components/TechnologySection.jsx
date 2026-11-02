@@ -19,7 +19,7 @@ const TechnologySection = () => {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Label */}
         <div className="mb-6">
           <span className="text-emerald-400 text-sm font-medium uppercase tracking-widest">

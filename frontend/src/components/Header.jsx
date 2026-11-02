@@ -13,7 +13,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -23,19 +23,19 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-[#0a0a0b]/90 backdrop-blur-xl border-b border-white/5'
-          : 'bg-transparent'
+          ? 'bg-[#0a0a0b]/92 backdrop-blur-xl border-b border-white/5 shadow-2xl'
+          : 'bg-[#0a0a0b]/50 backdrop-blur-md border-b border-white/[0.02]'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center group">
+          <Link to="/" className="flex items-center group flex-shrink-0">
             <img 
               src={images.logo} 
               alt="Flik Explorer - Real-Time 3D Digital Twin Platform" 
               decoding="async"
-              className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-8 sm:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
@@ -53,7 +53,7 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* Desktop CTA Button */}
           <div className="hidden lg:block">
             <Button
               data-testid="header-request-demo"
@@ -67,41 +67,56 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-white"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Right Controls: Prominent Request Demo Button + Hamburger Menu */}
+          <div className="flex items-center gap-2 sm:gap-3 lg:hidden">
+            <Button
+              data-testid="header-mobile-bar-cta"
+              onClick={() => {
+                telemetry.ctaClick('Request Demo', 'header_mobile_top_bar');
+                openDemoDialog('header_mobile_top_bar');
+              }}
+              className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium text-xs px-3.5 sm:px-4 py-1.5 h-8 sm:h-9 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.35)] active:scale-95 transition-all"
+            >
+              Request Demo
+            </Button>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-white hover:text-emerald-400 active:scale-95 transition-all rounded-lg focus:outline-none"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            >
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 bg-[#0a0a0b]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`lg:hidden absolute top-full left-0 right-0 bg-[#0a0a0b]/98 backdrop-blur-2xl border-b border-white/10 transition-all duration-300 overflow-hidden shadow-2xl ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100 py-6' : 'max-h-0 opacity-0 py-0'
         }`}
       >
-        <nav className="flex flex-col p-6 gap-4">
+        <nav className="flex flex-col px-6 gap-2">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="text-gray-400 hover:text-white transition-colors duration-300 py-2"
+              className="text-gray-300 hover:text-white transition-colors duration-200 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] text-sm flex items-center justify-between"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {item.label}
+              <span>{item.label}</span>
+              <span className="text-xs font-mono text-gray-500">→</span>
             </a>
           ))}
           <Button
             data-testid="mobile-request-demo"
             onClick={() => {
-              telemetry.ctaClick('Request Demo', 'header_mobile');
+              telemetry.ctaClick('Request Demo', 'header_mobile_drawer');
               setIsMobileMenuOpen(false);
-              openDemoDialog('header_mobile');
+              openDemoDialog('header_mobile_drawer');
             }}
-            className="bg-white text-gray-900 hover:bg-gray-100 font-medium mt-4"
+            className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium mt-3 py-6 rounded-xl shadow-lg shadow-emerald-500/25"
           >
             Request Demo
           </Button>

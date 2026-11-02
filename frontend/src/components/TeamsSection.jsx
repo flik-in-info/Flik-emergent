@@ -6,8 +6,8 @@ const icons = [Building, TrendingUp, Palette];
 
 const TeamsSection = () => {
   return (
-    <section className="relative py-32 bg-[#0a0a0b]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="relative py-20 sm:py-32 bg-[#0a0a0b]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Label */}
         <div className="mb-6">
           <span className="text-emerald-400 text-sm font-medium uppercase tracking-widest">
