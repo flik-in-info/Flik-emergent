@@ -22,12 +22,12 @@ export const heroData = {
 };
 
 export const navItems = [
-  { label: "Platform", href: "/platform" },
-  { label: "Experience", href: "/experience" },
-  { label: "Intelligence", href: "/intelligence" },
-  { label: "Technology", href: "/technology" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" }
+  { label: "Platform", href: "/#platform" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Intelligence", href: "/#intelligence" },
+  { label: "Technology", href: "/#technology" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" }
 ];
 
 export const platformSection = {
@@ -212,18 +212,18 @@ export const footerData = {
   tagline: "Real-time architecture intelligence for the world's leading developers.",
   copyright: "© 2026 Flik. All rights reserved.",
   platform: [
-    { label: "Platform Overview", href: "/platform" },
-    { label: "3D Experience", href: "/experience" },
-    { label: "Sales Intelligence", href: "/intelligence" },
-    { label: "Technology Ecosystem", href: "/technology" },
-    { label: "Developer FAQ", href: "/faq" }
+    { label: "Capabilities", href: "#" },
+    { label: "Technology", href: "#" },
+    { label: "Integrations", href: "#" },
+    { label: "Security", href: "#" },
+    { label: "Pricing", href: "#" }
   ],
   company: [
-    { label: "Architecture", href: "/platform" },
-    { label: "Interactive 3D", href: "/experience" },
-    { label: "NVIDIA Inception", href: "/technology" },
-    { label: "Buyer Telemetry", href: "/intelligence" },
-    { label: "Contact Executive", href: "/contact" }
+    { label: "About", href: "#" },
+    { label: "Careers", href: "#" },
+    { label: "Press", href: "#" },
+    { label: "Partners", href: "#" },
+    { label: "Contact", href: "#" }
   ],
   resources: [
     { label: "Documentation", href: "#" },

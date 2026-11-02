@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Play, ArrowRight, Radio } from 'lucide-react';
 import { heroData, images } from '../data/mock';
@@ -7,9 +6,7 @@ import { useDemoDialog } from '../context/DemoDialogContext';
 import { telemetry } from '../utils/telemetry';
 
 const HeroSection = () => {
-  const navigate = useNavigate();
   const { open: openDemoDialog } = useDemoDialog();
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -56,7 +53,7 @@ const HeroSection = () => {
               size="lg"
               onClick={() => {
                 telemetry.ctaClick(heroData.primaryCta, 'hero_primary');
-                navigate('/platform');
+                openDemoDialog('hero');
               }}
               className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 group"
             >
@@ -104,6 +101,12 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2">
+        <span className="text-gray-500 text-xs uppercase tracking-widest">Scroll</span>
+        <div className="w-px h-12 bg-gradient-to-b from-white/40 to-transparent" />
       </div>
     </section>
   );

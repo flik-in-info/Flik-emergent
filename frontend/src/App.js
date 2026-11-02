@@ -1,46 +1,60 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
-import HomePage from "./pages/HomePage";
-import PlatformPage from "./pages/PlatformPage";
-import ExperiencePage from "./pages/ExperiencePage";
-import IntelligencePage from "./pages/IntelligencePage";
-import TechnologyPage from "./pages/TechnologyPage";
-import FAQPage from "./pages/FAQPage";
-import ContactPage from "./pages/ContactPage";
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+import PlatformSection from "./components/PlatformSection";
+import VisualizationSection from "./components/VisualizationSection";
+import ExperienceSection from "./components/ExperienceSection";
+import IntelligenceSection from "./components/IntelligenceSection";
+import TechnologySection from "./components/TechnologySection";
+import TeamsSection from "./components/TeamsSection";
+import MetricsSection from "./components/MetricsSection";
+import DifferenceSection from "./components/DifferenceSection";
+import ContactSection from "./components/ContactSection";
+import ClosingCTA from "./components/ClosingCTA";
+import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
+import FAQSection from "./components/FAQSection";
 import PulseDashboard from "./components/telemetry/PulseDashboard";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
 import useTelemetryListeners from "./hooks/useTelemetryListeners";
 
 const ScrollToTopAndTelemetry = () => {
-  const { pathname, hash } = useLocation();
-  const navigate = useNavigate();
+  const { pathname } = useLocation();
   useTelemetryListeners();
 
   React.useEffect(() => {
-    // Seamless backward compatibility for legacy hash links
-    if (hash === '#platform') {
-      navigate('/platform', { replace: true });
-    } else if (hash === '#experience' || hash === '#capabilities') {
-      navigate('/experience', { replace: true });
-    } else if (hash === '#intelligence') {
-      navigate('/intelligence', { replace: true });
-    } else if (hash === '#technology' || hash === '#industry-leaders') {
-      navigate('/technology', { replace: true });
-    } else if (hash === '#faq') {
-      navigate('/faq', { replace: true });
-    } else if (hash === '#contact') {
-      navigate('/contact', { replace: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [pathname, hash, navigate]);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return null;
+};
+
+const LandingPage = () => {
+  return (
+    <div className="bg-[#0a0a0b] min-h-screen">
+      <Header />
+      <main>
+        <HeroSection />
+        <PlatformSection />
+        <VisualizationSection />
+        <ExperienceSection />
+        <IntelligenceSection />
+        <TechnologySection />
+        <TeamsSection />
+        <MetricsSection />
+        <DifferenceSection />
+        <FAQSection />
+        <ContactSection />
+        <ClosingCTA />
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 function App() {
@@ -51,13 +65,7 @@ function App() {
         <DemoDialogProvider>
           <ScrollToTopAndTelemetry />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/platform" element={<PlatformPage />} />
-            <Route path="/experience" element={<ExperiencePage />} />
-            <Route path="/intelligence" element={<IntelligencePage />} />
-            <Route path="/technology" element={<TechnologyPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/pulse" element={<PulseDashboard />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
