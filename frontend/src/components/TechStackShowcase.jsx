@@ -1,292 +1,595 @@
 import React, { useState } from 'react';
 import { telemetry } from '../utils/telemetry';
-import { Layers, ShieldCheck, Sparkles, ExternalLink } from 'lucide-react';
+import { ShieldCheck, Orbit, LayoutGrid, Activity, Zap } from 'lucide-react';
+import {
+  UnrealEngineLogo,
+  EpicGamesLogo,
+  NvidiaLogo,
+  AwsLogo,
+  CesiumLogo,
+  GoogleMapsLogo,
+  MetaLogo,
+  AppleLogo,
+  AutodeskLogo,
+  ElevenLabsLogo,
+  SamsungLogo,
+  EpsonLogo,
+  AnthropicLogo,
+  MatterportLogo,
+  MatterportEmblem
+} from './TechLogos';
+import { images } from '../data/mock';
 
 const TECH_PARTNERS = [
   {
     id: 'unreal',
     name: 'Unreal Engine 5',
+    vendor: 'Epic Games',
     category: 'Core 3D Engine',
-    tag: 'Cinematic 3D',
-    description: 'Nanite micro-polygon geometry & Lumen dynamic real-time global illumination for uncompromised architectural photorealism.',
+    tag: 'Nanite & Lumen',
+    description: 'Nanite micro-polygon geometry and Lumen real-time dynamic global illumination delivering cinematic architectural photorealism in real time.',
     stats: '60 FPS Ultra-HD',
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-9 h-9 fill-current">
-        <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="6" />
-        <path d="M50 18 L60 36 H53 L50 28 L47 36 H40 Z M32 38 H40 V58 C40 64 44 68 50 68 C56 68 60 64 60 58 V38 H68 V58 C68 70 59 78 50 78 C41 78 32 70 32 58 Z" />
-      </svg>
-    )
+    latency: '< 16.6ms frame',
+    coords: { x: -14, y: -18 },
+    mobileRow: 1,
+    Logo: UnrealEngineLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   },
   {
     id: 'nvidia',
     name: 'NVIDIA RTX',
-    category: 'Neural Cloud GPU',
-    tag: 'DLSS 3.5 & RTX',
-    description: 'NVIDIA RTX Cloud streaming, DLSS 3.5 AI neural reconstruction, and hardware-accelerated real-time ray tracing on edge servers.',
+    vendor: 'NVIDIA Corporation',
+    category: 'Neural Cloud Streaming',
+    tag: 'DLSS 3.5 & RTX Cloud',
+    description: 'NVIDIA Inception member infrastructure, DLSS 3.5 AI neural frame generation, and enterprise GPU clusters for sub-50ms cloud pixel streaming.',
     stats: 'Sub-50ms Latency',
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-10 h-10 fill-current">
-        <path d="M22 68 C16 60 16 48 24 38 C32 26 48 22 62 26 C72 29 80 37 84 46 C76 38 65 34 54 35 C42 36 32 44 30 55 C29 61 31 66 35 70 C29 71 25 70 22 68 Z M45 42 C54 41 62 46 66 53 C70 60 68 69 62 74 C56 79 46 80 38 75 C45 76 52 74 56 69 C60 64 59 58 55 53 C52 49 48 46 44 45 Z M10 50 C10 28 28 10 50 10 C68 10 83 22 88 39 C83 31 75 25 65 21 C50 15 32 19 20 30 C10 40 8 55 14 67 C11 62 10 56 10 50 Z" />
-      </svg>
-    )
+    latency: 'DLSS 3.5 Active',
+    coords: { x: 14, y: -18 },
+    mobileRow: 1,
+    Logo: NvidiaLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
+  },
+  {
+    id: 'epic',
+    name: 'Epic Games',
+    vendor: 'Epic Games Ecosystem',
+    category: 'Runtime Architecture',
+    tag: 'Unreal Enterprise',
+    description: 'Direct enterprise engine pipeline, Megascans photogrammetry assets, and custom real-time shaders engineered for architectural digital twins.',
+    stats: 'Enterprise License',
+    latency: 'Sub-Pixel Precision',
+    coords: { x: -28, y: -30 },
+    mobileRow: 2,
+    Logo: EpicGamesLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   },
   {
     id: 'cesium',
     name: 'Cesium 3D',
+    vendor: 'Cesium GS',
     category: 'Geospatial & 3D Tiles',
-    tag: '3D Tiles OGC',
-    description: 'Open standard 3D Tiles streaming photorealistic terrain, contextual urban surroundings, and geospatial elevation models.',
+    tag: '3D Tiles OGC Standard',
+    description: 'Open-standard 3D Tiles pipeline streaming high-precision terrain, global digital elevation models, and contextual urban surroundings seamlessly.',
     stats: 'Global Coverage',
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-9 h-9 fill-current">
-        <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="5" />
-        <ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="currentColor" strokeWidth="5" />
-        <line x1="6" y1="50" x2="94" y2="50" stroke="currentColor" strokeWidth="5" />
-        <ellipse cx="50" cy="50" rx="42" ry="18" fill="none" stroke="currentColor" strokeWidth="4" strokeDasharray="3 3" />
-        <circle cx="50" cy="50" r="8" fill="currentColor" />
-      </svg>
-    )
+    latency: 'OGC Standard',
+    coords: { x: -18, y: 15 },
+    mobileRow: 2,
+    Logo: CesiumLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   },
   {
     id: 'aws',
     name: 'AWS Cloud',
-    category: 'Global Infrastructure',
-    tag: 'Edge CDN',
-    description: 'Amazon Web Services CloudFront edge CDN delivery, multi-region low latency, and 99.9% uptime enterprise SLA.',
-    stats: '99.9% SLA',
-    icon: (
-      <svg viewBox="0 0 100 65" className="w-11 h-8 fill-current">
-        <path d="M22 18 L26 38 H20 L18 29 H12 L10 38 H4 L8 18 H14 L18 26 L22 18 Z M40 18 L44 38 H38 L36 29 H30 L28 38 H22 L26 18 H32 L36 26 L40 18 Z M62 22 C62 20 59 18 55 18 C50 18 46 20 46 24 C46 28 50 30 55 31 C61 32 64 34 64 38 C64 42 59 45 53 45 C47 45 42 42 41 38 L47 36 C48 38 50 40 54 40 C57 40 59 39 59 37 C59 35 56 34 52 33 C46 32 41 30 41 25 C41 21 46 17 53 17 C58 17 62 19 63 22 Z" />
-        <path d="M12 48 C28 58 56 60 78 46 C80 44 82 46 80 48 C55 65 24 63 8 52 C6 50 9 46 12 48 Z" />
-        <path d="M74 42 L84 45 L78 54 Z" />
-      </svg>
-    )
+    vendor: 'Amazon Web Services',
+    category: 'Global Edge Delivery',
+    tag: 'CloudFront Edge CDN',
+    description: 'Amazon Web Services CloudFront edge points of presence across 90+ cities globally, ensuring 99.9% uptime SLA and multi-region failover.',
+    stats: '99.9% Uptime SLA',
+    latency: '300+ Edge POPs',
+    coords: { x: 18, y: 15 },
+    mobileRow: 2,
+    Logo: AwsLogo,
+    logoClass: 'w-9 h-7 sm:w-10 sm:h-8'
   },
   {
     id: 'google-maps',
     name: 'Google 3D Maps',
+    vendor: 'Google Cloud Geospatial',
     category: 'Photorealistic Urban Context',
-    tag: 'Geospatial 3D',
-    description: 'Photorealistic 3D city tiles, high-resolution satellite context, solar shadow analysis, and surrounding infrastructure mapping.',
+    tag: 'Photorealistic 3D Tiles',
+    description: 'Direct ingestion of Google Photorealistic 3D Tiles, high-resolution satellite imagery, surrounding road networks, and solar shadow simulations.',
     stats: '2,500+ Cities',
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-9 h-9 fill-current">
-        <path d="M68 40 C66 26 54 16 40 16 C28 16 18 24 14 36 C6 38 0 45 0 54 C0 64 8 72 18 72 H66 C75 72 82 65 82 56 C82 48 76 41 68 40 Z" fill="none" stroke="currentColor" strokeWidth="6" />
-        <path d="M40 32 L40 56 M28 44 L40 32 L52 44" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    )
+    latency: 'Live API Sync',
+    coords: { x: 28, y: -30 },
+    mobileRow: 3,
+    Logo: GoogleMapsLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   },
   {
     id: 'meta',
     name: 'Meta Quest & WebXR',
+    vendor: 'Meta Platforms',
     category: 'Spatial VR Immersion',
-    tag: 'WebXR & Quest',
-    description: 'Zero-friction browser WebXR and untethered Meta Quest 3 spatial immersion for luxury developer sales lounges.',
+    tag: 'Untethered VR & WebXR',
+    description: 'Zero-friction browser WebXR and Meta Quest 3 untethered spatial walkthroughs for real estate developer sales galleries and VIP lounges.',
     stats: 'Zero-Install VR',
-    icon: (
-      <svg viewBox="0 0 120 80" className="w-11 h-7 fill-current">
-        <path d="M32 18 C18 18 8 30 8 44 C8 58 18 68 30 68 C42 68 51 56 60 45 C69 56 78 68 90 68 C102 68 112 58 112 44 C112 30 102 18 88 18 C76 18 67 30 60 41 C53 30 44 18 32 18 Z M32 30 C38 30 43 36 49 44 C43 52 38 56 31 56 C24 56 19 50 19 43 C19 36 24 30 32 30 Z M88 30 C96 30 101 36 101 43 C101 50 96 56 89 56 C82 56 77 52 71 44 C77 36 82 30 88 30 Z" />
-      </svg>
-    )
+    latency: '90Hz Refresh',
+    coords: { x: -33, y: -2 },
+    mobileRow: 3,
+    Logo: MetaLogo,
+    logoClass: 'w-8 h-7 sm:w-9 sm:h-8'
   },
   {
     id: 'apple',
     name: 'Apple Vision Pro',
+    vendor: 'Apple Inc.',
     category: 'Spatial Computing',
-    tag: 'visionOS',
-    description: 'Native ultra-high density spatial computing and spatial audio rendering for ultra-HNW architectural presentations.',
-    stats: '4K Per Eye',
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-9 h-9 fill-current">
-        <path d="M62 16 C66 11 68 5 67 0 C61 1 54 5 50 10 C46 14 43 21 44 26 C51 27 58 21 62 16 Z M76 65 C71 73 66 82 58 82 C51 82 48 77 40 77 C32 77 28 82 21 82 C14 82 8 71 3 60 C-4 44 1 29 13 29 C21 29 26 34 32 34 C37 34 41 29 50 29 C56 29 67 30 73 38 C60 45 62 61 76 65 Z" />
-      </svg>
-    )
+    tag: 'visionOS Native',
+    description: 'Ultra-high-density spatial computing and spatial audio rendering tailored for ultra-high-net-worth architectural presentations and boardrooms.',
+    stats: '4K Micro-OLED Per Eye',
+    latency: '12ms Photon-to-Motion',
+    coords: { x: 33, y: -2 },
+    mobileRow: 3,
+    Logo: AppleLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   },
   {
     id: 'autodesk',
     name: 'Autodesk BIM',
+    vendor: 'Autodesk Inc.',
     category: 'CAD / BIM Interop',
     tag: 'Revit & 3ds Max',
-    description: 'Direct pipeline synchronization with Revit, 3ds Max, and IFC BIM models for instant architectural updates without remodelling.',
+    description: 'Direct pipeline synchronization with Revit, 3ds Max, and IFC BIM models for instant architectural updates without 3D remodeling overhead.',
     stats: 'Live BIM Sync',
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-9 h-9 fill-current">
-        <path d="M50 8 L90 85 H70 L50 42 L30 85 H10 L50 8 Z M50 56 L62 82 H38 L50 56 Z" />
-      </svg>
-    )
+    latency: 'Zero Data Loss',
+    coords: { x: -30, y: 28 },
+    mobileRow: 4,
+    Logo: AutodeskLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   },
   {
     id: 'matterport',
     name: 'Matterport & Scans',
-    category: 'Digital Twin LiDAR',
-    tag: 'Reality Capture',
-    description: 'Sub-centimeter LiDAR reality capture for as-built verification, construction milestone tracking, and physical sample flats.',
+    vendor: 'Matterport Inc.',
+    category: 'Reality Capture LiDAR',
+    tag: 'Digital Twin LiDAR',
+    description: 'Sub-centimeter LiDAR reality capture for as-built spatial verification, construction milestone tracking, and physical sample apartment digital twins.',
     stats: '0.1% Tolerance',
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-9 h-9 fill-current">
-        <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="6" />
-        <circle cx="50" cy="50" r="24" fill="none" stroke="currentColor" strokeWidth="6" />
-        <circle cx="50" cy="50" r="8" fill="currentColor" />
-        <line x1="50" y1="6" x2="50" y2="26" stroke="currentColor" strokeWidth="6" />
-        <line x1="50" y1="74" x2="50" y2="94" stroke="currentColor" strokeWidth="6" />
-        <line x1="6" y1="50" x2="26" y2="50" stroke="currentColor" strokeWidth="6" />
-        <line x1="74" y1="50" x2="94" y2="50" stroke="currentColor" strokeWidth="6" />
-      </svg>
-    )
+    latency: 'Cortex AI 3D',
+    coords: { x: -10, y: 32 },
+    mobileRow: 4,
+    Logo: MatterportEmblem,
+    fullLogo: MatterportLogo,
+    logoClass: 'w-8 h-8 sm:w-9 sm:h-9'
   },
   {
     id: 'elevenlabs',
     name: 'ElevenLabs AI',
-    category: 'Generative Audio Intelligence',
-    tag: 'Multilingual Voice',
-    description: 'Ultra-low latency multilingual AI architectural narration, dynamically guiding buyers through unit floorplans in their native language.',
+    vendor: 'ElevenLabs',
+    category: 'Generative Audio Voice',
+    tag: 'Multilingual Intelligence',
+    description: 'Ultra-low latency multilingual AI architectural narration, dynamically guiding buyers through unit floorplans and spatial views in 29+ languages.',
     stats: '29+ Languages',
-    icon: (
-      <svg viewBox="0 0 100 80" className="w-9 h-7 fill-current">
-        <rect x="26" y="12" width="16" height="56" rx="8" />
-        <rect x="58" y="12" width="16" height="56" rx="8" />
-      </svg>
-    )
+    latency: '< 150ms Latency',
+    coords: { x: 10, y: 32 },
+    mobileRow: 5,
+    Logo: ElevenLabsLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   },
   {
     id: 'samsung',
     name: 'Samsung Enterprise',
+    vendor: 'Samsung Electronics',
     category: 'Experience Center Displays',
     tag: 'The Wall MicroLED',
-    description: 'Ultra-wide The Wall MicroLED displays and high-precision capacitive touchscreens for developer experiential galleries.',
+    description: 'Hardware optimization for ultra-wide The Wall MicroLED video walls and high-precision capacitive touch tables in developer experiential galleries.',
     stats: '8K HDR Native',
-    icon: (
-      <span className="font-black tracking-[0.2em] text-sm sm:text-base font-sans uppercase">
-        SAMSUNG
-      </span>
-    )
+    latency: '120Hz Native Sync',
+    coords: { x: 30, y: 28 },
+    mobileRow: 5,
+    Logo: SamsungLogo,
+    logoClass: 'w-12 h-6 sm:w-14 sm:h-7'
   },
   {
     id: 'epson',
     name: 'Epson Pro Laser',
+    vendor: 'Epson America',
     category: 'Immersive Projection',
-    tag: 'Cave Mapping',
-    description: 'High-lumen 4K 3LCD laser projection systems for 270° and 360° cave projection sales galleries.',
+    tag: 'Cave Projection 360°',
+    description: 'Multi-projector warping, edge-blending and color calibration for 270° and 360° immersive cave sales suites and experiential walkthrough domes.',
     stats: '30,000 Lumens',
-    icon: (
-      <span className="font-extrabold tracking-[0.18em] text-sm sm:text-base font-sans uppercase">
-        EPSON
-      </span>
-    )
+    latency: '4K Enhancement',
+    coords: { x: 0, y: -34 },
+    mobileRow: 1,
+    Logo: EpsonLogo,
+    logoClass: 'w-12 h-6 sm:w-14 sm:h-7'
+  },
+  {
+    id: 'anthropic',
+    name: 'Anthropic AI',
+    vendor: 'Anthropic PBC',
+    category: 'Spatial Reasoning Engine',
+    tag: 'Architectural Intelligence',
+    description: 'Natural language spatial copilot intelligence allowing sales consultants and buyers to ask complex questions regarding sunlight, views, and unit specs.',
+    stats: 'Context Intelligence',
+    latency: 'Real-Time Insights',
+    coords: { x: 0, y: 22 },
+    mobileRow: 2,
+    Logo: AnthropicLogo,
+    logoClass: 'w-7 h-7 sm:w-8 sm:h-8'
   }
 ];
 
 const TechStackShowcase = () => {
-  const [activePartner, setActivePartner] = useState(null);
+  const [activePartnerId, setActivePartnerId] = useState('unreal');
+  const [viewMode, setViewMode] = useState('constellation');
+  const [hoveredPartnerId, setHoveredPartnerId] = useState(null);
 
-  const handlePartnerClick = (partner) => {
-    setActivePartner(partner.id === activePartner ? null : partner.id);
-    telemetry.ctaClick(`tech_stack_${partner.id}`);
+  const activePartner = TECH_PARTNERS.find((p) => p.id === (hoveredPartnerId || activePartnerId)) || TECH_PARTNERS[0];
+
+  const handleSelectPartner = (partner) => {
+    setActivePartnerId(partner.id);
+    telemetry.ctaClick(`tech_partner_${partner.id}`);
   };
 
   return (
-    <div className="mt-28 pt-20 border-t border-white/5 relative">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+    <div className="mt-28 pt-20 border-t border-white/5 relative overflow-hidden" id="industry-leaders">
+      {/* Background Ambient Glow & Starfield Effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[900px] h-[500px] bg-emerald-500/[0.04] blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-cyan-500/[0.02] blur-[100px] rounded-full pointer-events-none" />
 
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16 relative">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-widest uppercase mb-4">
+      {/* Section Header */}
+      <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 relative px-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-widest uppercase mb-4 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Enterprise Integration Matrix
+          Enterprise Technology Ecosystem
         </div>
         
-        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight">
+        <h3 className="text-2xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight">
           Powered by Industry Leaders
         </h3>
         
-        <p className="text-gray-400 text-sm sm:text-base mt-3 leading-relaxed">
+        <p className="text-gray-400 text-sm sm:text-base mt-3 leading-relaxed max-w-2xl mx-auto">
           Enterprise-Grade Technology Stack for Maximum Performance, Cinematic Fidelity & Sub-Second Global Streaming
         </p>
+
+        {/* View Mode Toggle Switch */}
+        <div className="mt-6 inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md">
+          <button
+            onClick={() => {
+              setViewMode('constellation');
+              telemetry.ctaClick('tech_view_constellation');
+            }}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${
+              viewMode === 'constellation'
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            <Orbit className="w-3.5 h-3.5" />
+            <span>Orbit Ecosystem</span>
+          </button>
+          
+          <button
+            onClick={() => {
+              setViewMode('matrix');
+              telemetry.ctaClick('tech_view_matrix');
+            }}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${
+              viewMode === 'matrix'
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            <span>Architecture Matrix</span>
+          </button>
+        </div>
       </div>
 
-      {/* Partner Constellation Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 relative">
-        {TECH_PARTNERS.map((partner) => {
-          const isActive = activePartner === partner.id;
-          return (
-            <div
-              key={partner.id}
-              onClick={() => handlePartnerClick(partner)}
-              className={`group relative p-6 rounded-2xl cursor-pointer transition-all duration-300 border backdrop-blur-sm overflow-hidden flex flex-col justify-between ${
-                isActive
-                  ? 'bg-white/[0.06] border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/30'
-                  : 'bg-white/[0.02] border-white/5 hover:border-emerald-500/30 hover:bg-white/[0.04]'
-              }`}
-            >
-              {/* Subtle top indicator bar */}
-              <div className={`absolute top-0 left-0 right-0 h-[2px] transition-all duration-300 ${
-                isActive ? 'bg-emerald-400' : 'bg-transparent group-hover:bg-emerald-500/30'
-              }`} />
+      {/* VIEW MODE 1: CONSTELLATION / ORBIT VIEW */}
+      {viewMode === 'constellation' && (
+        <div className="relative max-w-6xl mx-auto">
+          {/* Desktop Constellation Canvas */}
+          <div className="hidden md:block relative w-full h-[620px] rounded-3xl bg-[#09090b]/80 border border-white/10 backdrop-blur-xl overflow-hidden shadow-[inset_0_0_80px_rgba(0,0,0,0.8)]">
+            {/* Concentric Orbital Rings */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.12" />
+                  <stop offset="60%" stopColor="#10b981" stopOpacity="0.02" />
+                  <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+                </radialGradient>
+                <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#34d399" stopOpacity="0.2" />
+                </linearGradient>
+              </defs>
 
-              <div>
-                {/* Logo & Category */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`transition-all duration-300 ${
-                    isActive ? 'text-emerald-400 scale-105' : 'text-gray-400 group-hover:text-white'
-                  }`}>
-                    {partner.icon}
+              {/* Ambient circle glow */}
+              <circle cx="50%" cy="50%" r="300" fill="url(#ringGlow)" />
+
+              {/* Orbit guide circles */}
+              <circle cx="50%" cy="50%" r="130" fill="none" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 5" />
+              <circle cx="50%" cy="50%" r="210" fill="none" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 8" />
+              <circle cx="50%" cy="50%" r="280" fill="none" stroke="rgba(255,255,255,0.03)" strokeDasharray="2 6" />
+
+              {/* Dynamic Laser Beam to Active/Hovered Partner */}
+              {activePartner && (
+                <line
+                  x1="50%"
+                  y1="50%"
+                  x2={`${50 + activePartner.coords.x}%`}
+                  y2={`${50 + activePartner.coords.y}%`}
+                  stroke="url(#beamGradient)"
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  className="animate-pulse"
+                />
+              )}
+            </svg>
+
+            {/* Central FLIK Explorer Hub */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+              <div className="relative group p-4 rounded-2xl bg-[#0e0e11] border border-emerald-500/40 shadow-[0_0_50px_rgba(16,185,129,0.25)] flex items-center justify-center">
+                {/* Glowing breathing ring */}
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-emerald-500/30 to-cyan-500/20 blur-md animate-pulse pointer-events-none" />
+                
+                <img
+                  src={images.logo}
+                  alt="Flik Explorer Core"
+                  className="h-8 w-auto relative z-10 brightness-110 drop-shadow-[0_0_12px_rgba(16,185,129,0.5)]"
+                />
+              </div>
+              <span className="mt-2.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-mono text-emerald-400 tracking-widest uppercase">
+                Core Engine Active
+              </span>
+            </div>
+
+            {/* Orbiting Partner Nodes with REAL OFFICIAL LOGOS */}
+            {TECH_PARTNERS.map((partner) => {
+              const isSelected = activePartner.id === partner.id;
+              const LogoComponent = partner.Logo;
+              const leftPercent = 50 + partner.coords.x;
+              const topPercent = 50 + partner.coords.y;
+
+              return (
+                <div
+                  key={partner.id}
+                  style={{
+                    left: `${leftPercent}%`,
+                    top: `${topPercent}%`,
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                  onMouseEnter={() => setHoveredPartnerId(partner.id)}
+                  onMouseLeave={() => setHoveredPartnerId(null)}
+                  onClick={() => handleSelectPartner(partner)}
+                  className={`absolute z-30 cursor-pointer transition-all duration-300 group ${
+                    isSelected ? 'scale-110 z-40' : 'hover:scale-105'
+                  }`}
+                >
+                  <div
+                    className={`relative p-3.5 sm:p-4 rounded-2xl border backdrop-blur-md flex items-center justify-center transition-all duration-300 ${
+                      isSelected
+                        ? 'bg-white/[0.12] border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.35)] ring-1 ring-emerald-400'
+                        : 'bg-white/[0.04] border-white/10 hover:border-emerald-500/40 hover:bg-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
+                    }`}
+                  >
+                    {/* Glowing highlight indicator */}
+                    {isSelected && (
+                      <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-4 ring-[#09090b] animate-ping" />
+                    )}
+
+                    <div
+                      className={`transition-colors duration-300 ${
+                        isSelected
+                          ? 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]'
+                          : 'text-gray-300 group-hover:text-white'
+                      }`}
+                    >
+                      <LogoComponent className={partner.logoClass} />
+                    </div>
                   </div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5 group-hover:border-emerald-500/20 group-hover:text-emerald-400/80 transition-colors">
-                    {partner.tag}
+
+                  {/* Micro Name Label below node */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 whitespace-nowrap pointer-events-none">
+                    <span
+                      className={`text-[11px] font-medium tracking-tight px-2 py-0.5 rounded-md transition-all duration-300 ${
+                        isSelected
+                          ? 'text-emerald-300 bg-[#09090b]/90 border border-emerald-500/30'
+                          : 'text-gray-400 group-hover:text-white'
+                      }`}
+                    >
+                      {partner.name}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile Cluster View */}
+          <div className="md:hidden">
+            <div className="p-4 rounded-2xl bg-[#09090b] border border-white/10 mb-6">
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
+                <div className="flex items-center gap-2">
+                  <img src={images.logo} alt="Flik Core" className="h-6 w-auto" />
+                  <span className="text-xs text-gray-400 font-mono">Ecosystem</span>
+                </div>
+                <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-2 py-0.5 rounded">
+                  Tap to Inspect
+                </span>
+              </div>
+
+              {/* Grid of clean real logos */}
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
+                {TECH_PARTNERS.map((partner) => {
+                  const isSelected = activePartner.id === partner.id;
+                  const LogoComponent = partner.Logo;
+                  return (
+                    <button
+                      key={partner.id}
+                      onClick={() => handleSelectPartner(partner)}
+                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
+                        isSelected
+                          ? 'bg-emerald-500/15 border-emerald-500/50 text-white'
+                          : 'bg-white/[0.03] border-white/5 text-gray-400'
+                      }`}
+                    >
+                      <LogoComponent className="w-6 h-6" />
+                      <span className="text-[10px] truncate max-w-full font-medium">{partner.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Dynamic HUD Inspection Dock */}
+          <div className="mt-6 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-white/[0.04] via-emerald-500/[0.03] to-white/[0.04] border border-white/10 backdrop-blur-xl relative shadow-2xl">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              {/* Left: Active Partner Identity & Description */}
+              <div className="flex items-start sm:items-center gap-5">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.06] border border-emerald-500/30 flex items-center justify-center flex-shrink-0 text-white shadow-[0_0_20px_rgba(16,185,129,0.15)]">
+                  {React.createElement(activePartner.Logo, { className: 'w-8 h-8 sm:w-9 sm:h-9' })}
+                </div>
+
+                <div>
+                  <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
+                    <h4 className="text-xl sm:text-2xl font-light text-white tracking-tight">
+                      {activePartner.name}
+                    </h4>
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
+                      {activePartner.tag}
+                    </span>
+                    <span className="text-xs text-gray-500 font-mono">
+                      • {activePartner.category}
+                    </span>
+                  </div>
+                  
+                  <p className="text-sm text-gray-300 leading-relaxed max-w-2xl font-light">
+                    {activePartner.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Right: Real Benchmark Metrics */}
+              <div className="flex sm:flex-row lg:flex-col items-center sm:items-start lg:items-end gap-3 flex-shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/5">
+                <div className="flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-emerald-400" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-gray-400">Verified Metric:</span>
+                  <span className="font-mono text-emerald-300 font-medium text-sm sm:text-base">
+                    {activePartner.stats}
                   </span>
                 </div>
 
-                {/* Name */}
-                <h4 className="text-base font-medium text-white mb-1 group-hover:text-emerald-300 transition-colors">
-                  {partner.name}
-                </h4>
-
-                {/* Subcategory */}
-                <p className="text-xs text-emerald-400/80 font-mono mb-3">
-                  {partner.category}
-                </p>
-
-                {/* Description */}
-                <p className="text-xs text-gray-400 leading-relaxed line-clamp-3 group-hover:text-gray-300 transition-colors">
-                  {partner.description}
-                </p>
-              </div>
-
-              {/* Bottom Stat Footer */}
-              <div className="mt-5 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-500">
-                <span className="font-mono text-emerald-400/90 font-medium">{partner.stats}</span>
-                <span className="text-[10px] uppercase tracking-wider text-gray-500 group-hover:text-white/60 transition-colors">
-                  Verified Stack
-                </span>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-gray-400">Runtime Pipeline:</span>
+                  <span className="font-mono text-white/90 text-xs">
+                    {activePartner.latency}
+                  </span>
+                </div>
               </div>
             </div>
-          );
-        })}
-      </div>
+          </div>
+        </div>
+      )}
 
-      {/* Trust & Compliance Banner */}
-      <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-emerald-500/[0.03] via-white/[0.02] to-emerald-500/[0.03] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+      {/* VIEW MODE 2: ARCHITECTURE MATRIX (BENTO GRID) */}
+      {viewMode === 'matrix' && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 relative max-w-7xl mx-auto">
+          {TECH_PARTNERS.map((partner) => {
+            const isSelected = activePartnerId === partner.id;
+            const LogoComponent = partner.Logo;
+            return (
+              <div
+                key={partner.id}
+                onClick={() => handleSelectPartner(partner)}
+                className={`group relative p-6 rounded-2xl cursor-pointer transition-all duration-300 border backdrop-blur-md flex flex-col justify-between ${
+                  isSelected
+                    ? 'bg-white/[0.08] border-emerald-500/60 shadow-[0_0_30px_rgba(16,185,129,0.2)] ring-1 ring-emerald-500/40'
+                    : 'bg-white/[0.02] border-white/5 hover:border-emerald-500/30 hover:bg-white/[0.05]'
+                }`}
+              >
+                {/* Subtle top indicator bar */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-[2px] transition-all duration-300 ${
+                    isSelected ? 'bg-emerald-400' : 'bg-transparent group-hover:bg-emerald-500/30'
+                  }`}
+                />
+
+                <div>
+                  {/* Top Bar: Official Logo & Tag */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div
+                      className={`p-2.5 rounded-xl bg-white/[0.04] border border-white/10 transition-all duration-300 ${
+                        isSelected
+                          ? 'text-white border-emerald-500/40 bg-emerald-500/10'
+                          : 'text-gray-300 group-hover:text-white group-hover:border-white/20'
+                      }`}
+                    >
+                      <LogoComponent className="w-7 h-7" />
+                    </div>
+
+                    <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/5 text-gray-400 border border-white/5 group-hover:border-emerald-500/20 group-hover:text-emerald-400 transition-colors">
+                      {partner.tag}
+                    </span>
+                  </div>
+
+                  {/* Name & Vendor */}
+                  <h4 className="text-lg font-medium text-white mb-0.5 group-hover:text-emerald-300 transition-colors">
+                    {partner.name}
+                  </h4>
+                  <p className="text-xs text-emerald-400/90 font-mono mb-3">
+                    {partner.category}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-xs text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                    {partner.description}
+                  </p>
+                </div>
+
+                {/* Bottom Metric & Status */}
+                <div className="mt-6 pt-3.5 border-t border-white/5 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-1.5 font-mono text-emerald-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span>{partner.stats}</span>
+                  </div>
+
+                  <span className="text-[11px] font-mono text-gray-500 group-hover:text-gray-300 transition-colors">
+                    {partner.latency}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Enterprise Architecture Trust Banner */}
+      <div className="mt-14 p-6 sm:p-7 rounded-2xl bg-gradient-to-r from-emerald-500/[0.03] via-white/[0.02] to-emerald-500/[0.03] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 max-w-6xl mx-auto">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400">
+          <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400">
             <ShieldCheck className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="text-sm font-medium text-white">Direct Engine & Cloud Architecture</h5>
-            <p className="text-xs text-gray-400 mt-0.5">
-              Built on certified enterprise protocols with 99.9% uptime SLA, SOC 2 compliance, and zero third-party telemetry leakage.
+            <h5 className="text-sm font-medium text-white">Direct Engine & Hardware Integration</h5>
+            <p className="text-xs text-gray-400 mt-0.5 leading-relaxed">
+              Flik runs directly on native Unreal Engine 5.4+ with NVIDIA RTX cloud streaming, sub-50ms glass-to-glass latency, and zero third-party telemetry interception.
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-xs text-gray-400 flex-shrink-0">
-          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 font-mono">
+        <div className="flex items-center gap-2.5 text-xs text-gray-400 flex-shrink-0">
+          <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 font-mono">
             Unreal 5.4+
           </span>
-          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 font-mono">
+          <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 font-mono">
             RTX Cloud
           </span>
-          <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/80 font-mono">
+          <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 font-mono">
             Cesium OGC
           </span>
         </div>
