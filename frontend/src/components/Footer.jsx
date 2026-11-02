@@ -89,7 +89,28 @@ const FooterBrand = () => (
 
     <SocialIcons />
 
-    <p className="text-gray-600 text-sm mt-8">{footerData.copyright}</p>
+    {/* NVIDIA Inception Member Area */}
+    <div className="mt-8 pt-6 border-t border-white/5">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+        <a
+          href="https://www.nvidia.com/en-us/startups/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block shrink-0 focus:outline-none"
+        >
+          <img
+            src="/nvidia-inception-program-badge-rgb-for-screen.svg"
+            alt="NVIDIA Inception Program member badge"
+            className="w-[120px] sm:w-[128px] h-auto object-contain"
+          />
+        </a>
+        <p className="text-xs text-gray-400 leading-relaxed">
+          Flik is a member of the NVIDIA Inception program.
+        </p>
+      </div>
+
+      <p className="text-gray-600 text-sm mt-5">{footerData.copyright}</p>
+    </div>
   </div>
 );
 
@@ -127,16 +148,21 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-gray-600 text-sm text-center sm:text-left">{footerData.bottomBar}</p>
-          <button
-            onClick={handleAdminClick}
-            data-testid="footer-admin-btn"
-            className="text-gray-600 hover:text-emerald-400 text-xs font-mono transition-colors tracking-widest lowercase hover:underline opacity-80 hover:opacity-100"
-            title="Flik Admin Access (Passcode: 2822)"
-          >
-            admin
-          </button>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 space-y-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-gray-600 text-sm text-center sm:text-left">{footerData.bottomBar}</p>
+            <button
+              onClick={handleAdminClick}
+              data-testid="footer-admin-btn"
+              className="text-gray-600 hover:text-emerald-400 text-xs font-mono transition-colors tracking-widest lowercase hover:underline opacity-80 hover:opacity-100"
+              title="Flik Admin Access (Passcode: 2822)"
+            >
+              admin
+            </button>
+          </div>
+          <p className="text-[11px] text-gray-600 text-center sm:text-left leading-relaxed">
+            © 2026 NVIDIA, the NVIDIA logo, DLSS, NVIDIA Inception, and NVIDIA RTX are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.
+          </p>
         </div>
       </div>
 

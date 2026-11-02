@@ -37,9 +37,28 @@ const TechnologySection = () => {
         </h2>
 
         {/* Body */}
-        <p className="text-lg text-gray-400 leading-relaxed mb-16 max-w-3xl">
+        <p className="text-lg text-gray-400 leading-relaxed mb-10 max-w-3xl">
           {technologySection.body}
         </p>
+
+        {/* NVIDIA Inception Credibility Row */}
+        <div className="mb-14 p-5 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+          <a
+            href="https://www.nvidia.com/en-us/startups/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block shrink-0 focus:outline-none"
+          >
+            <img
+              src="/nvidia-inception-program-badge-rgb-for-screen.svg"
+              alt="NVIDIA Inception Program member badge"
+              className="w-[124px] sm:w-[130px] h-auto object-contain"
+            />
+          </a>
+          <p className="text-sm text-gray-400 font-light leading-relaxed">
+            Flik Explorer is a member of NVIDIA Inception, NVIDIA's program for startups.
+          </p>
+        </div>
 
         {/* Capabilities Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
