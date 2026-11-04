@@ -35,13 +35,16 @@ import {
 import {
   isAdminAuthenticated,
   setAdminAuthenticated,
-  ADMIN_PASSCODE,
-} from '../AdminAuthModal';
+  verifyAdminPasscode,
+  getAdminGateState,
+} from '../../utils/security';
 
 export default function PulseDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(isAdminAuthenticated());
   const [passcodeInput, setPasscodeInput] = useState('');
-  const [passcodeError, setPasscodeError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [lockout, setLockout] = useState({ isLocked: false, remainingSeconds: 0, attemptsLeft: 5 });
   const inputRef = useRef(null);
 
   const [events, setEvents] = useState([]);
@@ -55,6 +58,32 @@ export default function PulseDashboard() {
     setAttribution(getAttribution());
     setLastRefreshed(Date.now());
   };
+
+  // Sync lockout state & active countdown timer when unauthenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      const updateGate = () => {
+        const state = getAdminGateState();
+        setLockout(state);
+        if (state.isLocked) {
+          setErrorMsg(`Rate limit enforced: Locked for ${Math.floor(state.remainingSeconds / 60)}m ${state.remainingSeconds % 60}s.`);
+        }
+      };
+
+      updateGate();
+      const timer = setInterval(() => {
+        const state = getAdminGateState();
+        setLockout(state);
+        if (state.isLocked) {
+          setErrorMsg(`Rate limit enforced: Locked for ${Math.floor(state.remainingSeconds / 60)}m ${state.remainingSeconds % 60}s.`);
+        } else if (errorMsg && errorMsg.includes('Locked for')) {
+          setErrorMsg('');
+        }
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [isAuthenticated, errorMsg]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -70,21 +99,50 @@ export default function PulseDashboard() {
       };
     } else {
       setTimeout(() => {
-        inputRef.current?.focus();
+        const state = getAdminGateState();
+        if (!state.isLocked) {
+          inputRef.current?.focus();
+        }
       }, 100);
     }
   }, [isAuthenticated]);
 
-  const handleUnlock = (e) => {
+  const handleUnlock = async (e) => {
     e?.preventDefault();
-    if (passcodeInput === ADMIN_PASSCODE) {
-      setAdminAuthenticated(true);
-      setIsAuthenticated(true);
-      setPasscodeError(false);
-    } else {
-      setPasscodeError(true);
-      setPasscodeInput('');
-      inputRef.current?.focus();
+    if (lockout.isLocked || isVerifying) return;
+
+    if (!passcodeInput.trim()) {
+      setErrorMsg('Please enter the administrator passcode.');
+      return;
+    }
+
+    setIsVerifying(true);
+    setErrorMsg('');
+
+    try {
+      const result = await verifyAdminPasscode(passcodeInput);
+      if (result.success) {
+        setIsAuthenticated(true);
+        setErrorMsg('');
+        setPasscodeInput('');
+      } else if (result.isLocked) {
+        setLockout({ isLocked: true, remainingSeconds: result.remainingSeconds, attemptsLeft: 0 });
+        setErrorMsg(`Too many failed attempts. Locked for ${Math.floor(result.remainingSeconds / 60)}m ${result.remainingSeconds % 60}s.`);
+        setPasscodeInput('');
+      } else {
+        setLockout((prev) => ({ ...prev, attemptsLeft: result.attemptsLeft }));
+        setErrorMsg(
+          result.attemptsLeft <= 2
+            ? `Access Denied: ${result.attemptsLeft} attempt${result.attemptsLeft === 1 ? '' : 's'} remaining before security lockout.`
+            : `Access Denied: Incorrect passcode (${result.attemptsLeft} attempts remaining).`
+        );
+        setPasscodeInput('');
+        inputRef.current?.focus();
+      }
+    } catch (err) {
+      setErrorMsg('Verification system error. Please retry.');
+    } finally {
+      setIsVerifying(false);
     }
   };
 
@@ -92,6 +150,7 @@ export default function PulseDashboard() {
     setAdminAuthenticated(false);
     setIsAuthenticated(false);
     setPasscodeInput('');
+    setErrorMsg('');
   };
 
   // If locked, render the Cyber-Security Gate
@@ -103,20 +162,30 @@ export default function PulseDashboard() {
         <div className="absolute bottom-10 right-10 w-64 h-64 bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#0d0d10] border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.85)] text-center relative z-10">
-          <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto mb-6 shadow-inner">
-            <Lock className="w-7 h-7" />
+          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner transition-colors ${
+            lockout.isLocked
+              ? 'bg-rose-500/10 border border-rose-500/20 text-rose-400'
+              : 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'
+          }`}>
+            {lockout.isLocked ? <ShieldAlert className="w-7 h-7" /> : <Lock className="w-7 h-7" />}
           </div>
 
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono tracking-widest uppercase text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Restricted Admin Portal
+          <span className={`inline-flex items-center gap-1.5 text-[11px] font-mono tracking-widest uppercase px-3.5 py-1 rounded-full ${
+            lockout.isLocked
+              ? 'text-rose-400 bg-rose-500/10 border border-rose-500/20'
+              : 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
+          }`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${lockout.isLocked ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
+            {lockout.isLocked ? 'Gateway Lockdown Active' : 'Restricted Admin Portal'}
           </span>
 
           <h2 className="text-2xl sm:text-3xl font-light text-white tracking-tight mt-5">
             Flik Pulse Gateway
           </h2>
           <p className="text-xs text-gray-400 mt-2.5 max-w-xs mx-auto leading-relaxed">
-            Enter master administrator passcode to view real-time visitor activity, high-intent lead signals, and session footprints.
+            {lockout.isLocked
+              ? 'Client brute-force rate limiter triggered. Gateway access is temporarily suspended.'
+              : 'Enter cryptographically salted passcode to inspect real-time telemetry and engagement metrics.'}
           </p>
 
           <form onSubmit={handleUnlock} className="mt-8 space-y-4">
@@ -126,32 +195,56 @@ export default function PulseDashboard() {
                 type="password"
                 inputMode="numeric"
                 maxLength={8}
+                disabled={lockout.isLocked || isVerifying}
                 value={passcodeInput}
                 onChange={(e) => {
                   setPasscodeInput(e.target.value);
-                  if (passcodeError) setPasscodeError(false);
+                  if (errorMsg) setErrorMsg('');
                 }}
-                placeholder="Passcode"
+                placeholder={lockout.isLocked ? 'Locked' : 'Passcode'}
                 className={`w-full px-4 py-3.5 text-center text-2xl tracking-[0.6em] font-mono rounded-xl bg-white/[0.04] border text-white placeholder:text-gray-600 focus:outline-none transition-all ${
-                  passcodeError
+                  lockout.isLocked
+                    ? 'border-rose-500/50 bg-rose-500/10 text-rose-300 cursor-not-allowed opacity-60'
+                    : errorMsg
                     ? 'border-rose-500/80 bg-rose-500/5 focus:border-rose-500'
                     : 'border-white/10 focus:border-emerald-500/50 focus:bg-white/[0.06]'
                 }`}
               />
-              {passcodeError && (
-                <div className="flex items-center justify-center gap-1.5 text-xs text-rose-400 font-mono mt-2.5">
-                  <AlertCircle className="w-3.5 h-3.5" />
-                  <span>Access Denied: Incorrect passcode</span>
+              {errorMsg && (
+                <div className={`flex items-center justify-center gap-1.5 text-xs font-mono mt-2.5 text-center px-2 ${
+                  lockout.isLocked ? 'text-rose-400 font-semibold' : 'text-rose-400'
+                }`}>
+                  {lockout.isLocked ? <Clock className="w-3.5 h-3.5 flex-shrink-0 animate-pulse" /> : <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />}
+                  <span>{errorMsg}</span>
                 </div>
               )}
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-medium text-sm transition-all duration-200 shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]"
+              disabled={lockout.isLocked || isVerifying}
+              className={`w-full py-3.5 rounded-xl font-medium text-sm transition-all duration-200 shadow-lg flex items-center justify-center gap-2 ${
+                lockout.isLocked || isVerifying
+                  ? 'bg-white/10 text-gray-500 cursor-not-allowed opacity-50'
+                  : 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-500/20 hover:scale-[1.01] active:scale-[0.99]'
+              }`}
             >
-              <span>Authenticate & Enter</span>
-              <ArrowRight className="w-4 h-4" />
+              {isVerifying ? (
+                <>
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <span>Verifying SHA-256…</span>
+                </>
+              ) : lockout.isLocked ? (
+                <>
+                  <Clock className="w-4 h-4" />
+                  <span>Lockout Active ({lockout.remainingSeconds}s)</span>
+                </>
+              ) : (
+                <>
+                  <span>Authenticate & Enter</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
             </button>
           </form>
 
@@ -159,7 +252,7 @@ export default function PulseDashboard() {
             <Link to="/" className="hover:text-white transition-colors flex items-center gap-1.5">
               <ArrowLeft className="w-3.5 h-3.5" /> Back to Website
             </Link>
-            <span className="font-mono text-[10px] text-gray-600">Flik Protocol 2.4</span>
+            <span className="font-mono text-[10px] text-gray-600">Flik Cryptographic Shield 2.4</span>
           </div>
         </div>
       </div>

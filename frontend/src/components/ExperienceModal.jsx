@@ -25,6 +25,8 @@ const ExperienceModal = ({ open, onOpenChange, title, subtitle, src }) => (
         data-testid="experience-iframe"
         src={open ? src : 'about:blank'}
         title={title}
+        sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"
+        referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-full border-0"
         allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope; magnetometer; camera; microphone"
         allowFullScreen

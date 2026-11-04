@@ -52,6 +52,8 @@ const ExperienceCard = ({ experience, onFullscreen }) => {
           src={experience.src}
           title={experience.title}
           loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"
+          referrerPolicy="no-referrer-when-downgrade"
           onLoad={() => {
             setLoaded(true);
             telemetry.experienceInteract(experience.id, 'loaded');

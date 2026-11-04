@@ -7,6 +7,13 @@ import ContactIntro from './contact/ContactIntro';
 import ContactFormFields from './contact/ContactFormFields';
 import ContactSuccess from './contact/ContactSuccess';
 import { telemetry, generateLeadSessionSummary } from '../utils/telemetry';
+import {
+  sanitizeInput,
+  validateEmail,
+  validatePhone,
+  checkLeadSubmissionRate,
+  recordLeadSubmission,
+} from '../utils/security';
 
 const CONTACT_EMAIL = contactData.email;
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
@@ -31,16 +38,22 @@ const initialState = {
 
 const buildPayload = (form) => {
   const sessionSummary = generateLeadSessionSummary();
+  const cleanFullName = sanitizeInput(form.fullName, 100);
+  const cleanPhone = sanitizeInput(form.phone, 30);
+  const cleanEmail = sanitizeInput(form.email, 100);
+  const cleanInterest = sanitizeInput(form.interest, 100);
+  const cleanMessage = sanitizeInput(form.message, 1000);
+
   return {
     access_key: WEB3FORMS_KEY,
-    subject: `New Flik Explorer enquiry — ${form.fullName || 'Website'} [${sessionSummary['Traffic Source']}]`,
+    subject: `New Flik Explorer enquiry — ${cleanFullName || 'Website'} [${sessionSummary['Traffic Source']}]`,
     from_name: 'Flik Explorer Platform',
-    replyto: form.email,
-    'Full Name': form.fullName,
-    Phone: form.phone || '—',
-    Email: form.email,
-    Interest: form.interest || '—',
-    Message: form.message || '—',
+    replyto: cleanEmail,
+    'Full Name': cleanFullName,
+    Phone: cleanPhone || '—',
+    Email: cleanEmail,
+    Interest: cleanInterest || '—',
+    Message: cleanMessage || '—',
     // Telemetry and Attribution Context for Sales Team
     '--- BUYER TELEMETRY ---': '----------------------------------',
     'Traffic Source': sessionSummary['Traffic Source'],
@@ -73,10 +86,31 @@ const ContactSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.fullName.trim() || !form.email.trim()) {
+    const cleanFullName = sanitizeInput(form.fullName, 100);
+    const cleanEmail = sanitizeInput(form.email, 100);
+    const cleanPhone = sanitizeInput(form.phone, 30);
+
+    if (!cleanFullName || !cleanEmail) {
       setError('Please share your name and email so we can reach back.');
       return;
     }
+
+    if (!validateEmail(cleanEmail)) {
+      setError('Please enter a valid work email address.');
+      return;
+    }
+
+    if (cleanPhone && !validatePhone(cleanPhone)) {
+      setError('Please enter a valid phone number format.');
+      return;
+    }
+
+    const rateCheck = checkLeadSubmissionRate();
+    if (!rateCheck.allowed) {
+      setError(`Too many requests. Please wait ${Math.ceil(rateCheck.remainingSeconds / 60)} minutes before submitting again.`);
+      return;
+    }
+
     setSubmitting(true);
     setError('');
     try {
@@ -85,6 +119,7 @@ const ContactSection = () => {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       });
       if (data?.success) {
+        recordLeadSubmission();
         setSubmitted(true);
         telemetry.leadFormSubmitted('contact_section', form);
       } else {

@@ -5,6 +5,12 @@ import { Dialog, DialogContent } from './ui/dialog';
 import LeadFormBody from './lead-form/LeadFormBody';
 import LeadFormSuccess from './lead-form/LeadFormSuccess';
 import { telemetry, generateLeadSessionSummary } from '../utils/telemetry';
+import {
+  sanitizeInput,
+  validateEmail,
+  checkLeadSubmissionRate,
+  recordLeadSubmission,
+} from '../utils/security';
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const WEB3FORMS_KEY = process.env.REACT_APP_WEB3FORMS_KEY;
@@ -20,17 +26,23 @@ const initialState = {
 
 const buildPayload = (form, source) => {
   const sessionSummary = generateLeadSessionSummary();
+  const cleanName = sanitizeInput(form.name, 100);
+  const cleanEmail = sanitizeInput(form.email, 100);
+  const cleanCompany = sanitizeInput(form.company, 100);
+  const cleanProject = sanitizeInput(form.project, 100);
+  const cleanMessage = sanitizeInput(form.message, 1000);
+
   return {
     access_key: WEB3FORMS_KEY,
-    subject: `New Flik Explorer demo request — ${form.name || 'Website'} [${sessionSummary['Traffic Source']}]`,
+    subject: `New Flik Explorer demo request — ${cleanName || 'Website'} [${sessionSummary['Traffic Source']}]`,
     from_name: 'Flik Explorer Platform',
-    replyto: form.email,
+    replyto: cleanEmail,
     Source: source,
-    Name: form.name,
-    Email: form.email,
-    Company: form.company || '—',
-    Project: form.project || '—',
-    'What they want to see': form.message || '—',
+    Name: cleanName,
+    Email: cleanEmail,
+    Company: cleanCompany || '—',
+    Project: cleanProject || '—',
+    'What they want to see': cleanMessage || '—',
     // Telemetry and Attribution Context for Sales Team
     '--- BUYER TELEMETRY ---': '----------------------------------',
     'Traffic Source': sessionSummary['Traffic Source'],
@@ -86,10 +98,25 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      if (!form.name.trim() || !form.email.trim()) {
+      const cleanName = sanitizeInput(form.name, 100);
+      const cleanEmail = sanitizeInput(form.email, 100);
+
+      if (!cleanName || !cleanEmail) {
         toast.error('Please share your name and email.');
         return;
       }
+
+      if (!validateEmail(cleanEmail)) {
+        toast.error('Please enter a valid work email address.');
+        return;
+      }
+
+      const rateCheck = checkLeadSubmissionRate();
+      if (!rateCheck.allowed) {
+        toast.error(`Submission limit reached. Please wait ${Math.ceil(rateCheck.remainingSeconds / 60)} minutes before trying again.`);
+        return;
+      }
+
       setSubmitting(true);
       try {
         const payload = buildPayload(form, source);
@@ -99,6 +126,7 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
           { headers: { 'Content-Type': 'application/json', Accept: 'application/json' } }
         );
         if (data?.success) {
+          recordLeadSubmission();
           setSubmitted(true);
           telemetry.leadFormSubmitted(source, form);
           toast.success('Demo request sent. Our team will reach out shortly.');
