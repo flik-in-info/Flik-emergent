@@ -13,34 +13,50 @@ const STARTUP_PROGRAMS = [
   {
     id: 'nvidia',
     category: 'Spatial Computing',
-    badge: '/nvidia-inception-program-badge-rgb-for-screen.svg',
+    status: 'Member',
+    badge: '/nvidia-inception-dark-badge.svg',
     alt: 'NVIDIA Inception Program member badge',
     href: 'https://www.nvidia.com/en-us/startups/',
-    description: 'Flik is a member of the NVIDIA Inception program.',
+    borderColor: 'hover:border-[#76B900]/50 hover:shadow-[0_0_30px_rgba(118,185,0,0.15)]',
+    glowColor: 'bg-[#76B900]/10 group-hover:bg-[#76B900]/25',
+    tagColor: 'text-emerald-400',
+    description: 'Accelerated GPU computing, neural radiance caching, and enterprise edge rendering.',
   },
   {
     id: 'aws',
     category: 'Cloud Infrastructure',
+    status: 'Activate',
     badge: '/aws-startups-program-badge.svg',
     alt: 'AWS Activate Program member badge',
     href: 'https://aws.amazon.com/startups/',
-    description: 'Flik is a member of the AWS Activate startup program.',
+    borderColor: 'hover:border-[#FF9900]/50 hover:shadow-[0_0_30px_rgba(255,153,0,0.15)]',
+    glowColor: 'bg-[#FF9900]/10 group-hover:bg-[#FF9900]/25',
+    tagColor: 'text-amber-400',
+    description: 'Global CloudFront edge delivery, ultra-low latency compute clusters, and 99.9% uptime SLA.',
   },
   {
     id: 'claude',
     category: 'Frontier AI',
+    status: 'Startups',
     badge: '/claude-startups-program-badge.svg',
     alt: 'Claude Startups Program member badge',
     href: 'https://www.anthropic.com/',
-    description: 'Flik is a member of the Claude Startups program by Anthropic.',
+    borderColor: 'hover:border-[#D97757]/50 hover:shadow-[0_0_30px_rgba(217,119,87,0.15)]',
+    glowColor: 'bg-[#D97757]/10 group-hover:bg-[#D97757]/25',
+    tagColor: 'text-[#D97757]',
+    description: 'Domain reasoning, automated floorplan intelligence, and deep conversational buyer context.',
   },
   {
     id: 'elevenlabs',
-    category: 'Voice & Multilingual AI',
+    category: 'Generative Audio',
+    status: 'Grant',
     badge: '/elevenlabs-grants-program-badge.svg',
     alt: 'ElevenLabs Startup Grants recipient badge',
     href: 'https://elevenlabs.io/startups',
-    description: 'Flik is a recipient of the ElevenLabs Startup Grants program.',
+    borderColor: 'hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]',
+    glowColor: 'bg-purple-500/10 group-hover:bg-purple-500/25',
+    tagColor: 'text-purple-400',
+    description: 'Human-parity multilingual voice guidance across 29+ languages for real-time buyer tours.',
   },
 ];
 
@@ -164,49 +180,75 @@ const Footer = () => {
 
       {/* Global Startup Accelerator & Grant Programs */}
       <div className="border-t border-white/5 bg-white/[0.01]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
-              <span className="text-emerald-400 text-xs font-mono tracking-widest uppercase block mb-1.5">
-                Global Accelerator & Frontier Technology Ecosystem
-              </span>
-              <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight">
-                Official Startup & Accelerator Programs
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Global Accelerator & Frontier Ecosystem
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight">
+                Backed by Global Technology Giants
               </h3>
             </div>
-            <p className="text-xs text-gray-400 max-w-md leading-relaxed font-light">
-              Flik Explorer is officially backed and accelerated by global frontier computing, cloud infrastructure, and generative AI startup ecosystems.
+            <p className="text-xs sm:text-sm text-gray-400 max-w-md leading-relaxed font-light">
+              Flik Explorer is officially accelerated and backed by the world's premier spatial computing, cloud infrastructure, and frontier AI startup ecosystems.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {STARTUP_PROGRAMS.map(({ id, category, alt, badge, href, description }) => (
-              <div
+            {STARTUP_PROGRAMS.map(({ id, category, status, badge, alt, href, borderColor, glowColor, tagColor, description }) => (
+              <a
                 key={id}
-                className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-emerald-500/30 transition-all duration-300 flex flex-col justify-between"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group relative p-6 rounded-2xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 ${borderColor} transition-all duration-500 flex flex-col justify-between overflow-hidden`}
               >
+                {/* Brand Aura Glow */}
+                <div className={`absolute -top-12 -right-12 w-32 h-32 ${glowColor} rounded-full blur-2xl pointer-events-none transition-all duration-500`} />
+
                 <div>
-                  <span className="text-[10px] font-mono tracking-wider uppercase text-emerald-400/90 block mb-3.5">
-                    {category}
-                  </span>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block shrink-0 focus:outline-none"
-                  >
+                  <div className="flex items-center justify-between gap-2 mb-6">
+                    <span className={`text-[10px] font-mono tracking-widest uppercase ${tagColor} font-medium`}>
+                      {category}
+                    </span>
+                    <span className="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-white/[0.05] text-gray-300 border border-white/10 group-hover:border-white/20 transition-colors">
+                      {status}
+                    </span>
+                  </div>
+
+                  {/* Brand Logo Lockup */}
+                  <div className="py-1">
                     <img
                       src={badge}
                       alt={alt}
-                      className="w-[124px] sm:w-[130px] h-auto object-contain"
+                      className="h-9 sm:h-10 w-auto object-contain filter group-hover:brightness-110 transition-all duration-300"
                     />
-                  </a>
+                  </div>
                 </div>
-                <p className="text-xs text-gray-400 mt-4 leading-relaxed font-light">
+
+                <p className="text-xs text-gray-400 mt-6 leading-relaxed font-light group-hover:text-gray-300 transition-colors">
                   {description}
                 </p>
-              </div>
+              </a>
             ))}
+          </div>
+
+          {/* Pedigree Endorsement Strip */}
+          <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-light">
+            <p className="leading-relaxed text-center sm:text-left">
+              Flik is an official member of NVIDIA Inception, AWS Activate, and Claude Startups, and a recipient of the ElevenLabs Startup Grant.
+            </p>
+            <div className="flex items-center gap-3 sm:gap-4 shrink-0 text-gray-600 font-mono text-[10px] uppercase tracking-wider">
+              <span>DLSS 3.5 & RTX</span>
+              <span>·</span>
+              <span>AWS CloudFront</span>
+              <span>·</span>
+              <span>Claude 3.7 Sonnet</span>
+              <span>·</span>
+              <span>ElevenLabs TTS</span>
+            </div>
           </div>
         </div>
       </div>

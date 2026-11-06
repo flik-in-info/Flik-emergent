@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" fill="none">
+  <!-- NVIDIA Eye Mark + Wordmark -->
+  <g transform="translate(14, 16)">
+    <!-- Green Eye Icon -->
+    <g transform="translate(0, 0) scale(0.48)">
+      <path d="M52.3 35.8v-4.6c.4 0 .9-.1 1.4-.1 12.6-.4 20.9 10.8 20.9 10.8s-8.9 12.4-18.5 12.4c-1.4 0-2.6-.2-3.7-.6V39.9c4.9.6 5.9 2.8 8.8 7.7l6.6-5.5s-4.8-6.3-12.9-6.3c-.9 0-1.7.1-2.6.2m0-15.2v6.9c.5 0 .9-.1 1.4-.1 17.5-.6 29 14.4 29 14.4S69.6 57.7 56 57.7c-1.3 0-2.4-.1-3.5-.3v4.3c.9.1 1.9.2 2.9.2 12.7 0 21.9-6.5 30.8-14.2 1.5 1.2 7.5 4.1 8.8 5.3-8.5 7.1-28.2 12.8-39.4 12.8-1.1 0-2.1-.1-3.1-.2V72h48.3V20.6H52.3zm0 33.2v3.6c-11.8-2.1-15-14.3-15-14.3s5.6-6.3 15-7.3v4c0 0 0 0 0 0-4.9-.6-8.8 4-8.8 4s2.2 7.7 8.8 10m-20.9-11.2s7-10.3 20.9-11.3v-3.7c-15.4 1.2-28.8 14.3-28.8 14.3s7.6 21.9 28.8 23.9v-4c-15.6-2-20.9-19.2-20.9-19.2z" fill="#76B900"/>
+    </g>
+    <text x="56" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#ffffff" letter-spacing="0.5">NVIDIA</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="140" y1="18" x2="140" y2="54" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+
+  <!-- Inception Program -->
+  <text x="154" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="-0.3">Inception</text>
+  <text x="154" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#9ca3af" letter-spacing="1.5">PROGRAM</text>
+</svg>

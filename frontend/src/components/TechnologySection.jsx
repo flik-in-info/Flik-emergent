@@ -42,63 +42,68 @@ const TechnologySection = () => {
         </p>
 
         {/* Official Startup Programs Credibility Row */}
-        <div className="mb-14 p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+        <div className="mb-14 p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-white/[0.03] to-white/[0.01] border border-white/10">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
             <div className="max-w-lg">
-              <span className="text-emerald-400 text-xs font-mono tracking-widest uppercase block mb-1">
-                Startup & Accelerator Ecosystem
-              </span>
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-mono tracking-wider uppercase mb-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Official Accelerator & Grant Ecosystem
+              </div>
               <p className="text-sm text-gray-300 font-light leading-relaxed">
-                Flik Explorer is a member of NVIDIA Inception, NVIDIA's program for startups, and officially accelerated by the AWS Activate, Claude Startups (Anthropic), and ElevenLabs Grant programs.
+                Flik Explorer is officially accelerated and backed by global frontier computing programs: NVIDIA Inception, AWS Activate, Claude Startups (Anthropic), and ElevenLabs Startup Grants.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 shrink-0">
               <a
                 href="https://www.nvidia.com/en-us/startups/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block focus:outline-none"
+                className="group px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#76B900]/50 hover:bg-[#76B900]/5 transition-all duration-300 flex items-center justify-center focus:outline-none"
+                title="NVIDIA Inception Program"
               >
                 <img
-                  src="/nvidia-inception-program-badge-rgb-for-screen.svg"
+                  src="/nvidia-inception-dark-badge.svg"
                   alt="NVIDIA Inception Program member badge"
-                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                  className="h-7 sm:h-8 w-auto object-contain filter group-hover:brightness-110 transition-all"
                 />
               </a>
               <a
                 href="https://aws.amazon.com/startups/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block focus:outline-none"
+                className="group px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#FF9900]/50 hover:bg-[#FF9900]/5 transition-all duration-300 flex items-center justify-center focus:outline-none"
+                title="AWS Activate Startup Program"
               >
                 <img
                   src="/aws-startups-program-badge.svg"
                   alt="AWS Activate Program member badge"
-                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                  className="h-7 sm:h-8 w-auto object-contain filter group-hover:brightness-110 transition-all"
                 />
               </a>
               <a
                 href="https://www.anthropic.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block focus:outline-none"
+                className="group px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#D97757]/50 hover:bg-[#D97757]/5 transition-all duration-300 flex items-center justify-center focus:outline-none"
+                title="Claude Startups Program by Anthropic"
               >
                 <img
                   src="/claude-startups-program-badge.svg"
                   alt="Claude Startups Program member badge"
-                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                  className="h-7 sm:h-8 w-auto object-contain filter group-hover:brightness-110 transition-all"
                 />
               </a>
               <a
                 href="https://elevenlabs.io/startups"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block focus:outline-none"
+                className="group px-3.5 py-2 rounded-xl bg-white/[0.02] border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all duration-300 flex items-center justify-center focus:outline-none"
+                title="ElevenLabs Startup Grants Program"
               >
                 <img
                   src="/elevenlabs-grants-program-badge.svg"
                   alt="ElevenLabs Startup Grants recipient badge"
-                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                  className="h-7 sm:h-8 w-auto object-contain filter group-hover:brightness-110 transition-all"
                 />
               </a>
             </div>
