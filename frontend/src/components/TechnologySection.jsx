@@ -41,23 +41,68 @@ const TechnologySection = () => {
           {technologySection.body}
         </p>
 
-        {/* NVIDIA Inception Credibility Row */}
-        <div className="mb-14 p-5 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
-          <a
-            href="https://www.nvidia.com/en-us/startups/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block shrink-0 focus:outline-none"
-          >
-            <img
-              src="/nvidia-inception-program-badge-rgb-for-screen.svg"
-              alt="NVIDIA Inception Program member badge"
-              className="w-[124px] sm:w-[130px] h-auto object-contain"
-            />
-          </a>
-          <p className="text-sm text-gray-400 font-light leading-relaxed">
-            Flik Explorer is a member of NVIDIA Inception, NVIDIA's program for startups.
-          </p>
+        {/* Official Startup Programs Credibility Row */}
+        <div className="mb-14 p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
+            <div className="max-w-lg">
+              <span className="text-emerald-400 text-xs font-mono tracking-widest uppercase block mb-1">
+                Startup & Accelerator Ecosystem
+              </span>
+              <p className="text-sm text-gray-300 font-light leading-relaxed">
+                Flik Explorer is a member of NVIDIA Inception, NVIDIA's program for startups, and officially accelerated by the AWS Activate, Claude Startups (Anthropic), and ElevenLabs Grant programs.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
+              <a
+                href="https://www.nvidia.com/en-us/startups/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block focus:outline-none"
+              >
+                <img
+                  src="/nvidia-inception-program-badge-rgb-for-screen.svg"
+                  alt="NVIDIA Inception Program member badge"
+                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                />
+              </a>
+              <a
+                href="https://aws.amazon.com/startups/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block focus:outline-none"
+              >
+                <img
+                  src="/aws-startups-program-badge.svg"
+                  alt="AWS Activate Program member badge"
+                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                />
+              </a>
+              <a
+                href="https://www.anthropic.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block focus:outline-none"
+              >
+                <img
+                  src="/claude-startups-program-badge.svg"
+                  alt="Claude Startups Program member badge"
+                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                />
+              </a>
+              <a
+                href="https://elevenlabs.io/startups"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block focus:outline-none"
+              >
+                <img
+                  src="/elevenlabs-grants-program-badge.svg"
+                  alt="ElevenLabs Startup Grants recipient badge"
+                  className="w-[118px] sm:w-[126px] h-auto object-contain"
+                />
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Capabilities Grid */}
