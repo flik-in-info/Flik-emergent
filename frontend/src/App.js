@@ -5,16 +5,11 @@ import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import PlatformSection from "./components/PlatformSection";
-import VisualizationSection from "./components/VisualizationSection";
+import PlatformStudio from "./components/PlatformStudio";
 import ExperienceSection from "./components/ExperienceSection";
-import IntelligenceSection from "./components/IntelligenceSection";
 import TechnologySection from "./components/TechnologySection";
-import TeamsSection from "./components/TeamsSection";
-import MetricsSection from "./components/MetricsSection";
 import DifferenceSection from "./components/DifferenceSection";
 import ContactSection from "./components/ContactSection";
-import ClosingCTA from "./components/ClosingCTA";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
@@ -35,23 +30,47 @@ const ScrollToTopAndTelemetry = () => {
   return null;
 };
 
+const ScrollProgressBeam = () => {
+  const [progress, setProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        setProgress(Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)));
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div
+      aria-hidden="true"
+      className="fixed top-0 left-0 right-0 h-[2px] z-[60] pointer-events-none bg-transparent"
+    >
+      <div
+        style={{ width: `${progress}%` }}
+        className="h-full bg-gradient-to-r from-emerald-500 via-teal-300 to-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.75)] transition-[width] duration-75"
+      />
+    </div>
+  );
+};
+
 const LandingPage = () => {
   return (
     <div className="bg-[#0a0a0b] min-h-screen pb-20 lg:pb-0 relative">
+      <ScrollProgressBeam />
       <Header />
       <main>
         <HeroSection />
-        <PlatformSection />
-        <VisualizationSection />
+        <PlatformStudio />
         <ExperienceSection />
-        <IntelligenceSection />
         <TechnologySection />
-        <TeamsSection />
-        <MetricsSection />
         <DifferenceSection />
         <FAQSection />
         <ContactSection />
-        <ClosingCTA />
       </main>
       <Footer />
       <MobileStickyCTA />

@@ -1,266 +1,298 @@
-import React, { useState } from 'react';
-import { Check, X, ArrowRight, Calculator, Sparkles } from 'lucide-react';
-import { differenceSection } from '../data/mock';
-import { useDemoDialog } from '../context/DemoDialogContext';
+import React, { useState, useMemo } from 'react';
+import {
+  Check,
+  X,
+  Calculator,
+  ArrowRight,
+  Zap,
+  Sparkles,
+  TrendingUp
+} from 'lucide-react';
+import { metricsSection } from '../data/mock';
 import { Button } from './ui/button';
+import { useDemoDialog } from '../context/DemoDialogContext';
 import { telemetry } from '../utils/telemetry';
+
+const TICKET_SIZES = [
+  { id: 'mid', label: '₹1 Cr', valueCr: 1.0 },
+  { id: 'luxury', label: '₹2.5 Cr', valueCr: 2.5 },
+  { id: 'ultra', label: '₹5 Cr', valueCr: 5.0 },
+  { id: 'trophy', label: '₹10 Cr+', valueCr: 10.0 }
+];
+
+const COMPARISON_ROWS = [
+  {
+    dimension: 'Pre-Launch Sales',
+    traditional: 'Stalled waiting for physical sample flat completion',
+    flik: 'Day-one immersive 3D tower & view exploration'
+  },
+  {
+    dimension: 'NRI & Outstation Buyers',
+    traditional: 'Low-trust static PDFs & compressed WhatsApp videos',
+    flik: 'Live interactive browser walkthrough link on any device'
+  },
+  {
+    dimension: 'Inventory Status',
+    traditional: 'Spreadsheet confusion and double-pitched units',
+    flik: 'Real-time live tower availability synchronized to CRM'
+  },
+  {
+    dimension: 'Buyer Follow-Up',
+    traditional: 'Guesswork based on handwritten gallery feedback',
+    flik: 'Automatic attention heatmaps & intent lead scoring'
+  },
+  {
+    dimension: 'Sunlight & View Clarity',
+    traditional: 'Unverified angle assumptions from 2D elevation art',
+    flik: 'Floor-by-floor solar angle & skyline accuracy'
+  }
+];
 
 const DifferenceSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
   const [units, setUnits] = useState(250);
-  const [ticketIndex, setTicketIndex] = useState(1);
+  const [ticketId, setTicketId] = useState('luxury');
+  const [focusView, setFocusView] = useState('side-by-side'); // 'side-by-side' | 'flik-only'
 
-  const TICKET_SIZES = [
-    { label: '₹1.5 Cr', baseCost: 2.2, flikCost: 0.22, value: 1.5 },
-    { label: '₹2.5 Cr', baseCost: 3.0, flikCost: 0.28, value: 2.5 },
-    { label: '₹5.0 Cr', baseCost: 4.2, flikCost: 0.38, value: 5.0 },
-    { label: '₹10+ Cr', baseCost: 5.5, flikCost: 0.48, value: 10.0 },
-  ];
+  const selectedTicket = useMemo(
+    () => TICKET_SIZES.find((t) => t.id === ticketId) || TICKET_SIZES[1],
+    [ticketId]
+  );
 
-  const selectedTier = TICKET_SIZES[ticketIndex];
-  const sunkPhysicalCost = selectedTier.baseCost;
-  const flikPlatformCost = selectedTier.flikCost;
-  const netCapitalSaved = (sunkPhysicalCost - flikPlatformCost).toFixed(2);
-  const percentSaved = Math.round(((sunkPhysicalCost - flikPlatformCost) / sunkPhysicalCost) * 100);
+  const metrics = useMemo(() => {
+    const totalGdvCr = units * selectedTicket.valueCr;
+    // Accelerating pre-sales cycle cuts working-capital carry (~11% p.a.) across faster absorption window
+    const velocityMonthsSaved = Math.max(4, Math.min(11, Math.round(4 + units / 160)));
+    const carryingCostSavedCr = Number(((totalGdvCr * 0.085 * velocityMonthsSaved) / 12).toFixed(1));
+    const additionalConversions = Math.max(8, Math.round(units * 0.14));
 
-  const handleSliderChange = (e) => {
-    const val = Number(e.target.value);
-    setUnits(val);
-    telemetry.roiSimulated(val, selectedTier.label, netCapitalSaved);
-  };
+    return {
+      totalGdvCr,
+      velocityMonthsSaved,
+      carryingCostSavedCr,
+      additionalConversions
+    };
+  }, [units, selectedTicket]);
 
-  const handleTierChange = (idx) => {
-    setTicketIndex(idx);
-    const tier = TICKET_SIZES[idx];
-    const saved = (tier.baseCost - tier.flikCost).toFixed(2);
-    telemetry.roiSimulated(units, tier.label, saved);
+  const handleRoiInteraction = (nextUnits, nextTicket) => {
+    const totalGdv = nextUnits * nextTicket.valueCr;
+    const mSaved = Math.max(4, Math.min(11, Math.round(4 + nextUnits / 160)));
+    const crSaved = Number(((totalGdv * 0.085 * mSaved) / 12).toFixed(1));
+    telemetry.roiSimulated(nextUnits, nextTicket.label, `${crSaved} Cr`);
   };
 
   return (
-    <section id="difference" className="relative py-32 bg-[#0a0a0b] overflow-hidden">
-      {/* Background radial glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-emerald-500/5 blur-[140px] pointer-events-none" />
-
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium uppercase tracking-widest mb-6">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Developer Economics · Sunk Capital Recovery</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight mb-6">
-            The sample flat is dead. <br />
-            <span className="font-normal text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200">
-              Here is what replaces it.
-            </span>
-          </h2>
-          <p className="text-lg text-gray-400 leading-relaxed">
-            Real estate developers spend crores constructing temporary physical sample flats that show only one fixed layout and get demolished once sold out. Flik Explorer replaces that with an ongoing, interactive digital twin platform.
-          </p>
-        </div>
-
-        {/* Side-by-Side Model Cards */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-20">
-          {/* Obsolete Physical Model */}
-          <div className="rounded-2xl p-8 bg-red-500/[0.02] border border-red-500/20 relative flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-xs uppercase tracking-wider text-red-400 font-mono font-medium">Obsolete Method</span>
-                <span className="px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-mono">₹2–5 Cr Sunk Capex</span>
-              </div>
-              <h3 className="text-2xl font-light text-white mb-4">Physical Sample Flat</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                Constructed on podiums or ground-level lots, physical sample flats tie up millions in capital, show only one layout, and cannot be seen by remote buyers.
-              </p>
-
-              <ul className="space-y-3.5 mb-8 text-sm text-gray-400">
-                <li className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-red-400/80 shrink-0 mt-0.5" />
-                  <span><strong>Capital Expenditure:</strong> ₹2.0 to ₹5.0 Crore in upfront construction, luxury interior fit-outs, and maintenance.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-red-400/80 shrink-0 mt-0.5" />
-                  <span><strong>Time to Market:</strong> 3 to 6 months construction delay before sales teams can show anything.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-red-400/80 shrink-0 mt-0.5" />
-                  <span><strong>Buyer Perspective:</strong> Single 1-unit layout. Forces buyers to imagine other floors, views, and configurations.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-red-400/80 shrink-0 mt-0.5" />
-                  <span><strong>Overseas & NRI Reach:</strong> Zero remote access. Overseas buyers must take international flights to visit.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <X className="w-5 h-5 text-red-400/80 shrink-0 mt-0.5" />
-                  <span><strong>Residual Value:</strong> ₹0 demolished asset. Completely destroyed once the tower sells out.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* The Flik Explorer Benchmark */}
-          <div className="rounded-2xl p-8 bg-emerald-500/[0.03] border border-emerald-500/40 relative flex flex-col justify-between shadow-2xl shadow-emerald-500/5">
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-xs uppercase tracking-wider text-emerald-400 font-mono font-medium">The New Benchmark</span>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs font-mono font-medium">{percentSaved}% Cost Cut</span>
-              </div>
-              <h3 className="text-2xl font-light text-white mb-4">Flik Explorer Platform</h3>
-              <p className="text-gray-300 text-sm leading-relaxed mb-6">
-                Photorealistic, browser-native 3D digital twins streamed on any device. Walk every floor, customize finishes, and close overseas NRI buyers instantly.
-              </p>
-
-              <ul className="space-y-3.5 mb-8 text-sm text-gray-300">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Capital Expenditure:</strong> Fraction of physical cost. Preserves ₹2+ Crore in developer capital upfront.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Time to Market:</strong> 2 to 3 weeks turnaround. Begin closing pre-sales months before groundbreak.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Buyer Perspective:</strong> Every floor, unit, view & finish. Explore 2BHK, 3BHK, penthouses, and sunrise sightlines.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Overseas & NRI Reach:</strong> Instant WhatsApp & browser cloud link. Streamed in 4K with zero plugins or apps.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Residual Value:</strong> Permanent digital twin. Reused for pre-sales, tower launches, and buyer handover.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Interactive Developer Sunk Capital & Velocity Simulator */}
-        <div className="rounded-3xl p-5 sm:p-8 lg:p-12 bg-white/[0.02] border border-white/10 backdrop-blur-xl mb-20 shadow-2xl">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10 pb-8 border-b border-white/10">
-            <div>
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono font-medium uppercase tracking-widest mb-2">
-                <Calculator className="w-4 h-4" />
-                <span>Financial Simulator</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-light text-white">Compare Developer Sunk Capital & Velocity</h3>
-              <p className="text-sm text-gray-400 mt-1">Adjust project units and ticket size to calculate exact capital preserved on your upcoming development.</p>
-            </div>
-            <div className="px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-sm">
-              Live ROI Model: 2026 Developer Benchmark
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-12 gap-8 items-center">
-            {/* Controls */}
-            <div className="lg:col-span-6 space-y-6">
-              <div>
-                <div className="flex justify-between text-sm mb-2 font-mono">
-                  <span className="text-gray-400">Total Project Inventory</span>
-                  <span className="text-emerald-400 font-semibold">{units} Units</span>
-                </div>
-                <input
-                  type="range"
-                  min="50"
-                  max="600"
-                  step="25"
-                  value={units}
-                  onChange={handleSliderChange}
-                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-                />
-                <div className="flex justify-between text-[11px] text-gray-500 mt-1 font-mono">
-                  <span>50 (Boutique)</span>
-                  <span>250 (Mid-Rise)</span>
-                  <span>600+ (Flagship)</span>
-                </div>
-              </div>
-
-              <div>
-                <span className="block text-sm text-gray-400 mb-2 font-mono">Average Unit Ticket Size</span>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {TICKET_SIZES.map((tier, idx) => (
-                    <button
-                      key={tier.label}
-                      type="button"
-                      onClick={() => handleTierChange(idx)}
-                      className={`px-3 py-2.5 rounded-xl text-xs font-medium font-mono transition-all duration-300 border ${
-                        ticketIndex === idx
-                          ? 'bg-emerald-500 text-black border-emerald-400 font-bold shadow-lg shadow-emerald-500/20'
-                          : 'bg-white/[0.03] text-gray-400 border-white/10 hover:border-white/20 hover:text-white'
-                      }`}
-                    >
-                      {tier.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Calculations Output */}
-            <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
-              <div className="rounded-2xl p-6 bg-white/[0.03] border border-white/10">
-                <span className="text-xs text-gray-400 font-mono uppercase tracking-wider block mb-2">Physical Sample Flat</span>
-                <p className="text-3xl font-light text-red-400 font-mono">₹{sunkPhysicalCost.toFixed(2)} Cr</p>
-                <p className="text-xs text-gray-500 mt-2">100% Sunk cost: 3–6 mo delay with zero residual value.</p>
-              </div>
-
-              <div className="rounded-2xl p-6 bg-emerald-500/10 border border-emerald-500/30">
-                <span className="text-xs text-emerald-400 font-mono uppercase tracking-wider block mb-2">Flik Digital Twin</span>
-                <p className="text-3xl font-light text-emerald-300 font-mono">₹{flikPlatformCost.toFixed(2)} Cr</p>
-                <p className="text-xs text-emerald-400/80 mt-2">All units, all views, deployed in 14 days.</p>
-              </div>
-
-              <div className="sm:col-span-2 rounded-2xl p-6 bg-gradient-to-r from-emerald-500/20 via-emerald-500/10 to-transparent border border-emerald-500/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                  <span className="text-xs text-emerald-400 font-mono uppercase tracking-wider block">Estimated Net Sunk Capital Saved</span>
-                  <p className="text-3xl sm:text-4xl font-normal text-white font-mono mt-1">₹{netCapitalSaved} Crore</p>
-                </div>
-                <Button
-                  onClick={() => {
-                    telemetry.ctaClick('Lock in Developer ROI', 'difference_section');
-                    openDemoDialog('difference_roi');
-                  }}
-                  className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-6 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/30 shrink-0"
-                >
-                  <span>Lock in Developer ROI</span>
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Comparison Table */}
-        <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.01]">
-          {/* Header */}
-          <div className="grid grid-cols-2 bg-white/[0.04]">
-            <div className="p-6 text-center border-r border-white/10">
-              <span className="text-gray-400 font-medium">Physical Sample Flat / 2D Brochure</span>
-            </div>
-            <div className="p-6 text-center bg-emerald-500/10">
-              <span className="text-emerald-400 font-medium">Flik Explorer Sales Operating System</span>
-            </div>
-          </div>
-          
-          {/* Rows */}
-          {differenceSection.comparison.map((row, index) => (
+    <section
+      id="difference"
+      className="scroll-mt-20 relative py-14 lg:py-16 bg-[#08080b] border-t border-white/[0.06] overflow-hidden"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent"
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Merged High-Impact KPI Proof Strip */}
+        <div className="mb-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {(metricsSection.metrics || []).map((metric) => (
             <div
-              key={row.flik}
-              className={`grid grid-cols-2 ${
-                index !== differenceSection.comparison.length - 1 ? 'border-b border-white/10' : ''
-              }`}
+              key={metric.label}
+              className="p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#111116] to-[#0b0b0f] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-emerald-500/35 transition-all duration-300 flex flex-col justify-between"
             >
-              <div className="p-6 flex items-center justify-center gap-3 border-r border-white/10 bg-white/[0.01]">
-                <X className="w-5 h-5 text-red-400/80 shrink-0" />
-                <span className="text-gray-400 text-sm text-center">{row.traditional}</span>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-light bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent tracking-tight mb-1.5">
+                {metric.value}
               </div>
-              <div className="p-6 flex items-center justify-center gap-3 bg-emerald-500/[0.02]">
-                <Check className="w-5 h-5 text-emerald-400 shrink-0" />
-                <span className="text-white text-sm font-medium text-center">{row.flik}</span>
-              </div>
+              <div className="text-xs sm:text-sm font-medium text-white">{metric.label}</div>
+              <div className="text-[11px] text-gray-400 mt-1 line-clamp-2">{metric.description}</div>
             </div>
           ))}
+        </div>
+
+        {/* Section Heading */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+          <div>
+            <span className="text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] block mb-2.5">
+              Why Leading Developers Switch
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
+              Static brochures cost velocity.
+              <span className="block bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent">
+                Quantify the Flik uplift.
+              </span>
+            </h2>
+          </div>
+
+          <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 self-start lg:self-auto">
+            <button
+              type="button"
+              onClick={() => setFocusView('side-by-side')}
+              className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                focusView === 'side-by-side'
+                  ? 'bg-white text-black font-semibold'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Before vs After
+            </button>
+            <button
+              type="button"
+              onClick={() => setFocusView('flik-only')}
+              className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                focusView === 'flik-only'
+                  ? 'bg-emerald-500 text-black font-semibold'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Flik Advantage Only
+            </button>
+          </div>
+        </div>
+
+        {/* Asymmetric 2-Column Value & ROI Workbench */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* Left: Compact Interactive Comparison Matrix */}
+          <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-[#101014] border border-white/10 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-gray-400">
+                  <Sparkles className="w-4 h-4 text-emerald-400" />
+                  <span>Sales Workflow Contrast</span>
+                </div>
+                <span className="text-[11px] font-mono text-emerald-400">5 Core Pillars</span>
+              </div>
+
+              <div className="space-y-3">
+                {COMPARISON_ROWS.map((row) => (
+                  <div
+                    key={row.dimension}
+                    className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-colors"
+                  >
+                    <div className="text-xs font-semibold text-white mb-2">{row.dimension}</div>
+                    <div className={`grid gap-2.5 ${focusView === 'side-by-side' ? 'sm:grid-cols-2' : 'grid-cols-1'}`}>
+                      {focusView === 'side-by-side' && (
+                        <div className="flex items-start gap-2 text-xs text-gray-500">
+                          <X className="w-3.5 h-3.5 text-rose-400/80 shrink-0 mt-0.5" />
+                          <span>{row.traditional}</span>
+                        </div>
+                      )}
+                      <div className="flex items-start gap-2 text-xs text-emerald-300 font-medium">
+                        <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{row.flik}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Live Developer ROI Simulator */}
+          <div className="lg:col-span-6 p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#111514] via-[#0e1013] to-[#0c0c10] border border-emerald-500/25 shadow-[0_0_50px_rgba(16,185,129,0.08)] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[11px] font-mono uppercase tracking-wider">
+                  <Calculator className="w-3.5 h-3.5" />
+                  <span>Live ROI Simulator</span>
+                </div>
+                <span className="text-xs font-mono text-gray-400">GDV: ₹{metrics.totalGdvCr.toLocaleString('en-IN')} Cr</span>
+              </div>
+
+              {/* Project Units Slider */}
+              <div className="mb-5">
+                <div className="flex items-center justify-between mb-2">
+                  <label htmlFor="roi-units-slider" className="text-xs font-medium text-gray-300">
+                    Project Inventory Size
+                  </label>
+                  <span className="text-sm font-mono font-bold text-white">{units} Units</span>
+                </div>
+                <input
+                  id="roi-units-slider"
+                  type="range"
+                  min={50}
+                  max={1000}
+                  step={25}
+                  value={units}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    setUnits(val);
+                    handleRoiInteraction(val, selectedTicket);
+                  }}
+                  className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-white/15 accent-emerald-400"
+                />
+                <div className="flex justify-between text-[10px] font-mono text-gray-500 mt-1">
+                  <span>50 Units</span>
+                  <span>500 Units</span>
+                  <span>1,000 Units</span>
+                </div>
+              </div>
+
+              {/* Ticket Size Selector */}
+              <div className="mb-6">
+                <div className="text-xs font-medium text-gray-300 mb-2">Average Unit Ticket Size</div>
+                <div className="grid grid-cols-4 gap-2">
+                  {TICKET_SIZES.map((tier) => {
+                    const active = tier.id === ticketId;
+                    return (
+                      <button
+                        key={tier.id}
+                        type="button"
+                        onClick={() => {
+                          setTicketId(tier.id);
+                          handleRoiInteraction(units, tier);
+                        }}
+                        className={`py-2 px-2 rounded-xl text-xs font-mono border transition-all cursor-pointer ${
+                          active
+                            ? 'bg-emerald-500 text-black font-bold border-emerald-400 shadow-lg shadow-emerald-500/20'
+                            : 'bg-white/[0.03] border-white/10 text-gray-300 hover:border-white/25'
+                        }`}
+                      >
+                        {tier.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Projected Outcomes Grid */}
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="p-3.5 rounded-xl bg-black/50 border border-emerald-500/20">
+                  <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Carry Cost Saved</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-emerald-400 font-mono">
+                    ₹{metrics.carryingCostSavedCr} Cr
+                  </div>
+                </div>
+                <div className="p-3.5 rounded-xl bg-black/50 border border-white/10">
+                  <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Cycle Reduction</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
+                    {metrics.velocityMonthsSaved} <span className="text-xs text-gray-400 font-normal">mos</span>
+                  </div>
+                </div>
+                <div className="p-3.5 rounded-xl bg-black/50 border border-white/10">
+                  <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Extra Bookings</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
+                    +{metrics.additionalConversions}
+                    <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2 text-xs text-gray-400">
+                <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>Model based on historical developer velocity gains</span>
+              </div>
+              <Button
+                onClick={() => {
+                  telemetry.ctaClick('Request Custom ROI Model', 'difference_roi');
+                  openDemoDialog('roi_simulator');
+                }}
+                className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-5 py-2.5 cursor-pointer shrink-0"
+              >
+                Get Project ROI Report
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

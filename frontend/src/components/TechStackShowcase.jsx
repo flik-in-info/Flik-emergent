@@ -457,25 +457,25 @@ const TechStackShowcase = () => {
   }, [selectedLayer]);
 
   return (
-    <div className="mt-28 pt-20 border-t border-white/5 relative overflow-hidden" id="industry-leaders">
+    <div className="mt-10 pt-10 border-t border-white/5 relative overflow-hidden" id="industry-leaders">
       {/* Background Volumetric Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] sm:w-[1100px] h-[650px] bg-gradient-to-tr from-emerald-500/[0.05] via-cyan-500/[0.03] to-purple-500/[0.02] blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] sm:w-[1100px] h-[550px] bg-gradient-to-tr from-emerald-500/[0.05] via-cyan-500/[0.03] to-purple-500/[0.02] blur-[150px] rounded-full pointer-events-none" />
 
       {/* Cybernetic Section Header */}
-      <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14 relative px-4">
+      <div className="text-center max-w-4xl mx-auto mb-6 sm:mb-8 relative px-4">
         {/* Live Status Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono tracking-widest uppercase mb-5 shadow-[0_0_25px_rgba(16,185,129,0.2)]">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono tracking-widest uppercase mb-4 shadow-[0_0_25px_rgba(16,185,129,0.2)]">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
           <span>Enterprise Integration Ecosystem</span>
           <span className="text-white/30">•</span>
           <span className="text-emerald-300 font-semibold">14/14 Protocols Online</span>
         </div>
 
-        <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight">
+        <h3 className="text-2xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">
           Powered by Industry Leaders
         </h3>
 
-        <p className="text-gray-400 text-sm sm:text-lg mt-4 leading-relaxed max-w-2xl mx-auto font-light">
+        <p className="text-gray-400 text-sm sm:text-base mt-3 leading-relaxed max-w-2xl mx-auto font-light">
           Direct engine, hardware, and neural cloud streaming integration delivering cinematic fidelity, sub-50ms latency, and global multi-device immersion.
         </p>
 
@@ -570,7 +570,7 @@ const TechStackShowcase = () => {
             style={{
               perspective: '1200px'
             }}
-            className="hidden md:block relative w-full h-[660px] rounded-3xl bg-[#070709]/90 border border-white/10 backdrop-blur-2xl overflow-hidden shadow-[inset_0_0_100px_rgba(0,0,0,0.9),0_20px_50px_rgba(0,0,0,0.5)]"
+            className="hidden md:block relative w-full h-[510px] rounded-3xl bg-[#070709]/90 border border-white/10 backdrop-blur-2xl overflow-hidden shadow-[inset_0_0_100px_rgba(0,0,0,0.9),0_20px_50px_rgba(0,0,0,0.5)]"
           >
             {/* HTML5 Canvas for Starfield & Flowing Data Photons */}
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-10" />
@@ -613,12 +613,12 @@ const TechStackShowcase = () => {
                 <circle cx="50%" cy="50%" r="320" fill="url(#reactorGlow)" />
 
                 {/* Outer Cybernetic Guideline Rings */}
-                <circle cx="50%" cy="50%" r="135" fill="none" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 6" />
-                <circle cx="50%" cy="50%" r="225" fill="none" stroke="rgba(255,255,255,0.04)" strokeDasharray="5 10" />
-                <circle cx="50%" cy="50%" r="295" fill="none" stroke="rgba(255,255,255,0.025)" strokeDasharray="2 8" />
+                <circle cx="50%" cy="50%" r="120" fill="none" stroke="rgba(255,255,255,0.06)" strokeDasharray="3 6" />
+                <circle cx="50%" cy="50%" r="195" fill="none" stroke="rgba(255,255,255,0.04)" strokeDasharray="5 10" />
+                <circle cx="50%" cy="50%" r="255" fill="none" stroke="rgba(255,255,255,0.025)" strokeDasharray="2 8" />
 
                 {/* Rotating Cybernetic Radar Scanner */}
-                <g transform={`rotate(${radarAngle} 720 330)`}>
+                <g style={{ transform: `rotate(${radarAngle}deg)`, transformOrigin: '50% 50%' }}>
                   <line
                     x1="50%"
                     y1="50%"
@@ -632,10 +632,10 @@ const TechStackShowcase = () => {
                 </g>
 
                 {/* Compass Degree Coordinates */}
-                <text x="50%" y="42" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="9" fontFamily="monospace">
+                <text x="50%" y="32" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="9" fontFamily="monospace">
                   000° NORTH
                 </text>
-                <text x="50%" y="640" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="9" fontFamily="monospace">
+                <text x="50%" y="96%" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="9" fontFamily="monospace">
                   180° SOUTH
                 </text>
                 <text x="35" y="50%" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="9" fontFamily="monospace">
@@ -1010,7 +1010,7 @@ const TechStackShowcase = () => {
       )}
 
       {/* Real-Time Telemetry Ticker Ribbon */}
-      <div className="mt-12 border-y border-white/5 bg-[#08080a]/80 py-3 overflow-hidden relative">
+      <div className="mt-8 border-y border-white/5 bg-[#08080a]/80 py-2.5 overflow-hidden relative">
         <div className="flex items-center gap-8 whitespace-nowrap animate-marquee text-xs font-mono text-gray-400">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -1035,7 +1035,7 @@ const TechStackShowcase = () => {
       </div>
 
       {/* Enterprise Hardware & Zero-Interception Guarantee */}
-      <div className="mt-12 p-6 sm:p-7 rounded-2xl bg-gradient-to-r from-emerald-500/[0.03] via-white/[0.02] to-emerald-500/[0.03] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 max-w-6xl mx-auto px-4">
+      <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-emerald-500/[0.03] via-white/[0.02] to-emerald-500/[0.03] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-5 max-w-6xl mx-auto px-4">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
             <ShieldCheck className="w-6 h-6" />

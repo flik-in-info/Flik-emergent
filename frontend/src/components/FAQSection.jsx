@@ -140,40 +140,6 @@ const FAQSection = () => {
             );
           })}
         </div>
-
-        {/* Still have questions banner */}
-        <div className="mt-16 p-8 rounded-2xl bg-gradient-to-r from-emerald-500/[0.08] to-transparent border border-emerald-500/20 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-lg font-semibold text-white">Have a specific project in mind?</h3>
-            <p className="text-xs text-gray-400">
-              Explore custom ROI modeling and technical blueprints for your residential or commercial development.
-            </p>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <Button
-              onClick={() => {
-                telemetry.ctaClick('Request Live Demo', 'faq_section');
-                openDemoDialog('faq_cta');
-              }}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-2.5 text-xs transition-all duration-300 shadow-md shadow-emerald-500/20"
-            >
-              Request Live Demo
-              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-            </Button>
-            <a
-              href={`https://wa.me/${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-telemetry-loc="faq_banner"
-              onClick={() => telemetry.whatsAppClick('faq_banner')}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 text-gray-300 hover:text-white text-xs font-medium transition-all duration-200"
-            >
-              <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
-              WhatsApp Us
-            </a>
-          </div>
-        </div>
-
       </div>
     </section>
   );

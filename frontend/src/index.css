@@ -219,6 +219,19 @@ html {
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out forwards;
   }
+
+  .animate-marquee {
+    animation: marqueeScroll 28s linear infinite;
+  }
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-35%);
+  }
 }
 
 @keyframes fadeUp {
