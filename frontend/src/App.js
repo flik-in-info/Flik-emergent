@@ -5,6 +5,7 @@ import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
+import ClientsSection from "./components/ClientsSection";
 import PlatformStudio from "./components/PlatformStudio";
 import ExperienceSection from "./components/ExperienceSection";
 import TechnologySection from "./components/TechnologySection";
@@ -65,6 +66,7 @@ const LandingPage = () => {
       <Header />
       <main>
         <HeroSection />
+        <ClientsSection />
         <PlatformStudio />
         <ExperienceSection />
         <TechnologySection />
