@@ -66,13 +66,13 @@ const LandingPage = () => {
       <Header />
       <main>
         <HeroSection />
-        <ClientsSection />
         <PlatformStudio />
         <ExperienceSection />
         <TechnologySection />
         <DifferenceSection />
         <FAQSection />
         <ContactSection />
+        <ClientsSection />
       </main>
       <Footer />
       <MobileStickyCTA />

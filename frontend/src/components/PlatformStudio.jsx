@@ -131,7 +131,7 @@ const PlatformStudio = () => {
   return (
     <section
       id="platform"
-      className="scroll-mt-20 relative py-14 lg:py-18 bg-[#050507] border-t border-white/[0.06] overflow-hidden"
+      className="scroll-mt-20 relative py-10 lg:py-12 bg-[#050507] border-t border-white/[0.06] overflow-hidden"
     >
       <span id="capabilities" className="absolute -top-24" aria-hidden="true" />
       <span id="intelligence" className="absolute -top-24" aria-hidden="true" />
@@ -139,18 +139,18 @@ const PlatformStudio = () => {
 
       <div
         aria-hidden="true"
-        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-[360px] bg-gradient-to-b from-emerald-500/[0.08] via-teal-500/[0.03] to-transparent blur-[120px] rounded-full pointer-events-none"
+        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-gradient-to-b from-emerald-500/[0.08] via-teal-500/[0.03] to-transparent blur-[120px] rounded-full pointer-events-none"
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header & Sleek Switcher */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
           <div>
-            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] mb-2.5">
+            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] mb-1.5">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{activeMeta.eyebrow}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-[1.12]">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight leading-[1.12]">
               {current.headline.map((line, i) => (
                 <span
                   key={line}
@@ -195,27 +195,27 @@ const PlatformStudio = () => {
         </div>
 
         {/* Luxury Split Showcase (Zero Clipped Text / Pristine Uncropped Framing) */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-7 items-stretch">
-          <div className="lg:col-span-5 p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-[#0e0e13] to-[#0a0a0d] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] flex flex-col justify-between gap-5">
+        <div className="grid lg:grid-cols-12 gap-5 items-stretch">
+          <div className="lg:col-span-5 p-5 rounded-3xl bg-gradient-to-b from-[#0e0e13] to-[#0a0a0d] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] flex flex-col justify-between gap-4">
             <div>
-              <p className="text-sm text-gray-300 font-light leading-relaxed mb-5">
+              <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed mb-4">
                 {current.body}
               </p>
 
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {current.items.slice(0, 6).map((item, idx) => (
                   <div
                     key={item.title || idx}
-                    className="group p-3 rounded-2xl bg-white/[0.02] hover:bg-white/[0.045] border border-white/[0.05] hover:border-emerald-500/30 transition-all duration-300"
+                    className="group p-2.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.045] border border-white/[0.05] hover:border-emerald-500/30 transition-all duration-300"
                   >
                     <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                       <div>
-                        <h3 className="text-sm font-medium text-white group-hover:text-emerald-300 transition-colors">
+                        <h3 className="text-xs sm:text-sm font-medium text-white group-hover:text-emerald-300 transition-colors">
                           {item.title}
                         </h3>
                         {item.description && (
-                          <p className="text-xs text-gray-400 leading-relaxed mt-0.5">
+                          <p className="text-[11px] sm:text-xs text-gray-400 leading-snug mt-0.5">
                             {item.description}
                           </p>
                         )}
@@ -226,7 +226,7 @@ const PlatformStudio = () => {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/[0.07] flex items-center justify-between gap-4">
+            <div className="pt-3 border-t border-white/[0.07] flex items-center justify-between gap-3">
               <span className="text-xs text-gray-500">Live tailored project walkthrough</span>
               <Button
                 onClick={() => {
@@ -234,7 +234,7 @@ const PlatformStudio = () => {
                   openDemoDialog(`platform_${activeTab}`);
                 }}
                 size="sm"
-                className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
+                className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-4 py-2 rounded-xl shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
               >
                 Request Demo
                 <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -243,8 +243,8 @@ const PlatformStudio = () => {
           </div>
 
           {/* Right Uncropped Architectural Viewport */}
-          <div className="lg:col-span-7 relative rounded-3xl overflow-hidden border border-white/10 bg-[#070709] p-3 flex flex-col justify-between shadow-[0_25px_70px_-20px_rgba(0,0,0,0.85),0_0_50px_-25px_rgba(16,185,129,0.18)]">
-            <div className="relative w-full aspect-[16/10] flex items-center justify-center">
+          <div className="lg:col-span-7 relative rounded-3xl overflow-hidden border border-white/10 bg-[#070709] p-2.5 flex flex-col justify-between shadow-[0_25px_70px_-20px_rgba(0,0,0,0.85),0_0_50px_-25px_rgba(16,185,129,0.18)]">
+            <div className="relative w-full aspect-[16/9] max-h-[380px] flex items-center justify-center">
               <img
                 key={activeTab}
                 src={current.image}
@@ -253,7 +253,7 @@ const PlatformStudio = () => {
               />
             </div>
 
-            <div className="pt-3 px-2 pb-1 flex flex-wrap items-center justify-between gap-2">
+            <div className="pt-2 px-2 pb-0.5 flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 <span className="text-[11px] font-medium uppercase tracking-widest text-emerald-400">

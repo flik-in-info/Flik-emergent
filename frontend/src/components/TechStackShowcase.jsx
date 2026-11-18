@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { telemetry } from '../utils/telemetry';
 import {
-  ShieldCheck,
   Orbit,
   LayoutGrid,
   Activity,
@@ -457,30 +456,30 @@ const TechStackShowcase = () => {
   }, [selectedLayer]);
 
   return (
-    <div className="mt-10 pt-10 border-t border-white/5 relative overflow-hidden" id="industry-leaders">
+    <div className="relative overflow-hidden" id="industry-leaders">
       {/* Background Volumetric Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] sm:w-[1100px] h-[550px] bg-gradient-to-tr from-emerald-500/[0.05] via-cyan-500/[0.03] to-purple-500/[0.02] blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] sm:w-[1100px] h-[450px] bg-gradient-to-tr from-emerald-500/[0.05] via-cyan-500/[0.03] to-purple-500/[0.02] blur-[150px] rounded-full pointer-events-none" />
 
       {/* Cybernetic Section Header */}
-      <div className="text-center max-w-4xl mx-auto mb-6 sm:mb-8 relative px-4">
+      <div className="text-center max-w-4xl mx-auto mb-5 relative px-4">
         {/* Live Status Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono tracking-widest uppercase mb-4 shadow-[0_0_25px_rgba(16,185,129,0.2)]">
+        <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[11px] font-mono tracking-widest uppercase mb-2.5 shadow-[0_0_25px_rgba(16,185,129,0.2)]">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span>Enterprise Integration Ecosystem</span>
+          <span>Enterprise Technology Stack</span>
           <span className="text-white/30">•</span>
           <span className="text-emerald-300 font-semibold">14/14 Protocols Online</span>
         </div>
 
-        <h3 className="text-2xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight leading-tight">
           Powered by Industry Leaders
-        </h3>
+        </h2>
 
-        <p className="text-gray-400 text-sm sm:text-base mt-3 leading-relaxed max-w-2xl mx-auto font-light">
-          Direct engine, hardware, and neural cloud streaming integration delivering cinematic fidelity, sub-50ms latency, and global multi-device immersion.
+        <p className="text-gray-400 text-xs sm:text-sm mt-2 leading-relaxed max-w-2xl mx-auto font-light">
+          Direct Unreal Engine 5, hardware, and neural cloud streaming delivering cinema fidelity and sub-50ms latency worldwide.
         </p>
 
         {/* View Switcher & Live Tour Control */}
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
           <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-xl">
             <button
               onClick={() => {
@@ -533,7 +532,7 @@ const TechStackShowcase = () => {
         </div>
 
         {/* Architectural Layer Filter Chips */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+        <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5">
           {ARCHITECTURE_LAYERS.map((layer) => {
             const isCurrent = selectedLayer === layer.id;
             const Icon = layer.icon;
@@ -544,7 +543,7 @@ const TechStackShowcase = () => {
                   setSelectedLayer(layer.id);
                   telemetry.ctaClick(`tech_layer_${layer.id}`);
                 }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all duration-300 border ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-mono transition-all duration-300 border ${
                   isCurrent
                     ? 'bg-white/[0.1] border-emerald-400/50 text-white shadow-[0_0_15px_rgba(16,185,129,0.2)]'
                     : 'bg-transparent border-white/5 text-gray-500 hover:text-gray-300 hover:border-white/10'
@@ -570,7 +569,7 @@ const TechStackShowcase = () => {
             style={{
               perspective: '1200px'
             }}
-            className="hidden md:block relative w-full h-[510px] rounded-3xl bg-[#070709]/90 border border-white/10 backdrop-blur-2xl overflow-hidden shadow-[inset_0_0_100px_rgba(0,0,0,0.9),0_20px_50px_rgba(0,0,0,0.5)]"
+            className="hidden md:block relative w-full h-[395px] rounded-3xl bg-[#070709]/90 border border-white/10 backdrop-blur-2xl overflow-hidden shadow-[inset_0_0_100px_rgba(0,0,0,0.9),0_20px_50px_rgba(0,0,0,0.5)]"
           >
             {/* HTML5 Canvas for Starfield & Flowing Data Photons */}
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-10" />
@@ -752,7 +751,7 @@ const TechStackShowcase = () => {
                           ? `0 0 35px ${partner.glow}, inset 0 0 15px ${partner.glow}`
                           : undefined
                       }}
-                      className={`relative p-3.5 sm:p-4 rounded-2xl border backdrop-blur-xl flex items-center justify-center transition-all duration-300 ${
+                      className={`relative p-2.5 sm:p-3 rounded-xl border backdrop-blur-xl flex items-center justify-center transition-all duration-300 ${
                         isSelected
                           ? 'bg-white/[0.14] text-white ring-1'
                           : 'bg-white/[0.04] border-white/10 hover:border-white/30 hover:bg-white/[0.08] text-gray-300 hover:text-white shadow-[0_8px_25px_rgba(0,0,0,0.6)]'
@@ -845,7 +844,7 @@ const TechStackShowcase = () => {
               borderColor: `${activePartner.accent}40`,
               boxShadow: `0 10px 40px -10px ${activePartner.glow}`
             }}
-            className="mt-6 p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#0c0c10] via-[#0e0e14] to-[#0c0c10] border backdrop-blur-2xl relative transition-all duration-500 shadow-2xl"
+            className="mt-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#0c0c10] via-[#0e0e14] to-[#0c0c10] border backdrop-blur-2xl relative transition-all duration-500 shadow-2xl"
           >
             {/* Top Accent Strip */}
             <div
@@ -853,22 +852,22 @@ const TechStackShowcase = () => {
               className="absolute top-0 left-8 right-8 h-[2px] opacity-75 blur-[1px]"
             />
 
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               {/* Partner Identity & Capability */}
-              <div className="flex items-start sm:items-center gap-5">
+              <div className="flex items-start sm:items-center gap-4">
                 <div
                   style={{
                     borderColor: `${activePartner.accent}50`,
                     boxShadow: `0 0 30px ${activePartner.glow}`
                   }}
-                  className="w-12 h-12 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-white/[0.05] border flex items-center justify-center flex-shrink-0 text-white transition-all duration-300"
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white/[0.05] border flex items-center justify-center flex-shrink-0 text-white transition-all duration-300"
                 >
-                  {React.createElement(activePartner.Logo, { className: 'w-9 h-9 sm:w-11 sm:h-11' })}
+                  {React.createElement(activePartner.Logo, { className: 'w-8 h-8 sm:w-9 sm:h-9' })}
                 </div>
 
                 <div>
-                  <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
-                    <h4 className="text-2xl sm:text-3xl font-light text-white tracking-tight">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <h4 className="text-lg sm:text-xl font-light text-white tracking-tight">
                       {activePartner.name}
                     </h4>
                     <span
@@ -877,7 +876,7 @@ const TechStackShowcase = () => {
                         borderColor: `${activePartner.accent}40`,
                         color: activePartner.accent
                       }}
-                      className="px-3 py-0.5 rounded-full border text-xs font-mono font-medium"
+                      className="px-2.5 py-0.5 rounded-full border text-[11px] font-mono font-medium"
                     >
                       {activePartner.tag}
                     </span>
@@ -886,29 +885,29 @@ const TechStackShowcase = () => {
                     </span>
                   </div>
 
-                  <p className="text-sm text-gray-300 leading-relaxed max-w-2xl font-light">
+                  <p className="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-2xl font-light">
                     {activePartner.description}
                   </p>
                 </div>
               </div>
 
               {/* Live Architectural Benchmarks */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-2.5 sm:gap-3 flex-shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/5">
-                <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2.5">
-                  <Activity className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <div className="grid grid-cols-2 lg:flex gap-2.5 flex-shrink-0 pt-3 lg:pt-0 border-t lg:border-t-0 border-white/5">
+                <div className="px-3 py-2 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2">
+                  <Activity className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block">Performance Benchmark</span>
-                    <span className="font-mono text-emerald-300 font-semibold text-sm">
+                    <span className="text-[9px] font-mono uppercase tracking-wider text-gray-400 block">Benchmark</span>
+                    <span className="font-mono text-emerald-300 font-semibold text-xs">
                       {activePartner.stats}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2.5">
-                  <Zap className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <div className="px-3 py-2 rounded-xl bg-white/[0.03] border border-white/5 flex items-center gap-2">
+                  <Zap className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 block">Runtime Telemetry</span>
-                    <span className="font-mono text-cyan-300 font-semibold text-xs sm:text-sm">
+                    <span className="text-[9px] font-mono uppercase tracking-wider text-gray-400 block">Telemetry</span>
+                    <span className="font-mono text-cyan-300 font-semibold text-xs">
                       {activePartner.latency}
                     </span>
                   </div>
@@ -1010,8 +1009,8 @@ const TechStackShowcase = () => {
       )}
 
       {/* Real-Time Telemetry Ticker Ribbon */}
-      <div className="mt-8 border-y border-white/5 bg-[#08080a]/80 py-2.5 overflow-hidden relative">
-        <div className="flex items-center gap-8 whitespace-nowrap animate-marquee text-xs font-mono text-gray-400">
+      <div className="mt-5 border-y border-white/5 bg-[#08080a]/80 py-2 overflow-hidden relative">
+        <div className="flex items-center gap-8 whitespace-nowrap animate-marquee text-[11px] font-mono text-gray-400">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             <span className="text-emerald-400 font-bold uppercase">LIVE ECOSYSTEM PIPELINE:</span>
@@ -1031,33 +1030,6 @@ const TechStackShowcase = () => {
           <span>META QUEST 3 [ZERO-INSTALL BROWSER WEBXR • 90HZ]</span>
           <span className="text-white/20">/</span>
           <span>ELEVENLABS [29+ LANGUAGES MULTILINGUAL ARCHITECTURAL VOICE]</span>
-        </div>
-      </div>
-
-      {/* Enterprise Hardware & Zero-Interception Guarantee */}
-      <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-emerald-500/[0.03] via-white/[0.02] to-emerald-500/[0.03] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-5 max-w-6xl mx-auto px-4">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-            <ShieldCheck className="w-6 h-6" />
-          </div>
-          <div>
-            <h5 className="text-base font-medium text-white">Direct Engine & Hardware Runtime Guarantee</h5>
-            <p className="text-xs text-gray-400 mt-1 leading-relaxed max-w-2xl font-light">
-              Flik runs directly on native Unreal Engine 5 with NVIDIA RTX neural cloud streaming, sub-50ms glass-to-glass latency, and zero third-party telemetry interception.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5 text-xs text-gray-400 flex-shrink-0">
-          <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 font-mono">
-            Unreal 5.4+
-          </span>
-          <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 font-mono">
-            RTX Cloud
-          </span>
-          <span className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90 font-mono">
-            Cesium OGC
-          </span>
         </div>
       </div>
     </div>

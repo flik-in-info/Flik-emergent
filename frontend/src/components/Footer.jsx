@@ -168,7 +168,7 @@ const FooterBrand = () => (
     </Link>
     <p className="text-gray-500 leading-relaxed max-w-sm">{footerData.tagline}</p>
 
-    <div className="mt-8 space-y-2 text-sm">
+    <div className="mt-4 space-y-1 text-sm">
       <a
         href={`mailto:${contactData.email}`}
         data-testid="footer-email"
@@ -187,7 +187,7 @@ const FooterBrand = () => (
 
     <SocialIcons />
 
-    <p className="text-gray-600 text-sm mt-8">{footerData.copyright}</p>
+    <p className="text-gray-600 text-xs mt-4">{footerData.copyright}</p>
   </div>
 );
 
@@ -207,8 +207,8 @@ const Footer = () => {
   return (
     <footer className="bg-[#070708] border-t border-white/5">
       {/* 5-Column Navigation Grid */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8 pb-6">
+        <div className="grid lg:grid-cols-5 gap-6">
           <FooterBrand />
           <div>
             <FooterLinkColumn title="Platform" links={footerData.platform} />
@@ -217,7 +217,7 @@ const Footer = () => {
             <FooterLinkColumn title="Company" links={footerData.company} />
           </div>
           <div>
-            <div className="mb-8">
+            <div className="mb-4">
               <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
             </div>
             <FooterLinkColumn title="Legal" links={footerData.legal} />
@@ -227,37 +227,37 @@ const Footer = () => {
 
       {/* Global Startup Accelerator & Grant Programs */}
       <div className="border-t border-white/5 bg-white/[0.01]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 sm:py-16">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 sm:py-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                 Global Accelerator & Frontier Ecosystem
               </div>
-              <h3 className="text-2xl sm:text-3xl font-light text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight">
                 Backed by Global Technology Giants
               </h3>
             </div>
-            <p className="text-xs sm:text-sm text-gray-400 max-w-md leading-relaxed font-light">
+            <p className="text-xs text-gray-400 max-w-md leading-relaxed font-light">
               Flik Explorer is officially accelerated and backed by the world's premier spatial computing, cloud infrastructure, and frontier AI startup ecosystems.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {STARTUP_PROGRAMS.map(({ id, name, subname, category, Icon, href, borderColor, glowColor, iconBorder, titleHover, tagColor, subnameColor, metric, metricColor, description }) => (
               <a
                 key={id}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative p-7 rounded-2xl bg-[#0b0c0e] border border-white/10 ${borderColor} transition-all duration-500 flex flex-col justify-between overflow-hidden`}
+                className={`group relative p-5 rounded-2xl bg-[#0b0c0e] border border-white/10 ${borderColor} transition-all duration-500 flex flex-col justify-between overflow-hidden`}
               >
                 {/* Brand Aura Glow */}
-                <div className={`absolute -top-12 -right-12 w-40 h-40 ${glowColor} rounded-full blur-2xl pointer-events-none transition-all duration-500`} />
+                <div className={`absolute -top-12 -right-12 w-36 h-36 ${glowColor} rounded-full blur-2xl pointer-events-none transition-all duration-500`} />
 
                 <div>
                   {/* Top Row: Icon + Category Badge */}
-                  <div className="flex items-center justify-between gap-3 mb-6">
+                  <div className="flex items-center justify-between gap-3 mb-4">
                     <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.04] border border-white/10 ${iconBorder} flex items-center justify-center p-2.5 sm:p-3 transition-all duration-300`}>
                       <Icon />
                     </div>
@@ -267,21 +267,21 @@ const Footer = () => {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h4 className={`text-xl font-bold text-white tracking-tight ${titleHover} transition-colors`}>
+                  <h4 className={`text-lg font-bold text-white tracking-tight ${titleHover} transition-colors`}>
                     {name}
                   </h4>
-                  <span className={`text-xs font-mono ${subnameColor} block mt-1 font-medium`}>
+                  <span className={`text-xs font-mono ${subnameColor} block mt-0.5 font-medium`}>
                     {subname}
                   </span>
 
                   {/* Description */}
-                  <p className="text-xs text-gray-400 mt-4 leading-relaxed font-light group-hover:text-gray-300 transition-colors">
+                  <p className="text-xs text-gray-400 mt-2 leading-snug font-light group-hover:text-gray-300 transition-colors line-clamp-2">
                     {description}
                   </p>
                 </div>
 
                 {/* Bottom Verification Strip */}
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-400">
+                <div className="mt-3.5 pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-400">
                   <span className="text-gray-300 font-medium">{metric}</span>
                   <span className={`${metricColor} flex items-center gap-1.5 font-semibold`}>
                     <span className={`w-1.5 h-1.5 rounded-full ${id === 'claude' ? 'bg-[#D97757]' : id === 'aws' ? 'bg-amber-400' : id === 'elevenlabs' ? 'bg-purple-400' : 'bg-emerald-400'}`}></span>
@@ -293,7 +293,7 @@ const Footer = () => {
           </div>
 
           {/* Pedigree Endorsement Strip */}
-          <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-light">
+          <div className="mt-5 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 font-light">
             <p className="leading-relaxed text-center sm:text-left">
               Flik is an official member of NVIDIA Inception, AWS Activate, and Claude Startups, and a recipient of the ElevenLabs Startup Grant.
             </p>

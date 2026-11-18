@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, MessageSquare, ArrowRight } from 'lucide-react';
-import { Button } from './ui/button';
-import { contactData } from '../data/mock';
-import { useDemoDialog } from '../context/DemoDialogContext';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 import { telemetry } from '../utils/telemetry';
 
 const FAQ_ITEMS = [
@@ -45,94 +42,73 @@ const FAQ_ITEMS = [
 ];
 
 const FAQSection = () => {
-  const [openIndex, setOpenIndex] = useState(0);
-  const [activeCategory, setActiveCategory] = useState('All');
-  const { open: openDemoDialog } = useDemoDialog();
-
-  const categories = ['All', 'Overview & ROI', 'NRI & Remote Sales', 'Technology & UE5', 'Deployment Timeline', 'Sales & CRM Integration'];
-
-  const filteredItems =
-    activeCategory === 'All'
-      ? FAQ_ITEMS
-      : FAQ_ITEMS.filter((item) => item.category === activeCategory);
+  const [openIndex, setOpenIndex] = useState(-1);
 
   const toggle = (idx) => {
     const next = openIndex === idx ? -1 : idx;
     setOpenIndex(next);
-    if (next !== -1 && filteredItems[next]) {
-      telemetry.faqExpanded(filteredItems[next].question, filteredItems[next].category);
+    if (next !== -1 && FAQ_ITEMS[next]) {
+      telemetry.faqExpanded(FAQ_ITEMS[next].question, FAQ_ITEMS[next].category);
     }
   };
 
   return (
-    <section id="faq" className="relative py-28 bg-[#0a0a0b] border-t border-white/5">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium uppercase tracking-wider mb-4">
-            <HelpCircle className="w-3.5 h-3.5" />
-            Frequently Asked Questions
+    <section
+      id="faq"
+      className="scroll-mt-20 relative py-10 lg:py-12 bg-[#050507] border-t border-white/[0.06]"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent"
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Compact Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+          <div>
+            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] mb-1.5">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>Frequently Asked Questions</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight">
+              Answers on <span className="text-emerald-400 font-normal">Flik Explorer</span>
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight mb-4">
-            Everything you need to know about <span className="text-emerald-400 font-normal">Flik Explorer</span>
-          </h2>
-          <p className="text-gray-400 text-base leading-relaxed">
-            Direct answers on sample flat replacement, Unreal Engine 5 technology, NRI accessibility, and commercial developer ROI.
+          <p className="text-xs sm:text-sm text-gray-400 max-w-md">
+            Sample flat replacement, Unreal Engine 5 streaming, NRI access, and CRM deployment.
           </p>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setActiveCategory(cat);
-                setOpenIndex(0);
-              }}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-medium transition-all duration-200 ${
-                activeCategory === cat
-                  ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
-                  : 'bg-white/[0.02] border border-white/5 text-gray-400 hover:text-white hover:bg-white/[0.05]'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* FAQ Accordion */}
-        <div className="space-y-3">
-          {filteredItems.map((item, idx) => {
+        {/* Sleek 2-Column Accordion Grid */}
+        <div className="grid md:grid-cols-2 gap-3 items-start">
+          {FAQ_ITEMS.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={item.question}
                 className={`rounded-2xl transition-all duration-300 border ${
                   isOpen
-                    ? 'bg-white/[0.03] border-emerald-500/30'
-                    : 'bg-white/[0.015] border-white/5 hover:border-white/10'
+                    ? 'bg-white/[0.035] border-emerald-500/35'
+                    : 'bg-white/[0.015] border-white/[0.07] hover:border-white/15'
                 }`}
               >
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer"
+                  className="w-full text-left px-5 py-4 flex items-center justify-between gap-3 cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-medium text-white">
+                  <span className="text-sm sm:text-[15px] font-medium text-white leading-snug">
                     {item.question}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-gray-400 transition-transform duration-300 shrink-0 ${
+                    className={`w-4 h-4 text-gray-400 transition-transform duration-300 shrink-0 ${
                       isOpen ? 'rotate-180 text-emerald-400' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-1">
+                  <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5">
                     {item.answer}
                   </div>
                 )}

@@ -9,7 +9,7 @@ const HeroSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
@@ -25,16 +25,16 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16 sm:pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 sm:pb-16">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium tracking-wider mb-5 sm:mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium tracking-wider mb-4 sm:mb-5">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>{heroData.badge || 'ENTERPRISE PROPTECH PLATFORM'}</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-5 sm:mb-8">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-4 sm:mb-6">
             {heroData.headline.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -43,7 +43,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-sm sm:text-lg lg:text-xl text-gray-400 leading-relaxed mb-8 sm:mb-12 max-w-2xl font-light">
+          <p className="text-sm sm:text-lg lg:text-xl text-gray-400 leading-relaxed mb-6 sm:mb-9 max-w-2xl font-light">
             {heroData.subheadline}
           </p>
 
@@ -107,35 +107,35 @@ const HeroSection = () => {
       </div>
 
       {/* Desktop Floating UI Element */}
-      <div className="hidden lg:block absolute bottom-16 right-16 z-10">
-        <div className="bg-[#0a0a0b]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl">
-          <div className="flex items-center gap-3 mb-3">
+      <div className="hidden lg:block absolute bottom-10 right-12 z-10">
+        <div className="bg-[#0a0a0b]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl">
+          <div className="flex items-center gap-2.5 mb-2">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-emerald-400 text-sm font-medium">{heroData.floatingStats.label}</span>
+            <span className="text-emerald-400 text-xs font-medium">{heroData.floatingStats.label}</span>
           </div>
-          <div className="flex items-center gap-6 text-white">
+          <div className="flex items-center gap-5 text-white">
             <div>
-              <span className="text-2xl font-light">{heroData.floatingStats.units}</span>
-              <span className="text-gray-500 text-sm ml-1">units</span>
+              <span className="text-xl font-light">{heroData.floatingStats.units}</span>
+              <span className="text-gray-500 text-xs ml-1">units</span>
             </div>
-            <div className="w-px h-8 bg-white/10" />
+            <div className="w-px h-7 bg-white/10" />
             <div>
-              <span className="text-2xl font-light">{heroData.floatingStats.towers}</span>
-              <span className="text-gray-500 text-sm ml-1">towers</span>
+              <span className="text-xl font-light">{heroData.floatingStats.towers}</span>
+              <span className="text-gray-500 text-xs ml-1">towers</span>
             </div>
-            <div className="w-px h-8 bg-white/10" />
-            <div className="flex items-center gap-2">
-              <Radio className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-gray-400">{heroData.floatingStats.sync}</span>
+            <div className="w-px h-7 bg-white/10" />
+            <div className="flex items-center gap-1.5">
+              <Radio className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-xs text-gray-400">{heroData.floatingStats.sync}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2">
-        <span className="text-gray-500 text-xs uppercase tracking-widest">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-white/40 to-transparent" />
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-1.5">
+        <span className="text-gray-500 text-[10px] uppercase tracking-widest">Scroll</span>
+        <div className="w-px h-6 bg-gradient-to-b from-white/40 to-transparent" />
       </div>
     </section>
   );

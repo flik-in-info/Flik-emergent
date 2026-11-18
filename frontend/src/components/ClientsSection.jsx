@@ -41,7 +41,7 @@ const ClientsSection = () => {
     <section
       id="clients"
       aria-label="Our Previous Clients"
-      className="scroll-mt-20 relative py-12 lg:py-16 bg-[#060608] border-t border-white/[0.06] overflow-hidden"
+      className="scroll-mt-20 relative py-8 lg:py-10 bg-[#060608] border-t border-white/[0.06] overflow-hidden"
     >
       {/* Top Emerald Hairline */}
       <div
@@ -52,23 +52,23 @@ const ClientsSection = () => {
       {/* Subtle Radial Glow */}
       <div
         aria-hidden="true"
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[220px] bg-emerald-500/[0.045] blur-[110px] rounded-full pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[180px] bg-emerald-500/[0.045] blur-[110px] rounded-full pointer-events-none"
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Compact Editorial Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
           <div>
-            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] mb-2">
+            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] mb-1.5">
               <Building2 className="w-3.5 h-3.5" />
               <span>Trusted By Leading Developers</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white tracking-tight leading-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-light text-white tracking-tight leading-tight">
               Built for teams shaping modern skylines.
             </h2>
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-xs text-gray-400 self-start sm:self-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-gray-400 self-start sm:self-auto">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             <span>Selected Client Deployments</span>
           </div>
@@ -77,7 +77,7 @@ const ClientsSection = () => {
         {/* 4-Column Architectural Client Gallery */}
         <div
           data-testid="clients-logo-grid"
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4"
         >
           {CLIENTS.map((client) => (
             <div
@@ -86,7 +86,7 @@ const ClientsSection = () => {
               className="group rounded-2xl overflow-hidden bg-[#0e0e13] border border-white/10 hover:border-emerald-500/45 transition-all duration-300 hover:-translate-y-1 shadow-[0_18px_45px_-20px_rgba(0,0,0,0.85),0_0_30px_-20px_rgba(16,185,129,0.2)] flex flex-col"
             >
               {/* Full-Bleed Crisp White Logo Stage Preserving True Original Brand Colors */}
-              <div className="relative h-28 sm:h-32 md:h-36 bg-gradient-to-b from-white via-[#fcfcfd] to-[#f3f5f8] px-4 sm:px-6 py-4 flex items-center justify-center">
+              <div className="relative h-24 sm:h-28 bg-gradient-to-b from-white via-[#fcfcfd] to-[#f3f5f8] px-4 sm:px-5 py-3 flex items-center justify-center">
                 <img
                   src={client.logo}
                   alt={client.alt}

@@ -40,11 +40,6 @@ const COMPARISON_ROWS = [
     dimension: 'Buyer Follow-Up',
     traditional: 'Guesswork based on handwritten gallery feedback',
     flik: 'Automatic attention heatmaps & intent lead scoring'
-  },
-  {
-    dimension: 'Sunlight & View Clarity',
-    traditional: 'Unverified angle assumptions from 2D elevation art',
-    flik: 'Floor-by-floor solar angle & skyline accuracy'
   }
 ];
 
@@ -84,7 +79,7 @@ const DifferenceSection = () => {
   return (
     <section
       id="difference"
-      className="scroll-mt-20 relative py-14 lg:py-16 bg-[#08080b] border-t border-white/[0.06] overflow-hidden"
+      className="scroll-mt-20 relative py-8 lg:py-10 bg-[#08080b] border-t border-white/[0.06] overflow-hidden"
     >
       <div
         aria-hidden="true"
@@ -92,28 +87,27 @@ const DifferenceSection = () => {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Merged High-Impact KPI Proof Strip */}
-        <div className="mb-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="mb-5 grid grid-cols-2 lg:grid-cols-4 gap-3">
           {(metricsSection.metrics || []).map((metric) => (
             <div
               key={metric.label}
-              className="p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#111116] to-[#0b0b0f] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-emerald-500/35 transition-all duration-300 flex flex-col justify-between"
+              className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-[#111116] to-[#0b0b0f] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-emerald-500/35 transition-all duration-300"
             >
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-light bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent tracking-tight mb-1.5">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-light bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent tracking-tight mb-0.5">
                 {metric.value}
               </div>
               <div className="text-xs sm:text-sm font-medium text-white">{metric.label}</div>
-              <div className="text-[11px] text-gray-400 mt-1 line-clamp-2">{metric.description}</div>
             </div>
           ))}
         </div>
 
         {/* Section Heading */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
           <div>
-            <span className="text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] block mb-2.5">
+            <span className="text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] block mb-1.5">
               Why Leading Developers Switch
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white leading-tight tracking-tight">
               Static brochures cost velocity.
               <span className="block bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent">
                 Quantify the Flik uplift.
@@ -157,16 +151,16 @@ const DifferenceSection = () => {
                   <Sparkles className="w-4 h-4 text-emerald-400" />
                   <span>Sales Workflow Contrast</span>
                 </div>
-                <span className="text-[11px] font-mono text-emerald-400">5 Core Pillars</span>
+                <span className="text-[11px] font-mono text-emerald-400">4 Core Pillars</span>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {COMPARISON_ROWS.map((row) => (
                   <div
                     key={row.dimension}
-                    className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-colors"
+                    className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-colors"
                   >
-                    <div className="text-xs font-semibold text-white mb-2">{row.dimension}</div>
+                    <div className="text-xs font-semibold text-white mb-1">{row.dimension}</div>
                     <div className={`grid gap-2.5 ${focusView === 'side-by-side' ? 'sm:grid-cols-2' : 'grid-cols-1'}`}>
                       {focusView === 'side-by-side' && (
                         <div className="flex items-start gap-2 text-xs text-gray-500">

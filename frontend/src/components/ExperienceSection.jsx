@@ -43,7 +43,7 @@ const ExperienceSection = () => {
   return (
     <section
       id="experience"
-      className="scroll-mt-20 relative py-14 lg:py-18 bg-[#08080b] border-t border-white/[0.06]"
+      className="scroll-mt-20 relative py-8 lg:py-10 bg-[#08080b] border-t border-white/[0.06]"
     >
       <div
         aria-hidden="true"
@@ -52,12 +52,12 @@ const ExperienceSection = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header + Mode Switcher */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-4">
           <div>
-            <span className="text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] block mb-2.5">
+            <span className="text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] block mb-1.5">
               Live Experiences
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white leading-tight tracking-tight">
               <span className="block">Step inside the architecture.</span>
               <span className="block bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent">
                 Explore it on your terms.
@@ -91,7 +91,7 @@ const ExperienceSection = () => {
 
         {/* Full-Width Luxury Theater Frame */}
         <div className="rounded-3xl bg-[#0b0b0f] border border-white/10 overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.85),0_0_40px_-20px_rgba(16,185,129,0.18)]">
-          <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[500px] bg-[#060608]">
+          <div className="relative w-full h-[280px] sm:h-[320px] lg:h-[340px] bg-[#060608]">
             {!loadedMap[activeExp.id] && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-gray-400 text-xs pointer-events-none z-10">
                 <Loader2 className="w-5 h-5 animate-spin text-emerald-400" />
@@ -125,7 +125,7 @@ const ExperienceSection = () => {
             </button>
           </div>
 
-          <div className="px-6 py-4 sm:px-7 sm:py-5 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0c0c10]">
+          <div className="px-5 py-3 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#0c0c10]">
             <div>
               <span className="text-[11px] font-medium uppercase tracking-widest text-emerald-400">
                 {activeExp.subtitle}
