@@ -206,28 +206,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#070708] border-t border-white/5">
-      {/* 5-Column Navigation Grid */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8 pb-6">
-        <div className="grid lg:grid-cols-5 gap-6">
-          <FooterBrand />
-          <div>
-            <FooterLinkColumn title="Platform" links={footerData.platform} />
-          </div>
-          <div>
-            <FooterLinkColumn title="Company" links={footerData.company} />
-          </div>
-          <div>
-            <div className="mb-4">
-              <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
-            </div>
-            <FooterLinkColumn title="Legal" links={footerData.legal} />
-          </div>
-        </div>
-      </div>
-
       {/* Global Startup Accelerator & Grant Programs */}
-      <div className="border-t border-white/5 bg-white/[0.01]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 sm:py-8">
+      <div className="bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 sm:py-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-2">
@@ -305,6 +286,27 @@ const Footer = () => {
               <span>Claude 3.7 Sonnet</span>
               <span>·</span>
               <span>ElevenLabs TTS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 5-Column Navigation Grid */}
+      <div className="border-t border-white/5 bg-[#070708]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-8">
+          <div className="grid lg:grid-cols-5 gap-6">
+            <FooterBrand />
+            <div>
+              <FooterLinkColumn title="Platform" links={footerData.platform} />
+            </div>
+            <div>
+              <FooterLinkColumn title="Company" links={footerData.company} />
+            </div>
+            <div>
+              <div className="mb-4">
+                <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
+              </div>
+              <FooterLinkColumn title="Legal" links={footerData.legal} />
             </div>
           </div>
         </div>
