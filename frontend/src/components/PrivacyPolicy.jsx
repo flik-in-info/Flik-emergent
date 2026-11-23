@@ -88,7 +88,7 @@ const PrivacyPolicy = () => {
             </div>
             <div>
               <span className="block text-gray-500 mb-1">Entity</span>
-              <span className="text-white font-medium">Flik Explorer</span>
+              <span className="text-white font-medium">Hastok Enterprise Pvt. Ltd. (Flik Explorer)</span>
             </div>
             <div>
               <span className="block text-gray-500 mb-1">Jurisdiction</span>
@@ -142,7 +142,7 @@ const PrivacyPolicy = () => {
                 <span className="text-emerald-400">1.</span> Introduction & Company Identity
               </h2>
               <p>
-                Flik Explorer (“Flik”, “we”, “our”, or “us”) operates the B2B PropTech and architectural visualization platform accessible at <a href="https://www.flik.in/" className="text-emerald-400 hover:underline">flik.in</a>. Our platform empowers premier real estate developers, sales teams, and channel partners to deliver photorealistic, real-time 3D property experiences for under-construction residential and commercial developments.
+                Flik Explorer (“Flik”, “we”, “our”, or “us”), owned and operated by <strong className="text-white">Hastok Enterprise Pvt. Ltd.</strong>, operates the B2B PropTech and architectural visualization platform accessible at <a href="https://www.flik.in/" className="text-emerald-400 hover:underline">flik.in</a>. Our platform empowers premier real estate developers, sales teams, and channel partners to deliver photorealistic, real-time 3D property experiences for under-construction residential and commercial developments.
               </p>
               <p>
                 This Privacy Policy applies to personal data collected via our website, interactive web demos, lead capture forms, WhatsApp/telephonic customer outreach, and digital sales tools. By accessing or using our platform, you acknowledge the terms set forth herein.

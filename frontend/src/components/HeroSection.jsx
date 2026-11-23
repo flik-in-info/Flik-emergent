@@ -30,7 +30,7 @@ const HeroSection = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium tracking-wider mb-4 sm:mb-5">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{heroData.badge || 'ENTERPRISE PROPTECH PLATFORM'}</span>
+            <span>ENTERPRISE PROPTECH PLATFORM · HASTOK ENTERPRISE PVT. LTD.</span>
           </div>
 
           {/* Headline */}

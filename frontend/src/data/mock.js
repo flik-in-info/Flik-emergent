@@ -210,7 +210,7 @@ export const contactData = {
 
 export const footerData = {
   tagline: "Real-time architecture intelligence for the world's leading developers.",
-  copyright: "© 2026 Flik. All rights reserved.",
+  copyright: "© 2026 Hastok Enterprise Pvt. Ltd. · Flik Explorer. All rights reserved.",
   platform: [
     { label: "Capabilities", href: "#" },
     { label: "Technology", href: "#" },
@@ -237,7 +237,7 @@ export const footerData = {
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Cookie Policy", href: "/privacy-policy#cookies-telemetry" }
   ],
-  bottomBar: "Enterprise-grade real-time visualization and sales intelligence · Powered by Unreal Engine 5"
+  bottomBar: "Enterprise-grade real-time visualization and sales intelligence · Developed by Hastok Enterprise Pvt. Ltd. · Powered by Unreal Engine 5"
 };
 
 export const images = {

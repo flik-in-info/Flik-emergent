@@ -157,7 +157,7 @@ const FooterLinkColumn = ({ title, links }) => (
 
 const FooterBrand = () => (
   <div className="lg:col-span-2">
-    <Link to="/" className="flex items-center mb-6">
+    <Link to="/" className="flex items-center mb-3">
       <img 
         src={images.logo} 
         alt="Flik Explorer - Real-Time 3D Digital Twin Platform" 
@@ -166,6 +166,10 @@ const FooterBrand = () => (
         className="h-10 w-auto" 
       />
     </Link>
+    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono font-medium tracking-wide mb-3">
+      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Hastok Enterprise Pvt. Ltd.</span>
+    </div>
     <p className="text-gray-500 leading-relaxed max-w-sm">{footerData.tagline}</p>
 
     <div className="mt-4 space-y-1 text-sm">
@@ -276,7 +280,7 @@ const Footer = () => {
           {/* Pedigree Endorsement Strip */}
           <div className="mt-5 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 font-light">
             <p className="leading-relaxed text-center sm:text-left">
-              Flik is an official member of NVIDIA Inception, AWS Activate, and Claude Startups, and a recipient of the ElevenLabs Startup Grant.
+              Flik Explorer, an enterprise platform by <span className="text-gray-300 font-medium">Hastok Enterprise Pvt. Ltd.</span>, is an official member of NVIDIA Inception, AWS Activate, and Claude Startups, and a recipient of the ElevenLabs Startup Grant.
             </p>
             <div className="flex items-center gap-3 sm:gap-4 shrink-0 text-gray-600 font-mono text-[10px] uppercase tracking-wider">
               <span>DLSS 3.5 & RTX</span>
