@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
 import { Dialog, DialogContent } from './ui/dialog';
@@ -10,6 +10,8 @@ import {
   validateEmail,
   checkLeadSubmissionRate,
   recordLeadSubmission,
+  isHoneypotTriggered,
+  isSubmissionTooFast,
 } from '../utils/security';
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
@@ -70,9 +72,11 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
   const [form, setForm] = useState(initialState);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const formOpenedAt = useRef(null);
 
   useEffect(() => {
     if (open) {
+      formOpenedAt.current = Date.now();
       telemetry.leadFormStarted(source);
     }
   }, [open, source]);
@@ -98,6 +102,20 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
+
+      // 1. Honeypot check - silently drop bot attacks
+      if (isHoneypotTriggered(form.botcheck)) {
+        setSubmitted(true);
+        toast.success('Demo request sent. Our team will reach out shortly.');
+        return;
+      }
+
+      // 2. Submission speed check - blocks automated scripts (<1.2s)
+      if (isSubmissionTooFast(formOpenedAt.current, 1200)) {
+        toast.error('Form submitted too fast. Please verify your details before submitting.');
+        return;
+      }
+
       const cleanName = sanitizeInput(form.name, 100);
       const cleanEmail = sanitizeInput(form.email, 100);
 

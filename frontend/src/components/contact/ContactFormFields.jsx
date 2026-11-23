@@ -95,6 +95,18 @@ const ContactFormFields = ({ form, update, onInterestChange, interestOptions }) 
         className={`${inputClass} resize-none`}
       />
     </div>
+
+    {/* Anti-spam honeypot trap - invisible to humans, catches automated bots */}
+    <input
+      type="text"
+      name="botcheck"
+      value={form.botcheck || ''}
+      onChange={update('botcheck')}
+      tabIndex={-1}
+      autoComplete="off"
+      aria-hidden="true"
+      style={{ display: 'none', position: 'absolute', left: '-9999px', opacity: 0 }}
+    />
   </>
 );
 

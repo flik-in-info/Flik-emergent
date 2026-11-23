@@ -195,6 +195,10 @@ export default function PulseDashboard() {
                 type="password"
                 inputMode="numeric"
                 maxLength={8}
+                autoComplete="new-password"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 disabled={lockout.isLocked || isVerifying}
                 value={passcodeInput}
                 onChange={(e) => {

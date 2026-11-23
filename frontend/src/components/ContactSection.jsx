@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { Send, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
@@ -13,6 +13,8 @@ import {
   validatePhone,
   checkLeadSubmissionRate,
   recordLeadSubmission,
+  isHoneypotTriggered,
+  isSubmissionTooFast,
 } from '../utils/security';
 
 const CONTACT_EMAIL = contactData.email;
@@ -75,6 +77,7 @@ const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const formMountedAt = useRef(Date.now());
 
   const update = (field) => (e) => {
     setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -86,6 +89,19 @@ const ContactSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 1. Honeypot check - silently swallow bot attacks without notifying attackers
+    if (isHoneypotTriggered(form.botcheck)) {
+      setSubmitted(true);
+      return;
+    }
+
+    // 2. Submission speed check - blocks automated headless form fill bots (<1.2s)
+    if (isSubmissionTooFast(formMountedAt.current, 1200)) {
+      setError('Form completed too quickly. Please verify your details before submitting.');
+      return;
+    }
+
     const cleanFullName = sanitizeInput(form.fullName, 100);
     const cleanEmail = sanitizeInput(form.email, 100);
     const cleanPhone = sanitizeInput(form.phone, 30);

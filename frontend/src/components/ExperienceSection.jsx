@@ -104,6 +104,8 @@ const ExperienceSection = () => {
               data-testid={`experience-iframe-${activeExp.id}`}
               src={activeExp.src}
               title={activeExp.title}
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"
+              referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full border-0 relative z-10"
               allowFullScreen
               allow="xr-spatial-tracking; gyroscope; accelerometer; fullscreen"

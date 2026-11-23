@@ -1,6 +1,8 @@
 // Flik Explorer Telemetry & Activity Engine
 // Comprehensive client-side tracking, session attribution, and PostHog integration
 
+import { sanitizeInput } from './security';
+
 const STORAGE_KEYS = {
   VISITOR_ID: 'flik_visitor_id',
   SESSION_ID: 'flik_session_id',
@@ -49,14 +51,14 @@ export function getAttribution() {
     const referrer = document.referrer ? new URL(document.referrer).hostname : 'direct';
 
     const utm = {
-      source: params.get('utm_source') || (document.referrer.includes('linkedin') ? 'linkedin' : referrer),
-      medium: params.get('utm_medium') || (params.get('utm_source') ? 'cpc' : 'organic'),
-      campaign: params.get('utm_campaign') || '',
-      content: params.get('utm_content') || '',
-      term: params.get('utm_term') || '',
-      referrer: document.referrer || 'direct',
-      pathname: window.location.pathname,
-      landingPage: window.location.href,
+      source: sanitizeInput(params.get('utm_source') || (document.referrer.includes('linkedin') ? 'linkedin' : referrer), 80),
+      medium: sanitizeInput(params.get('utm_medium') || (params.get('utm_source') ? 'cpc' : 'organic'), 80),
+      campaign: sanitizeInput(params.get('utm_campaign') || '', 120),
+      content: sanitizeInput(params.get('utm_content') || '', 120),
+      term: sanitizeInput(params.get('utm_term') || '', 120),
+      referrer: sanitizeInput(document.referrer || 'direct', 200),
+      pathname: sanitizeInput(window.location.pathname, 120),
+      landingPage: sanitizeInput(window.location.href, 300),
     };
     return utm;
   } catch {

@@ -140,6 +140,10 @@ export default function AdminAuthModal({ isOpen, onClose }) {
                 type="password"
                 inputMode="numeric"
                 maxLength={8}
+                autoComplete="new-password"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 disabled={lockout.isLocked || isSubmitting}
                 value={passcode}
                 onChange={(e) => {

@@ -51,9 +51,26 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us.i.posthog.com https://us-assets.i.posthog.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://customer-assets.emergentagent.com https://*.coohom.com https://www.coohom.com https://*.nvidia.com https://*.simpleicons.org https://images.unsplash.com; connect-src 'self' https://api.web3forms.com https://us.i.posthog.com https://us-assets.i.posthog.com https://vitals.vercel-insights.com https://*.vercel-insights.com https://*.coohom.com https://www.coohom.com https://customer-assets.emergentagent.com; frame-src 'self' https://www.coohom.com https://*.coohom.com; media-src 'self' data: blob: https://customer-assets.emergentagent.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests;"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us.i.posthog.com https://us-assets.i.posthog.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://customer-assets.emergentagent.com https://*.coohom.com https://www.coohom.com https://*.nvidia.com https://*.simpleicons.org https://images.unsplash.com; connect-src 'self' https://api.web3forms.com https://us.i.posthog.com https://us-assets.i.posthog.com https://vitals.vercel-insights.com https://*.vercel-insights.com https://*.coohom.com https://www.coohom.com https://customer-assets.emergentagent.com; frame-src 'self' https://www.coohom.com https://*.coohom.com; frame-ancestors 'self'; media-src 'self' data: blob: https://customer-assets.emergentagent.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests;"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/\\.(env|git|svn|ssh|aws|docker|config)(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/(wp-admin|wp-content|wp-includes|wp-login|xmlrpc)(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/(phpmyadmin|pma|adminer|composer)(.*)",
+      "destination": "/",
+      "permanent": false
     }
   ],
   "rewrites": [

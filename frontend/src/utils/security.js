@@ -12,7 +12,8 @@ const FORM_RATE_KEY = 'flik_lead_rate_limit_v1';
 
 const MAX_FAILED_ATTEMPTS = 5;
 const LOCKOUT_DURATION_MS = 15 * 60 * 1000; // 15 minutes
-const SESSION_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
+const SESSION_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours maximum session
+const IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes inactivity auto-lock
 
 const FORM_RATE_MAX = 3; // Max 3 submissions
 const FORM_RATE_WINDOW_MS = 10 * 60 * 1000; // within 10 minutes
@@ -151,7 +152,27 @@ function timingSafeEqual(a, b) {
 }
 
 /**
- * Checks whether the current admin session is valid and active
+ * Derives a lightweight browser context fingerprint to protect against token replay
+ */
+function getClientFingerprint() {
+  if (typeof window === 'undefined') return 'server';
+  try {
+    const nav = window.navigator || {};
+    const screen = window.screen || {};
+    const str = `${nav.userAgent || ''}_${nav.language || ''}_${screen.width}x${screen.height}`;
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = (hash << 5) - hash + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash).toString(36);
+  } catch (e) {
+    return 'anon_fp';
+  }
+}
+
+/**
+ * Checks whether the current admin session is valid, active, and unhijacked
  */
 export function isAdminAuthenticated() {
   try {
@@ -160,10 +181,29 @@ export function isAdminAuthenticated() {
     if (!raw) return false;
     const session = JSON.parse(raw);
     if (!session || !session.token || !session.expiresAt) return false;
-    if (Date.now() > session.expiresAt) {
+
+    const now = Date.now();
+    // Check absolute expiration
+    if (now > session.expiresAt) {
       sessionStorage.removeItem(ADMIN_SESSION_KEY);
       return false;
     }
+
+    // Check idle inactivity timeout
+    if (session.lastActiveAt && now - session.lastActiveAt > IDLE_TIMEOUT_MS) {
+      sessionStorage.removeItem(ADMIN_SESSION_KEY);
+      return false;
+    }
+
+    // Verify browser fingerprint matches
+    if (session.fingerprint && session.fingerprint !== getClientFingerprint()) {
+      sessionStorage.removeItem(ADMIN_SESSION_KEY);
+      return false;
+    }
+
+    // Slide inactivity window
+    session.lastActiveAt = now;
+    sessionStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(session));
     return true;
   } catch (e) {
     return false;
@@ -181,10 +221,13 @@ export function setAdminAuthenticated(status = true) {
         typeof crypto !== 'undefined' && crypto.randomUUID
           ? crypto.randomUUID()
           : `flik_${Math.random().toString(36).substring(2)}_${Date.now()}`;
+      const now = Date.now();
       const session = {
         token,
-        createdAt: Date.now(),
-        expiresAt: Date.now() + SESSION_TTL_MS,
+        createdAt: now,
+        lastActiveAt: now,
+        expiresAt: now + SESSION_TTL_MS,
+        fingerprint: getClientFingerprint(),
       };
       sessionStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(session));
       resetAdminGate();
@@ -310,16 +353,35 @@ export async function verifyAdminPasscode(inputPasscode) {
 
 /**
  * Form Input Sanitization
- * Strips script tags, HTML tags, null bytes, and trims characters within limits
+ * Strips script tags, style tags, HTML tags, dangerous schemes, control characters, and trims limits
  */
 export function sanitizeInput(value, maxLength = 300) {
   if (typeof value !== 'string') return '';
   return value
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
     .replace(/<[^>]*>/g, '')
+    .replace(/(?:javascript|vbscript|data):/gi, '')
     .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
     .trim()
     .slice(0, maxLength);
+}
+
+/**
+ * Detects automated bot submission via honeypot trap
+ */
+export function isHoneypotTriggered(botFieldValue) {
+  if (!botFieldValue) return false;
+  return String(botFieldValue).trim().length > 0;
+}
+
+/**
+ * Detects superhuman submission speed (automated scripts/bots)
+ */
+export function isSubmissionTooFast(formMountedTimestamp, minThresholdMs = 1200) {
+  if (!formMountedTimestamp) return false;
+  const elapsed = Date.now() - formMountedTimestamp;
+  return elapsed > 0 && elapsed < minThresholdMs;
 }
 
 /**

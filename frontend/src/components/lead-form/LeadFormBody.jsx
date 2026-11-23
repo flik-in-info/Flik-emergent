@@ -74,6 +74,18 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
           className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus-visible:ring-emerald-500/40 resize-none"
         />
       </div>
+
+      {/* Anti-spam honeypot trap - catches automated bot submissions */}
+      <input
+        type="text"
+        name="botcheck"
+        value={form.botcheck || ''}
+        onChange={onFieldChange('botcheck')}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ display: 'none', position: 'absolute', left: '-9999px', opacity: 0 }}
+      />
     </div>
 
     <DialogFooter className="gap-2 sm:gap-0">
