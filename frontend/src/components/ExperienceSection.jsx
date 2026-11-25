@@ -43,21 +43,22 @@ const ExperienceSection = () => {
   return (
     <section
       id="experience"
-      className="scroll-mt-20 py-14 lg:py-20 bg-[#050506] border-t border-white/10"
+      className="scroll-mt-24 py-16 lg:py-20 bg-[#f8fafc]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Clean Architectural Header */}
+        {/* Clean Daylight Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-white leading-[1.1] tracking-[-0.025em]">
-              Test the interactive unit tour yourself.
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-[#0b1020] leading-[1.08] tracking-[-0.03em]">
+              Test the interactive{' '}
+              <span className="text-[#0F766E]">unit tour yourself.</span>
             </h2>
-            <p className="text-sm sm:text-base text-gray-400 font-light mt-2.5 max-w-2xl">
+            <p className="text-sm sm:text-base text-slate-600 mt-2.5 max-w-2xl">
               {activeExp.description}
             </p>
           </div>
 
-          <div className="inline-flex border border-white/15 bg-black self-start lg:self-auto">
+          <div className="inline-flex rounded-xl border border-slate-200 bg-white p-1 shadow-sm self-start lg:self-auto">
             {EXPERIENCES.map((exp) => {
               const Icon = exp.icon;
               const active = exp.id === selectedId;
@@ -67,10 +68,10 @@ const ExperienceSection = () => {
                   type="button"
                   onClick={() => handleSelectMode(exp)}
                   data-testid={`experience-card-${exp.id}`}
-                  className={`flex items-center gap-2 px-4 py-2.5 text-xs font-medium transition-colors cursor-pointer ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                     active
-                      ? 'bg-white text-black font-semibold'
-                      : 'text-gray-400 hover:text-white'
+                      ? 'bg-[#0b1020] text-white'
+                      : 'text-slate-600 hover:text-[#0b1020]'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -81,11 +82,12 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        {/* Clean Bordered Browser Frame */}
-        <div className="border border-white/15 bg-black">
-          <div className="px-4 sm:px-5 py-3 border-b border-white/10 flex items-center justify-between gap-2 bg-[#08080a]">
-            <div className="text-xs font-mono text-gray-400">
-              {activeExp.subtitle}
+        {/* Elevated Light Browser Frame */}
+        <div className="rounded-2xl overflow-hidden border border-slate-200/90 bg-white shadow-[0_32px_70px_-32px_rgba(15,23,42,0.2)]">
+          <div className="px-4 sm:px-5 py-3 border-b border-slate-200/80 flex items-center justify-between gap-2 bg-slate-50">
+            <div className="flex items-center gap-2.5 text-xs font-mono text-slate-600">
+              <span className="w-2 h-2 rounded-full bg-[#00A896]" />
+              <span>{activeExp.subtitle}</span>
             </div>
             <button
               type="button"
@@ -94,7 +96,7 @@ const ExperienceSection = () => {
                 telemetry.experienceInteract(activeExp.id, 'fullscreen');
                 setModalExp(activeExp);
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 hover:bg-[#22E55A] text-white hover:text-black text-xs font-medium transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:bg-[#0b1020] text-slate-700 hover:text-white hover:border-[#0b1020] text-xs font-medium transition-colors cursor-pointer shadow-sm"
               aria-label={`Open ${activeExp.title} fullscreen`}
             >
               <Maximize2 className="w-3 h-3" />
@@ -102,10 +104,10 @@ const ExperienceSection = () => {
             </button>
           </div>
 
-          <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] bg-black">
+          <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[440px] bg-slate-900">
             {!loadedMap[activeExp.id] && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-gray-400 text-xs pointer-events-none z-10">
-                <Loader2 className="w-5 h-5 animate-spin text-[#22E55A]" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-slate-300 text-xs pointer-events-none z-10">
+                <Loader2 className="w-5 h-5 animate-spin text-[#00A896]" />
                 <span className="font-mono uppercase text-[11px]">
                   Loading {activeExp.title}
                 </span>

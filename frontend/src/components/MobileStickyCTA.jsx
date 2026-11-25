@@ -15,14 +15,14 @@ const MobileStickyCTA = () => {
   return (
     <div
       data-testid="mobile-sticky-action-dock"
-      className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-black/95 backdrop-blur-md border-t border-white/15 px-4 py-2.5 flex items-center justify-between gap-3"
+      className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-8px_24px_rgba(15,23,42,0.06)] px-4 py-2.5 flex items-center justify-between gap-3"
       style={{
         paddingBottom: 'max(0.625rem, env(safe-area-inset-bottom))',
       }}
     >
       <div className="min-w-0">
-        <div className="text-xs font-medium text-white truncate">Flik Explorer</div>
-        <div className="text-[10px] font-mono text-gray-400 truncate">Hastok Enterprise Pvt. Ltd.</div>
+        <div className="text-xs font-semibold text-[#0b1020] truncate">Flik Explorer</div>
+        <div className="text-[10px] font-mono text-slate-500 truncate">Hastok Enterprise Pvt. Ltd.</div>
       </div>
 
       <div className="flex items-center gap-2 shrink-0">
@@ -32,7 +32,7 @@ const MobileStickyCTA = () => {
           rel="noopener noreferrer"
           onClick={() => telemetry.ctaClick('WhatsApp', 'mobile_sticky_dock')}
           aria-label="Chat on WhatsApp"
-          className="w-9 h-9 border border-white/20 bg-black flex items-center justify-center text-white hover:border-[#22E55A] hover:text-[#22E55A] rounded-md transition-colors"
+          className="w-9 h-9 border border-slate-200 bg-white flex items-center justify-center text-slate-700 hover:border-[#0F766E] hover:text-[#0F766E] rounded-lg transition-colors"
         >
           <MessageSquare className="w-4 h-4" />
         </a>
@@ -43,7 +43,7 @@ const MobileStickyCTA = () => {
             telemetry.ctaClick('Request Demo', 'mobile_sticky_dock');
             openDemoDialog('mobile_sticky_dock');
           }}
-          className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold text-xs h-9 px-4 rounded-md"
+          className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium text-xs h-9 px-4 rounded-lg"
         >
           Request Demo
         </Button>

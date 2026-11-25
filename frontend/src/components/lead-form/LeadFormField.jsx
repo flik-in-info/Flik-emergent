@@ -3,7 +3,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 
 const inputClass =
-  'bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus-visible:ring-emerald-500/40';
+  'bg-slate-50 border-slate-200 text-[#0b1020] placeholder:text-slate-400 focus-visible:ring-[#0F766E]/35';
 
 const LeadFormField = ({
   id,
@@ -16,7 +16,7 @@ const LeadFormField = ({
   required = false,
 }) => (
   <div className="space-y-2">
-    <Label htmlFor={id} className="text-gray-300 text-xs uppercase tracking-wider">
+    <Label htmlFor={id} className="text-slate-700 text-xs uppercase tracking-wider font-medium">
       {label}
     </Label>
     <Input

@@ -164,7 +164,7 @@ const LeadFormDialog = ({ open, onOpenChange, source = 'closing_cta' }) => {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
         data-testid="lead-form-dialog"
-        className="sm:max-w-lg rounded-xl bg-[#050506] border border-white/[0.12] text-white"
+        className="sm:max-w-lg rounded-2xl bg-white border border-slate-200 text-[#0b1020] shadow-2xl"
       >
         {submitted ? (
           <LeadFormSuccess onClose={() => handleOpenChange(false)} />

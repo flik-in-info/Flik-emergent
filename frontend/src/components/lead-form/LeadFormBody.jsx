@@ -21,11 +21,11 @@ const LEAD_FIELDS = [
 const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) => (
   <form onSubmit={onSubmit} data-testid="lead-form">
     <DialogHeader>
-      <DialogTitle className="text-2xl font-light tracking-tight">
+      <DialogTitle className="text-2xl font-medium tracking-tight text-[#0b1020] font-display">
         Request a private demo
       </DialogTitle>
-      <DialogDescription className="text-gray-400">
-        Tell us about your project. We'll prepare a tailored walkthrough of Flik Explore.
+      <DialogDescription className="text-slate-500">
+        Tell us about your project. We will prepare a tailored walkthrough of Flik Explorer by Hastok Enterprise Pvt. Ltd.
       </DialogDescription>
     </DialogHeader>
 
@@ -61,7 +61,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="lead-message" className="text-gray-300 text-xs uppercase tracking-wider">
+        <Label htmlFor="lead-message" className="text-slate-700 text-xs uppercase tracking-wider font-medium">
           What would you like to see?
         </Label>
         <Textarea
@@ -71,7 +71,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
           onChange={onFieldChange('message')}
           placeholder="Towers, units, integrations, timelines…"
           rows={3}
-          className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus-visible:ring-emerald-500/40 resize-none"
+          className="bg-slate-50 border-slate-200 text-[#0b1020] placeholder:text-slate-400 focus-visible:ring-[#0F766E]/35 resize-none"
         />
       </div>
 
@@ -94,7 +94,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
         variant="ghost"
         data-testid="lead-form-cancel"
         onClick={onCancel}
-        className="text-gray-400 hover:text-white hover:bg-white/5"
+        className="text-slate-500 hover:text-[#0b1020] hover:bg-slate-100"
       >
         Cancel
       </Button>
@@ -102,7 +102,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
         type="submit"
         data-testid="lead-form-submit"
         disabled={submitting}
-        className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-6 rounded-md transition-colors"
+        className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium px-6 rounded-lg transition-colors"
       >
         {submitting ? (
           <>

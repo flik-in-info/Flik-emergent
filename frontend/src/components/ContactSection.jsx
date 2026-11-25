@@ -162,13 +162,13 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 py-14 lg:py-20 bg-[#050506] border-t border-white/10"
+      className="scroll-mt-24 py-16 lg:py-24 bg-[#f8fafc]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <ContactIntro email={CONTACT_EMAIL} />
 
-          <div className="lg:col-span-7 border border-white/15 bg-black p-6 sm:p-8">
+          <div className="lg:col-span-7 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_24px_60px_-28px_rgba(15,23,42,0.14)]">
             {submitted ? (
               <ContactSuccess email={CONTACT_EMAIL} onReset={reset} />
             ) : (
@@ -181,21 +181,21 @@ const ContactSection = () => {
                 />
 
                 {error && (
-                  <p data-testid="contact-error" className="text-rose-400 text-xs sm:text-sm font-medium">
+                  <p data-testid="contact-error" className="text-rose-600 text-xs sm:text-sm font-medium">
                     {error}
                   </p>
                 )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
-                  <p className="text-xs text-gray-500 max-w-xs leading-relaxed">
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100">
+                  <p className="text-xs text-slate-500 max-w-xs leading-relaxed">
                     Delivered directly to{' '}
-                    <span className="text-gray-300 font-medium">{CONTACT_EMAIL}</span>. Reply within one business day.
+                    <span className="text-[#0b1020] font-medium">{CONTACT_EMAIL}</span>. Reply within one business day.
                   </p>
                   <Button
                     type="submit"
                     data-testid="contact-submit"
                     disabled={submitting}
-                    className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-7 h-11 rounded-md disabled:opacity-70 transition-colors"
+                    className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium px-7 h-11 rounded-lg disabled:opacity-70 transition-colors"
                   >
                     {submitting ? (
                       <>

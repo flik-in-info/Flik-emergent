@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
-import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
 import CinemaScrollMovie from "./components/CinemaScrollMovie";
 import ClientsSection from "./components/ClientsSection";
@@ -52,7 +51,7 @@ const ScrollProgressBeam = () => {
     >
       <div
         style={{ width: `${progress}%` }}
-        className="h-full bg-[#22E55A] transition-[width] duration-75"
+        className="h-full bg-[#0F766E] transition-[width] duration-75"
       />
     </div>
   );
@@ -60,7 +59,7 @@ const ScrollProgressBeam = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#000000] min-h-screen pb-20 lg:pb-0 relative overflow-x-clip selection:bg-[#22E55A]/25 selection:text-white">
+    <div className="bg-[#f8fafc] text-[#0b1020] min-h-screen pb-20 lg:pb-0 relative overflow-x-clip selection:bg-[#0F766E]/15 selection:text-[#0b1020]">
       <ScrollProgressBeam />
       <Header />
       <main>
@@ -81,7 +80,6 @@ const LandingPage = () => {
 function App() {
   return (
     <div className="App">
-      <CustomCursor />
       <BrowserRouter>
         <DemoDialogProvider>
           <ScrollToTopAndTelemetry />
@@ -94,7 +92,7 @@ function App() {
             <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          <Toaster theme="dark" position="bottom-right" richColors closeButton />
+          <Toaster theme="light" position="bottom-right" richColors closeButton />
         </DemoDialogProvider>
       </BrowserRouter>
     </div>

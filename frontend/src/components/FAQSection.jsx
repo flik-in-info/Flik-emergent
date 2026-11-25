@@ -55,20 +55,24 @@ const FAQSection = () => {
   return (
     <section
       id="faq"
-      className="scroll-mt-20 py-14 lg:py-20 bg-black border-t border-white/10"
+      className="scroll-mt-24 py-16 lg:py-24 bg-[#f4fbfa] border-t border-b border-slate-200/70"
+      style={{
+        backgroundImage:
+          'radial-gradient(ellipse 65% 50% at 85% 20%, rgba(15, 118, 110, 0.06), transparent 60%)',
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-4">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white tracking-[-0.025em] leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl font-medium text-[#0b1020] tracking-[-0.03em] leading-[1.1]">
               Common questions on deployment and licensing.
             </h2>
-            <p className="text-sm text-gray-400 font-light mt-3 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
               Practical answers covering sample flat savings, NRI access, CRM sync, and Unreal Engine turnaround.
             </p>
           </div>
 
-          <div className="lg:col-span-8 border-t border-white/15 divide-y divide-white/15">
+          <div className="lg:col-span-8 bg-white rounded-2xl border border-slate-200/90 shadow-sm divide-y divide-slate-100 px-6 sm:px-8">
             {FAQ_ITEMS.map((item, idx) => {
               const isOpen = openIndex === idx;
               return (
@@ -81,20 +85,20 @@ const FAQSection = () => {
                   >
                     <span
                       className={`text-sm sm:text-base font-medium leading-snug transition-colors ${
-                        isOpen ? 'text-white' : 'text-gray-200 group-hover:text-white'
+                        isOpen ? 'text-[#0F766E]' : 'text-[#0b1020] group-hover:text-[#0F766E]'
                       }`}
                     >
                       {item.question}
                     </span>
                     <ChevronDown
-                      className={`w-4 h-4 text-gray-500 transition-transform duration-200 shrink-0 mt-0.5 ${
-                        isOpen ? 'rotate-180 text-[#22E55A]' : 'group-hover:text-white'
+                      className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 mt-0.5 ${
+                        isOpen ? 'rotate-180 text-[#0F766E]' : 'group-hover:text-[#0b1020]'
                       }`}
                     />
                   </button>
 
                   {isOpen && (
-                    <div className="pb-5 pr-6 text-xs sm:text-sm text-gray-400 font-light leading-relaxed">
+                    <div className="pb-5 pr-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
                       {item.answer}
                     </div>
                   )}
