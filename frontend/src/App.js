@@ -53,7 +53,7 @@ const ScrollProgressBeam = () => {
     >
       <div
         style={{ width: `${progress}%` }}
-        className="h-full bg-gradient-to-r from-emerald-500 via-teal-300 to-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.75)] transition-[width] duration-75"
+        className="h-full bg-gradient-to-r from-[#22E55A] via-emerald-300 to-teal-300 shadow-[0_0_12px_rgba(34,229,90,0.85)] transition-[width] duration-75"
       />
     </div>
   );
@@ -61,7 +61,7 @@ const ScrollProgressBeam = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#0a0a0b] min-h-screen pb-20 lg:pb-0 relative">
+    <div className="bg-[#030304] min-h-screen pb-20 lg:pb-0 relative selection:bg-[#22E55A]/25 selection:text-white">
       <ScrollProgressBeam />
       <Header />
       <main>

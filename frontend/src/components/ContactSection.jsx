@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { Send, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
+import SpotlightCard from './ui/SpotlightCard';
 import { contactData } from '../data/mock';
 import ContactIntro from './contact/ContactIntro';
 import ContactFormFields from './contact/ContactFormFields';
@@ -160,16 +161,23 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="scroll-mt-20 relative py-10 lg:py-12 bg-[#08080b] border-t border-white/[0.06]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+    <section
+      id="contact"
+      className="scroll-mt-24 relative py-9 lg:py-11 bg-[#060608] border-t border-white/[0.06] overflow-hidden"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#22E55A]/40 to-transparent"
+      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
           <ContactIntro email={CONTACT_EMAIL} />
 
-          <div className="lg:col-span-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] p-5 sm:p-6">
+          <SpotlightCard className="lg:col-span-3 rounded-3xl bg-[#09090d] border border-white/[0.09] glass-bezel p-6 sm:p-8">
             {submitted ? (
               <ContactSuccess email={CONTACT_EMAIL} onReset={reset} />
             ) : (
-              <form onSubmit={handleSubmit} data-testid="contact-form" className="space-y-3.5">
+              <form onSubmit={handleSubmit} data-testid="contact-form" className="space-y-4">
                 <ContactFormFields
                   form={form}
                   update={update}
@@ -177,34 +185,22 @@ const ContactSection = () => {
                   interestOptions={INTEREST_OPTIONS}
                 />
 
-                {/* Web3Forms honeypot — hidden from real users */}
-                <input
-                  type="checkbox"
-                  name="botcheck"
-                  tabIndex="-1"
-                  autoComplete="off"
-                  value={form.botcheck}
-                  onChange={update('botcheck')}
-                  className="hidden"
-                  aria-hidden="true"
-                />
-
                 {error && (
-                  <p data-testid="contact-error" className="text-red-400 text-sm">
+                  <p data-testid="contact-error" className="text-rose-400 text-xs sm:text-sm font-medium">
                     {error}
                   </p>
                 )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-                  <p className="text-xs text-gray-500 max-w-xs">
-                    Your message is delivered straight to{' '}
-                    <span className="text-gray-400">{CONTACT_EMAIL}</span>. We reply within one business day.
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/[0.06]">
+                  <p className="text-xs text-gray-500 max-w-xs leading-relaxed">
+                    Delivered directly to{' '}
+                    <span className="text-gray-300 font-medium">{CONTACT_EMAIL}</span>. Reply within one business day.
                   </p>
                   <Button
                     type="submit"
                     data-testid="contact-submit"
                     disabled={submitting}
-                    className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 group disabled:opacity-70 disabled:hover:bg-emerald-500"
+                    className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-7 h-11 rounded-full shadow-[0_0_30px_rgba(34,229,90,0.28)] hover:shadow-[0_0_40px_rgba(34,229,90,0.45)] group disabled:opacity-70 transition-all"
                   >
                     {submitting ? (
                       <>
@@ -222,7 +218,7 @@ const ContactSection = () => {
                 </div>
               </form>
             )}
-          </div>
+          </SpotlightCard>
         </div>
       </div>
     </section>

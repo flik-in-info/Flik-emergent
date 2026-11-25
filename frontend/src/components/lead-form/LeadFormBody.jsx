@@ -102,7 +102,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
         type="submit"
         data-testid="lead-form-submit"
         disabled={submitting}
-        className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium group"
+        className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-6 rounded-full shadow-[0_0_25px_rgba(34,229,90,0.28)] group transition-all"
       >
         {submitting ? (
           <>

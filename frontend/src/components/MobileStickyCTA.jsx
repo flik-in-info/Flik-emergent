@@ -64,7 +64,7 @@ const MobileStickyCTA = () => {
           <Button
             data-testid="mobile-sticky-request-demo"
             onClick={handleOpenDemo}
-            className="flex-1 max-w-[170px] bg-emerald-500 hover:bg-emerald-400 text-white font-medium text-xs sm:text-sm h-9 px-3.5 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.35)] active:scale-95 transition-all flex items-center justify-center gap-1.5"
+            className="flex-1 max-w-[170px] bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold text-xs sm:text-sm h-9 px-3.5 rounded-xl shadow-[0_0_20px_rgba(34,229,90,0.35)] active:scale-95 transition-all flex items-center justify-center gap-1.5"
           >
             <span>Request Demo</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />

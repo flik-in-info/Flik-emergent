@@ -2,41 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Inter font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #0a0a0b;
+    background-color: #030304;
+    color: #fafafa;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+code, pre, .font-mono {
+    font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+}
+
+.font-editorial {
+    font-family: 'Instrument Serif', Georgia, serif;
 }
 
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+    background-color: #030304;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0a0a0b;
+    background: #030304;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
+    background: #242429;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #10b981;
 }
 
 /* ---------------------------------------------------------------- */
@@ -210,18 +214,96 @@ html {
     }
 }
 
-/* Animation utilities */
+/* Luxury architectural surfaces, tactile controls & animation utilities */
 @layer utilities {
   .animate-fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
+    animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
+    animation: fadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-marquee {
-    animation: marqueeScroll 28s linear infinite;
+    animation: marqueeScroll 34s linear infinite;
+  }
+
+  .animate-ken-burns {
+    animation: kenBurnsSlow 28s ease-in-out infinite alternate;
+  }
+
+  .bg-arch-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .bg-arch-grid-fine {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .text-gradient-emerald {
+    background: linear-gradient(120deg, #ffffff 0%, #a7f3d0 45%, #22e55a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-bezel {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.012) 100%);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.09),
+      0 24px 60px -15px rgba(0, 0, 0, 0.85);
+  }
+}
+
+/* Custom precision ROI range slider */
+.flik-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  outline: none;
+}
+
+.flik-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #22e55a;
+  border: 2px solid #030304;
+  box-shadow: 0 0 18px rgba(34, 229, 90, 0.65), 0 0 0 4px rgba(34, 229, 90, 0.16);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.flik-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 24px rgba(34, 229, 90, 0.9), 0 0 0 6px rgba(34, 229, 90, 0.22);
+}
+
+.flik-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #22e55a;
+  border: 2px solid #030304;
+  box-shadow: 0 0 18px rgba(34, 229, 90, 0.65);
+  cursor: pointer;
+}
+
+@keyframes kenBurnsSlow {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.06) translate3d(-1%, -0.5%, 0);
   }
 }
 
@@ -230,14 +312,14 @@ html {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-35%);
+    transform: translateX(-50%);
   }
 }
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -248,8 +330,10 @@ html {
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: scale(0.99);
   }
   to {
     opacity: 1;
+    transform: scale(1);
   }
 }

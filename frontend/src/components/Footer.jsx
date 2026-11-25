@@ -209,21 +209,28 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#070708] border-t border-white/5">
+    <footer className="bg-[#040406] border-t border-white/[0.06] relative">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#22E55A]/30 to-transparent"
+      />
       {/* Global Startup Accelerator & Grant Programs */}
-      <div className="bg-white/[0.01]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 sm:py-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5">
+      <div className="bg-[#050508]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Global Accelerator & Frontier Ecosystem
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#22E55A]/10 border border-[#22E55A]/25 text-[#22E55A] text-[10px] font-mono tracking-[0.18em] uppercase mb-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#22E55A] animate-pulse"></span>
+                <span>08 · Global Accelerator & Frontier Ecosystem</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight">
-                Backed by Global Technology Giants
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-light text-white tracking-[-0.02em]">
+                Backed by{' '}
+                <span className="font-editorial italic font-normal text-gradient-emerald tracking-normal pr-1">
+                  Global Technology Giants.
+                </span>
               </h3>
             </div>
-            <p className="text-xs text-gray-400 max-w-md leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-gray-400 max-w-md leading-relaxed font-light">
               Flik Explorer is officially accelerated and backed by the world's premier spatial computing, cloud infrastructure, and frontier AI startup ecosystems.
             </p>
           </div>
@@ -235,7 +242,7 @@ const Footer = () => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative p-5 rounded-2xl bg-[#0b0c0e] border border-white/10 ${borderColor} transition-all duration-500 flex flex-col justify-between overflow-hidden`}
+                className={`group relative p-5 rounded-2xl bg-[#090a0d] border border-white/[0.09] ${borderColor} glass-bezel transition-all duration-500 flex flex-col justify-between overflow-hidden hover:-translate-y-0.5`}
               >
                 {/* Brand Aura Glow */}
                 <div className={`absolute -top-12 -right-12 w-36 h-36 ${glowColor} rounded-full blur-2xl pointer-events-none transition-all duration-500`} />
@@ -252,7 +259,7 @@ const Footer = () => {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h4 className={`text-lg font-bold text-white tracking-tight ${titleHover} transition-colors`}>
+                  <h4 className={`text-lg font-semibold text-white tracking-tight ${titleHover} transition-colors`}>
                     {name}
                   </h4>
                   <span className={`text-xs font-mono ${subnameColor} block mt-0.5 font-medium`}>
@@ -266,10 +273,10 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Verification Strip */}
-                <div className="mt-3.5 pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-400">
+                <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-gray-400">
                   <span className="text-gray-300 font-medium">{metric}</span>
                   <span className={`${metricColor} flex items-center gap-1.5 font-semibold`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${id === 'claude' ? 'bg-[#D97757]' : id === 'aws' ? 'bg-amber-400' : id === 'elevenlabs' ? 'bg-purple-400' : 'bg-emerald-400'}`}></span>
+                    <span className={`w-1.5 h-1.5 rounded-full ${id === 'claude' ? 'bg-[#D97757]' : id === 'aws' ? 'bg-amber-400' : id === 'elevenlabs' ? 'bg-purple-400' : 'bg-[#22E55A]'}`}></span>
                     VERIFIED
                   </span>
                 </div>
@@ -278,7 +285,7 @@ const Footer = () => {
           </div>
 
           {/* Pedigree Endorsement Strip */}
-          <div className="mt-5 pt-4 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 font-light">
+          <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 font-light">
             <p className="leading-relaxed text-center sm:text-left">
               Flik Explorer, an enterprise platform by <span className="text-gray-300 font-medium">Hastok Enterprise Pvt. Ltd.</span>, is an official member of NVIDIA Inception, AWS Activate, and Claude Startups, and a recipient of the ElevenLabs Startup Grant.
             </p>
@@ -295,9 +302,9 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* 5-Column Navigation Grid */}
-      <div className="border-t border-white/5 bg-[#070708]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-8">
+      {/* 5-Column Navigation Grid (In the end) */}
+      <div className="border-t border-white/[0.06] bg-[#040406]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8">
           <div className="grid lg:grid-cols-5 gap-6">
             <FooterBrand />
             <div>
@@ -317,8 +324,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar with Admin Gate & Legal Trademarks */}
-      <div className="border-t border-white/5 bg-[#050506]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 space-y-3">
+      <div className="border-t border-white/[0.06] bg-[#020203]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-3">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-gray-600 text-sm text-center sm:text-left">{footerData.bottomBar}</p>
             <button
