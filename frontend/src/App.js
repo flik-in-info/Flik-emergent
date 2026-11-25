@@ -4,9 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { Toaster } from "./components/ui/sonner";
 import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
+import CinemaScrollMovie from "./components/CinemaScrollMovie";
 import ClientsSection from "./components/ClientsSection";
-import PlatformStudio from "./components/PlatformStudio";
 import ExperienceSection from "./components/ExperienceSection";
 import TechnologySection from "./components/TechnologySection";
 import DifferenceSection from "./components/DifferenceSection";
@@ -53,7 +52,7 @@ const ScrollProgressBeam = () => {
     >
       <div
         style={{ width: `${progress}%` }}
-        className="h-full bg-gradient-to-r from-[#22E55A] via-emerald-300 to-teal-300 shadow-[0_0_12px_rgba(34,229,90,0.85)] transition-[width] duration-75"
+        className="h-full bg-[#22E55A] transition-[width] duration-75"
       />
     </div>
   );
@@ -61,15 +60,14 @@ const ScrollProgressBeam = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#030304] min-h-screen pb-20 lg:pb-0 relative selection:bg-[#22E55A]/25 selection:text-white">
+    <div className="bg-[#000000] min-h-screen pb-20 lg:pb-0 relative overflow-x-clip selection:bg-[#22E55A]/25 selection:text-white">
       <ScrollProgressBeam />
       <Header />
       <main>
-        <HeroSection />
-        <PlatformStudio />
+        <CinemaScrollMovie />
         <ExperienceSection />
-        <TechnologySection />
         <DifferenceSection />
+        <TechnologySection />
         <FAQSection />
         <ContactSection />
         <ClientsSection />

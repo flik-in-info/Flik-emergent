@@ -44,15 +44,11 @@ const STARTUP_PROGRAMS = [
     category: 'Spatial GPU',
     Icon: NvidiaIcon,
     href: 'https://www.nvidia.com/en-us/startups/',
-    borderColor: 'hover:border-[#76B900]/50 hover:shadow-[0_0_40px_rgba(118,185,0,0.2)]',
-    glowColor: 'bg-[#76B900]/10 group-hover:bg-[#76B900]/25',
-    iconBorder: 'group-hover:border-[#76B900]/40 group-hover:bg-[#76B900]/10',
     titleHover: 'group-hover:text-emerald-300',
-    tagColor: 'text-emerald-400 border-emerald-500/20',
     subnameColor: 'text-emerald-400/90',
     metric: 'DLSS 3.5 & RTX',
     metricColor: 'text-emerald-400',
-    description: 'Accelerated GPU compute, neural radiance caching, DLSS 3.5 AI reconstruction, and real-time RTX cloud rendering.',
+    description: 'Accelerated GPU compute, neural radiance caching, DLSS 3.5 AI reconstruction, and live RTX cloud rendering.',
   },
   {
     id: 'aws',
@@ -61,15 +57,11 @@ const STARTUP_PROGRAMS = [
     category: 'Cloud Edge',
     Icon: AwsIcon,
     href: 'https://aws.amazon.com/startups/',
-    borderColor: 'hover:border-[#FF9900]/50 hover:shadow-[0_0_40px_rgba(255,153,0,0.2)]',
-    glowColor: 'bg-[#FF9900]/10 group-hover:bg-[#FF9900]/25',
-    iconBorder: 'group-hover:border-[#FF9900]/40 group-hover:bg-[#FF9900]/10',
     titleHover: 'group-hover:text-amber-300',
-    tagColor: 'text-amber-400 border-amber-500/20',
     subnameColor: 'text-amber-400/90',
     metric: 'AWS CLOUDFRONT',
     metricColor: 'text-amber-400',
-    description: 'Amazon CloudFront global edge delivery, multi-region low latency streaming, and 99.9% uptime enterprise cloud infrastructure.',
+    description: 'Amazon CloudFront global edge delivery, multi-region low latency streaming, and high-availability cloud infrastructure.',
   },
   {
     id: 'claude',
@@ -78,15 +70,11 @@ const STARTUP_PROGRAMS = [
     category: 'Frontier AI',
     Icon: ClaudeIcon,
     href: 'https://www.anthropic.com/',
-    borderColor: 'hover:border-[#D97757]/50 hover:shadow-[0_0_40px_rgba(217,119,87,0.2)]',
-    glowColor: 'bg-[#D97757]/10 group-hover:bg-[#D97757]/25',
-    iconBorder: 'group-hover:border-[#D97757]/40 group-hover:bg-[#D97757]/10',
     titleHover: 'group-hover:text-[#e5947a]',
-    tagColor: 'text-[#D97757] border-[#D97757]/30',
     subnameColor: 'text-[#D97757]',
     metric: 'CLAUDE 3.7 SONNET',
     metricColor: 'text-[#D97757]',
-    description: 'Anthropic frontier reasoning models, automated floorplan intelligence, dynamic multi-property synthesis, and conversational buyer context.',
+    description: 'Anthropic reasoning models, floorplan intelligence, multi-property synthesis, and conversational buyer context.',
   },
   {
     id: 'elevenlabs',
@@ -95,15 +83,11 @@ const STARTUP_PROGRAMS = [
     category: 'Voice AI',
     Icon: ElevenLabsIcon,
     href: 'https://elevenlabs.io/startups',
-    borderColor: 'hover:border-purple-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.2)]',
-    glowColor: 'bg-purple-500/10 group-hover:bg-purple-500/25',
-    iconBorder: 'group-hover:border-purple-400/40 group-hover:bg-purple-500/10',
     titleHover: 'group-hover:text-purple-300',
-    tagColor: 'text-purple-400 border-purple-500/20',
     subnameColor: 'text-purple-400/90',
     metric: '29+ LANGUAGES',
     metricColor: 'text-purple-400',
-    description: 'Ultra-low latency multilingual AI architectural narration, dynamically guiding buyers through unit floorplans across 29+ languages.',
+    description: 'Low latency multilingual AI architectural narration, guiding international buyers through residences in 29+ languages.',
   },
 ];
 
@@ -160,30 +144,29 @@ const FooterBrand = () => (
     <Link to="/" className="flex items-center mb-3">
       <img 
         src={images.logo} 
-        alt="Flik Explorer - Real-Time 3D Digital Twin Platform" 
+        alt="Flik Explorer" 
         loading="lazy"
         decoding="async"
-        className="h-10 w-auto" 
+        className="h-9 w-auto" 
       />
     </Link>
-    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono font-medium tracking-wide mb-3">
-      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span>Hastok Enterprise Pvt. Ltd.</span>
+    <div className="text-xs font-mono text-[#22E55A] tracking-tight mb-3">
+      Hastok Enterprise Pvt. Ltd.
     </div>
-    <p className="text-gray-500 leading-relaxed max-w-sm">{footerData.tagline}</p>
+    <p className="text-gray-400 text-sm leading-relaxed max-w-sm font-light">{footerData.tagline}</p>
 
     <div className="mt-4 space-y-1 text-sm">
       <a
         href={`mailto:${contactData.email}`}
         data-testid="footer-email"
-        className="block text-gray-400 hover:text-white transition-colors duration-300"
+        className="block text-gray-300 hover:text-white transition-colors"
       >
         {contactData.email}
       </a>
       <a
         href={`tel:+${contactData.phoneRaw}`}
         data-testid="footer-phone"
-        className="block text-gray-400 hover:text-white transition-colors duration-300"
+        className="block text-gray-300 hover:text-white transition-colors"
       >
         {contactData.phone}
       </a>
@@ -191,7 +174,7 @@ const FooterBrand = () => (
 
     <SocialIcons />
 
-    <p className="text-gray-600 text-xs mt-4">{footerData.copyright}</p>
+    <p className="text-gray-600 text-xs mt-6">{footerData.copyright}</p>
   </div>
 );
 
@@ -209,103 +192,71 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#040406] border-t border-white/[0.06] relative">
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#22E55A]/30 to-transparent"
-      />
+    <footer className="bg-[#040406] border-t border-white/10">
       {/* Global Startup Accelerator & Grant Programs */}
-      <div className="bg-[#050508]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#22E55A]/10 border border-[#22E55A]/25 text-[#22E55A] text-[10px] font-mono tracking-[0.18em] uppercase mb-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#22E55A] animate-pulse"></span>
-                <span>08 · Global Accelerator & Frontier Ecosystem</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-light text-white tracking-[-0.02em]">
-                Backed by{' '}
-                <span className="font-editorial italic font-normal text-gradient-emerald tracking-normal pr-1">
-                  Global Technology Giants.
-                </span>
-              </h3>
-            </div>
+      <div className="bg-[#060608]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-7">
+            <h3 className="text-2xl sm:text-3xl font-medium text-white tracking-[-0.02em]">
+              Backed by global startup and accelerator programs.
+            </h3>
             <p className="text-xs sm:text-sm text-gray-400 max-w-md leading-relaxed font-light">
-              Flik Explorer is officially accelerated and backed by the world's premier spatial computing, cloud infrastructure, and frontier AI startup ecosystems.
+              Official member of NVIDIA Inception, AWS Activate, and Claude Startups, alongside an ElevenLabs Startup Grant award.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {STARTUP_PROGRAMS.map(({ id, name, subname, category, Icon, href, borderColor, glowColor, iconBorder, titleHover, tagColor, subnameColor, metric, metricColor, description }) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/15">
+            {STARTUP_PROGRAMS.map(({ id, name, subname, category, Icon, href, titleHover, subnameColor, metric, metricColor, description }) => (
               <a
                 key={id}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative p-5 rounded-2xl bg-[#090a0d] border border-white/[0.09] ${borderColor} glass-bezel transition-all duration-500 flex flex-col justify-between overflow-hidden hover:-translate-y-0.5`}
+                className="group p-6 bg-[#08080a] border-r border-b border-white/15 hover:bg-white/[0.03] transition-colors flex flex-col justify-between"
               >
-                {/* Brand Aura Glow */}
-                <div className={`absolute -top-12 -right-12 w-36 h-36 ${glowColor} rounded-full blur-2xl pointer-events-none transition-all duration-500`} />
-
                 <div>
-                  {/* Top Row: Icon + Category Badge */}
-                  <div className="flex items-center justify-between gap-3 mb-4">
-                    <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.04] border border-white/10 ${iconBorder} flex items-center justify-center p-2.5 sm:p-3 transition-all duration-300`}>
+                  <div className="flex items-center justify-between gap-3 mb-5">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 border border-white/15 bg-black flex items-center justify-center p-2.5 sm:p-3">
                       <Icon />
                     </div>
-                    <span className={`text-[10px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-white/[0.04] border ${tagColor} font-medium`}>
+                    <span className="text-[10px] font-mono tracking-widest uppercase text-gray-400">
                       {category}
                     </span>
                   </div>
 
-                  {/* Title & Subtitle */}
-                  <h4 className={`text-lg font-semibold text-white tracking-tight ${titleHover} transition-colors`}>
+                  <h4 className={`text-lg font-medium text-white tracking-tight ${titleHover} transition-colors`}>
                     {name}
                   </h4>
-                  <span className={`text-xs font-mono ${subnameColor} block mt-0.5 font-medium`}>
+                  <span className={`text-xs font-mono ${subnameColor} block mt-0.5`}>
                     {subname}
                   </span>
 
-                  {/* Description */}
-                  <p className="text-xs text-gray-400 mt-2 leading-snug font-light group-hover:text-gray-300 transition-colors line-clamp-2">
+                  <p className="text-xs text-gray-400 mt-3 leading-relaxed font-light">
                     {description}
                   </p>
                 </div>
 
-                {/* Bottom Verification Strip */}
-                <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-gray-400">
-                  <span className="text-gray-300 font-medium">{metric}</span>
-                  <span className={`${metricColor} flex items-center gap-1.5 font-semibold`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${id === 'claude' ? 'bg-[#D97757]' : id === 'aws' ? 'bg-amber-400' : id === 'elevenlabs' ? 'bg-purple-400' : 'bg-[#22E55A]'}`}></span>
-                    VERIFIED
-                  </span>
+                <div className="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-gray-300">{metric}</span>
+                  <span className={`${metricColor} font-medium`}>VERIFIED</span>
                 </div>
               </a>
             ))}
           </div>
 
-          {/* Pedigree Endorsement Strip */}
-          <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 font-light">
-            <p className="leading-relaxed text-center sm:text-left">
-              Flik Explorer, an enterprise platform by <span className="text-gray-300 font-medium">Hastok Enterprise Pvt. Ltd.</span>, is an official member of NVIDIA Inception, AWS Activate, and Claude Startups, and a recipient of the ElevenLabs Startup Grant.
+          {/* Pedigree Endorsement */}
+          <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 font-light">
+            <p className="text-center sm:text-left">
+              Flik Explorer, developed by <span className="text-gray-300 font-medium">Hastok Enterprise Pvt. Ltd.</span>, participates in NVIDIA Inception, AWS Activate, Claude Startups, and ElevenLabs Grants.
             </p>
-            <div className="flex items-center gap-3 sm:gap-4 shrink-0 text-gray-600 font-mono text-[10px] uppercase tracking-wider">
-              <span>DLSS 3.5 & RTX</span>
-              <span>·</span>
-              <span>AWS CloudFront</span>
-              <span>·</span>
-              <span>Claude 3.7 Sonnet</span>
-              <span>·</span>
-              <span>ElevenLabs TTS</span>
-            </div>
           </div>
         </div>
       </div>
 
       {/* 5-Column Navigation Grid (In the end) */}
-      <div className="border-t border-white/[0.06] bg-[#040406]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8">
-          <div className="grid lg:grid-cols-5 gap-6">
+      <div className="border-t border-white/10 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+          <div className="grid lg:grid-cols-5 gap-8">
             <FooterBrand />
             <div>
               <FooterLinkColumn title="Platform" links={footerData.platform} />
@@ -314,8 +265,8 @@ const Footer = () => {
               <FooterLinkColumn title="Company" links={footerData.company} />
             </div>
             <div>
-              <div className="mb-4">
-                <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
+              <div className="mb-6">
+                <FooterLinkColumn title="Resources" links={footerData.resources} />
               </div>
               <FooterLinkColumn title="Legal" links={footerData.legal} />
             </div>
@@ -324,15 +275,15 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar with Admin Gate & Legal Trademarks */}
-      <div className="border-t border-white/[0.06] bg-[#020203]">
+      <div className="border-t border-white/10 bg-[#040405]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-3">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-gray-600 text-sm text-center sm:text-left">{footerData.bottomBar}</p>
+            <p className="text-gray-600 text-xs text-center sm:text-left">{footerData.bottomBar}</p>
             <button
               onClick={handleAdminClick}
               data-testid="footer-admin-btn"
-              className="text-gray-600 hover:text-emerald-400 text-xs font-mono transition-colors tracking-widest lowercase hover:underline opacity-80 hover:opacity-100"
-              title="Flik Admin Access (Passcode: 2822)"
+              className="text-gray-600 hover:text-[#22E55A] text-xs font-mono transition-colors tracking-widest lowercase hover:underline"
+              title="Flik Admin Access"
             >
               admin
             </button>

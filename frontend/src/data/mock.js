@@ -23,9 +23,9 @@ export const heroData = {
 
 export const navItems = [
   { label: "Platform", href: "/#platform" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Intelligence", href: "/#intelligence" },
-  { label: "Technology", href: "/#technology" },
+  { label: "Live 3D", href: "/#experience" },
+  { label: "ROI", href: "/#difference" },
+  { label: "Infrastructure", href: "/#technology" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" }
 ];
@@ -209,42 +209,39 @@ export const contactData = {
 };
 
 export const footerData = {
-  tagline: "Real-time architecture intelligence for the world's leading developers.",
-  copyright: "© 2026 Hastok Enterprise Pvt. Ltd. · Flik Explorer. All rights reserved.",
+  tagline: "Browser-streamed 3D architectural platforms for residential developers.",
+  copyright: "© 2026 Hastok Enterprise Pvt. Ltd. All rights reserved.",
   platform: [
-    { label: "Capabilities", href: "#" },
-    { label: "Technology", href: "#" },
-    { label: "Integrations", href: "#" },
-    { label: "Security", href: "#" },
-    { label: "Pricing", href: "#" }
+    { label: "Platform Overview", href: "/#platform" },
+    { label: "Interactive Walkthrough", href: "/#experience" },
+    { label: "Sample Flat Economics", href: "/#difference" },
+    { label: "Engineering Stack", href: "/#technology" },
+    { label: "FAQ", href: "/#faq" }
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
-    { label: "Partners", href: "#" },
-    { label: "Contact", href: "#" }
+    { label: "Hastok Enterprise", href: "/#hero" },
+    { label: "Client Deployments", href: "/#clients" },
+    { label: "Partners", href: "/#industry-leaders" },
+    { label: "Contact", href: "/#contact" }
   ],
   resources: [
-    { label: "Documentation", href: "#" },
-    { label: "API Reference", href: "#" },
-    { label: "Case Studies", href: "#" },
-    { label: "Support", href: "#" },
-    { label: "System Status", href: "#" }
+    { label: "Presentation PDF", href: "/presentation.pdf" },
+    { label: "Overview Deck", href: "/FLIK_presentation.pdf" },
+    { label: "ROI Calculator", href: "/#difference" }
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Cookie Policy", href: "/privacy-policy#cookies-telemetry" }
   ],
-  bottomBar: "Enterprise-grade real-time visualization and sales intelligence · Developed by Hastok Enterprise Pvt. Ltd. · Powered by Unreal Engine 5"
+  bottomBar: "Hastok Enterprise Pvt. Ltd. / Flik Explorer B2B PropTech Platform"
 };
 
 export const images = {
-  hero: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/x2v0cq1i_Generate_a_photo_4k_202601081339.jpeg",
-  environment: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/oxgdjfg9_Ultrarealistic_product_feature_2k_2026011515.jpeg",
-  devices: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/c3tyk0z9_Ultrarealistic_visualization_of_2k_202601191.jpeg",
-  intelligence: "https://customer-assets.emergentagent.com/job_4c3ce507-c661-4a16-8fad-c5fafa30e942/artifacts/czx4ykai_Google_earth_studiostyle_2k_202601191025.jpeg",
-  showroom: "https://customer-assets.emergentagent.com/job_14e408c1-3c7e-48f7-a8ad-989309c5d4e5/artifacts/qmndvwhi_IMG_0752.jpeg",
+  hero: "/scenes/scene-00-showroom.jpg",
+  environment: "/scenes/scene-02-living-day.jpg",
+  devices: "/scenes/scene-01-tower.jpg",
+  intelligence: "/scenes/scene-03-living-dusk.jpg",
+  showroom: "/scenes/scene-00-showroom.jpg",
   logo: "https://customer-assets.emergentagent.com/job_archviz-sales/artifacts/c72tdypv_flik999.png"
 };

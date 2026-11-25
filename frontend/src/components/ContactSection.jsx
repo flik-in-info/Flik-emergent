@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { Send, ArrowRight, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
-import SpotlightCard from './ui/SpotlightCard';
 import { contactData } from '../data/mock';
 import ContactIntro from './contact/ContactIntro';
 import ContactFormFields from './contact/ContactFormFields';
@@ -163,17 +162,13 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="scroll-mt-24 relative py-9 lg:py-11 bg-[#060608] border-t border-white/[0.06] overflow-hidden"
+      className="scroll-mt-20 py-14 lg:py-20 bg-[#050506] border-t border-white/10"
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#22E55A]/40 to-transparent"
-      />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <ContactIntro email={CONTACT_EMAIL} />
 
-          <SpotlightCard className="lg:col-span-3 rounded-3xl bg-[#09090d] border border-white/[0.09] glass-bezel p-6 sm:p-8">
+          <div className="lg:col-span-7 border border-white/15 bg-black p-6 sm:p-8">
             {submitted ? (
               <ContactSuccess email={CONTACT_EMAIL} onReset={reset} />
             ) : (
@@ -191,7 +186,7 @@ const ContactSection = () => {
                   </p>
                 )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/[0.06]">
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
                   <p className="text-xs text-gray-500 max-w-xs leading-relaxed">
                     Delivered directly to{' '}
                     <span className="text-gray-300 font-medium">{CONTACT_EMAIL}</span>. Reply within one business day.
@@ -200,25 +195,21 @@ const ContactSection = () => {
                     type="submit"
                     data-testid="contact-submit"
                     disabled={submitting}
-                    className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-7 h-11 rounded-full shadow-[0_0_30px_rgba(34,229,90,0.28)] hover:shadow-[0_0_40px_rgba(34,229,90,0.45)] group disabled:opacity-70 transition-all"
+                    className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-7 h-11 rounded-md disabled:opacity-70 transition-colors"
                   >
                     {submitting ? (
                       <>
                         <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-                        Sending…
+                        Sending
                       </>
                     ) : (
-                      <>
-                        <Send className="mr-2 w-4 h-4" />
-                        Send enquiry
-                        <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </>
+                      'Send Enquiry'
                     )}
                   </Button>
                 </div>
               </form>
             )}
-          </SpotlightCard>
+          </div>
         </div>
       </div>
     </section>

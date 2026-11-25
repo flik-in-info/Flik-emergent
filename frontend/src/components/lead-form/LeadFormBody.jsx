@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader2, ArrowRight } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import {
   DialogHeader,
   DialogTitle,
@@ -102,18 +102,15 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
         type="submit"
         data-testid="lead-form-submit"
         disabled={submitting}
-        className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-6 rounded-full shadow-[0_0_25px_rgba(34,229,90,0.28)] group transition-all"
+        className="bg-[#22E55A] hover:bg-emerald-400 text-black font-semibold px-6 rounded-md transition-colors"
       >
         {submitting ? (
           <>
             <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-            Sending…
+            Sending
           </>
         ) : (
-          <>
-            Request demo
-            <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </>
+          'Request Demo'
         )}
       </Button>
     </DialogFooter>

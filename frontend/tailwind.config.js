@@ -8,9 +8,9 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-  			serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-  			mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+  			display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+  			sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+  			mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
