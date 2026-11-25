@@ -219,16 +219,16 @@ const TechStackShowcase = () => {
     <div id="industry-leaders">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
         <div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-[#0b1020] tracking-[-0.03em] leading-[1.08]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-black tracking-[-0.03em] leading-[1.08]">
             Engineering stack and integrations.
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-lg">
+          <p className="text-sm sm:text-base text-neutral-600 mt-2 max-w-lg">
             Powered directly by Unreal Engine 5, NVIDIA GPU cloud streaming, AWS global delivery, and Autodesk BIM workflows.
           </p>
         </div>
 
-        {/* Clean Zensia-style Filter Pill Tray */}
-        <div className="flex flex-wrap lg:flex-nowrap items-center gap-1 rounded-xl border border-slate-200 bg-white p-1 shadow-sm shrink-0">
+        {/* Clean Flik Brand Filter Pill Tray */}
+        <div className="flex flex-wrap lg:flex-nowrap items-center gap-1 rounded-xl border border-neutral-200 bg-white p-1 shadow-sm shrink-0">
           {ARCHITECTURE_LAYERS.map((layer) => {
             const isCurrent = selectedLayer === layer.id;
             return (
@@ -241,8 +241,8 @@ const TechStackShowcase = () => {
                 }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
                   isCurrent
-                    ? 'bg-[#00A896] text-white font-semibold'
-                    : 'text-slate-600 hover:text-[#0b1020]'
+                    ? 'bg-[#22E55A] text-black font-semibold'
+                    : 'text-neutral-600 hover:text-black'
                 }`}
               >
                 {layer.label}
@@ -253,38 +253,38 @@ const TechStackShowcase = () => {
       </div>
 
       {/* Selected Partner Overview Bar */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 mb-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-sm">
+      <div className="rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 mb-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-sm">
         <div className="flex items-start sm:items-center gap-5">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 text-[#0b1020]">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-center shrink-0 text-black">
             <ActiveLogo className="w-8 h-8 sm:w-9 sm:h-9" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-3 mb-1.5">
-              <h3 className="text-lg sm:text-xl font-semibold text-[#0b1020]">
+              <h3 className="text-lg sm:text-xl font-semibold text-black">
                 {activePartner.name}
               </h3>
-              <span className="text-xs font-mono text-[#0F766E] bg-[#f4fbfa] px-2 py-0.5 rounded border border-[#0F766E]/20">
+              <span className="text-xs font-mono text-[#22E55A] bg-black px-2 py-0.5 rounded font-medium">
                 {activePartner.spec}
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl">
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-2xl">
               {activePartner.description}
             </p>
           </div>
         </div>
 
-        <div className="lg:text-right border-t lg:border-t-0 lg:border-l border-slate-200 pt-4 lg:pt-0 lg:pl-6 shrink-0">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+        <div className="lg:text-right border-t lg:border-t-0 lg:border-l border-neutral-200 pt-4 lg:pt-0 lg:pl-6 shrink-0">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
             Architecture Layer
           </div>
-          <div className="text-sm font-semibold text-[#0b1020] mt-0.5">
+          <div className="text-sm font-semibold text-black mt-0.5">
             {activePartner.category}
           </div>
-          <div className="text-xs text-slate-500 mt-0.5">{activePartner.vendor}</div>
+          <div className="text-xs text-neutral-500 mt-0.5">{activePartner.vendor}</div>
         </div>
       </div>
 
-      {/* Light Tactile Tool Matrix */}
+      {/* Monochrome Tool Matrix */}
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
         {filteredPartners.map((partner) => {
           const isSelected = activePartner.id === partner.id;
@@ -300,18 +300,18 @@ const TechStackShowcase = () => {
               onMouseEnter={() => setActivePartnerId(partner.id)}
               className={`p-4 rounded-xl border text-left flex flex-col justify-between gap-4 transition-all cursor-pointer ${
                 isSelected
-                  ? 'bg-[#0b1020] text-white border-[#0b1020] shadow-md'
-                  : 'bg-white text-[#0b1020] border-slate-200 hover:border-[#00A896]/50 hover:shadow-sm'
+                  ? 'bg-black text-white border-black shadow-md'
+                  : 'bg-white text-black border-neutral-200 hover:border-black hover:shadow-sm'
               }`}
             >
-              <div>
+              <div className={isSelected ? 'text-[#22E55A]' : 'text-black'}>
                 <LogoComp className={partner.logoClass} />
               </div>
               <div>
-                <div className={`text-xs font-semibold truncate ${isSelected ? 'text-white' : 'text-[#0b1020]'}`}>
+                <div className={`text-xs font-semibold truncate ${isSelected ? 'text-white' : 'text-black'}`}>
                   {partner.name}
                 </div>
-                <div className={`text-[10px] font-mono truncate mt-0.5 ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
+                <div className={`text-[10px] font-mono truncate mt-0.5 ${isSelected ? 'text-neutral-300' : 'text-neutral-500'}`}>
                   {partner.category}
                 </div>
               </div>

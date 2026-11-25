@@ -45,14 +45,14 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 pt-2.5 sm:pt-3.5 px-3 sm:px-6 pointer-events-none">
       <div
-        className={`mx-auto transition-all duration-300 pointer-events-auto rounded-xl bg-white/88 backdrop-blur-md border border-slate-900/[0.08] shadow-[0_10px_32px_-12px_rgba(15,23,42,0.12)] ${
+        className={`mx-auto transition-all duration-300 pointer-events-auto rounded-xl bg-white/92 backdrop-blur-md border border-black/10 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.09)] ${
           isScrolled ? 'max-w-[1140px]' : 'max-w-7xl'
         }`}
       >
         <div className="px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
           {/* Brand */}
           <Link to="/" className="flex items-center gap-3 flex-shrink-0">
-            <span className="inline-flex items-center justify-center bg-[#0b1020] px-2.5 py-1 rounded-lg">
+            <span className="inline-flex items-center justify-center bg-black px-2.5 py-1 rounded-lg">
               <img
                 src={images.logo}
                 alt="Flik Explorer"
@@ -60,7 +60,7 @@ const Header = () => {
                 className="h-6 sm:h-7 w-auto"
               />
             </span>
-            <span className="hidden xl:inline-block pl-3 border-l border-slate-200 text-xs font-mono text-slate-600 tracking-tight">
+            <span className="hidden xl:inline-block pl-3 border-l border-neutral-200 text-xs font-mono text-neutral-600 tracking-tight">
               Hastok Enterprise Pvt. Ltd.
             </span>
           </Link>
@@ -75,8 +75,8 @@ const Header = () => {
                   href={item.href}
                   className={`text-[13px] font-medium transition-colors ${
                     isActive
-                      ? 'text-[#0F766E]'
-                      : 'text-slate-600 hover:text-[#0b1020]'
+                      ? 'text-black font-semibold underline decoration-[#22E55A] decoration-2 underline-offset-[6px]'
+                      : 'text-neutral-600 hover:text-black'
                   }`}
                 >
                   {item.label}
@@ -86,23 +86,14 @@ const Header = () => {
           </nav>
 
           {/* Desktop Action */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="/presentation.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-medium text-slate-500 hover:text-[#0b1020] transition-colors hidden xl:inline-block"
-            >
-              Presentation PDF
-            </a>
-
+          <div className="hidden lg:flex items-center">
             <Button
               data-testid="header-request-demo"
               onClick={() => {
                 telemetry.ctaClick('Request Demo', 'header');
                 openDemoDialog('header');
               }}
-              className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium text-xs px-4 h-9 rounded-lg transition-colors shadow-[0_6px_16px_-6px_rgba(11,16,32,0.4)]"
+              className="bg-black hover:bg-[#22E55A] text-white hover:text-black font-medium text-xs px-5 h-9 rounded-lg transition-colors"
             >
               Request Demo
             </Button>
@@ -116,14 +107,14 @@ const Header = () => {
                 telemetry.ctaClick('Request Demo', 'header_mobile_top_bar');
                 openDemoDialog('header_mobile_top_bar');
               }}
-              className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium text-xs px-3.5 h-8 rounded-lg"
+              className="bg-[#22E55A] hover:bg-[#2EE05F] text-black font-semibold text-xs px-3.5 h-8 rounded-lg"
             >
               Request Demo
             </Button>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-[#0F766E] transition-colors"
+              className="p-2 text-black hover:text-neutral-600 transition-colors"
               aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -133,27 +124,18 @@ const Header = () => {
 
         {/* Mobile Menu Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-slate-100 rounded-b-xl px-5 py-4">
+          <div className="lg:hidden bg-white border-t border-neutral-100 rounded-b-xl px-5 py-4">
             <nav className="flex flex-col gap-0.5">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-slate-600 hover:text-[#0b1020] py-3 border-b border-slate-100 text-sm font-medium"
+                  className="text-neutral-700 hover:text-black py-3 border-b border-neutral-100 text-sm font-medium"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
-              <a
-                href="/presentation.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-600 hover:text-[#0b1020] py-3 border-b border-slate-100 text-sm font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Presentation PDF
-              </a>
               <Button
                 data-testid="mobile-request-demo"
                 onClick={() => {
@@ -161,7 +143,7 @@ const Header = () => {
                   setIsMobileMenuOpen(false);
                   openDemoDialog('header_mobile_drawer');
                 }}
-                className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium mt-4 py-5 rounded-lg"
+                className="bg-[#22E55A] hover:bg-[#2EE05F] text-black font-semibold mt-4 py-5 rounded-lg"
               >
                 Request Demo
               </Button>

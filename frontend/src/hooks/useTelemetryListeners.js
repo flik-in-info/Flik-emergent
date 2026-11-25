@@ -86,7 +86,7 @@ export default function useTelemetryListeners() {
       });
     }
 
-    // 5. Global Link Interceptor (WhatsApp, Phone, Email, PDF)
+    // 5. Global Link Interceptor (WhatsApp, Phone, Email)
     const handleGlobalClick = (e) => {
       const anchor = e.target.closest('a');
       if (!anchor) return;
@@ -95,8 +95,6 @@ export default function useTelemetryListeners() {
 
       if (href.includes('wa.me')) {
         telemetry.whatsAppClick(anchor.getAttribute('data-telemetry-loc') || 'link');
-      } else if (href.includes('presentation.pdf') || href.includes('FLIK_presentation.pdf')) {
-        telemetry.presentationViewed(href);
       } else if (href.startsWith('tel:')) {
         telemetry.contactDirectClick('phone', href);
       } else if (href.startsWith('mailto:')) {

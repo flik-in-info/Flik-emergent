@@ -55,24 +55,20 @@ const FAQSection = () => {
   return (
     <section
       id="faq"
-      className="scroll-mt-24 py-16 lg:py-24 bg-[#f4fbfa] border-t border-b border-slate-200/70"
-      style={{
-        backgroundImage:
-          'radial-gradient(ellipse 65% 50% at 85% 20%, rgba(15, 118, 110, 0.06), transparent 60%)',
-      }}
+      className="scroll-mt-24 py-16 lg:py-24 bg-white border-t border-b border-neutral-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-4">
-            <h2 className="text-3xl sm:text-4xl font-medium text-[#0b1020] tracking-[-0.03em] leading-[1.1]">
+            <h2 className="text-3xl sm:text-4xl font-medium text-black tracking-[-0.03em] leading-[1.1]">
               Common questions on deployment and licensing.
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
+            <p className="text-sm sm:text-base text-neutral-600 mt-3 leading-relaxed">
               Practical answers covering sample flat savings, NRI access, CRM sync, and Unreal Engine turnaround.
             </p>
           </div>
 
-          <div className="lg:col-span-8 bg-white rounded-2xl border border-slate-200/90 shadow-sm divide-y divide-slate-100 px-6 sm:px-8">
+          <div className="lg:col-span-8 bg-neutral-50 rounded-2xl border border-neutral-200 divide-y divide-neutral-200 px-6 sm:px-8">
             {FAQ_ITEMS.map((item, idx) => {
               const isOpen = openIndex === idx;
               return (
@@ -85,20 +81,30 @@ const FAQSection = () => {
                   >
                     <span
                       className={`text-sm sm:text-base font-medium leading-snug transition-colors ${
-                        isOpen ? 'text-[#0F766E]' : 'text-[#0b1020] group-hover:text-[#0F766E]'
+                        isOpen
+                          ? 'text-black underline decoration-[#22E55A] decoration-2 underline-offset-4'
+                          : 'text-black group-hover:text-neutral-600'
                       }`}
                     >
                       {item.question}
                     </span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 mt-0.5 ${
-                        isOpen ? 'rotate-180 text-[#0F766E]' : 'group-hover:text-[#0b1020]'
+                    <span
+                      className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors shrink-0 ${
+                        isOpen
+                          ? 'bg-[#22E55A] text-black'
+                          : 'bg-neutral-200/80 text-neutral-600 group-hover:bg-black group-hover:text-white'
                       }`}
-                    />
+                    >
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </span>
                   </button>
 
                   {isOpen && (
-                    <div className="pb-5 pr-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <div className="pb-5 pr-6 text-xs sm:text-sm text-neutral-600 leading-relaxed">
                       {item.answer}
                     </div>
                   )}

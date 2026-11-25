@@ -81,41 +81,42 @@ const DifferenceSection = () => {
   return (
     <section
       id="difference"
-      className="scroll-mt-24 py-16 lg:py-24 bg-grid-paper border-t border-b border-slate-200/80"
+      className="scroll-mt-24 py-16 lg:py-24 bg-grid-paper border-t border-b border-neutral-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Centered Header + Zensia-style Switch */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-[#0b1020] leading-[1.08] tracking-[-0.03em]">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-black leading-[1.08] tracking-[-0.03em]">
               Sample flat friction vs.{' '}
-              <span className="text-[#0F766E]">one shared platform.</span>
+              <span className="underline decoration-[#22E55A] decoration-[4px] underline-offset-[6px]">
+                Flik Explorer.
+              </span>
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2.5 max-w-xl">
+            <p className="text-sm sm:text-base text-neutral-600 mt-2.5 max-w-xl">
               Flip the switch to compare physical sample flat bottlenecks with browser-streamed pre-sales from Hastok Enterprise Pvt. Ltd.
             </p>
           </div>
 
-          {/* Interactive Toggle Switch */}
+          {/* Interactive Monochrome + Flik Green Switch */}
           <button
             type="button"
             role="switch"
             aria-checked={useFlik}
             onClick={() => setUseFlik((v) => !v)}
-            className="inline-flex items-center gap-3.5 px-4 py-2.5 rounded-full bg-white border border-slate-200 shadow-sm hover:border-slate-300 transition-colors cursor-pointer self-start lg:self-auto"
+            className="inline-flex items-center gap-3.5 px-4 py-2.5 rounded-full bg-white border border-neutral-300 shadow-sm hover:border-black transition-colors cursor-pointer self-start lg:self-auto"
           >
             <span
               className={`relative inline-flex h-6 w-11 shrink-0 rounded-full transition-colors duration-200 ${
-                useFlik ? 'bg-[#00A896]' : 'bg-slate-300'
+                useFlik ? 'bg-[#22E55A]' : 'bg-neutral-300'
               }`}
             >
               <span
-                className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform duration-200 mt-0.5 ${
+                className={`inline-block h-5 w-5 transform rounded-full bg-black shadow transition-transform duration-200 mt-0.5 ${
                   useFlik ? 'translate-x-5' : 'translate-x-0.5'
                 }`}
               />
             </span>
-            <span className="text-xs font-medium text-[#0b1020]">
+            <span className="text-xs font-semibold text-black">
               {useFlik ? 'Flik Explorer Active' : 'Physical Sample Flat Only'}
             </span>
           </button>
@@ -129,27 +130,31 @@ const DifferenceSection = () => {
                 key={row.dimension}
                 className={`p-4 sm:p-5 rounded-xl border transition-all duration-200 ${
                   useFlik
-                    ? 'bg-white border-slate-200/90 shadow-sm'
-                    : 'bg-rose-50/45 border-rose-200/80'
+                    ? 'bg-white border-neutral-200 shadow-sm'
+                    : 'bg-neutral-100 border-neutral-300'
                 }`}
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className="text-sm font-semibold text-[#0b1020]">{row.dimension}</span>
+                  <span className="text-sm font-semibold text-black">{row.dimension}</span>
                   {!useFlik && (
-                    <span className="font-note text-base sm:text-lg text-rose-600 font-bold leading-none">
+                    <span className="font-note text-base sm:text-lg text-neutral-800 font-bold leading-none underline decoration-neutral-400">
                       {row.handNote}
                     </span>
                   )}
                 </div>
 
                 {useFlik ? (
-                  <div className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    <Check className="w-4 h-4 text-[#0F766E] shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700 leading-relaxed">
+                    <span className="w-5 h-5 rounded-full bg-[#22E55A] text-black flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
+                    </span>
                     <span>{row.flik}</span>
                   </div>
                 ) : (
-                  <div className="flex items-start gap-2.5 text-xs sm:text-sm text-rose-900/80 leading-relaxed">
-                    <X className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700 leading-relaxed">
+                    <span className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center shrink-0 mt-0.5">
+                      <X className="w-3 h-3" />
+                    </span>
                     <span>{row.traditional}</span>
                   </div>
                 )}
@@ -157,13 +162,13 @@ const DifferenceSection = () => {
             ))}
           </div>
 
-          {/* Right: Light Project Capital & Velocity Estimator */}
-          <div className="lg:col-span-6 p-6 sm:p-8 rounded-2xl border border-slate-200 bg-white shadow-[0_24px_60px_-28px_rgba(15,23,42,0.16)]">
-            <div className="flex items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-100">
-              <span className="text-sm font-semibold text-[#0b1020]">
+          {/* Right: Monochrome + Flik Green Project Capital & Velocity Estimator */}
+          <div className="lg:col-span-6 p-6 sm:p-8 rounded-2xl border border-neutral-200 bg-white shadow-[0_24px_60px_-28px_rgba(0,0,0,0.14)]">
+            <div className="flex items-center justify-between gap-2 pb-4 mb-6 border-b border-neutral-100">
+              <span className="text-sm font-semibold text-black">
                 Project Capital & Velocity Estimator
               </span>
-              <span className="text-xs font-mono text-[#0F766E] bg-[#f4fbfa] px-2.5 py-1 rounded-md border border-[#0F766E]/20 whitespace-nowrap shrink-0">
+              <span className="text-xs font-mono text-[#22E55A] bg-black px-2.5 py-1 rounded-md font-medium whitespace-nowrap shrink-0">
                 GDV ₹{metrics.totalGdvCr.toLocaleString('en-IN')} Cr
               </span>
             </div>
@@ -171,10 +176,10 @@ const DifferenceSection = () => {
             {/* Project Units Slider */}
             <div className="mb-7">
               <div className="flex items-center justify-between mb-2.5">
-                <label htmlFor="roi-units-slider" className="text-xs font-medium text-slate-600">
+                <label htmlFor="roi-units-slider" className="text-xs font-medium text-neutral-600">
                   Total Residential Units
                 </label>
-                <span className="text-sm font-mono font-semibold text-[#0F766E]">
+                <span className="text-sm font-mono font-semibold text-black bg-[#22E55A] px-2 py-0.5 rounded">
                   {units} Units
                 </span>
               </div>
@@ -191,11 +196,11 @@ const DifferenceSection = () => {
                   handleRoiInteraction(val, selectedTicket);
                 }}
                 style={{
-                  background: `linear-gradient(to right, #0F766E 0%, #0F766E ${sliderProgress}%, #e2e8f0 ${sliderProgress}%, #e2e8f0 100%)`,
+                  background: `linear-gradient(to right, #22E55A 0%, #22E55A ${sliderProgress}%, #e4e4e7 ${sliderProgress}%, #e4e4e7 100%)`,
                 }}
                 className="w-full flik-slider cursor-pointer"
               />
-              <div className="flex justify-between text-[11px] font-mono text-slate-400 mt-2">
+              <div className="flex justify-between text-[11px] font-mono text-neutral-400 mt-2">
                 <span>50 Units</span>
                 <span>500 Units</span>
                 <span>1,000 Units</span>
@@ -204,10 +209,10 @@ const DifferenceSection = () => {
 
             {/* Ticket Size Selector */}
             <div className="mb-7">
-              <div className="text-xs font-medium text-slate-600 mb-2.5">
+              <div className="text-xs font-medium text-neutral-600 mb-2.5">
                 Average Apartment Ticket Price
               </div>
-              <div className="grid grid-cols-4 gap-1.5 bg-slate-100 p-1 rounded-xl">
+              <div className="grid grid-cols-4 gap-1.5 bg-neutral-100 p-1 rounded-xl">
                 {TICKET_SIZES.map((tier) => {
                   const active = tier.id === ticketId;
                   return (
@@ -220,8 +225,8 @@ const DifferenceSection = () => {
                       }}
                       className={`py-2 px-2 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
                         active
-                          ? 'bg-[#0b1020] text-white font-semibold shadow-sm'
-                          : 'text-slate-600 hover:text-[#0b1020]'
+                          ? 'bg-black text-white font-semibold'
+                          : 'text-neutral-600 hover:text-black'
                       }`}
                     >
                       {tier.label}
@@ -232,35 +237,35 @@ const DifferenceSection = () => {
             </div>
 
             {/* Output Metrics */}
-            <div className="grid grid-cols-3 border-t border-b border-slate-100 divide-x divide-slate-100 py-5 mb-6">
+            <div className="grid grid-cols-3 border-t border-b border-neutral-100 divide-x divide-neutral-100 py-5 mb-6">
               <div className="pr-3">
-                <div className="text-[11px] font-mono text-slate-500 mb-1">
+                <div className="text-[11px] font-mono text-neutral-500 mb-1">
                   Sample Flat Saved
                 </div>
-                <div className="text-lg sm:text-xl font-semibold text-[#0b1020] font-mono whitespace-nowrap">
+                <div className="text-lg sm:text-xl font-semibold text-black font-mono whitespace-nowrap">
                   ₹2–5 Cr
                 </div>
               </div>
               <div className="px-3">
-                <div className="text-[11px] font-mono text-slate-500 mb-1">
+                <div className="text-[11px] font-mono text-neutral-500 mb-1">
                   Carry Saved
                 </div>
-                <div className="text-lg sm:text-xl font-semibold text-[#0F766E] font-mono whitespace-nowrap">
+                <div className="inline-block bg-black text-[#22E55A] px-2 py-0.5 rounded text-base sm:text-lg font-semibold font-mono whitespace-nowrap">
                   ₹{metrics.carryingCostSavedCr} Cr
                 </div>
               </div>
               <div className="pl-3">
-                <div className="text-[11px] font-mono text-slate-500 mb-1">
+                <div className="text-[11px] font-mono text-neutral-500 mb-1">
                   Time to Pre-Sales
                 </div>
-                <div className="text-lg sm:text-xl font-semibold text-[#0b1020] font-mono whitespace-nowrap">
+                <div className="text-lg sm:text-xl font-semibold text-black font-mono whitespace-nowrap">
                   {metrics.velocityMonthsSaved} Months Saved
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-neutral-500">
                 Direct B2B project licensing with zero per-seat fees.
               </span>
               <Button
@@ -269,7 +274,7 @@ const DifferenceSection = () => {
                   telemetry.ctaClick('Request Project Proposal', 'difference');
                   openDemoDialog('roi_estimator');
                 }}
-                className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium text-xs px-5 h-10 rounded-lg transition-colors"
+                className="bg-[#22E55A] hover:bg-[#2EE05F] text-black font-semibold text-xs px-5 h-10 rounded-lg transition-colors"
               >
                 Request Project Proposal
               </Button>

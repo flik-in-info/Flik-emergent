@@ -40,19 +40,19 @@ const ClientsSection = () => {
     <section
       id="clients"
       aria-label="Our Previous Clients"
-      className="scroll-mt-24 py-14 lg:py-20 bg-white border-t border-slate-200/80"
+      className="scroll-mt-24 py-14 lg:py-20 bg-white border-t border-neutral-200"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-medium text-[#0b1020] tracking-[-0.03em]">
+          <h2 className="text-3xl sm:text-4xl font-medium text-black tracking-[-0.03em]">
             Trusted by residential developers.
           </h2>
-          <span className="text-xs font-mono text-slate-500">
+          <span className="text-xs font-mono text-neutral-500">
             Selected developer deployments
           </span>
         </div>
 
-        {/* Crisp Light Gallery Grid Preserving True Website Logo Colors */}
+        {/* Pure White Stage Cards Preserving Unmodified Original Client Brand Colors */}
         <div
           data-testid="clients-logo-grid"
           className="grid grid-cols-2 lg:grid-cols-4 gap-4"
@@ -61,7 +61,7 @@ const ClientsSection = () => {
             <div
               key={client.id}
               data-testid={`client-card-${client.id}`}
-              className="group rounded-2xl border border-slate-200 bg-white hover:border-[#00A896]/50 hover:shadow-md transition-all flex flex-col overflow-hidden"
+              className="group rounded-2xl border border-neutral-200 bg-white hover:border-black transition-all flex flex-col overflow-hidden"
             >
               {/* True White Stage for Unmodified Website Brand Colors */}
               <div className="h-28 sm:h-32 bg-white px-5 py-4 flex items-center justify-center">
@@ -74,12 +74,12 @@ const ClientsSection = () => {
                 />
               </div>
 
-              {/* Clean Typographic Caption */}
-              <div className="p-4 border-t border-slate-100 bg-slate-50/60 flex-1">
-                <div className="text-sm font-semibold text-[#0b1020] group-hover:text-[#0F766E] transition-colors">
+              {/* Clean Monochrome Caption */}
+              <div className="p-4 border-t border-neutral-100 bg-neutral-50 flex-1">
+                <div className="text-sm font-semibold text-black group-hover:underline decoration-[#22E55A] decoration-2 underline-offset-4 transition-colors">
                   {client.name}
                 </div>
-                <div className="text-xs text-slate-500 mt-1 leading-snug">
+                <div className="text-xs text-neutral-500 mt-1 leading-snug">
                   {client.category}
                 </div>
               </div>

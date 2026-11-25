@@ -225,9 +225,9 @@ export const footerData = {
     { label: "Contact", href: "/#contact" }
   ],
   resources: [
-    { label: "Presentation PDF", href: "/presentation.pdf" },
-    { label: "Overview Deck", href: "/FLIK_presentation.pdf" },
-    { label: "ROI Calculator", href: "/#difference" }
+    { label: "Interactive Walkthrough", href: "/#experience" },
+    { label: "ROI Calculator", href: "/#difference" },
+    { label: "Engineering Stack", href: "/#technology" }
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },

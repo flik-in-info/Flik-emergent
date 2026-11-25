@@ -3,16 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --flik-ground: #f8fafc;
-  --flik-surface: #ffffff;
-  --flik-stone: #f1f3f6;
-  --flik-mint: #f4fbfa;
-  --flik-ink: #0b1020;
-  --flik-slate: #475569;
-  --flik-muted: #64748b;
-  --flik-teal: #0f766e;
-  --flik-accent: #00a896;
-  --flik-brand-green: #22e55a;
+  --flik-green: #22e55a;
+  --flik-green-hover: #2ee05f;
+  --flik-black: #000000;
+  --flik-white: #ffffff;
+  --flik-concrete: #f4f4f5;
+  --flik-hairline: #e4e4e7;
 }
 
 body {
@@ -20,8 +16,8 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8fafc;
-  color: #0b1020;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 h1, h2, h3, h4, .font-display {
@@ -39,7 +35,7 @@ code, pre, .font-mono {
 
 html {
   scroll-behavior: smooth;
-  background-color: #f8fafc;
+  background-color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -47,60 +43,60 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f4f4f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #a1a1aa;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0f766e;
+  background: #22e55a;
 }
 
 ::selection {
-  background-color: rgba(15, 118, 110, 0.16);
-  color: #0b1020;
+  background-color: #22e55a;
+  color: #000000;
 }
 
-/* Architectural Drafting Grid Paper Texture */
+/* Monochrome Drafting Grid Paper */
 .bg-grid-paper {
   background-color: #ffffff;
   background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
-/* Directory Dot Panel Texture */
+/* Monochrome Directory Dot Panel */
 .bg-dot-panel {
-  background-color: #f2f4f7;
-  background-image: radial-gradient(rgba(15, 23, 42, 0.1) 1px, transparent 1px);
+  background-color: #f4f4f5;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 226 49% 8%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 226 49% 8%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 226 49% 8%;
-    --primary: 173 80% 26%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 95%;
-    --secondary-foreground: 226 49% 8%;
-    --muted: 210 20% 95%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 173 80% 26%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 173 80% 26%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 138 79% 51%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 138 79% 51%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 0% 0%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 138 79% 51%;
     --radius: 0.5rem;
   }
 
@@ -112,7 +108,7 @@ html {
   }
 }
 
-/* Daylight Precision Range Slider */
+/* Precision Flik Green Range Slider */
 .flik-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -128,15 +124,15 @@ html {
   height: 20px;
   border-radius: 999px;
   background: #ffffff;
-  border: 2.5px solid #0b1020;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+  border: 2.5px solid #000000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
   cursor: pointer;
-  transition: transform 150ms ease, border-color 150ms ease;
+  transition: transform 150ms ease, background-color 150ms ease;
 }
 
 .flik-slider::-webkit-slider-thumb:hover {
   transform: scale(1.12);
-  border-color: #0f766e;
+  background: #22e55a;
 }
 
 .flik-slider::-moz-range-thumb {
@@ -144,8 +140,8 @@ html {
   height: 20px;
   border-radius: 999px;
   background: #ffffff;
-  border: 2.5px solid #0b1020;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+  border: 2.5px solid #000000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
   cursor: pointer;
 }
 

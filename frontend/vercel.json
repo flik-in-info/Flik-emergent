@@ -75,7 +75,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!static/|api/|demo|twin|presentation|.*\\.pdf).*)",
+      "source": "/((?!static/|api/|demo|twin).*)",
       "destination": "/index.html"
     }
   ]

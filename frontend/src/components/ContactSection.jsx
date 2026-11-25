@@ -162,13 +162,13 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="scroll-mt-24 py-16 lg:py-24 bg-[#f8fafc]"
+      className="scroll-mt-24 py-16 lg:py-24 bg-neutral-100"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <ContactIntro email={CONTACT_EMAIL} />
 
-          <div className="lg:col-span-7 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_24px_60px_-28px_rgba(15,23,42,0.14)]">
+          <div className="lg:col-span-7 rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.12)]">
             {submitted ? (
               <ContactSuccess email={CONTACT_EMAIL} onReset={reset} />
             ) : (
@@ -181,21 +181,21 @@ const ContactSection = () => {
                 />
 
                 {error && (
-                  <p data-testid="contact-error" className="text-rose-600 text-xs sm:text-sm font-medium">
+                  <p data-testid="contact-error" className="text-black font-semibold bg-neutral-100 border border-black px-3 py-2 rounded-md text-xs sm:text-sm">
                     {error}
                   </p>
                 )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100">
-                  <p className="text-xs text-slate-500 max-w-xs leading-relaxed">
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-neutral-100">
+                  <p className="text-xs text-neutral-500 max-w-xs leading-relaxed">
                     Delivered directly to{' '}
-                    <span className="text-[#0b1020] font-medium">{CONTACT_EMAIL}</span>. Reply within one business day.
+                    <span className="text-black font-medium">{CONTACT_EMAIL}</span>. Reply within one business day.
                   </p>
                   <Button
                     type="submit"
                     data-testid="contact-submit"
                     disabled={submitting}
-                    className="bg-[#0b1020] hover:bg-[#0F766E] text-white font-medium px-7 h-11 rounded-lg disabled:opacity-70 transition-colors"
+                    className="bg-[#22E55A] hover:bg-[#2EE05F] text-black font-semibold px-7 h-11 rounded-lg disabled:opacity-70 transition-colors"
                   >
                     {submitting ? (
                       <>

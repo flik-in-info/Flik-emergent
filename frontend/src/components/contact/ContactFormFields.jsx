@@ -11,9 +11,9 @@ import {
 } from '../ui/select';
 
 const inputClass =
-  'bg-slate-50 border-slate-200 text-[#0b1020] placeholder:text-slate-400 focus-visible:ring-[#0F766E]/35';
+  'bg-neutral-50 border-neutral-200 text-black placeholder:text-neutral-400 focus-visible:ring-[#22E55A]';
 
-const labelClass = 'text-slate-700 text-xs uppercase tracking-wider font-medium';
+const labelClass = 'text-neutral-700 text-xs uppercase tracking-wider font-medium';
 
 const ContactFormFields = ({ form, update, onInterestChange, interestOptions }) => (
   <>
@@ -64,17 +64,17 @@ const ContactFormFields = ({ form, update, onInterestChange, interestOptions }) 
         <SelectTrigger
           id="contact-interest"
           data-testid="contact-interest"
-          className="bg-slate-50 border-slate-200 text-[#0b1020] focus:ring-[#0F766E]/35 data-[placeholder]:text-slate-400"
+          className="bg-neutral-50 border-neutral-200 text-black focus:ring-[#22E55A] data-[placeholder]:text-neutral-400"
         >
           <SelectValue placeholder="What are you interested in?" />
         </SelectTrigger>
-        <SelectContent className="bg-white border-slate-200 text-[#0b1020]">
+        <SelectContent className="bg-white border-neutral-200 text-black">
           {interestOptions.map((option) => (
             <SelectItem
               key={option}
               value={option}
               data-testid={`contact-interest-${option.toLowerCase().replace(/\s+/g, '-')}`}
-              className="focus:bg-[#f4fbfa] focus:text-[#0F766E]"
+              className="focus:bg-[#22E55A] focus:text-black"
             >
               {option}
             </SelectItem>

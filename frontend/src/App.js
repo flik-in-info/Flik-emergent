@@ -51,7 +51,7 @@ const ScrollProgressBeam = () => {
     >
       <div
         style={{ width: `${progress}%` }}
-        className="h-full bg-[#0F766E] transition-[width] duration-75"
+        className="h-full bg-[#22E55A] transition-[width] duration-75"
       />
     </div>
   );
@@ -59,7 +59,7 @@ const ScrollProgressBeam = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#f8fafc] text-[#0b1020] min-h-screen pb-20 lg:pb-0 relative overflow-x-clip selection:bg-[#0F766E]/15 selection:text-[#0b1020]">
+    <div className="bg-white text-black min-h-screen pb-20 lg:pb-0 relative overflow-x-clip selection:bg-[#22E55A] selection:text-black">
       <ScrollProgressBeam />
       <Header />
       <main>
