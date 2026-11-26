@@ -68,13 +68,6 @@ const ContactIntro = ({ email }) => (
         onClick={() => telemetry.whatsAppClick('contact_intro')}
       />
     </div>
-
-    {/* Corporate Entity Details */}
-    <div className="mt-8 pt-6 border-t border-white/5 space-y-1 text-xs text-gray-500 font-mono">
-      <div className="text-gray-400 font-medium tracking-wider uppercase text-[10px]">Corporate Entity</div>
-      <div className="text-white font-medium text-sm">Hastok Enterprise Pvt. Ltd.</div>
-      <div className="text-gray-500 text-[11px]">Mumbai · Bengaluru · Dubai</div>
-    </div>
   </div>
 );
 

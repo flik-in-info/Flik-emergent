@@ -122,7 +122,7 @@ const TermsOfService = () => {
                 Key Summary
               </h2>
               <p className="text-xs text-gray-300">
-                Flik Explorer is a B2B sales conversion and spatial visualization technology platform owned and operated by <span className="text-white font-medium">Hastok Enterprise Pvt. Ltd.</span> By visiting <span className="text-white font-medium">flik.in</span> or interacting with our 3D modules, you agree to these Terms. Please read them thoroughly.
+                Flik Explorer is a B2B sales conversion and spatial visualization technology platform for Indian real estate developers and buyers. By visiting <span className="text-white font-medium">flik.in</span> or interacting with our 3D modules, you agree to these Terms. Please read them thoroughly.
               </p>
             </div>
 
@@ -132,7 +132,7 @@ const TermsOfService = () => {
                 <span className="text-emerald-400">1.</span> Acceptance of Terms & Eligibility
               </h2>
               <p>
-                By accessing, browsing, or utilizing <a href="https://www.flik.in/" className="text-emerald-400 hover:underline">flik.in</a>, you enter into a legally binding agreement with <strong className="text-white">Hastok Enterprise Pvt. Ltd.</strong> (operating Flik Explorer). If you are accepting these Terms on behalf of an enterprise entity (such as a real estate developer, marketing agency, or channel partner), you represent and warrant that you possess full legal authorization to bind that entity.
+                By accessing, browsing, or utilizing <a href="https://www.flik.in/" className="text-emerald-400 hover:underline">flik.in</a>, you enter into a legally binding agreement with Flik Explorer. If you are accepting these Terms on behalf of an enterprise entity (such as a real estate developer, marketing agency, or channel partner), you represent and warrant that you possess full legal authorization to bind that entity.
               </p>
               <p>
                 You must be at least eighteen (18) years of age and legally competent to enter into contracts under the Indian Contract Act, 1872.
