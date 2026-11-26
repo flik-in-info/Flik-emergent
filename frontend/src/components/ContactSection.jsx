@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { Loader2 } from 'lucide-react';
+import { Send, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { contactData } from '../data/mock';
 import ContactIntro from './contact/ContactIntro';
@@ -160,19 +160,16 @@ const ContactSection = () => {
   };
 
   return (
-    <section
-      id="contact"
-      className="scroll-mt-20 py-16 lg:py-20 bg-neutral-100 border-b border-black/15"
-    >
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+    <section id="contact" className="scroll-mt-20 relative py-10 lg:py-12 bg-[#08080b] border-t border-white/[0.06]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
           <ContactIntro email={CONTACT_EMAIL} />
 
-          <div className="lg:col-span-7 border border-black bg-white p-6 sm:p-8">
+          <div className="lg:col-span-3 rounded-2xl bg-white/[0.02] border border-white/[0.08] p-5 sm:p-6">
             {submitted ? (
               <ContactSuccess email={CONTACT_EMAIL} onReset={reset} />
             ) : (
-              <form onSubmit={handleSubmit} data-testid="contact-form" className="space-y-4">
+              <form onSubmit={handleSubmit} data-testid="contact-form" className="space-y-3.5">
                 <ContactFormFields
                   form={form}
                   update={update}
@@ -180,30 +177,46 @@ const ContactSection = () => {
                   interestOptions={INTEREST_OPTIONS}
                 />
 
+                {/* Web3Forms honeypot — hidden from real users */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  value={form.botcheck}
+                  onChange={update('botcheck')}
+                  className="hidden"
+                  aria-hidden="true"
+                />
+
                 {error && (
-                  <p data-testid="contact-error" className="text-black font-semibold bg-neutral-100 border border-black px-3 py-2 text-xs sm:text-sm">
+                  <p data-testid="contact-error" className="text-red-400 text-sm">
                     {error}
                   </p>
                 )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-neutral-200">
-                  <p className="text-xs text-neutral-500 max-w-xs leading-relaxed">
-                    Delivered directly to{' '}
-                    <span className="text-black font-medium">{CONTACT_EMAIL}</span>. Reply within one business day.
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                  <p className="text-xs text-gray-500 max-w-xs">
+                    Your message is delivered straight to{' '}
+                    <span className="text-gray-400">{CONTACT_EMAIL}</span>. We reply within one business day.
                   </p>
                   <Button
                     type="submit"
                     data-testid="contact-submit"
                     disabled={submitting}
-                    className="bg-[#22E55A] hover:bg-black text-black hover:text-[#22E55A] font-semibold px-7 h-11 rounded-[4px] disabled:opacity-70 transition-colors"
+                    className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 group disabled:opacity-70 disabled:hover:bg-emerald-500"
                   >
                     {submitting ? (
                       <>
                         <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-                        Sending
+                        Sending…
                       </>
                     ) : (
-                      'Send Enquiry'
+                      <>
+                        <Send className="mr-2 w-4 h-4" />
+                        Send enquiry
+                        <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </>
                     )}
                   </Button>
                 </div>

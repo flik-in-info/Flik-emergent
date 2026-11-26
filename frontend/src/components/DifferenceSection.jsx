@@ -1,72 +1,53 @@
 import React, { useState, useMemo } from 'react';
-import { Check, X } from 'lucide-react';
+import {
+  Check,
+  X,
+  Calculator,
+  ArrowRight,
+  Zap,
+  Sparkles,
+  TrendingUp
+} from 'lucide-react';
+import { metricsSection } from '../data/mock';
 import { Button } from './ui/button';
 import { useDemoDialog } from '../context/DemoDialogContext';
 import { telemetry } from '../utils/telemetry';
 
 const TICKET_SIZES = [
-  { id: 'mid', label: '₹1.5 Cr', valueCr: 1.5 },
+  { id: 'mid', label: '₹1 Cr', valueCr: 1.0 },
   { id: 'luxury', label: '₹2.5 Cr', valueCr: 2.5 },
   { id: 'ultra', label: '₹5 Cr', valueCr: 5.0 },
-  { id: 'trophy', label: '₹10 Cr+', valueCr: 10.0 },
+  { id: 'trophy', label: '₹10 Cr+', valueCr: 10.0 }
 ];
 
 const COMPARISON_ROWS = [
   {
-    dimension: 'Upfront Capital Outlay',
-    traditional: '₹2 to ₹5 crore building one temporary physical sample flat',
-    flik: 'Deployed at a fraction of physical sample flat construction cost',
-    handNote: 'Sunk CapEx lost at close',
+    dimension: 'Pre-Launch Sales',
+    traditional: 'Stalled waiting for physical sample flat completion',
+    flik: 'Day-one immersive 3D tower & view exploration'
   },
   {
-    dimension: 'Launch Readiness',
-    traditional: '3 to 6 months waiting on civil sample construction',
-    flik: 'Delivered in 2 to 4 weeks directly from CAD and BIM drawings',
-    handNote: 'Slow pre-sales velocity',
+    dimension: 'NRI & Outstation Buyers',
+    traditional: 'Low-trust static PDFs & compressed WhatsApp videos',
+    flik: 'Live interactive browser walkthrough link on any device'
   },
   {
-    dimension: 'Inventory & View Coverage',
-    traditional: 'Restricted to one fixed ground-level apartment layout',
-    flik: 'Every floor elevation, orientation, sunlight hour, and finish live',
-    handNote: 'No 40th-floor sightlines',
+    dimension: 'Inventory Status',
+    traditional: 'Spreadsheet confusion and double-pitched units',
+    flik: 'Real-time live tower availability synchronized to CRM'
   },
   {
-    dimension: 'NRI & Overseas Buyers',
-    traditional: 'Requires physical travel or flat PDF brochures',
-    flik: 'Opens immediately in standard laptop and phone browsers worldwide',
-    handNote: 'Lost global buyer trust',
-  },
-  {
-    dimension: 'Post-Launch Adaptability',
-    traditional: 'Concrete walls cannot change after buildout; demolished later',
-    flik: 'Evolves smoothly across phases and handover customization talks',
-    handNote: 'Zero residual utility',
-  },
-];
-
-const STAKEHOLDERS = [
-  {
-    role: 'Developer MDs & Project Heads',
-    outcome:
-      'Replace ₹2 to ₹5 crore temporary room expenditure and open pre-sales months ahead of site completion with project-wide licensing.',
-  },
-  {
-    role: 'Sales Galleries & Advisors',
-    outcome:
-      'Walk buyers straight to exact balconies, floor heights, and marble options across gallery LED walls and handheld tablets.',
-  },
-  {
-    role: 'NRIs & Channel Partners',
-    outcome:
-      'Close overseas commitments across London, Dubai, or Singapore using one browser URL with zero software downloads.',
-  },
+    dimension: 'Buyer Follow-Up',
+    traditional: 'Guesswork based on handwritten gallery feedback',
+    flik: 'Automatic attention heatmaps & intent lead scoring'
+  }
 ];
 
 const DifferenceSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
   const [units, setUnits] = useState(250);
   const [ticketId, setTicketId] = useState('luxury');
-  const [useFlik, setUseFlik] = useState(true);
+  const [focusView, setFocusView] = useState('side-by-side'); // 'side-by-side' | 'flik-only'
 
   const selectedTicket = useMemo(
     () => TICKET_SIZES.find((t) => t.id === ticketId) || TICKET_SIZES[1],
@@ -75,156 +56,147 @@ const DifferenceSection = () => {
 
   const metrics = useMemo(() => {
     const totalGdvCr = units * selectedTicket.valueCr;
-    const velocityMonthsSaved = Math.max(4, Math.min(9, Math.round(3 + units / 180)));
-    const carryingCostSavedCr = Number(
-      ((totalGdvCr * 0.08 * velocityMonthsSaved) / 12).toFixed(1)
-    );
+    // Accelerating pre-sales cycle cuts working-capital carry (~11% p.a.) across faster absorption window
+    const velocityMonthsSaved = Math.max(4, Math.min(11, Math.round(4 + units / 160)));
+    const carryingCostSavedCr = Number(((totalGdvCr * 0.085 * velocityMonthsSaved) / 12).toFixed(1));
+    const additionalConversions = Math.max(8, Math.round(units * 0.14));
 
     return {
       totalGdvCr,
       velocityMonthsSaved,
       carryingCostSavedCr,
+      additionalConversions
     };
   }, [units, selectedTicket]);
 
-  const sliderProgress = ((units - 50) / (1000 - 50)) * 100;
-
   const handleRoiInteraction = (nextUnits, nextTicket) => {
     const totalGdv = nextUnits * nextTicket.valueCr;
-    const mSaved = Math.max(4, Math.min(9, Math.round(3 + nextUnits / 180)));
-    const crSaved = Number(((totalGdv * 0.08 * mSaved) / 12).toFixed(1));
+    const mSaved = Math.max(4, Math.min(11, Math.round(4 + nextUnits / 160)));
+    const crSaved = Number(((totalGdv * 0.085 * mSaved) / 12).toFixed(1));
     telemetry.roiSimulated(nextUnits, nextTicket.label, `${crSaved} Cr`);
   };
 
   return (
-    <section id="difference" className="scroll-mt-20 bg-white border-b border-black/15">
-      {/* Grounded Industry Figures Ledger */}
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 border-b border-black/15">
-        <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/15">
-          <div className="py-10 md:pr-8">
-            <div className="text-4xl sm:text-5xl font-medium font-display text-black tracking-tight">
-              ₹2–5 Cr
+    <section
+      id="difference"
+      className="scroll-mt-20 relative py-8 lg:py-10 bg-[#08080b] border-t border-white/[0.06] overflow-hidden"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent"
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Merged High-Impact KPI Proof Strip */}
+        <div className="mb-5 grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {(metricsSection.metrics || []).map((metric) => (
+            <div
+              key={metric.label}
+              className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-[#111116] to-[#0b0b0f] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-emerald-500/35 transition-all duration-300"
+            >
+              <div className="text-xl sm:text-2xl lg:text-3xl font-light bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent tracking-tight mb-0.5">
+                {metric.value}
+              </div>
+              <div className="text-xs sm:text-sm font-medium text-white">{metric.label}</div>
             </div>
-            <p className="text-sm text-neutral-600 mt-2.5 leading-relaxed">
-              Typical spend constructing one physical sample flat that ends with zero residual value once inventory sells out.
-            </p>
-          </div>
-          <div className="py-10 md:px-8">
-            <div className="text-4xl sm:text-5xl font-medium font-display text-black tracking-tight">
-              2–4 Weeks
-            </div>
-            <p className="text-sm text-neutral-600 mt-2.5 leading-relaxed">
-              Full interactive launch from your 2D CAD and BIM drawings versus 3 to 6 months waiting on civil setup.
-            </p>
-          </div>
-          <div className="py-10 md:pl-8">
-            <div className="inline-block bg-black text-[#22E55A] px-3 py-1 text-3xl sm:text-4xl font-medium font-display tracking-tight">
-              70–80%
-            </div>
-            <p className="text-sm text-neutral-600 mt-3 leading-relaxed">
-              Share of Indian luxury residential apartments purchased off-plan while towers remain under construction.
-            </p>
-          </div>
+          ))}
         </div>
-      </div>
 
-      {/* Drafting Comparison & Estimator */}
-      <div className="bg-grid-paper py-16 lg:py-20 border-b border-black/15">
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
-            <div>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-black leading-[1.06] tracking-[-0.03em]">
-                Sample flat friction vs.{' '}
-                <span className="underline decoration-[#22E55A] decoration-[4px] underline-offset-[6px]">
-                  Flik Explorer.
-                </span>
-              </h2>
-              <p className="text-sm sm:text-base text-neutral-600 mt-2.5 max-w-xl">
-                Toggle between a static physical room and an interactive sales environment by Hastok Enterprise Pvt. Ltd.
-              </p>
-            </div>
+        {/* Section Heading */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
+          <div>
+            <span className="text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] block mb-1.5">
+              Why Leading Developers Switch
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white leading-tight tracking-tight">
+              Static brochures cost velocity.
+              <span className="block bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 bg-clip-text text-transparent">
+                Quantify the Flik uplift.
+              </span>
+            </h2>
+          </div>
 
+          <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 self-start lg:self-auto">
             <button
               type="button"
-              role="switch"
-              aria-checked={useFlik}
-              onClick={() => setUseFlik((v) => !v)}
-              className="inline-flex items-center gap-3.5 px-4 py-2.5 bg-white border border-black cursor-pointer self-start lg:self-auto"
+              onClick={() => setFocusView('side-by-side')}
+              className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                focusView === 'side-by-side'
+                  ? 'bg-white text-black font-semibold'
+                  : 'text-gray-400 hover:text-white'
+              }`}
             >
-              <span
-                className={`relative inline-flex h-5 w-10 shrink-0 transition-colors duration-200 ${
-                  useFlik ? 'bg-[#22E55A]' : 'bg-neutral-300'
-                }`}
-              >
-                <span
-                  className={`inline-block h-4 w-4 bg-black transition-transform duration-200 mt-0.5 ${
-                    useFlik ? 'translate-x-5' : 'translate-x-0.5'
-                  }`}
-                />
-              </span>
-              <span className="text-xs font-mono font-semibold text-black uppercase tracking-wide">
-                {useFlik ? 'Flik Platform Active' : 'Sample Flat Only'}
-              </span>
+              Before vs After
+            </button>
+            <button
+              type="button"
+              onClick={() => setFocusView('flik-only')}
+              className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                focusView === 'flik-only'
+                  ? 'bg-emerald-500 text-black font-semibold'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Flik Advantage Only
             </button>
           </div>
+        </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Comparison Rows */}
-            <div className="lg:col-span-6 border-t border-b border-black/20 divide-y divide-black/15 bg-white/90">
-              {COMPARISON_ROWS.map((row) => (
-                <div
-                  key={row.dimension}
-                  className={`p-4 sm:p-5 transition-colors ${
-                    useFlik ? 'bg-white' : 'bg-neutral-100'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="text-sm font-semibold text-black">{row.dimension}</span>
-                    {!useFlik && (
-                      <span className="font-note text-base sm:text-lg text-neutral-800 font-bold leading-none underline decoration-neutral-400">
-                        {row.handNote}
-                      </span>
-                    )}
-                  </div>
-
-                  {useFlik ? (
-                    <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700 leading-relaxed">
-                      <span className="w-5 h-5 bg-[#22E55A] text-black flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 stroke-[2.5]" />
-                      </span>
-                      <span>{row.flik}</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700 leading-relaxed">
-                      <span className="w-5 h-5 bg-black text-white flex items-center justify-center shrink-0 mt-0.5">
-                        <X className="w-3 h-3" />
-                      </span>
-                      <span>{row.traditional}</span>
-                    </div>
-                  )}
+        {/* Asymmetric 2-Column Value & ROI Workbench */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* Left: Compact Interactive Comparison Matrix */}
+          <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-[#101014] border border-white/10 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-gray-400">
+                  <Sparkles className="w-4 h-4 text-emerald-400" />
+                  <span>Sales Workflow Contrast</span>
                 </div>
-              ))}
-            </div>
-
-            {/* Project Carry & ROI Estimator */}
-            <div className="lg:col-span-6 p-6 sm:p-8 border border-black bg-white">
-              <div className="flex items-center justify-between gap-2 pb-4 mb-6 border-b border-neutral-200">
-                <span className="text-sm font-semibold text-black">
-                  Project Carry & Pre-Sales Estimator
-                </span>
-                <span className="text-xs font-mono text-[#22E55A] bg-black px-2.5 py-1 font-medium whitespace-nowrap shrink-0">
-                  GDV ₹{metrics.totalGdvCr.toLocaleString('en-IN')} Cr
-                </span>
+                <span className="text-[11px] font-mono text-emerald-400">4 Core Pillars</span>
               </div>
 
-              <div className="mb-7">
-                <div className="flex items-center justify-between mb-2.5">
-                  <label htmlFor="roi-units-slider" className="text-xs font-medium text-neutral-600">
-                    Total Residential Units
+              <div className="space-y-2">
+                {COMPARISON_ROWS.map((row) => (
+                  <div
+                    key={row.dimension}
+                    className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-colors"
+                  >
+                    <div className="text-xs font-semibold text-white mb-1">{row.dimension}</div>
+                    <div className={`grid gap-2.5 ${focusView === 'side-by-side' ? 'sm:grid-cols-2' : 'grid-cols-1'}`}>
+                      {focusView === 'side-by-side' && (
+                        <div className="flex items-start gap-2 text-xs text-gray-500">
+                          <X className="w-3.5 h-3.5 text-rose-400/80 shrink-0 mt-0.5" />
+                          <span>{row.traditional}</span>
+                        </div>
+                      )}
+                      <div className="flex items-start gap-2 text-xs text-emerald-300 font-medium">
+                        <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{row.flik}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Live Developer ROI Simulator */}
+          <div className="lg:col-span-6 p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-[#111514] via-[#0e1013] to-[#0c0c10] border border-emerald-500/25 shadow-[0_0_50px_rgba(16,185,129,0.08)] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[11px] font-mono uppercase tracking-wider">
+                  <Calculator className="w-3.5 h-3.5" />
+                  <span>Live ROI Simulator</span>
+                </div>
+                <span className="text-xs font-mono text-gray-400">GDV: ₹{metrics.totalGdvCr.toLocaleString('en-IN')} Cr</span>
+              </div>
+
+              {/* Project Units Slider */}
+              <div className="mb-5">
+                <div className="flex items-center justify-between mb-2">
+                  <label htmlFor="roi-units-slider" className="text-xs font-medium text-gray-300">
+                    Project Inventory Size
                   </label>
-                  <span className="text-sm font-mono font-semibold text-black bg-[#22E55A] px-2 py-0.5">
-                    {units} Units
-                  </span>
+                  <span className="text-sm font-mono font-bold text-white">{units} Units</span>
                 </div>
                 <input
                   id="roi-units-slider"
@@ -238,23 +210,19 @@ const DifferenceSection = () => {
                     setUnits(val);
                     handleRoiInteraction(val, selectedTicket);
                   }}
-                  style={{
-                    background: `linear-gradient(to right, #22E55A 0%, #22E55A ${sliderProgress}%, #e4e4e7 ${sliderProgress}%, #e4e4e7 100%)`,
-                  }}
-                  className="w-full flik-slider cursor-pointer"
+                  className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-white/15 accent-emerald-400"
                 />
-                <div className="flex justify-between text-[11px] font-mono text-neutral-400 mt-2">
+                <div className="flex justify-between text-[10px] font-mono text-gray-500 mt-1">
                   <span>50 Units</span>
                   <span>500 Units</span>
                   <span>1,000 Units</span>
                 </div>
               </div>
 
-              <div className="mb-7">
-                <div className="text-xs font-medium text-neutral-600 mb-2.5">
-                  Average Apartment Ticket Price
-                </div>
-                <div className="grid grid-cols-4 border border-black divide-x divide-black">
+              {/* Ticket Size Selector */}
+              <div className="mb-6">
+                <div className="text-xs font-medium text-gray-300 mb-2">Average Unit Ticket Size</div>
+                <div className="grid grid-cols-4 gap-2">
                   {TICKET_SIZES.map((tier) => {
                     const active = tier.id === ticketId;
                     return (
@@ -265,10 +233,10 @@ const DifferenceSection = () => {
                           setTicketId(tier.id);
                           handleRoiInteraction(units, tier);
                         }}
-                        className={`py-2.5 px-2 text-xs font-mono transition-colors cursor-pointer ${
+                        className={`py-2 px-2 rounded-xl text-xs font-mono border transition-all cursor-pointer ${
                           active
-                            ? 'bg-black text-[#22E55A] font-semibold'
-                            : 'bg-white text-black hover:bg-neutral-100'
+                            ? 'bg-emerald-500 text-black font-bold border-emerald-400 shadow-lg shadow-emerald-500/20'
+                            : 'bg-white/[0.03] border-white/10 text-gray-300 hover:border-white/25'
                         }`}
                       >
                         {tier.label}
@@ -278,66 +246,47 @@ const DifferenceSection = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 border-t border-b border-neutral-200 divide-x divide-neutral-200 py-5 mb-6">
-                <div className="pr-3">
-                  <div className="text-[11px] font-mono text-neutral-500 mb-1">
-                    Sample Flat Saved
-                  </div>
-                  <div className="text-lg sm:text-xl font-semibold text-black font-mono whitespace-nowrap">
-                    ₹2–5 Cr
-                  </div>
-                </div>
-                <div className="px-3">
-                  <div className="text-[11px] font-mono text-neutral-500 mb-1">
-                    Carry Saved
-                  </div>
-                  <div className="inline-block bg-black text-[#22E55A] px-2 py-0.5 text-base sm:text-lg font-semibold font-mono whitespace-nowrap">
+              {/* Projected Outcomes Grid */}
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="p-3.5 rounded-xl bg-black/50 border border-emerald-500/20">
+                  <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Carry Cost Saved</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-emerald-400 font-mono">
                     ₹{metrics.carryingCostSavedCr} Cr
                   </div>
                 </div>
-                <div className="pl-3">
-                  <div className="text-[11px] font-mono text-neutral-500 mb-1">
-                    Pre-Sales Lead
+                <div className="p-3.5 rounded-xl bg-black/50 border border-white/10">
+                  <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Cycle Reduction</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
+                    {metrics.velocityMonthsSaved} <span className="text-xs text-gray-400 font-normal">mos</span>
                   </div>
-                  <div className="text-lg sm:text-xl font-semibold text-black font-mono whitespace-nowrap">
-                    {metrics.velocityMonthsSaved} Months Saved
+                </div>
+                <div className="p-3.5 rounded-xl bg-black/50 border border-white/10">
+                  <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Extra Bookings</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
+                    +{metrics.additionalConversions}
+                    <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <span className="text-xs text-neutral-500">
-                  Per-project B2B licensing with zero per-seat charges.
-                </span>
-                <Button
-                  data-testid="difference-cta"
-                  onClick={() => {
-                    telemetry.ctaClick('Request Project Proposal', 'difference');
-                    openDemoDialog('roi_estimator');
-                  }}
-                  className="bg-[#22E55A] hover:bg-black text-black hover:text-[#22E55A] font-semibold text-xs px-5 h-10 rounded-[4px] transition-colors"
-                >
-                  Request Project Proposal
-                </Button>
+            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2 text-xs text-gray-400">
+                <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>Model based on historical developer velocity gains</span>
               </div>
+              <Button
+                onClick={() => {
+                  telemetry.ctaClick('Request Custom ROI Model', 'difference_roi');
+                  openDemoDialog('roi_simulator');
+                }}
+                className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-5 py-2.5 cursor-pointer shrink-0"
+              >
+                Get Project ROI Report
+                <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+              </Button>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Stakeholder Outcomes (Clean Typographic Strip) */}
-      <div id="teams" className="max-w-[1440px] mx-auto px-5 sm:px-8 py-14 lg:py-16">
-        <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
-          {STAKEHOLDERS.map((item) => (
-            <div key={item.role} className="py-6 md:py-0 md:first:pr-8 md:px-8 md:last:pl-8 md:last:pr-0">
-              <h3 className="text-base sm:text-lg font-semibold text-black mb-2">
-                {item.role}
-              </h3>
-              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                {item.outcome}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

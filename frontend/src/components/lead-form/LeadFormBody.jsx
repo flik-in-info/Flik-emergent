@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowRight } from 'lucide-react';
 import {
   DialogHeader,
   DialogTitle,
@@ -21,11 +21,11 @@ const LEAD_FIELDS = [
 const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) => (
   <form onSubmit={onSubmit} data-testid="lead-form">
     <DialogHeader>
-      <DialogTitle className="text-2xl font-medium tracking-tight text-black font-display">
+      <DialogTitle className="text-2xl font-light tracking-tight">
         Request a private demo
       </DialogTitle>
-      <DialogDescription className="text-neutral-500">
-        Tell us about your project. We will prepare a tailored walkthrough of Flik Explorer by Hastok Enterprise Pvt. Ltd.
+      <DialogDescription className="text-gray-400">
+        Tell us about your project. We'll prepare a tailored walkthrough of Flik Explore.
       </DialogDescription>
     </DialogHeader>
 
@@ -61,7 +61,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="lead-message" className="text-neutral-700 text-xs uppercase tracking-wider font-medium">
+        <Label htmlFor="lead-message" className="text-gray-300 text-xs uppercase tracking-wider">
           What would you like to see?
         </Label>
         <Textarea
@@ -71,7 +71,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
           onChange={onFieldChange('message')}
           placeholder="Towers, units, integrations, timelines…"
           rows={3}
-          className="bg-neutral-50 border-neutral-200 text-black placeholder:text-neutral-400 focus-visible:ring-[#22E55A] resize-none"
+          className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus-visible:ring-emerald-500/40 resize-none"
         />
       </div>
 
@@ -94,7 +94,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
         variant="ghost"
         data-testid="lead-form-cancel"
         onClick={onCancel}
-        className="text-neutral-500 hover:text-black hover:bg-neutral-100"
+        className="text-gray-400 hover:text-white hover:bg-white/5"
       >
         Cancel
       </Button>
@@ -102,15 +102,18 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
         type="submit"
         data-testid="lead-form-submit"
         disabled={submitting}
-        className="bg-[#22E55A] hover:bg-[#2EE05F] text-black font-semibold px-6 rounded-lg transition-colors"
+        className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium group"
       >
         {submitting ? (
           <>
             <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-            Sending
+            Sending…
           </>
         ) : (
-          'Request Demo'
+          <>
+            Request demo
+            <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </>
         )}
       </Button>
     </DialogFooter>

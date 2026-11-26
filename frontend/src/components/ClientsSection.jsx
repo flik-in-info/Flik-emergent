@@ -1,38 +1,39 @@
 import React from 'react';
+import { Building2 } from 'lucide-react';
 
 const CLIENTS = [
   {
     id: 'ajmera',
     name: 'Ajmera Cityscapes',
-    category: 'Flagship Live Deployment, Mumbai',
+    category: 'Flagship Residences',
     logo: '/clients/ajmera-cityscapes.png',
     alt: 'Ajmera Cityscapes logo',
-    scaleClass: 'max-h-[82%] max-w-[80%]',
+    scaleClass: 'max-h-[82%] max-w-[80%]'
   },
   {
     id: 'empire',
     name: 'Empire Developers',
-    category: 'Luxury Residential Developments',
+    category: 'Luxury Developments',
     logo: '/clients/empire-developers.png',
     alt: 'Empire Developers logo',
-    scaleClass: 'max-h-[72%] max-w-[84%]',
+    scaleClass: 'max-h-[72%] max-w-[84%]'
   },
   {
     id: 'nr-greenwood',
     name: 'NR Greenwood',
-    category: 'Premium Plotted & Residential Communities',
+    category: 'Premium Communities',
     logo: '/clients/nr-greenwood.png',
     alt: 'NR Greenwood logo',
-    scaleClass: 'max-h-[76%] max-w-[84%]',
+    scaleClass: 'max-h-[76%] max-w-[84%]'
   },
   {
     id: 'gajora',
     name: 'Gajora Infra',
-    category: 'Urban Residential Developments',
+    category: 'Urban Developments',
     logo: '/clients/gajora-infra.png',
     alt: 'Gajora Infra logo',
-    scaleClass: 'max-h-[80%] max-w-[76%]',
-  },
+    scaleClass: 'max-h-[80%] max-w-[76%]'
+  }
 ];
 
 const ClientsSection = () => {
@@ -40,31 +41,52 @@ const ClientsSection = () => {
     <section
       id="clients"
       aria-label="Our Previous Clients"
-      className="scroll-mt-20 py-14 lg:py-20 bg-white border-b border-black/15"
+      className="scroll-mt-20 relative py-8 lg:py-10 bg-[#060608] border-t border-white/[0.06] overflow-hidden"
     >
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-medium text-black tracking-[-0.03em]">
-            Trusted by residential developers.
-          </h2>
-          <span className="text-xs font-mono text-neutral-500">
-            Selected developer deployments
-          </span>
+      {/* Top Emerald Hairline */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/35 to-transparent"
+      />
+
+      {/* Subtle Radial Glow */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[180px] bg-emerald-500/[0.045] blur-[110px] rounded-full pointer-events-none"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Compact Editorial Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5">
+          <div>
+            <div className="inline-flex items-center gap-2 text-emerald-400 text-xs font-medium uppercase tracking-[0.2em] mb-1.5">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>Trusted By Leading Developers</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-light text-white tracking-tight leading-tight">
+              Built for teams shaping modern skylines.
+            </h2>
+          </div>
+
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-xs text-gray-400 self-start sm:self-auto">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span>Selected Client Deployments</span>
+          </div>
         </div>
 
-        {/* Architectural Grid Preserving Unmodified Website Logo Colors on Pure White */}
+        {/* 4-Column Architectural Client Gallery */}
         <div
           data-testid="clients-logo-grid"
-          className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-black/20"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4"
         >
           {CLIENTS.map((client) => (
             <div
               key={client.id}
               data-testid={`client-card-${client.id}`}
-              className="group border-r border-b border-black/20 bg-white flex flex-col"
+              className="group rounded-2xl overflow-hidden bg-[#0e0e13] border border-white/10 hover:border-emerald-500/45 transition-all duration-300 hover:-translate-y-1 shadow-[0_18px_45px_-20px_rgba(0,0,0,0.85),0_0_30px_-20px_rgba(16,185,129,0.2)] flex flex-col"
             >
-              {/* True White Stage */}
-              <div className="h-28 sm:h-32 bg-white px-5 py-4 flex items-center justify-center">
+              {/* Full-Bleed Crisp White Logo Stage Preserving True Original Brand Colors */}
+              <div className="relative h-24 sm:h-28 bg-gradient-to-b from-white via-[#fcfcfd] to-[#f3f5f8] px-4 sm:px-5 py-3 flex items-center justify-center">
                 <img
                   src={client.logo}
                   alt={client.alt}
@@ -74,14 +96,17 @@ const ClientsSection = () => {
                 />
               </div>
 
-              {/* Clean Architectural Caption */}
-              <div className="p-4 border-t border-neutral-200 bg-neutral-50 flex-1">
-                <div className="text-sm font-semibold text-black group-hover:underline decoration-[#22E55A] decoration-2 underline-offset-4">
-                  {client.name}
+              {/* Sleek Obsidian Nameplate */}
+              <div className="px-3.5 sm:px-4 py-3 bg-[#0c0c10] border-t border-white/[0.07] flex items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <div className="text-xs sm:text-sm font-medium text-white truncate group-hover:text-emerald-300 transition-colors">
+                    {client.name}
+                  </div>
+                  <div className="text-[10px] sm:text-[11px] text-gray-500 truncate">
+                    {client.category}
+                  </div>
                 </div>
-                <div className="text-xs text-neutral-500 mt-1 leading-snug">
-                  {client.category}
-                </div>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 group-hover:bg-emerald-400 shrink-0 transition-colors" />
               </div>
             </div>
           ))}

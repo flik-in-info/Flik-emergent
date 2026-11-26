@@ -4,20 +4,20 @@ import { Button } from '../ui/button';
 
 const ContactSuccess = ({ email, onReset }) => (
   <div className="text-center py-12" data-testid="contact-success">
-    <div className="mx-auto w-14 h-14 rounded-full bg-black text-[#22E55A] flex items-center justify-center mb-5">
-      <CheckCircle2 className="w-7 h-7" />
+    <div className="mx-auto w-16 h-16 rounded-full bg-emerald-500/15 flex items-center justify-center mb-6">
+      <CheckCircle2 className="w-8 h-8 text-emerald-400" />
     </div>
-    <h3 className="text-2xl font-medium text-black mb-3 font-display">Message sent.</h3>
-    <p className="text-neutral-600 max-w-md mx-auto mb-8 leading-relaxed text-sm">
+    <h3 className="text-3xl font-light text-white mb-4">Message sent.</h3>
+    <p className="text-gray-400 max-w-md mx-auto mb-8 leading-relaxed">
       Your enquiry just landed in{' '}
-      <span className="text-black font-semibold">{email}</span>. A Flik specialist from Hastok Enterprise Pvt. Ltd. will
+      <span className="text-emerald-400">{email}</span>. A Flik specialist will
       respond within one business day.
     </p>
     <Button
       data-testid="contact-send-another"
       variant="outline"
       onClick={onReset}
-      className="border-neutral-300 text-black hover:bg-neutral-100"
+      className="border-white/20 text-white hover:bg-white/10"
     >
       Send another enquiry
     </Button>

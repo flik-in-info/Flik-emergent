@@ -2,18 +2,19 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
+import CustomCursor from "./components/CustomCursor";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import CinemaScrollMovie from "./components/CinemaScrollMovie";
-import DifferenceSection from "./components/DifferenceSection";
+import ClientsSection from "./components/ClientsSection";
+import PlatformStudio from "./components/PlatformStudio";
 import ExperienceSection from "./components/ExperienceSection";
 import TechnologySection from "./components/TechnologySection";
-import FAQSection from "./components/FAQSection";
+import DifferenceSection from "./components/DifferenceSection";
 import ContactSection from "./components/ContactSection";
-import ClientsSection from "./components/ClientsSection";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
+import FAQSection from "./components/FAQSection";
 import PulseDashboard from "./components/telemetry/PulseDashboard";
 import MobileStickyCTA from "./components/MobileStickyCTA";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
@@ -52,7 +53,7 @@ const ScrollProgressBeam = () => {
     >
       <div
         style={{ width: `${progress}%` }}
-        className="h-full bg-[#22E55A] transition-[width] duration-75"
+        className="h-full bg-gradient-to-r from-emerald-500 via-teal-300 to-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.75)] transition-[width] duration-75"
       />
     </div>
   );
@@ -60,15 +61,15 @@ const ScrollProgressBeam = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-white text-black min-h-screen pb-20 lg:pb-0 relative overflow-x-clip selection:bg-[#22E55A] selection:text-black">
+    <div className="bg-[#0a0a0b] min-h-screen pb-20 lg:pb-0 relative">
       <ScrollProgressBeam />
       <Header />
       <main>
         <HeroSection />
-        <CinemaScrollMovie />
-        <DifferenceSection />
+        <PlatformStudio />
         <ExperienceSection />
         <TechnologySection />
+        <DifferenceSection />
         <FAQSection />
         <ContactSection />
         <ClientsSection />
@@ -82,6 +83,7 @@ const LandingPage = () => {
 function App() {
   return (
     <div className="App">
+      <CustomCursor />
       <BrowserRouter>
         <DemoDialogProvider>
           <ScrollToTopAndTelemetry />
@@ -94,7 +96,7 @@ function App() {
             <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          <Toaster theme="light" position="bottom-right" richColors closeButton />
+          <Toaster theme="dark" position="bottom-right" richColors closeButton />
         </DemoDialogProvider>
       </BrowserRouter>
     </div>

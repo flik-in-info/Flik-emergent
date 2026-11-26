@@ -1,183 +1,141 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from './ui/button';
+import { Play, ArrowRight, Radio } from 'lucide-react';
+import { heroData, images } from '../data/mock';
 import { useDemoDialog } from '../context/DemoDialogContext';
 import { telemetry } from '../utils/telemetry';
 
-const FLOOR_VIEWS = [
-  {
-    id: 'l08',
-    code: 'L-08',
-    label: 'Podium Sales Gallery',
-    altitude: '32m Altitude',
-    sunlight: '09:30 AM / Courtyard',
-    image: '/scenes/scene-00-showroom.jpg',
-    alt: 'Flik Explorer architectural gallery installation',
-  },
-  {
-    id: 'l26',
-    code: 'L-26',
-    label: 'Daylight Corner Suite',
-    altitude: '94m Altitude',
-    sunlight: '13:15 PM / Full Solar',
-    image: '/scenes/scene-02-living-day.jpg',
-    alt: 'Sunlit coastal luxury residence interior',
-  },
-  {
-    id: 'l42',
-    code: 'L-42',
-    label: 'Crown Twilight Penthouse',
-    altitude: '148m Altitude',
-    sunlight: '18:30 PM / Golden Hour',
-    image: '/scenes/scene-03-living-dusk.jpg',
-    alt: 'Penthouse bay vista at sunset',
-  },
-];
-
 const HeroSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
-  const [floorIdx, setFloorIdx] = useState(1);
-  const [userLocked, setUserLocked] = useState(false);
-
-  useEffect(() => {
-    if (userLocked) return undefined;
-    const timer = setInterval(() => {
-      setFloorIdx((i) => (i + 1) % FLOOR_VIEWS.length);
-    }, 3600);
-    return () => clearInterval(timer);
-  }, [userLocked]);
-
-  const activeView = FLOOR_VIEWS[floorIdx];
 
   return (
-    <section
-      id="hero"
-      className="pt-16 bg-white border-b border-black/15"
-    >
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 lg:min-h-[calc(100vh-64px)]">
-        {/* Left Editorial Manifesto Column */}
-        <div className="lg:col-span-5 min-w-0 px-5 sm:px-10 py-12 lg:py-16 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-black/15">
-          <div className="flex flex-wrap items-center justify-between gap-2 pb-6 border-b border-neutral-200 text-[11px] font-mono text-neutral-600">
-            <span>HASTOK ENTERPRISE PVT. LTD.</span>
-            <span>AJMERA CITYSCAPES / LIVE</span>
+    <section id="hero" className="relative min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <img
+          src={images.hero}
+          alt="Flik Explorer — Real-Time 3D Architectural Visualization & Sample Flat Replacement"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b] via-[#0a0a0b]/90 to-[#0a0a0b]/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-[#0a0a0b]/50" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 sm:pb-16">
+        <div className="max-w-3xl">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium tracking-wider mb-4 sm:mb-5">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>ENTERPRISE PROPTECH PLATFORM · HASTOK ENTERPRISE PVT. LTD.</span>
           </div>
 
-          <div className="py-10 lg:py-12">
-            <h1 className="text-[2.75rem] sm:text-[3.75rem] lg:text-[4.5rem] font-medium text-black leading-[0.98] tracking-[-0.042em] mb-6">
-              Experience before{' '}
-              <span className="underline decoration-[#22E55A] decoration-[5px] underline-offset-[8px]">
-                you build.
+          {/* Headline */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-4 sm:mb-6">
+            {heroData.headline.map((line) => (
+              <span key={line} className="block">
+                {line}
               </span>
-            </h1>
+            ))}
+          </h1>
 
-            <p className="text-base sm:text-lg text-neutral-700 leading-relaxed max-w-lg mb-8">
-              Developers spend ₹2 to ₹5 crore building one temporary ground-floor sample flat.{' '}
-              <strong className="font-semibold text-black">Flik Explorer</strong> streams every floor altitude, view corridor, sunlight angle, and finish option straight to any buyer browser before construction rises.
-            </p>
+          {/* Subheadline */}
+          <p className="text-sm sm:text-lg lg:text-xl text-gray-400 leading-relaxed mb-6 sm:mb-9 max-w-2xl font-light">
+            {heroData.subheadline}
+          </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <Button
-                data-testid="hero-primary-cta"
-                size="lg"
-                onClick={() => {
-                  telemetry.ctaClick('Request Walkthrough', 'hero_primary');
-                  openDemoDialog('hero_primary');
-                }}
-                className="bg-black hover:bg-[#22E55A] text-white hover:text-black font-semibold px-6 h-12 rounded-[4px] text-sm transition-colors"
-              >
-                Book a Walkthrough
-              </Button>
-
-              <Button
-                asChild
-                data-testid="hero-secondary-cta"
-                size="lg"
-                variant="outline"
-                className="bg-white border-black text-black hover:bg-neutral-100 font-medium px-6 h-12 rounded-[4px] text-sm transition-colors"
-              >
-                <a href="#platform">Watch Interactive Sequence</a>
-              </Button>
-            </div>
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <Button
+              data-testid="hero-primary-cta"
+              size="lg"
+              onClick={() => {
+                telemetry.ctaClick(heroData.primaryCta, 'hero_primary');
+                openDemoDialog('hero');
+              }}
+              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 active:scale-98 group flex items-center justify-center"
+            >
+              <span>{heroData.primaryCta}</span>
+              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+            <Button
+              data-testid="hero-secondary-cta"
+              size="lg"
+              variant="outline"
+              onClick={() => {
+                telemetry.ctaClick(heroData.secondaryCta, 'hero_secondary');
+                openDemoDialog('hero_demo');
+              }}
+              className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 font-medium px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 active:scale-98 group flex items-center justify-center"
+            >
+              <Play className="mr-2 w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+              <span>{heroData.secondaryCta}</span>
+            </Button>
           </div>
 
-          <div className="pt-6 border-t border-neutral-200 grid grid-cols-3 gap-4 text-xs">
-            <div>
-              <span className="font-mono text-neutral-400 block text-[10px]">OUTLAY</span>
-              <span className="font-semibold text-black">₹2–5 Cr Saved</span>
-            </div>
-            <div>
-              <span className="font-mono text-neutral-400 block text-[10px]">DELIVERY</span>
-              <span className="font-semibold text-black">2–4 Weeks Live</span>
-            </div>
-            <div>
-              <span className="font-mono text-neutral-400 block text-[10px]">HARDWARE</span>
-              <span className="font-semibold text-black">Any Browser</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Full-Bleed Architectural Elevation Instrument */}
-        <div className="lg:col-span-7 min-w-0 relative bg-black min-h-[420px] sm:min-h-[540px] lg:min-h-full overflow-hidden flex flex-col justify-between">
-          <img
-            src={activeView.image}
-            alt={activeView.alt}
-            fetchPriority="high"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-transparent to-black/85 pointer-events-none" />
-
-          {/* Top Telemetry Frame */}
-          <div className="relative z-10 px-5 sm:px-8 pt-6 flex items-center justify-between text-[11px] font-mono text-white">
-            <div className="bg-black/80 px-3 py-1.5 border border-white/20">
-              <span>{activeView.altitude}</span>
-              <span className="text-neutral-400 ml-3 hidden sm:inline">{activeView.sunlight}</span>
-            </div>
-            <div className="bg-[#22E55A] text-black font-semibold px-2.5 py-1">
-              60 FPS STREAM
-            </div>
-          </div>
-
-          {/* Interactive Floor Selector Dock */}
-          <div className="relative z-10 p-5 sm:p-8">
-            <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-300 mb-3">
-              Select Tower Elevation to Preview
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {FLOOR_VIEWS.map((view, idx) => {
-                const isSelected = idx === floorIdx;
-                return (
-                  <button
-                    key={view.id}
-                    type="button"
-                    onClick={() => {
-                      setUserLocked(true);
-                      setFloorIdx(idx);
-                    }}
-                    className={`p-3.5 text-left border transition-colors cursor-pointer ${
-                      isSelected
-                        ? 'bg-[#22E55A] text-black border-[#22E55A]'
-                        : 'bg-black/80 text-white border-white/20 hover:border-white/60'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between font-mono text-xs font-semibold">
-                      <span>{view.code}</span>
-                      <span className={isSelected ? 'text-black/75' : 'text-neutral-400'}>
-                        {view.altitude}
-                      </span>
-                    </div>
-                    <div
-                      className={`text-xs font-medium mt-1 truncate ${
-                        isSelected ? 'text-black' : 'text-white'
-                      }`}
-                    >
-                      {view.label}
-                    </div>
-                  </button>
-                );
-              })}
+          {/* Mobile Live Inventory Card (In normal flow, zero overlap) */}
+          <div className="mt-8 lg:hidden">
+            <div className="bg-[#0a0a0b]/85 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl">
+              <div className="flex items-center gap-2 mb-2.5">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-emerald-400 text-xs font-mono font-medium uppercase tracking-wider">
+                  {heroData.floatingStats.label}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-white">
+                <div>
+                  <span className="text-xl font-light">{heroData.floatingStats.units}</span>
+                  <span className="text-gray-500 text-xs ml-1">units</span>
+                </div>
+                <div className="w-px h-6 bg-white/10" />
+                <div>
+                  <span className="text-xl font-light">{heroData.floatingStats.towers}</span>
+                  <span className="text-gray-500 text-xs ml-1">towers</span>
+                </div>
+                <div className="w-px h-6 bg-white/10" />
+                <div className="flex items-center gap-1.5">
+                  <Radio className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-xs text-gray-400 font-mono">{heroData.floatingStats.sync}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Desktop Floating UI Element */}
+      <div className="hidden lg:block absolute bottom-10 right-12 z-10">
+        <div className="bg-[#0a0a0b]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl">
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-emerald-400 text-xs font-medium">{heroData.floatingStats.label}</span>
+          </div>
+          <div className="flex items-center gap-5 text-white">
+            <div>
+              <span className="text-xl font-light">{heroData.floatingStats.units}</span>
+              <span className="text-gray-500 text-xs ml-1">units</span>
+            </div>
+            <div className="w-px h-7 bg-white/10" />
+            <div>
+              <span className="text-xl font-light">{heroData.floatingStats.towers}</span>
+              <span className="text-gray-500 text-xs ml-1">towers</span>
+            </div>
+            <div className="w-px h-7 bg-white/10" />
+            <div className="flex items-center gap-1.5">
+              <Radio className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-xs text-gray-400">{heroData.floatingStats.sync}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-1.5">
+        <span className="text-gray-500 text-[10px] uppercase tracking-widest">Scroll</span>
+        <div className="w-px h-6 bg-gradient-to-b from-white/40 to-transparent" />
       </div>
     </section>
   );
