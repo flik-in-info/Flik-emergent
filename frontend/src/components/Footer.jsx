@@ -78,24 +78,6 @@ const STARTUP_PROGRAMS = [
   },
 ];
 
-const SocialIcons = () => (
-  <div className="flex items-center gap-2.5 mt-6" data-testid="footer-socials">
-    {SOCIAL_LINKS.map(({ id, label, href, icon: Icon }) => (
-      <a
-        key={id}
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid={`footer-social-${id}`}
-        aria-label={label}
-        className="w-9 h-9 rounded-lg bg-black text-white hover:bg-[#22E55A] hover:text-black flex items-center justify-center transition-colors"
-      >
-        <Icon className="w-4 h-4" />
-      </a>
-    ))}
-  </div>
-);
-
 const FooterLinkColumn = ({ title, links }) => (
   <>
     <h4 className="text-black font-semibold text-sm mb-4 font-display">{title}</h4>
@@ -126,45 +108,6 @@ const FooterLinkColumn = ({ title, links }) => (
   </>
 );
 
-const FooterBrand = () => (
-  <div className="lg:col-span-2">
-    <Link to="/" className="inline-flex items-center mb-3 bg-black px-3 py-1.5 rounded-lg">
-      <img
-        src={images.logo}
-        alt="Flik Explorer"
-        loading="lazy"
-        decoding="async"
-        className="h-7 w-auto"
-      />
-    </Link>
-    <div className="text-xs font-mono text-black font-semibold tracking-tight mb-2.5 block">
-      Hastok Enterprise Pvt. Ltd.
-    </div>
-    <p className="text-neutral-600 text-sm leading-relaxed max-w-sm">{footerData.tagline}</p>
-
-    <div className="mt-4 space-y-1 text-sm">
-      <a
-        href={`mailto:${contactData.email}`}
-        data-testid="footer-email"
-        className="block text-black font-medium hover:underline decoration-[#22E55A] decoration-2 underline-offset-4 transition-colors"
-      >
-        {contactData.email}
-      </a>
-      <a
-        href={`tel:+${contactData.phoneRaw}`}
-        data-testid="footer-phone"
-        className="block text-black font-medium hover:underline decoration-[#22E55A] decoration-2 underline-offset-4 transition-colors"
-      >
-        {contactData.phone}
-      </a>
-    </div>
-
-    <SocialIcons />
-
-    <p className="text-neutral-500 text-xs mt-6">{footerData.copyright}</p>
-  </div>
-);
-
 const Footer = () => {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const navigate = useNavigate();
@@ -179,143 +122,183 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-white pt-4 pb-6 px-3 sm:px-6 border-t border-neutral-100">
-      <div className="max-w-[1380px] mx-auto rounded-[24px] sm:rounded-[32px] overflow-hidden border border-neutral-200 shadow-[0_24px_70px_-30px_rgba(0,0,0,0.12)] bg-dot-panel">
-        {/* Global Startup Accelerator & Grant Programs */}
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pt-12 pb-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <h3 className="text-2xl sm:text-3xl font-medium text-black tracking-[-0.025em]">
-              Backed by global startup and accelerator programs.
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-600 max-w-md leading-relaxed">
-              Official member of NVIDIA Inception, AWS Activate, and Claude Startups, alongside an ElevenLabs Startup Grant award.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {STARTUP_PROGRAMS.map(({ id, name, subname, category, Icon, href, metric, description }) => (
-              <a
-                key={id}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-5 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-3 mb-4">
-                    <div className="w-14 h-14 rounded-xl bg-black text-white group-hover:text-[#22E55A] flex items-center justify-center p-2.5 transition-colors">
-                      <Icon />
-                    </div>
-                    <span className="text-[10px] font-mono tracking-widest uppercase text-neutral-400">
-                      {category}
-                    </span>
-                  </div>
-
-                  <h4 className="text-base sm:text-lg font-semibold text-black tracking-tight">
-                    {name}
-                  </h4>
-                  <span className="text-xs font-mono text-neutral-500 block mt-0.5">
-                    {subname}
-                  </span>
-
-                  <p className="text-xs text-neutral-600 mt-3 leading-relaxed">
-                    {description}
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] font-mono">
-                  <span className="text-neutral-700 font-medium">{metric}</span>
-                  <span className="bg-[#22E55A] text-black px-1.5 py-0.5 rounded font-semibold">VERIFIED</span>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          {/* Pedigree Endorsement */}
-          <div className="mt-6 pt-4 border-t border-neutral-200 text-xs text-neutral-600">
-            Flik Explorer, developed by{' '}
-            <span className="text-black font-semibold">Hastok Enterprise Pvt. Ltd.</span>, participates in NVIDIA Inception, AWS Activate, Claude Startups, and ElevenLabs Grants.
-          </div>
+    <footer className="bg-dot-panel border-t border-black/15">
+      {/* Global Startup Accelerator & Grant Programs */}
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 pt-14 pb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <h3 className="text-2xl sm:text-3xl font-medium text-black tracking-[-0.025em]">
+            Backed by global startup and accelerator programs.
+          </h3>
+          <p className="text-xs sm:text-sm text-neutral-600 max-w-md leading-relaxed">
+            Official member of NVIDIA Inception, AWS Activate, and Claude Startups, alongside an ElevenLabs Startup Grant award.
+          </p>
         </div>
 
-        {/* 5-Column Navigation Grid (In the end) */}
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pt-10 pb-8 border-t border-neutral-200">
-          <div className="grid lg:grid-cols-5 gap-8">
-            <FooterBrand />
-
-            <div>
-              <FooterLinkColumn title="Platform" links={footerData.platform} />
-            </div>
-
-            <div>
-              <FooterLinkColumn title="Company" links={footerData.company} />
-            </div>
-
-            <div>
-              <div className="mb-6">
-                <FooterLinkColumn title="Resources" links={footerData.resources} />
-              </div>
-              <FooterLinkColumn title="Legal" links={footerData.legal} />
-            </div>
-          </div>
-        </div>
-
-        {/* Monochrome Flik Skyline Horizon Showcase (Black / White / Flik Green ONLY) */}
-        <div
-          className="relative pt-14 sm:pt-20 overflow-hidden"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(244,244,245,0) 0%, #27272a 35%, #000000 100%)',
-          }}
-        >
-          <div className="relative flex justify-center items-end leading-none px-4 pt-6 pb-8 sm:pb-12">
-            <span
-              aria-hidden="true"
-              className="font-display font-semibold tracking-[-0.045em] text-[clamp(4.75rem,17vw,14rem)] leading-[0.78] select-none translate-y-4 sm:translate-y-6"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-black/20">
+          {STARTUP_PROGRAMS.map(({ id, name, subname, category, Icon, href, metric, description }) => (
+            <a
+              key={id}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-6 bg-white border-r border-b border-black/20 hover:bg-neutral-50 transition-colors flex flex-col justify-between"
             >
-              <span className="text-white">flik</span>
-              <span className="text-[#22E55A]">.in</span>
-            </span>
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="w-14 h-14 bg-black text-white group-hover:text-[#22E55A] flex items-center justify-center p-2.5 transition-colors">
+                    <Icon />
+                  </div>
+                  <span className="text-[10px] font-mono tracking-widest uppercase text-neutral-400">
+                    {category}
+                  </span>
+                </div>
+
+                <h4 className="text-base sm:text-lg font-semibold text-black tracking-tight">
+                  {name}
+                </h4>
+                <span className="text-xs font-mono text-neutral-500 block mt-0.5">
+                  {subname}
+                </span>
+
+                <p className="text-xs text-neutral-600 mt-3 leading-relaxed">
+                  {description}
+                </p>
+              </div>
+
+              <div className="mt-5 pt-3 border-t border-neutral-200 flex items-center justify-between text-[11px] font-mono">
+                <span className="text-neutral-700 font-medium">{metric}</span>
+                <span className="bg-[#22E55A] text-black px-1.5 py-0.5 font-semibold">VERIFIED</span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-6 text-xs text-neutral-600">
+          Flik Explorer, developed by{' '}
+          <span className="text-black font-semibold">Hastok Enterprise Pvt. Ltd.</span>, participates in NVIDIA Inception, AWS Activate, Claude Startups, and ElevenLabs Grants.
+        </div>
+      </div>
+
+      {/* Navigation Directory (In the end, without Presentation PDF) */}
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 pt-10 pb-10 border-t border-black/15">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="lg:col-span-2">
+            <Link to="/" className="inline-flex items-center mb-3 bg-black px-3 py-1.5 rounded-[4px]">
+              <img
+                src={images.logo}
+                alt="Flik Explorer"
+                loading="lazy"
+                decoding="async"
+                className="h-7 w-auto"
+              />
+            </Link>
+            <div className="text-xs font-mono text-black font-semibold tracking-tight mb-2.5 block">
+              Hastok Enterprise Pvt. Ltd.
+            </div>
+            <p className="text-neutral-600 text-sm leading-relaxed max-w-sm">{footerData.tagline}</p>
+
+            <div className="mt-4 space-y-1 text-sm">
+              <a
+                href={`mailto:${contactData.email}`}
+                data-testid="footer-email"
+                className="block text-black font-medium hover:underline decoration-[#22E55A] decoration-2 underline-offset-4"
+              >
+                {contactData.email}
+              </a>
+              <a
+                href={`tel:+${contactData.phoneRaw}`}
+                data-testid="footer-phone"
+                className="block text-black font-medium hover:underline decoration-[#22E55A] decoration-2 underline-offset-4"
+              >
+                {contactData.phone}
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2.5 mt-6" data-testid="footer-socials">
+              {SOCIAL_LINKS.map(({ id, label, href, icon: Icon }) => (
+                <a
+                  key={id}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid={`footer-social-${id}`}
+                  aria-label={label}
+                  className="w-9 h-9 bg-black text-white hover:bg-[#22E55A] hover:text-black flex items-center justify-center transition-colors"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+
+            <p className="text-neutral-500 text-xs mt-6">{footerData.copyright}</p>
           </div>
 
-          {/* Solid Black Architectural Silhouette Horizon Sill */}
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 1440 120"
-            preserveAspectRatio="none"
-            className="w-full h-14 sm:h-20 block relative z-10 -mt-10 sm:-mt-14"
-          >
-            <path
-              d="M0,78 C320,16 680,10 1040,46 C1220,64 1340,70 1440,52 L1440,120 L0,120 Z"
-              fill="#000000"
-            />
-          </svg>
+          <div>
+            <FooterLinkColumn title="Platform" links={footerData.platform} />
+          </div>
 
-          {/* Jet Black Legal & Admin Bar */}
-          <div className="bg-black px-5 sm:px-8 lg:px-10 py-6 text-neutral-400">
-            <div className="max-w-7xl mx-auto space-y-3">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-xs text-neutral-300 text-center sm:text-left">
-                  {footerData.bottomBar}
-                </p>
-                <button
-                  onClick={handleAdminClick}
-                  data-testid="footer-admin-btn"
-                  className="text-neutral-400 hover:text-[#22E55A] text-xs font-mono transition-colors tracking-widest lowercase hover:underline"
-                  title="Flik Admin Access"
-                >
-                  admin
-                </button>
-              </div>
-              <p className="text-[11px] text-neutral-500 text-center sm:text-left leading-relaxed">
-                © 2026 NVIDIA, the NVIDIA logo, DLSS, NVIDIA Inception, and NVIDIA RTX are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries. Amazon Web Services, AWS, and AWS Activate are trademarks of Amazon.com, Inc. Anthropic and Claude are trademarks of Anthropic PBC. ElevenLabs is a trademark of ElevenLabs Inc.
-              </p>
-            </div>
+          <div>
+            <FooterLinkColumn title="Company" links={footerData.company} />
+          </div>
+
+          <div>
+            <FooterLinkColumn title="Legal" links={footerData.legal} />
           </div>
         </div>
       </div>
 
-      {/* Admin Passcode Modal */}
+      {/* Monochrome Jet-Black Horizon Finale */}
+      <div
+        className="relative pt-14 sm:pt-20 overflow-hidden"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(244,244,245,0) 0%, #27272a 35%, #000000 100%)',
+        }}
+      >
+        <div className="relative flex justify-center items-end leading-none px-4 pt-6 pb-8 sm:pb-12">
+          <span
+            aria-hidden="true"
+            className="font-display font-semibold tracking-[-0.045em] text-[clamp(4.75rem,17vw,14rem)] leading-[0.78] select-none translate-y-4 sm:translate-y-6"
+          >
+            <span className="text-white">flik</span>
+            <span className="text-[#22E55A]">.in</span>
+          </span>
+        </div>
+
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          className="w-full h-14 sm:h-20 block relative z-10 -mt-10 sm:-mt-14"
+        >
+          <path
+            d="M0,78 C320,16 680,10 1040,46 C1220,64 1340,70 1440,52 L1440,120 L0,120 Z"
+            fill="#000000"
+          />
+        </svg>
+
+        <div className="bg-black px-5 sm:px-8 py-6 text-neutral-400">
+          <div className="max-w-[1440px] mx-auto space-y-3">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-xs text-neutral-300 text-center sm:text-left">
+                {footerData.bottomBar}
+              </p>
+              <button
+                onClick={handleAdminClick}
+                data-testid="footer-admin-btn"
+                className="text-neutral-400 hover:text-[#22E55A] text-xs font-mono transition-colors tracking-widest lowercase hover:underline"
+                title="Flik Admin Access"
+              >
+                admin
+              </button>
+            </div>
+            <p className="text-[11px] text-neutral-500 text-center sm:text-left leading-relaxed">
+              © 2026 NVIDIA, the NVIDIA logo, DLSS, NVIDIA Inception, and NVIDIA RTX are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries. Amazon Web Services, AWS, and AWS Activate are trademarks of Amazon.com, Inc. Anthropic and Claude are trademarks of Anthropic PBC. ElevenLabs is a trademark of ElevenLabs Inc.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <AdminAuthModal isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
     </footer>
   );

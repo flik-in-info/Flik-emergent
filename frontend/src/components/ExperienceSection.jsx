@@ -9,7 +9,7 @@ const EXPERIENCES = [
     title: 'Virtual Walkthrough',
     subtitle: 'Interactive Residence Tour',
     description:
-      'Step inside a furnished apartment unit directly inside your browser without software installation.',
+      'Step inside a furnished apartment directly inside your browser without installing software.',
     icon: Compass,
     src:
       process.env.REACT_APP_VIRTUAL_WALKTHROUGH_URL ||
@@ -28,6 +28,14 @@ const EXPERIENCES = [
   },
 ];
 
+const INFRASTRUCTURE_STACK = [
+  { name: 'Unreal Engine 5', detail: 'Photoreal geometry & lighting' },
+  { name: 'NVIDIA RTX Cloud', detail: 'Low-latency browser GPU streaming' },
+  { name: 'AWS CloudFront', detail: 'Global edge delivery for NRIs' },
+  { name: 'Autodesk BIM & CAD', detail: 'Direct architectural ingestion' },
+  { name: 'Claude & ElevenLabs', detail: 'Multilingual sales context' },
+];
+
 const ExperienceSection = () => {
   const [selectedId, setSelectedId] = useState('virtual-walkthrough');
   const [modalExp, setModalExp] = useState(null);
@@ -43,15 +51,15 @@ const ExperienceSection = () => {
   return (
     <section
       id="experience"
-      className="scroll-mt-24 py-16 lg:py-20 bg-white"
+      className="scroll-mt-20 py-16 lg:py-20 bg-neutral-100 border-b border-black/15"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-black leading-[1.08] tracking-[-0.03em]">
-              Test the interactive{' '}
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-medium text-black leading-[1.06] tracking-[-0.03em]">
+              Try the live unit{' '}
               <span className="underline decoration-[#22E55A] decoration-[4px] underline-offset-[6px]">
-                unit tour yourself.
+                walkthrough yourself.
               </span>
             </h2>
             <p className="text-sm sm:text-base text-neutral-600 mt-2.5 max-w-2xl">
@@ -59,7 +67,7 @@ const ExperienceSection = () => {
             </p>
           </div>
 
-          <div className="inline-flex rounded-xl border border-neutral-200 bg-neutral-100 p-1 self-start lg:self-auto">
+          <div className="inline-flex border border-black bg-white p-1 self-start lg:self-auto">
             {EXPERIENCES.map((exp) => {
               const Icon = exp.icon;
               const active = exp.id === selectedId;
@@ -69,10 +77,10 @@ const ExperienceSection = () => {
                   type="button"
                   onClick={() => handleSelectMode(exp)}
                   data-testid={`experience-card-${exp.id}`}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+                  className={`flex items-center gap-2 px-4 py-2 text-xs font-medium transition-colors cursor-pointer ${
                     active
                       ? 'bg-[#22E55A] text-black font-semibold'
-                      : 'text-neutral-600 hover:text-black'
+                      : 'text-neutral-700 hover:text-black'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -83,11 +91,11 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        {/* Elevated Light Browser Frame */}
-        <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-[0_32px_70px_-32px_rgba(0,0,0,0.18)]">
+        {/* Clean Framed Browser Viewport */}
+        <div className="border border-black bg-white">
           <div className="px-4 sm:px-5 py-3 border-b border-neutral-200 flex items-center justify-between gap-2 bg-neutral-50">
-            <div className="flex items-center gap-2.5 text-xs font-mono text-neutral-700">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#22E55A] border border-black/30" />
+            <div className="flex items-center gap-2.5 text-xs font-mono text-black">
+              <span className="w-2.5 h-2.5 bg-[#22E55A] border border-black" />
               <span>{activeExp.subtitle}</span>
             </div>
             <button
@@ -97,7 +105,7 @@ const ExperienceSection = () => {
                 telemetry.experienceInteract(activeExp.id, 'fullscreen');
                 setModalExp(activeExp);
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black hover:bg-[#22E55A] text-white hover:text-black text-xs font-medium transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black hover:bg-[#22E55A] text-white hover:text-black text-xs font-medium transition-colors cursor-pointer"
               aria-label={`Open ${activeExp.title} fullscreen`}
             >
               <Maximize2 className="w-3 h-3" />
@@ -105,7 +113,7 @@ const ExperienceSection = () => {
             </button>
           </div>
 
-          <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[440px] bg-black">
+          <div className="relative w-full h-[340px] sm:h-[420px] lg:h-[460px] bg-black">
             {!loadedMap[activeExp.id] && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-neutral-300 text-xs pointer-events-none z-10">
                 <Loader2 className="w-5 h-5 animate-spin text-[#22E55A]" />
@@ -128,6 +136,16 @@ const ExperienceSection = () => {
               onLoad={() => setLoadedMap((prev) => ({ ...prev, [activeExp.id]: true }))}
             />
           </div>
+        </div>
+
+        {/* Concise Architectural Stack Strip (Zero Vendor Card Clutter) */}
+        <div id="technology" className="scroll-mt-24 pt-10 grid grid-cols-2 md:grid-cols-5 gap-6">
+          {INFRASTRUCTURE_STACK.map((item) => (
+            <div key={item.name} className="border-t border-black/20 pt-3">
+              <div className="text-xs sm:text-sm font-semibold text-black">{item.name}</div>
+              <div className="text-[11px] font-mono text-neutral-500 mt-1">{item.detail}</div>
+            </div>
+          ))}
         </div>
       </div>
 

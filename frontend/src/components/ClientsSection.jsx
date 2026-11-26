@@ -40,9 +40,9 @@ const ClientsSection = () => {
     <section
       id="clients"
       aria-label="Our Previous Clients"
-      className="scroll-mt-24 py-14 lg:py-20 bg-white border-t border-neutral-200"
+      className="scroll-mt-20 py-14 lg:py-20 bg-white border-b border-black/15"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <h2 className="text-3xl sm:text-4xl font-medium text-black tracking-[-0.03em]">
             Trusted by residential developers.
@@ -52,18 +52,18 @@ const ClientsSection = () => {
           </span>
         </div>
 
-        {/* Pure White Stage Cards Preserving Unmodified Original Client Brand Colors */}
+        {/* Architectural Grid Preserving Unmodified Website Logo Colors on Pure White */}
         <div
           data-testid="clients-logo-grid"
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-black/20"
         >
           {CLIENTS.map((client) => (
             <div
               key={client.id}
               data-testid={`client-card-${client.id}`}
-              className="group rounded-2xl border border-neutral-200 bg-white hover:border-black transition-all flex flex-col overflow-hidden"
+              className="group border-r border-b border-black/20 bg-white flex flex-col"
             >
-              {/* True White Stage for Unmodified Website Brand Colors */}
+              {/* True White Stage */}
               <div className="h-28 sm:h-32 bg-white px-5 py-4 flex items-center justify-center">
                 <img
                   src={client.logo}
@@ -74,9 +74,9 @@ const ClientsSection = () => {
                 />
               </div>
 
-              {/* Clean Monochrome Caption */}
-              <div className="p-4 border-t border-neutral-100 bg-neutral-50 flex-1">
-                <div className="text-sm font-semibold text-black group-hover:underline decoration-[#22E55A] decoration-2 underline-offset-4 transition-colors">
+              {/* Clean Architectural Caption */}
+              <div className="p-4 border-t border-neutral-200 bg-neutral-50 flex-1">
+                <div className="text-sm font-semibold text-black group-hover:underline decoration-[#22E55A] decoration-2 underline-offset-4">
                   {client.name}
                 </div>
                 <div className="text-xs text-neutral-500 mt-1 leading-snug">

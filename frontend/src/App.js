@@ -3,16 +3,16 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
 import CinemaScrollMovie from "./components/CinemaScrollMovie";
-import ClientsSection from "./components/ClientsSection";
-import ExperienceSection from "./components/ExperienceSection";
-import TechnologySection from "./components/TechnologySection";
 import DifferenceSection from "./components/DifferenceSection";
+import ExperienceSection from "./components/ExperienceSection";
+import FAQSection from "./components/FAQSection";
 import ContactSection from "./components/ContactSection";
+import ClientsSection from "./components/ClientsSection";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
-import FAQSection from "./components/FAQSection";
 import PulseDashboard from "./components/telemetry/PulseDashboard";
 import MobileStickyCTA from "./components/MobileStickyCTA";
 import { DemoDialogProvider } from "./context/DemoDialogContext";
@@ -63,10 +63,10 @@ const LandingPage = () => {
       <ScrollProgressBeam />
       <Header />
       <main>
+        <HeroSection />
         <CinemaScrollMovie />
-        <ExperienceSection />
         <DifferenceSection />
-        <TechnologySection />
+        <ExperienceSection />
         <FAQSection />
         <ContactSection />
         <ClientsSection />
