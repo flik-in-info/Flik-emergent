@@ -7,6 +7,7 @@ import HeroSection from "./components/HeroSection";
 import CinemaScrollMovie from "./components/CinemaScrollMovie";
 import DifferenceSection from "./components/DifferenceSection";
 import ExperienceSection from "./components/ExperienceSection";
+import TechnologySection from "./components/TechnologySection";
 import FAQSection from "./components/FAQSection";
 import ContactSection from "./components/ContactSection";
 import ClientsSection from "./components/ClientsSection";
@@ -67,6 +68,7 @@ const LandingPage = () => {
         <CinemaScrollMovie />
         <DifferenceSection />
         <ExperienceSection />
+        <TechnologySection />
         <FAQSection />
         <ContactSection />
         <ClientsSection />

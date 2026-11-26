@@ -28,14 +28,6 @@ const EXPERIENCES = [
   },
 ];
 
-const INFRASTRUCTURE_STACK = [
-  { name: 'Unreal Engine 5', detail: 'Photoreal geometry & lighting' },
-  { name: 'NVIDIA RTX Cloud', detail: 'Low-latency browser GPU streaming' },
-  { name: 'AWS CloudFront', detail: 'Global edge delivery for NRIs' },
-  { name: 'Autodesk BIM & CAD', detail: 'Direct architectural ingestion' },
-  { name: 'Claude & ElevenLabs', detail: 'Multilingual sales context' },
-];
-
 const ExperienceSection = () => {
   const [selectedId, setSelectedId] = useState('virtual-walkthrough');
   const [modalExp, setModalExp] = useState(null);
@@ -136,16 +128,6 @@ const ExperienceSection = () => {
               onLoad={() => setLoadedMap((prev) => ({ ...prev, [activeExp.id]: true }))}
             />
           </div>
-        </div>
-
-        {/* Concise Architectural Stack Strip (Zero Vendor Card Clutter) */}
-        <div id="technology" className="scroll-mt-24 pt-10 grid grid-cols-2 md:grid-cols-5 gap-6">
-          {INFRASTRUCTURE_STACK.map((item) => (
-            <div key={item.name} className="border-t border-black/20 pt-3">
-              <div className="text-xs sm:text-sm font-semibold text-black">{item.name}</div>
-              <div className="text-[11px] font-mono text-neutral-500 mt-1">{item.detail}</div>
-            </div>
-          ))}
         </div>
       </div>
 
