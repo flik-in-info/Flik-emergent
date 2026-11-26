@@ -49,7 +49,7 @@ const FAQSection = () => {
   return (
     <section
       id="faq"
-      className="scroll-mt-20 py-16 lg:py-20 bg-neutral-100 border-b border-black/15"
+      className="scroll-mt-20 py-16 lg:py-20 bg-white border-b border-black/15"
     >
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
