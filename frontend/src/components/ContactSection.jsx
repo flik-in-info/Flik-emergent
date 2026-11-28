@@ -195,7 +195,7 @@ const ContactSection = () => {
                   </p>
                 )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                   <p className="text-xs text-gray-500 max-w-xs">
                     Your message is delivered straight to{' '}
                     <span className="text-gray-400">{CONTACT_EMAIL}</span>. We reply within one business day.
@@ -204,7 +204,7 @@ const ContactSection = () => {
                     type="submit"
                     data-testid="contact-submit"
                     disabled={submitting}
-                    className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-6 group disabled:opacity-70 disabled:hover:bg-emerald-500"
+                    className="w-full sm:w-auto min-h-[48px] bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-4 sm:py-6 justify-center group disabled:opacity-70 disabled:hover:bg-emerald-500"
                   >
                     {submitting ? (
                       <>

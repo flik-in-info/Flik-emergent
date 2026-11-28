@@ -15,22 +15,31 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-[#0a0a0b]/92 backdrop-blur-xl border-b border-white/5 shadow-2xl'
-          : 'bg-[#0a0a0b]/50 backdrop-blur-md border-b border-white/[0.02]'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isMobileMenuOpen
+          ? 'bg-[#0a0a0b] border-b border-white/10 shadow-2xl'
+          : isScrolled
+            ? 'bg-[#0a0a0b]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl'
+            : 'bg-[#0a0a0b]/60 backdrop-blur-md border-b border-white/[0.04]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center group flex-shrink-0">
+          <Link to="/" className="flex items-center group flex-shrink-0 py-1.5">
             <img 
               src={images.logo} 
               alt="Flik Explorer - Real-Time 3D Digital Twin Platform" 
@@ -73,17 +82,19 @@ const Header = () => {
               data-testid="header-mobile-bar-cta"
               onClick={() => {
                 telemetry.ctaClick('Request Demo', 'header_mobile_top_bar');
+                setIsMobileMenuOpen(false);
                 openDemoDialog('header_mobile_top_bar');
               }}
-              className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium text-xs px-3.5 sm:px-4 py-1.5 h-8 sm:h-9 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.35)] active:scale-95 transition-all"
+              className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium text-xs px-4 py-2 h-10 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.35)] active:scale-95 transition-all"
             >
               Request Demo
             </Button>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-white hover:text-emerald-400 active:scale-95 transition-all rounded-lg focus:outline-none"
+              className="w-11 h-11 flex items-center justify-center text-white hover:text-emerald-400 active:scale-95 transition-all rounded-xl border border-white/10 bg-white/[0.04] focus:outline-none"
               aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -91,22 +102,31 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Tap-outside Backdrop Scrim */}
+      {isMobileMenuOpen && (
+        <div
+          aria-hidden="true"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 bg-black/75 backdrop-blur-sm z-40"
+        />
+      )}
+
+      {/* Opaque Solid Mobile Menu Drawer */}
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 bg-[#0a0a0b]/98 backdrop-blur-2xl border-b border-white/10 transition-all duration-300 overflow-hidden shadow-2xl ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100 py-6' : 'max-h-0 opacity-0 py-0'
+        className={`lg:hidden absolute top-full left-0 right-0 z-50 bg-[#0a0a0b] border-b border-white/15 transition-all duration-300 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.98)] ${
+          isMobileMenuOpen ? 'max-h-[75dvh] opacity-100 py-5 overflow-y-auto' : 'max-h-0 opacity-0 py-0 pointer-events-none'
         }`}
       >
-        <nav className="flex flex-col px-6 gap-2">
+        <nav className="flex flex-col px-5 gap-1.5" aria-label="Mobile Navigation">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="text-gray-300 hover:text-white transition-colors duration-200 py-2.5 px-3 rounded-lg hover:bg-white/[0.04] text-sm flex items-center justify-between"
+              className="text-gray-200 hover:text-white transition-colors duration-200 min-h-[46px] px-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.04] text-base flex items-center justify-between"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <span>{item.label}</span>
-              <span className="text-xs font-mono text-gray-500">→</span>
+              <span className="text-xs font-mono text-emerald-400">→</span>
             </a>
           ))}
           <Button
@@ -116,7 +136,7 @@ const Header = () => {
               setIsMobileMenuOpen(false);
               openDemoDialog('header_mobile_drawer');
             }}
-            className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium mt-3 py-6 rounded-xl shadow-lg shadow-emerald-500/25"
+            className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium mt-3 min-h-[48px] text-base rounded-xl shadow-lg shadow-emerald-500/25"
           >
             Request Demo
           </Button>

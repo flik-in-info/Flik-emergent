@@ -9,7 +9,7 @@ const HeroSection = () => {
   const { open: openDemoDialog } = useDemoDialog();
 
   return (
-    <section id="hero" className="relative min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden">
+    <section id="hero" className="relative min-h-[min(100svh,680px)] sm:min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
@@ -25,16 +25,16 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 sm:pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-10 sm:pb-16">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium tracking-wider mb-4 sm:mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] sm:text-xs font-mono font-medium tracking-wider mb-4 sm:mb-5">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>{heroData.badge || 'ENTERPRISE PROPTECH PLATFORM'}</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight mb-4 sm:mb-6">
+          <h1 className="text-[2rem] leading-[1.08] sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white sm:leading-tight mb-4 sm:mb-6">
             {heroData.headline.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -43,7 +43,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-sm sm:text-lg lg:text-xl text-gray-400 leading-relaxed mb-6 sm:mb-9 max-w-2xl font-light">
+          <p className="text-sm sm:text-lg lg:text-xl text-gray-300 sm:text-gray-400 leading-relaxed mb-6 sm:mb-9 max-w-2xl font-light">
             {heroData.subheadline}
           </p>
 
@@ -56,7 +56,7 @@ const HeroSection = () => {
                 telemetry.ctaClick(heroData.primaryCta, 'hero_primary');
                 openDemoDialog('hero');
               }}
-              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 active:scale-98 group flex items-center justify-center"
+              className="w-full sm:w-auto min-h-[48px] bg-emerald-500 hover:bg-emerald-400 text-white font-medium px-8 py-3.5 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20 active:scale-98 group flex items-center justify-center"
             >
               <span>{heroData.primaryCta}</span>
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -69,7 +69,7 @@ const HeroSection = () => {
                 telemetry.ctaClick(heroData.secondaryCta, 'hero_secondary');
                 openDemoDialog('hero_demo');
               }}
-              className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 font-medium px-8 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 active:scale-98 group flex items-center justify-center"
+              className="w-full sm:w-auto min-h-[48px] border-white/25 text-white hover:bg-white/10 font-medium px-8 py-3.5 sm:py-6 text-sm sm:text-base transition-all duration-300 active:scale-98 group flex items-center justify-center"
             >
               <Play className="mr-2 w-4 h-4 sm:w-5 sm:h-5 fill-current" />
               <span>{heroData.secondaryCta}</span>
@@ -77,7 +77,7 @@ const HeroSection = () => {
           </div>
 
           {/* Mobile Live Inventory Card (In normal flow, zero overlap) */}
-          <div className="mt-8 lg:hidden">
+          <div className="mt-6 lg:hidden">
             <div className="bg-[#0a0a0b]/85 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl">
               <div className="flex items-center gap-2 mb-2.5">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

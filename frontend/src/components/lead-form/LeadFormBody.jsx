@@ -88,13 +88,13 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
       />
     </div>
 
-    <DialogFooter className="gap-2 sm:gap-0">
+    <DialogFooter className="gap-2.5 sm:gap-0 flex-col-reverse sm:flex-row">
       <Button
         type="button"
         variant="ghost"
         data-testid="lead-form-cancel"
         onClick={onCancel}
-        className="text-gray-400 hover:text-white hover:bg-white/5"
+        className="min-h-[44px] sm:min-h-0 text-gray-400 hover:text-white hover:bg-white/5"
       >
         Cancel
       </Button>
@@ -102,7 +102,7 @@ const LeadFormBody = ({ form, onFieldChange, onSubmit, onCancel, submitting }) =
         type="submit"
         data-testid="lead-form-submit"
         disabled={submitting}
-        className="bg-emerald-500 hover:bg-emerald-400 text-white font-medium group"
+        className="min-h-[46px] sm:min-h-0 bg-emerald-500 hover:bg-emerald-400 text-white font-medium group justify-center"
       >
         {submitting ? (
           <>

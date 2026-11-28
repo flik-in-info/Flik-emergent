@@ -169,7 +169,7 @@ const PlatformStudio = () => {
           <div
             role="tablist"
             aria-label="Flik Platform Pillars"
-            className="grid grid-cols-2 sm:inline-flex p-1.5 rounded-2xl bg-[#0d0d11]/90 backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_35px_rgba(0,0,0,0.45)] gap-1"
+            className="grid grid-cols-2 sm:inline-flex p-1.5 rounded-2xl bg-[#0d0d11]/95 backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_35px_rgba(0,0,0,0.45)] gap-1.5 sm:gap-1"
           >
             {TABS.map((tab) => {
               const Icon = tab.icon;
@@ -180,7 +180,7 @@ const PlatformStudio = () => {
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => handleSelectTab(tab.id)}
-                  className={`flex items-center justify-center sm:justify-start gap-2 px-4 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 cursor-pointer ${
+                  className={`flex items-center justify-center sm:justify-start gap-2 min-h-[44px] px-3 sm:px-4 py-2 rounded-xl text-xs font-medium transition-all duration-300 cursor-pointer ${
                     isSelected
                       ? 'bg-gradient-to-r from-emerald-400 to-emerald-500 text-black font-semibold shadow-lg shadow-emerald-500/25'
                       : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
@@ -194,9 +194,9 @@ const PlatformStudio = () => {
           </div>
         </div>
 
-        {/* Luxury Split Showcase (Zero Clipped Text / Pristine Uncropped Framing) */}
-        <div className="grid lg:grid-cols-12 gap-5 items-stretch">
-          <div className="lg:col-span-5 p-5 rounded-3xl bg-gradient-to-b from-[#0e0e13] to-[#0a0a0d] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] flex flex-col justify-between gap-4">
+        {/* Luxury Split Showcase (Visual First on Mobile for Immediate Tab Feedback) */}
+        <div className="grid lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
+          <div className="order-2 lg:order-1 lg:col-span-5 p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#0e0e13] to-[#0a0a0d] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] flex flex-col justify-between gap-4">
             <div>
               <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed mb-4">
                 {current.body}
@@ -206,7 +206,7 @@ const PlatformStudio = () => {
                 {current.items.slice(0, 6).map((item, idx) => (
                   <div
                     key={item.title || idx}
-                    className="group p-2.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.045] border border-white/[0.05] hover:border-emerald-500/30 transition-all duration-300"
+                    className="group p-3 sm:p-2.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.045] border border-white/[0.05] hover:border-emerald-500/30 transition-all duration-300"
                   >
                     <div className="flex items-start gap-2.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
@@ -215,7 +215,7 @@ const PlatformStudio = () => {
                           {item.title}
                         </h3>
                         {item.description && (
-                          <p className="text-[11px] sm:text-xs text-gray-400 leading-snug mt-0.5">
+                          <p className="text-xs text-gray-400 leading-snug mt-0.5">
                             {item.description}
                           </p>
                         )}
@@ -226,7 +226,7 @@ const PlatformStudio = () => {
               </div>
             </div>
 
-            <div className="pt-3 border-t border-white/[0.07] flex items-center justify-between gap-3">
+            <div className="pt-3 border-t border-white/[0.07] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <span className="text-xs text-gray-500">Live tailored project walkthrough</span>
               <Button
                 onClick={() => {
@@ -234,7 +234,7 @@ const PlatformStudio = () => {
                   openDemoDialog(`platform_${activeTab}`);
                 }}
                 size="sm"
-                className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-4 py-2 rounded-xl shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
+                className="w-full sm:w-auto min-h-[44px] sm:min-h-0 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
               >
                 Request Demo
                 <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -243,7 +243,7 @@ const PlatformStudio = () => {
           </div>
 
           {/* Right Uncropped Architectural Viewport */}
-          <div className="lg:col-span-7 relative rounded-3xl overflow-hidden border border-white/10 bg-[#070709] p-2.5 flex flex-col justify-between shadow-[0_25px_70px_-20px_rgba(0,0,0,0.85),0_0_50px_-25px_rgba(16,185,129,0.18)]">
+          <div className="order-1 lg:order-2 lg:col-span-7 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#070709] p-2 sm:p-2.5 flex flex-col justify-between shadow-[0_25px_70px_-20px_rgba(0,0,0,0.85),0_0_50px_-25px_rgba(16,185,129,0.18)]">
             <div className="relative w-full aspect-[16/9] max-h-[380px] flex items-center justify-center">
               <img
                 key={activeTab}

@@ -61,7 +61,7 @@ const ScrollProgressBeam = () => {
 
 const LandingPage = () => {
   return (
-    <div className="bg-[#0a0a0b] min-h-screen pb-20 lg:pb-0 relative">
+    <div className="bg-[#0a0a0b] min-h-screen pb-24 lg:pb-0 relative overflow-x-clip">
       <ScrollProgressBeam />
       <Header />
       <main>

@@ -24,12 +24,12 @@ const MobileStickyCTA = () => {
   return (
     <div
       data-testid="mobile-sticky-action-dock"
-      className="lg:hidden fixed bottom-3 inset-x-3 z-40 max-w-md mx-auto pointer-events-auto transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+      className="lg:hidden fixed bottom-2.5 inset-x-3 z-40 max-w-md mx-auto pointer-events-auto transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
       style={{
         paddingBottom: 'max(0px, env(safe-area-inset-bottom))'
       }}
     >
-      <div className="bg-[#0b0b0e]/92 backdrop-blur-2xl border border-white/10 rounded-2xl p-2 sm:p-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_25px_rgba(16,185,129,0.22)] flex items-center justify-between gap-2.5">
+      <div className="bg-[#0b0b0e]/[0.94] backdrop-blur-2xl border border-white/15 rounded-2xl p-2 sm:p-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.85),0_0_25px_rgba(16,185,129,0.22)] flex items-center justify-between gap-2.5">
         {/* Live Availability Pill */}
         <div className="flex items-center gap-2 pl-2 flex-shrink-0">
           <span className="relative flex h-2.5 w-2.5">
@@ -47,7 +47,7 @@ const MobileStickyCTA = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-1.5 flex-1 justify-end">
+        <div className="flex items-center gap-2 flex-1 justify-end">
           {/* Quick WhatsApp Consultation */}
           <a
             href={`https://wa.me/${contactData.phoneRaw}?text=${encodeURIComponent(contactData.whatsappMessage)}`}
@@ -55,7 +55,7 @@ const MobileStickyCTA = () => {
             rel="noopener noreferrer"
             onClick={handleWhatsApp}
             aria-label="Chat on WhatsApp"
-            className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-emerald-400 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-500/30 active:scale-95 transition-all flex-shrink-0"
+            className="w-11 h-11 rounded-xl bg-white/[0.06] border border-white/15 flex items-center justify-center text-emerald-400 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-500/30 active:scale-95 transition-all flex-shrink-0"
           >
             <MessageSquare className="w-4 h-4" />
           </a>
@@ -64,7 +64,7 @@ const MobileStickyCTA = () => {
           <Button
             data-testid="mobile-sticky-request-demo"
             onClick={handleOpenDemo}
-            className="flex-1 max-w-[170px] bg-emerald-500 hover:bg-emerald-400 text-white font-medium text-xs sm:text-sm h-9 px-3.5 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.35)] active:scale-95 transition-all flex items-center justify-center gap-1.5"
+            className="flex-1 max-w-[170px] bg-emerald-500 hover:bg-emerald-400 text-white font-medium text-xs sm:text-sm h-11 px-3.5 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.35)] active:scale-95 transition-all flex items-center justify-center gap-1.5"
           >
             <span>Request Demo</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />

@@ -461,11 +461,16 @@ const TechStackShowcase = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] sm:w-[1100px] h-[450px] bg-gradient-to-tr from-emerald-500/[0.05] via-cyan-500/[0.03] to-purple-500/[0.02] blur-[150px] rounded-full pointer-events-none" />
 
       {/* Cybernetic Section Header */}
-      <div className="text-center max-w-4xl mx-auto mb-5 relative px-4">
+      <div className="text-center max-w-4xl mx-auto mb-5 relative px-3 sm:px-4">
         {/* Live Status Badge */}
-        <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[11px] font-mono tracking-widest uppercase mb-2.5 shadow-[0_0_25px_rgba(16,185,129,0.2)]">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span>Enterprise Technology Stack</span>
+        <div className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 px-3 sm:px-3.5 py-1.5 sm:py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[10px] sm:text-[11px] font-mono tracking-wider sm:tracking-widest uppercase mb-2.5 shadow-[0_0_25px_rgba(16,185,129,0.2)]">
+          <span className="inline-flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
+            <span>
+              Enterprise <span className="hidden sm:inline">Technology</span>
+              <span className="sm:hidden">Tech</span> Stack
+            </span>
+          </span>
           <span className="text-white/30">•</span>
           <span className="text-emerald-300 font-semibold">14/14 Protocols Online</span>
         </div>
@@ -480,19 +485,19 @@ const TechStackShowcase = () => {
 
         {/* View Switcher & Live Tour Control */}
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
-          <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-xl">
+          <div className="w-full sm:w-auto grid grid-cols-2 sm:inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-xl">
             <button
               onClick={() => {
                 setViewMode('constellation');
                 telemetry.ctaClick('tech_view_constellation');
               }}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${
+              className={`flex items-center justify-center gap-2 min-h-[44px] sm:min-h-0 px-3 sm:px-4 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${
                 viewMode === 'constellation'
                   ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.25)]'
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              <Orbit className="w-4 h-4 text-emerald-400" />
+              <Orbit className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Orbit Constellation</span>
             </button>
 
@@ -501,13 +506,13 @@ const TechStackShowcase = () => {
                 setViewMode('matrix');
                 telemetry.ctaClick('tech_view_matrix');
               }}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${
+              className={`flex items-center justify-center gap-2 min-h-[44px] sm:min-h-0 px-3 sm:px-4 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${
                 viewMode === 'matrix'
                   ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.25)]'
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              <LayoutGrid className="w-4 h-4 text-emerald-400" />
+              <LayoutGrid className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Architecture Matrix</span>
             </button>
           </div>
@@ -531,8 +536,8 @@ const TechStackShowcase = () => {
           )}
         </div>
 
-        {/* Architectural Layer Filter Chips */}
-        <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5">
+        {/* Architectural Layer Filter Chips (Single Swipeable Row on Phones) */}
+        <div className="mt-3 flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0 -mx-1 px-1">
           {ARCHITECTURE_LAYERS.map((layer) => {
             const isCurrent = selectedLayer === layer.id;
             const Icon = layer.icon;
@@ -543,13 +548,13 @@ const TechStackShowcase = () => {
                   setSelectedLayer(layer.id);
                   telemetry.ctaClick(`tech_layer_${layer.id}`);
                 }}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-mono transition-all duration-300 border ${
+                className={`shrink-0 flex items-center gap-1.5 min-h-[40px] sm:min-h-0 px-3 sm:px-2.5 py-2 sm:py-1 rounded-lg text-[11px] font-mono transition-all duration-300 border ${
                   isCurrent
                     ? 'bg-white/[0.1] border-emerald-400/50 text-white shadow-[0_0_15px_rgba(16,185,129,0.2)]'
-                    : 'bg-transparent border-white/5 text-gray-500 hover:text-gray-300 hover:border-white/10'
+                    : 'bg-white/[0.02] sm:bg-transparent border-white/10 sm:border-white/5 text-gray-400 sm:text-gray-500 hover:text-gray-300 hover:border-white/10'
                 }`}
               >
-                <Icon className={`w-3 h-3 ${isCurrent ? 'text-emerald-400' : 'text-gray-500'}`} />
+                <Icon className={`w-3 h-3 shrink-0 ${isCurrent ? 'text-emerald-400' : 'text-gray-500'}`} />
                 <span>{layer.label}</span>
                 <span className="text-[10px] opacity-60">({layer.count})</span>
               </button>
@@ -810,8 +815,8 @@ const TechStackShowcase = () => {
                 </span>
               </div>
 
-              {/* Grid of official logos */}
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
+              {/* Grid of official logos (2-col uncropped readable names on phones) */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 {filteredPartners.map((partner) => {
                   const isSelected = activePartner.id === partner.id;
                   const LogoComponent = partner.Logo;
@@ -823,14 +828,14 @@ const TechStackShowcase = () => {
                         borderColor: isSelected ? partner.accent : undefined,
                         boxShadow: isSelected ? `0 0 20px ${partner.glow}` : undefined
                       }}
-                      className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all duration-200 ${
+                      className={`min-h-[78px] px-2.5 py-3 rounded-xl border flex flex-col items-center justify-center gap-2 text-center transition-all duration-200 ${
                         isSelected
                           ? 'bg-white/[0.12] text-white'
-                          : 'bg-white/[0.03] border-white/5 text-gray-400'
+                          : 'bg-white/[0.03] border-white/10 text-gray-300'
                       }`}
                     >
-                      <LogoComponent className="w-6 h-6" />
-                      <span className="text-[10px] truncate max-w-full font-medium">{partner.name}</span>
+                      <LogoComponent className="w-6 h-6 shrink-0" />
+                      <span className="text-[11px] leading-tight font-medium">{partner.name}</span>
                     </button>
                   );
                 })}

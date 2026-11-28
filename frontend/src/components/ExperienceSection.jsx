@@ -65,7 +65,7 @@ const ExperienceSection = () => {
             </h2>
           </div>
 
-          <div className="inline-flex p-1.5 rounded-2xl bg-[#101015] border border-white/10 shadow-xl self-start lg:self-auto gap-1">
+          <div className="w-full sm:w-auto grid grid-cols-2 sm:inline-flex p-1.5 rounded-2xl bg-[#101015] border border-white/10 shadow-xl sm:self-auto gap-1.5 sm:gap-1">
             {EXPERIENCES.map((exp) => {
               const Icon = exp.icon;
               const active = exp.id === selectedId;
@@ -75,14 +75,14 @@ const ExperienceSection = () => {
                   type="button"
                   onClick={() => handleSelectMode(exp)}
                   data-testid={`experience-card-${exp.id}`}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 cursor-pointer ${
+                  className={`flex items-center justify-center gap-2 min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 cursor-pointer ${
                     active
                       ? 'bg-emerald-500 text-black font-semibold shadow-lg shadow-emerald-500/25'
                       : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{exp.title}</span>
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">{exp.title}</span>
                 </button>
               );
             })}
@@ -90,8 +90,8 @@ const ExperienceSection = () => {
         </div>
 
         {/* Full-Width Luxury Theater Frame */}
-        <div className="rounded-3xl bg-[#0b0b0f] border border-white/10 overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.85),0_0_40px_-20px_rgba(16,185,129,0.18)]">
-          <div className="relative w-full h-[280px] sm:h-[320px] lg:h-[340px] bg-[#060608]">
+        <div className="rounded-2xl sm:rounded-3xl bg-[#0b0b0f] border border-white/10 overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.85),0_0_40px_-20px_rgba(16,185,129,0.18)]">
+          <div className="relative w-full h-[300px] sm:h-[320px] lg:h-[340px] bg-[#060608]">
             {!loadedMap[activeExp.id] && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-gray-400 text-xs pointer-events-none z-10">
                 <Loader2 className="w-5 h-5 animate-spin text-emerald-400" />
@@ -119,7 +119,7 @@ const ExperienceSection = () => {
                 telemetry.experienceInteract(activeExp.id, 'fullscreen');
                 setModalExp(activeExp);
               }}
-              className="absolute top-4 right-4 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/75 hover:bg-emerald-500 text-white hover:text-black backdrop-blur-md border border-white/15 hover:border-emerald-400 text-xs font-medium transition-all duration-300 cursor-pointer shadow-lg"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 inline-flex items-center gap-2 min-h-[40px] sm:min-h-0 px-3.5 py-2 rounded-full bg-black/80 hover:bg-emerald-500 text-white hover:text-black backdrop-blur-md border border-white/15 hover:border-emerald-400 text-xs font-medium transition-all duration-300 cursor-pointer shadow-lg"
               aria-label={`Open ${activeExp.title} fullscreen`}
             >
               <Maximize2 className="w-3.5 h-3.5" />
@@ -127,7 +127,7 @@ const ExperienceSection = () => {
             </button>
           </div>
 
-          <div className="px-5 py-3 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#0c0c10]">
+          <div className="px-4 sm:px-5 py-3 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#0c0c10]">
             <div>
               <span className="text-[11px] font-medium uppercase tracking-widest text-emerald-400">
                 {activeExp.subtitle}

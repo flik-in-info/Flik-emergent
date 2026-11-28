@@ -94,7 +94,7 @@ const FAQSection = () => {
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full text-left px-5 py-4 flex items-center justify-between gap-3 cursor-pointer"
+                  className="w-full text-left min-h-[52px] px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between gap-3 cursor-pointer"
                   aria-expanded={isOpen}
                 >
                   <span className="text-sm sm:text-[15px] font-medium text-white leading-snug">

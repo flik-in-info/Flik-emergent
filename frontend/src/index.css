@@ -20,9 +20,50 @@ code {
         monospace;
 }
 
-/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    overflow-x: clip;
+}
+
+/* Mobile touch ergonomics */
+a,
+button,
+summary,
+[role="button"],
+input[type="range"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.touch-slider {
+    touch-action: pan-y;
+}
+
+@media (max-width: 639px) {
+    .touch-slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    .touch-slider::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+}
+
+.no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
 }
 
 /* Custom scrollbar */

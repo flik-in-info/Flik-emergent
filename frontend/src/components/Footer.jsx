@@ -127,8 +127,8 @@ const SocialIcons = () => (
 
 const FooterLinkColumn = ({ title, links }) => (
   <>
-    <h4 className="text-white font-medium mb-6">{title}</h4>
-    <ul className="space-y-3">
+    <h4 className="text-white font-medium mb-3 sm:mb-6">{title}</h4>
+    <ul className="space-y-1 sm:space-y-3">
       {links.map((link) => {
         const isInternal = link.href.startsWith('/');
         return (
@@ -136,14 +136,14 @@ const FooterLinkColumn = ({ title, links }) => (
             {isInternal ? (
               <Link
                 to={link.href}
-                className="text-gray-500 hover:text-white transition-colors duration-300 text-sm"
+                className="inline-flex items-center min-h-[36px] sm:min-h-0 text-gray-400 sm:text-gray-500 hover:text-white transition-colors duration-300 text-sm"
               >
                 {link.label}
               </Link>
             ) : (
               <a
                 href={link.href}
-                className="text-gray-500 hover:text-white transition-colors duration-300 text-sm"
+                className="inline-flex items-center min-h-[36px] sm:min-h-0 text-gray-400 sm:text-gray-500 hover:text-white transition-colors duration-300 text-sm"
               >
                 {link.label}
               </a>
@@ -278,7 +278,7 @@ const Footer = () => {
             <p className="leading-relaxed text-center sm:text-left">
               Flik is an official member of NVIDIA Inception, AWS Activate, and Claude Startups, and a recipient of the ElevenLabs Startup Grant.
             </p>
-            <div className="flex items-center gap-3 sm:gap-4 shrink-0 text-gray-600 font-mono text-[10px] uppercase tracking-wider">
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 shrink-0 text-gray-600 font-mono text-[10px] uppercase tracking-wider">
               <span>DLSS 3.5 & RTX</span>
               <span>·</span>
               <span>AWS CloudFront</span>
@@ -291,22 +291,24 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* 5-Column Navigation Grid */}
+      {/* 5-Column Navigation Grid (Compact 2-Column Links Grid on Phones) */}
       <div className="border-t border-white/5 bg-[#070708]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-8">
-          <div className="grid lg:grid-cols-5 gap-6">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-8">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-6">
             <FooterBrand />
-            <div>
-              <FooterLinkColumn title="Platform" links={footerData.platform} />
-            </div>
-            <div>
-              <FooterLinkColumn title="Company" links={footerData.company} />
-            </div>
-            <div>
-              <div className="mb-4">
+            <div className="grid grid-cols-2 lg:contents gap-x-6 gap-y-8">
+              <div>
+                <FooterLinkColumn title="Platform" links={footerData.platform} />
+              </div>
+              <div>
+                <FooterLinkColumn title="Company" links={footerData.company} />
+              </div>
+              <div>
                 <FooterLinkColumn title="Resources" links={footerData.resources.slice(0, 3)} />
               </div>
-              <FooterLinkColumn title="Legal" links={footerData.legal} />
+              <div>
+                <FooterLinkColumn title="Legal" links={footerData.legal} />
+              </div>
             </div>
           </div>
         </div>
@@ -320,7 +322,7 @@ const Footer = () => {
             <button
               onClick={handleAdminClick}
               data-testid="footer-admin-btn"
-              className="text-gray-600 hover:text-emerald-400 text-xs font-mono transition-colors tracking-widest lowercase hover:underline opacity-80 hover:opacity-100"
+              className="text-gray-600 hover:text-emerald-400 text-xs font-mono transition-colors tracking-widest lowercase hover:underline opacity-80 hover:opacity-100 min-h-[36px] px-2 inline-flex items-center"
               title="Flik Admin Access (Passcode: 2822)"
             >
               admin

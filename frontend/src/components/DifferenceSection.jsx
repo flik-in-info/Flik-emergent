@@ -115,11 +115,11 @@ const DifferenceSection = () => {
             </h2>
           </div>
 
-          <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 self-start lg:self-auto">
+          <div className="w-full sm:w-auto grid grid-cols-2 sm:inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 sm:self-auto gap-1 sm:gap-0">
             <button
               type="button"
               onClick={() => setFocusView('side-by-side')}
-              className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+              className={`min-h-[44px] sm:min-h-0 px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 focusView === 'side-by-side'
                   ? 'bg-white text-black font-semibold'
                   : 'text-gray-400 hover:text-white'
@@ -130,7 +130,7 @@ const DifferenceSection = () => {
             <button
               type="button"
               onClick={() => setFocusView('flik-only')}
-              className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+              className={`min-h-[44px] sm:min-h-0 px-3.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 focusView === 'flik-only'
                   ? 'bg-emerald-500 text-black font-semibold'
                   : 'text-gray-400 hover:text-white'
@@ -198,20 +198,22 @@ const DifferenceSection = () => {
                   </label>
                   <span className="text-sm font-mono font-bold text-white">{units} Units</span>
                 </div>
-                <input
-                  id="roi-units-slider"
-                  type="range"
-                  min={50}
-                  max={1000}
-                  step={25}
-                  value={units}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setUnits(val);
-                    handleRoiInteraction(val, selectedTicket);
-                  }}
-                  className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-white/15 accent-emerald-400"
-                />
+                <div className="py-2 sm:py-1">
+                  <input
+                    id="roi-units-slider"
+                    type="range"
+                    min={50}
+                    max={1000}
+                    step={25}
+                    value={units}
+                    onChange={(e) => {
+                      const val = Number(e.target.value);
+                      setUnits(val);
+                      handleRoiInteraction(val, selectedTicket);
+                    }}
+                    className="touch-slider w-full h-2.5 sm:h-2 rounded-lg appearance-none cursor-pointer bg-white/15 accent-emerald-400"
+                  />
+                </div>
                 <div className="flex justify-between text-[10px] font-mono text-gray-500 mt-1">
                   <span>50 Units</span>
                   <span>500 Units</span>
@@ -222,7 +224,7 @@ const DifferenceSection = () => {
               {/* Ticket Size Selector */}
               <div className="mb-6">
                 <div className="text-xs font-medium text-gray-300 mb-2">Average Unit Ticket Size</div>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 min-[380px]:grid-cols-4 gap-2">
                   {TICKET_SIZES.map((tier) => {
                     const active = tier.id === ticketId;
                     return (
@@ -233,7 +235,7 @@ const DifferenceSection = () => {
                           setTicketId(tier.id);
                           handleRoiInteraction(units, tier);
                         }}
-                        className={`py-2 px-2 rounded-xl text-xs font-mono border transition-all cursor-pointer ${
+                        className={`min-h-[44px] sm:min-h-0 py-2 px-2 rounded-xl text-xs font-mono border transition-all cursor-pointer ${
                           active
                             ? 'bg-emerald-500 text-black font-bold border-emerald-400 shadow-lg shadow-emerald-500/20'
                             : 'bg-white/[0.03] border-white/10 text-gray-300 hover:border-white/25'
@@ -247,22 +249,22 @@ const DifferenceSection = () => {
               </div>
 
               {/* Projected Outcomes Grid */}
-              <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="p-3.5 rounded-xl bg-black/50 border border-emerald-500/20">
+              <div className="grid grid-cols-1 min-[375px]:grid-cols-3 gap-2.5 sm:gap-3 mb-6">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-black/50 border border-emerald-500/20">
                   <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Carry Cost Saved</div>
-                  <div className="text-xl sm:text-2xl font-semibold text-emerald-400 font-mono">
+                  <div className="text-lg sm:text-2xl font-semibold text-emerald-400 font-mono whitespace-nowrap">
                     ₹{metrics.carryingCostSavedCr} Cr
                   </div>
                 </div>
-                <div className="p-3.5 rounded-xl bg-black/50 border border-white/10">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-black/50 border border-white/10">
                   <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Cycle Reduction</div>
-                  <div className="text-xl sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
+                  <div className="text-lg sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
                     {metrics.velocityMonthsSaved} <span className="text-xs text-gray-400 font-normal">mos</span>
                   </div>
                 </div>
-                <div className="p-3.5 rounded-xl bg-black/50 border border-white/10">
+                <div className="p-3 sm:p-3.5 rounded-xl bg-black/50 border border-white/10">
                   <div className="text-[10px] font-mono text-gray-400 uppercase mb-1">Extra Bookings</div>
-                  <div className="text-xl sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
+                  <div className="text-lg sm:text-2xl font-semibold text-white font-mono flex items-center gap-1">
                     +{metrics.additionalConversions}
                     <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                   </div>
@@ -280,7 +282,7 @@ const DifferenceSection = () => {
                   telemetry.ctaClick('Request Custom ROI Model', 'difference_roi');
                   openDemoDialog('roi_simulator');
                 }}
-                className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-5 py-2.5 cursor-pointer shrink-0"
+                className="w-full sm:w-auto min-h-[46px] sm:min-h-0 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs px-5 py-2.5 cursor-pointer shrink-0 justify-center"
               >
                 Get Project ROI Report
                 <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
